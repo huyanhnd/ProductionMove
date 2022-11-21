@@ -3,6 +3,7 @@ namespace ProductionMove.Helpers;
 using AutoMapper;
 using ProductionMove.Entities;
 using ProductionMove.Models.Accounts;
+using ProductionMove.Models.Address;
 
 public class AutoMapperProfile : Profile
 {
@@ -31,5 +32,9 @@ public class AutoMapperProfile : Profile
                     return true;
                 }
             ));
+
+        CreateMap<Province, ProvinceResponse>();
+        CreateMap<District, DistrictResponse>();
+        CreateMap<Ward, WardResponse>();
     }
 }
