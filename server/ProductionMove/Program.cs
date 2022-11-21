@@ -56,6 +56,7 @@ var builder = WebApplication.CreateBuilder(args);
     // Life cycle DI: AddSingleton(), AddTransient(), AddScoped()
     services.AddScoped<IJwtUtils, JwtUtils>();
     services.AddScoped<IAccountService, AccountService>();
+    services.AddScoped<IAddressService, AddressService>();
 }
 
 var app = builder.Build();
