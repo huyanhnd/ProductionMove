@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ProductionMove.Authorization;
+using ProductionMove.Data.Context;
 using ProductionMove.Helpers;
 using ProductionMove.Services;
 using System.Text.Json.Serialization;
@@ -55,8 +56,10 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Life cycle DI: AddSingleton(), AddTransient(), AddScoped()
     services.AddScoped<IJwtUtils, JwtUtils>();
+
     services.AddScoped<IAccountService, AccountService>();
     services.AddScoped<IAddressService, AddressService>();
+    services.AddScoped<IFactoryService, FactoryService>();
 }
 
 var app = builder.Build();

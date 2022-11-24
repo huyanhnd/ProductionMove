@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductionMove.Entities;
 
-namespace ProductionMove.Helpers
+namespace ProductionMove.Data.Context
 {
     public class DataContext : DbContext
     {

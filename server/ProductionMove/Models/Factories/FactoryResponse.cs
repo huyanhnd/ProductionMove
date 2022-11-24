@@ -1,6 +1,6 @@
-﻿namespace ProductionMove.Entities
+﻿namespace ProductionMove.Models.Factories
 {
-    public class ServiceCenter
+    public class FactoryResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

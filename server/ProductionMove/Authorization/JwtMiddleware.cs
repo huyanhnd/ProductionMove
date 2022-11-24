@@ -1,6 +1,7 @@
 namespace ProductionMove.Authorization;
 
 using Microsoft.Extensions.Options;
+using ProductionMove.Data.Context;
 using ProductionMove.Helpers;
 
 public class JwtMiddleware
