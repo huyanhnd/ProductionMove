@@ -5,8 +5,6 @@ using ProductionMove.Services;
 
 namespace ProductionMove.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AddressController : ControllerBase
     {
         private readonly IAddressService _addressService;

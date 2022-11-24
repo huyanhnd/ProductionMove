@@ -2,8 +2,10 @@ namespace ProductionMove.Helpers;
 
 using AutoMapper;
 using ProductionMove.Entities;
+using ProductionMove.Models;
 using ProductionMove.Models.Accounts;
 using ProductionMove.Models.Address;
+using ProductionMove.Models.Factories;
 
 public class AutoMapperProfile : Profile
 {
@@ -34,7 +36,15 @@ public class AutoMapperProfile : Profile
             ));
 
         CreateMap<Province, ProvinceResponse>();
+
         CreateMap<District, DistrictResponse>();
+
         CreateMap<Ward, WardResponse>();
+
+        CreateMap<Factory, FactoryResponse>();
+
+        CreateMap<FactoryRequest, Factory>();
+
+        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
     }
 }
