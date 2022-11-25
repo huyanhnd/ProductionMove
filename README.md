@@ -2,17 +2,17 @@
 Product Lifecycle Management System
 ## I. OVERVIEW
 ### 1. Thực hiện
-|STT|Tieu chi|
-|:---:|:---|
-| 1 | Chức năng và các features đã cài đặt|
-| 2 | Thiết kế: Logic, dễ sử dụng, đẹp| 
-| 3 | Responsive GUI|
-| 4 | Hiệu năng: Sử dụng fetch hoặc AJAX để tải bộ phận, không tải lại, backend API, sử dụng dữ liệu JSON, cập nhật DOM trên frontend.|
-| 5 | Phong cách lập trình: Sử dụng mẫu thiết kế, tách biệt mã tạo giao diện và mã xử lý nghiệp vụ, tổ chức thư viện, lớp và kế thừa, trình bày và chú thích mã, ...|
-| 6 | Xử lý nhập liệu: Kiểm tra hợp thức, tự động điền, gợi ý, chuyển đổi, ...|
-| 7 | Xử lý phiên, xác thực, an ninh|
-| 8 | Viết lại và/hoặc định tuyến URL|
-| 9 | Thao tác CSDL theo lập trình hướng đối tượng và độc lập CSDL|
+|  STT  | Tieu chi                                                                                                                                                       |
+| :---: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   1   | Chức năng và các features đã cài đặt                                                                                                                           |
+|   2   | Thiết kế: Logic, dễ sử dụng, đẹp                                                                                                                               |
+|   3   | Responsive GUI                                                                                                                                                 |
+|   4   | Hiệu năng: Sử dụng fetch hoặc AJAX để tải bộ phận, không tải lại, backend API, sử dụng dữ liệu JSON, cập nhật DOM trên frontend.                               |
+|   5   | Phong cách lập trình: Sử dụng mẫu thiết kế, tách biệt mã tạo giao diện và mã xử lý nghiệp vụ, tổ chức thư viện, lớp và kế thừa, trình bày và chú thích mã, ... |
+|   6   | Xử lý nhập liệu: Kiểm tra hợp thức, tự động điền, gợi ý, chuyển đổi, ...                                                                                       |
+|   7   | Xử lý phiên, xác thực, an ninh                                                                                                                                 |
+|   8   | Viết lại và/hoặc định tuyến URL                                                                                                                                |
+|   9   | Thao tác CSDL theo lập trình hướng đối tượng và độc lập CSDL                                                                                                   |
 ### 2. Requiment
 BigCorp là một tập đoàn chuyên sản xuất các mặt hàng công nghiệp. Các sản phẩm của họ được tiêu thụ rộng rãi trên toàn quốc.
 
@@ -80,32 +80,22 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 - Phạm Đức Tú
 - Nguyễn Quang Thịnh
 ## II. TECHNOLOGY:
-|STT|Ứng dụng|Ngôn ngữ|Framework|
-|:---:|:---|:---|:---|
-| 1 | Client|HTML, CSS, JS|ReactJS|
-| 2 | Server|C#|ASP.NET core, Entity Framework Core|
-| 3 | Database|SQL|SQL Server|
+|  STT  | Ứng dụng | Ngôn ngữ      | Framework                           |
+| :---: | :------- | :------------ | :---------------------------------- |
+|   1   | Client   | HTML, CSS, JS | ReactJS                             |
+|   2   | Server   | C#            | ASP.NET core, Entity Framework Core |
+|   3   | Database | SQL           | SQL Server                          |
 ### 1. Front-end Technology
+
 - ReactJS (Function Components)
 - Redux-toolkit (State management)
 - Redux-Saga (Side effects handler)
-- TailwindCSS (Styling)
+- SCSS (Styling)
 - React-Router (Routing)
 - Axios (HTTP client)
 - Vite (Bundler)
 
 **KNOWLEDGE REQUIRED**
-
-- JavaScript
-  - const and let difference
-  - Arrow functions
-  - ES6 (*)
-  - Import, Export in ES6
-  - Spread and Rest operator (use a lot of)
-  - Destructuring
-  - Array function (forEach, map, filter, reduce, ...)
-  - Async in JS
-
 - ReactJS
   - Hooks (useState, useEffect, ...)
   - Functional Components
@@ -119,32 +109,27 @@ Cơ bản **Base** sẽ như thế này.
 Khi truy cập vào url: ví dụ http://localhost:3000/
 
 React Router sẽ xử lý cái này, nó bắt được url ("/").
-Xem code trong folder routes nhé:  
+Xem code trong file App nhé:  
     react-router-dom là thư viện xử lý router.
     Hiểu đơn giản mình sẽ xử lý khi truy cập vào url "/" thì sẽ render ra component nào.
+    index element la trang dau khi truy cap
+    nhung cai route sau lay lan luot va no tu them xo vao
+```
+<Route path="/">
+  <Route index element={<Home />} />
+  <Route path="login" element={<Login />} />
+</Route>
+```
+Nhận url "http://localhost:3000/" thì Render ra Home page. 
+Nhận url "http://localhost:3000/login" thì Render ra Login page. 
 
-```
-<Route path="/" element={<HomePage />} />
-```
-Nhận url "/" thì Render ra HomePage component. 
 Nhưng làm app thì phải xử lý 2 trường hợp, vì có trường hợp cùng là url "/" nhưng người dùng chưa đăng nhập thì chuyển qua Page SignIn chẳng hạn, nếu đăng nhập rồi thì là PageHome. Thì lại chia ra PrivateRoute và PublicRoute để xử lý...
 
-Ok khi nhận route rồi thì sẽ gọi tới các Component ở trong folder Modules, mỗi Modules sẽ là 1 Page.
+- Folder pages: Ok khi nhận route rồi thì sẽ gọi tới các trang ở trong folder Page, mỗi folder sẽ là 1 Page.
 Ví dụ Code folder HomePage, tạo Folder HomePage, nhưng trong Folder này sẽ có các Component nhỏ muốn chia ra (nhưng chỉ sử dụng cho HomePage này thôi) thì sẽ tạo folder con "component" trong folder Home này và bỏ các component vào đó.
 
-Nhưng Component mà cả APP sử dung (button, icon, ...) đồ đó, đại khái là các Modules dùng chung thì bỏ ở trong Folder components to ở trong thư mực /src nhé còn component dùng mỗi modules dùng riêng thì tự tạo folder component và để trong đó thôi. 
+- Folder components: Nhưng Component mà cả APP sử dung (button, icon, ...) đồ đó, đại khái là các Modules dùng chung thì bỏ ở trong Folder components to ở trong thư mực /src nhé còn component dùng mỗi modules dùng riêng thì tự tạo folder component và để trong đó thôi. 
 
-Styles thì dùng tailwind or tự css, dùng cái nào cũng được.
-
-Folder helper chứa những function xử lý 1 logic nào đó.
-
-Folder Core và Redux ...
-
-Folder styles/lib là config styles + thư viện.
-
-Folder hooks chứa các hooks mình tự Custom.
-
-Folder layout thì chứa layout =)) Này tìm hiểu layout là gì. Nôn na là ví dụ vào Facebook chẳng hạn, dù là homepage, hay vào trang cá nhân, thì đều có cái Header ở trên không đổi =)) thì đây là 1 Layout của cái Facebook.
 ### 2. Back-end Technology
 - C#
 - Asp.net Core
