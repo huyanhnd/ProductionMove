@@ -2,7 +2,7 @@
 Product Lifecycle Management System
 ## I. OVERVIEW
 ### 1. Thực hiện
-|  STT  | Tieu chi                                                                                                                                                       |
+|  STT  | Tiêu chí                                                                                                                                                      |
 | :---: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |   1   | Chức năng và các features đã cài đặt                                                                                                                           |
 |   2   | Thiết kế: Logic, dễ sử dụng, đẹp                                                                                                                               |
@@ -111,23 +111,26 @@ React Router sẽ xử lý cái này, nó bắt được url ("/").
 Xem code trong file App nhé:  
     react-router-dom là thư viện xử lý router.
     Hiểu đơn giản mình sẽ xử lý khi truy cập vào url "/" thì sẽ render ra component nào.
-    index element la trang dau khi truy cap
-    nhung cai route sau lay lan luot va no tu them xo vao
+    index element là trang đầu tiên khi truy cập trang web
+    những cái route sau sẽ lấy lần lượt trong path add thêm vào.
+
+**Ví dụ:**
 ```
 <Route path="/">
   <Route index element={<Home />} />
   <Route path="login" element={<Login />} />
 </Route>
 ```
-Nhận url "http://localhost:3000/" thì Render ra Home page. 
-Nhận url "http://localhost:3000/login" thì Render ra Login page. 
++ Nhận url "http://localhost:3000/" thì Render ra Home page. 
+
++ Nhận url "http://localhost:3000/login" thì Render ra Login page. 
 
 Nhưng làm app thì phải xử lý 2 trường hợp, vì có trường hợp cùng là url "/" nhưng người dùng chưa đăng nhập thì chuyển qua Page SignIn chẳng hạn, nếu đăng nhập rồi thì là PageHome. Thì lại chia ra PrivateRoute và PublicRoute để xử lý...
 
-- Folder pages: Ok khi nhận route rồi thì sẽ gọi tới các trang ở trong folder Page, mỗi folder sẽ là 1 Page.
+**Folder pages**: Ok khi nhận route rồi thì sẽ gọi tới các trang ở trong folder Page, mỗi folder sẽ là 1 Page.
 Ví dụ Code folder HomePage, tạo Folder HomePage, nhưng trong Folder này sẽ có các Component nhỏ muốn chia ra (nhưng chỉ sử dụng cho HomePage này thôi) thì sẽ tạo folder con "component" trong folder Home này và bỏ các component vào đó.
 
-- Folder components: Nhưng Component mà cả APP sử dung (button, icon, ...) đồ đó, đại khái là các Modules dùng chung thì bỏ ở trong Folder components to ở trong thư mực /src nhé còn component dùng mỗi modules dùng riêng thì tự tạo folder component và để trong đó thôi. 
+**Folder components**: Nhưng Component mà cả APP sử dung (button, icon, ...) đồ đó, đại khái là các Modules dùng chung thì bỏ ở trong Folder components to ở trong thư mực /src nhé còn component dùng mỗi modules dùng riêng thì tự tạo folder component và để trong đó thôi. 
 
 ### 2. Back-end Technology
 - C#
