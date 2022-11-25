@@ -4,7 +4,7 @@ using ProductionMove.Data.Context;
 using ProductionMove.Entities;
 using ProductionMove.Helpers;
 using ProductionMove.Models;
-using ProductionMove.Models.Factories;
+using ProductionMove.Models.Factory;
 
 namespace ProductionMove.Services
 {

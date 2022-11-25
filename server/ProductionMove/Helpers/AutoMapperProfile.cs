@@ -5,21 +5,18 @@ using ProductionMove.Entities;
 using ProductionMove.Models;
 using ProductionMove.Models.Accounts;
 using ProductionMove.Models.Address;
-using ProductionMove.Models.Factories;
+using ProductionMove.Models.Factory;
 
 public class AutoMapperProfile : Profile
 {
     // mappings between model and entity objects
     public AutoMapperProfile()
     {
+        //Account
         CreateMap<Account, AccountResponse>();
-
         CreateMap<Account, AuthenticateResponse>();
-
         CreateMap<RegisterRequest, Account>();
-
         CreateMap<CreateRequest, Account>();
-
         CreateMap<UpdateRequest, Account>()
             .ForAllMembers(x => x.Condition(
                 (src, dest, prop) =>
@@ -35,16 +32,25 @@ public class AutoMapperProfile : Profile
                 }
             ));
 
+        //Address
         CreateMap<Province, ProvinceResponse>();
-
         CreateMap<District, DistrictResponse>();
-
         CreateMap<Ward, WardResponse>();
-
+        //Factory
         CreateMap<Factory, FactoryResponse>();
-
         CreateMap<FactoryRequest, Factory>();
-
+        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        //Store
+        CreateMap<Factory, FactoryResponse>();
+        CreateMap<FactoryRequest, Factory>();
+        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        //Warehouse
+        CreateMap<Factory, FactoryResponse>();
+        CreateMap<FactoryRequest, Factory>();
+        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        //ServiceCenter
+        CreateMap<Factory, FactoryResponse>();
+        CreateMap<FactoryRequest, Factory>();
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
     }
 }

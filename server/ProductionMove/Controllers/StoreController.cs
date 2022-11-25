@@ -2,46 +2,46 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Controllers;
 using ProductionMove.Models;
-using ProductionMove.Models.Factories;
+using ProductionMove.Models.Store;
 using ProductionMove.Services;
 
 namespace Supermarket.API.Controllers
 {
     public class StoreController : BaseController
     {
-        private readonly IFactoryService _factoryService;
+        private readonly IStoreService _storeService;
 
-        public StoreController(IFactoryService factoryService)
+        public StoreController(IStoreService storeService)
         {
-            _factoryService = factoryService;
+            _storeService = storeService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ListAsync([FromQuery] Paging query, int WardId)
         {
-            var fatories = await _factoryService.ListAsync(query, WardId);
+            var fatories = await _storeService.ListAsync(query, WardId);
             return Ok(fatories);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(int id)
         {
-            var result = await _factoryService.FindAsync(id);
+            var result = await _storeService.FindAsync(id);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] FactoryRequest model)
+        public async Task<IActionResult> PostAsync([FromBody] StoreRequest model)
         {
-            var result = await _factoryService.CreateAsync(model);
+            var result = await _storeService.CreateAsync(model);
 
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] FactoryRequest model)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] StoreRequest model)
         {
-            var result = await _factoryService.UpdateAsync(id, model);
+            var result = await _storeService.UpdateAsync(id, model);
 
             return Ok(result);
         }
@@ -49,7 +49,7 @@ namespace Supermarket.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var result = await _factoryService.DeleteAsync(id);
+            var result = await _storeService.DeleteAsync(id);
 
             return Ok(result);
         }

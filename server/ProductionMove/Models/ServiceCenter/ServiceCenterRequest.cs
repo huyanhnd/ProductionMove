@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductionMove.Models.Factories
+namespace ProductionMove.Models.ServiceCenter
 {
-    public class FactoryRequest
+    public class ServiceCenterRequest
     {
         [Required]
         public string Name { get; set; }

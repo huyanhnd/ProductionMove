@@ -164,7 +164,6 @@ Các ca sử dụng:
 
 **User: Cơ sở sản xuất**
 Các ca sử dụng:
-**Cơ sở sản xuất**
 - Trang đầu là danh sách các dòng sản phẩm mà cơ sở đang quản lý và các sản phẩm thuộc dòng sản phẩm đó. Có checkbox duyệt các sản phẩm mới sản xuất vào kho.
 - Khi bấm vào xuất sản phẩm cho đại lý, hệ thống hiện bảng chọn kho nào của đại lý để xuất.
 - Duyệt các đơn chuyển sản phẩm lỗi về từ trung tâm bảo hành.
