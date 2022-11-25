@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Controllers;
 using ProductionMove.Models;
-using ProductionMove.Models.Factories;
+using ProductionMove.Models.Factory;
 using ProductionMove.Services;
 
 namespace Supermarket.API.Controllers

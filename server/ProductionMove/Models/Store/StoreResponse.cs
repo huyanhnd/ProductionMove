@@ -1,6 +1,6 @@
-﻿namespace ProductionMove.Models.Factories
+﻿namespace ProductionMove.Models.Store
 {
-    public class FactoryResponse
+    public class StoreResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }
