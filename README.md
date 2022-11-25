@@ -151,6 +151,7 @@ Folder layout thì chứa layout =)) Này tìm hiểu layout là gì. Nôn na l�
 
 ## III. USE-CASE
 **User: Ban điều hành BigCorp**
+
 Các ca sử dụng:
 - Trang quản lý danh mục dòng sản phẩm.
   - Trang chính là get productlines by category 
@@ -162,6 +163,7 @@ Các ca sử dụng:
   - Get Products By Factories, Stores, ServiceCenters
 
 **User: Cơ sở sản xuất**
+
 Các ca sử dụng:
 - Trang đầu là danh sách các dòng sản phẩm mà cơ sở đang quản lý và các sản phẩm thuộc dòng sản phẩm đó. Có checkbox duyệt các sản phẩm mới sản xuất vào kho.
 - Khi bấm vào xuất sản phẩm cho đại lý, hệ thống hiện bảng chọn kho nào của đại lý để xuất.
@@ -171,6 +173,7 @@ Các ca sử dụng:
 - Thống kê tỉ lệ sản phẩm bị lỗi theo dòng sản phẩm, cơ sở sản xuất, đại lý phân phối.
 
 **User: Đại lý phân phối**
+
 Các ca sử dụng:
 - Duyệt đơn nhập sản phẩm mới từ cơ sở sản xuất, tuỳ chọn nhập kho hay để lại cửa hàng.
 - Bán sản phẩm, khi đó trạng thái sản phẩm sẽ chuyển sang sold
@@ -182,6 +185,7 @@ Các ca sử dụng:
 - Thống kê và phân tích số lượng sản phẩm bán ra hàng tháng, quý, năm.
 
 **User: Trung tâm bảo hành**
+
 Các ca sử dụng:
 - Nhận các sản phẩm bảo hành hoặc triệu hồi từ đại lý.
 - Trả sản phẩm đã sửa chữa xong cho đại lý.
@@ -189,6 +193,7 @@ Các ca sử dụng:
 - Thống kê và báo cáo số liệu sản phẩm theo từng loại (trạng thái), theo tháng, quý, năm.
 
 **Trạng thái Sản phẩm**
+
 Mỗi dòng sản phẩm có mã riêng. Mỗi sản phẩm cũng được gán định danh riêng để tiện quản lý. 
 Tất cả các sản phẩm được theo dõi từ khi ra đời cho đến hết thời gian bảo hành hoặc bị hủy do lỗi. 
 Các trạng thái của sản phẩm (State):
