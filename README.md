@@ -79,7 +79,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 - Phạm Đức Tú
 - Nguyễn Quang Thịnh
 ## II. TECHNOLOGY:
-|  STT  | Ứng dụng | Ngôn ngữ      | Framework                           |
+|  STT  | Ứng dụng | Ngôn ngữ      | Framework, Library                  |
 | :---: | :------- | :------------ | :---------------------------------- |
 |   1   | Client   | HTML, CSS, JS | ReactJS                             |
 |   2   | Server   | C#            | ASP.NET core, Entity Framework Core |
