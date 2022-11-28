@@ -87,8 +87,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 ### 1. Front-end Technology
 
 - ReactJS (Function Components)
-- Redux-toolkit (State management)
-- Redux-Saga (Side effects handler)
+- Context API (State management)
 - SCSS (Styling)
 - React-Router (Routing)
 - Axios (HTTP client)

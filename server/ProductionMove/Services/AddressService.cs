@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductionMove.Data.Context;
-using ProductionMove.Entities;
-using ProductionMove.Models.Accounts;
-using ProductionMove.Models.Address;
+using ProductionMove.ViewModels.Accounts;
+using ProductionMove.ViewModels.Address;
 using System.Linq;
 
 namespace ProductionMove.Services

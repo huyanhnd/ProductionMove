@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Controllers;
-using ProductionMove.Models;
-using ProductionMove.Models.Warehouse;
 using ProductionMove.Services;
+using ProductionMove.ViewModels;
+using ProductionMove.ViewModels.Warehouse;
 
 namespace Supermarket.API.Controllers
 {

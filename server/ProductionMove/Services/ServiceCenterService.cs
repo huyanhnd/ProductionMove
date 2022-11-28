@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ProductionMove.Data.Context;
-using ProductionMove.Entities;
-using ProductionMove.Helpers;
 using ProductionMove.Models;
-using ProductionMove.Models.ServiceCenter;
+using ProductionMove.Helpers;
+using ProductionMove.ViewModels.ServiceCenter;
+using ProductionMove.ViewModels;
 
 namespace ProductionMove.Services
 {
@@ -31,7 +31,7 @@ namespace ProductionMove.Services
         public async Task<QueryResult<ServiceCenterResponse>> ListAsync(Paging query, int WardId)
         {
             // AsNoTracking tells EF Core it doesn't need to
-            // track changes on listed entities. Disabling entity
+            // track changes on listed Models. Disabling entity
             // tracking makes the code a little faster
             IQueryable<ServiceCenter> queryable = _context.ServiceCenters.AsNoTracking();
 

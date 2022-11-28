@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Controllers;
 using ProductionMove.Models;
-using ProductionMove.Models.ServiceCenter;
+using ProductionMove.ViewModels.ServiceCenter;
 using ProductionMove.Services;
+using ProductionMove.ViewModels;
 
 namespace Supermarket.API.Controllers
 {

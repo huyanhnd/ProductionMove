@@ -2,9 +2,9 @@ using AutoMapper;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
 using ProductionMove.Authorization;
-using ProductionMove.Entities;
+using ProductionMove.Models;
 using ProductionMove.Helpers;
-using ProductionMove.Models.Accounts;
+using ProductionMove.ViewModels.Accounts;
 using ProductionMove.Data.Context;
 
 namespace ProductionMove.Services
