@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ProductionMove.Data.Context;
-using ProductionMove.Entities;
-using ProductionMove.Helpers;
 using ProductionMove.Models;
-using ProductionMove.Models.Factory;
+using ProductionMove.Helpers;
+using ProductionMove.ViewModels.Factory;
+using ProductionMove.ViewModels;
 
 namespace ProductionMove.Services
 {
     public interface IFactoryService
     {
-        Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int WardId);
+        Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int wardId);
         Task<FactoryResponse> FindAsync(int id);
-        Task<FactoryResponse> CreateAsync(FactoryRequest product);
-        Task<FactoryResponse> UpdateAsync(int id, FactoryRequest product);
+        Task<FactoryResponse> CreateAsync(FactoryRequest factory);
+        Task<FactoryResponse> UpdateAsync(int id, FactoryRequest factory);
         Task<FactoryResponse> DeleteAsync(int id);
     }
 
@@ -28,16 +28,16 @@ namespace ProductionMove.Services
             _mapper = mapper;
         }
 
-        public async Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int WardId)
+        public async Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int wardId)
         {
             // AsNoTracking tells EF Core it doesn't need to
-            // track changes on listed entities. Disabling entity
+            // track changes on listed Models. Disabling entity
             // tracking makes the code a little faster
             IQueryable<Factory> queryable = _context.Factories.AsNoTracking();
 
-            if (WardId > 0)
+            if (wardId > 0)
             {
-                queryable = queryable.Where(p => p.WardId == WardId);
+                queryable = queryable.Where(p => p.WardId == wardId);
             }
 
             var result = await PaginatedList<Factory>.CreateAsync(queryable, query.PageNumber, query.PageSize);

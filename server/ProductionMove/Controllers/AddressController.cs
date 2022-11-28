@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProductionMove.Models.Accounts;
+using ProductionMove.ViewModels.Accounts;
 using ProductionMove.Services;
 
 namespace ProductionMove.Controllers

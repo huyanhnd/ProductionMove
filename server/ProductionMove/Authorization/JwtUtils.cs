@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using ProductionMove.Entities;
+using ProductionMove.Models;
 using ProductionMove.Helpers;
 using ProductionMove.Data.Context;
 

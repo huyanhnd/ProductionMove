@@ -60,6 +60,11 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IAccountService, AccountService>();
     services.AddScoped<IAddressService, AddressService>();
     services.AddScoped<IFactoryService, FactoryService>();
+    services.AddScoped<IStoreService, StoreService>();
+    services.AddScoped<IServiceCenterService, ServiceCenterService>();
+    services.AddScoped<ISeriesService, SeriesService>();
+    services.AddScoped<IProductLineService, ProductLineService>();
+    services.AddScoped<IProductService, ProductService>();
 }
 
 var app = builder.Build();

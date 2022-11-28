@@ -22,7 +22,103 @@ namespace ProductionMove.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ProductionMove.Entities.Account", b =>
+            modelBuilder.Entity("ProductionMove.Data.Product", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("InFatory")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUpdate")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ManufactureDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductLineCode")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProductLineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WarrantyPeriod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Code");
+
+                    b.HasIndex("ProductLineCode");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Graphics")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hardware")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ListPrice")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Memory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Processor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Resolution")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("ScreenSize")
+                        .HasColumnType("real");
+
+                    b.Property<int>("SeriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Code");
+
+                    b.HasIndex("SeriesId");
+
+                    b.ToTable("ProductLines");
+                });
+
+            modelBuilder.Entity("ProductionMove.Data.Series", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Series");
+                });
+
+            modelBuilder.Entity("ProductionMove.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,11 +130,9 @@ namespace ProductionMove.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("PasswordReset")
@@ -57,7 +151,6 @@ namespace ProductionMove.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -65,7 +158,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.District", b =>
+            modelBuilder.Entity("ProductionMove.Models.District", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +180,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Dictricts");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Factory", b =>
+            modelBuilder.Entity("ProductionMove.Models.Factory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +206,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Factories");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Province", b =>
+            modelBuilder.Entity("ProductionMove.Models.Province", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +223,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Provinces");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.ServiceCenter", b =>
+            modelBuilder.Entity("ProductionMove.Models.ServiceCenter", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,11 +232,9 @@ namespace ProductionMove.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WardId")
@@ -156,7 +247,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("ServiceCenters");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Store", b =>
+            modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,7 +273,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Stores");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Ward", b =>
+            modelBuilder.Entity("ProductionMove.Models.Ward", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -204,7 +295,7 @@ namespace ProductionMove.Migrations
                     b.ToTable("Wards");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Warehouse", b =>
+            modelBuilder.Entity("ProductionMove.Models.Warehouse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,9 +324,29 @@ namespace ProductionMove.Migrations
                     b.ToTable("Warehouses");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Account", b =>
+            modelBuilder.Entity("ProductionMove.Data.Product", b =>
                 {
-                    b.OwnsMany("ProductionMove.Entities.RefreshToken", "RefreshTokens", b1 =>
+                    b.HasOne("ProductionMove.Data.ProductLine", "ProductLine")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductLineCode");
+
+                    b.Navigation("ProductLine");
+                });
+
+            modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
+                {
+                    b.HasOne("ProductionMove.Data.Series", "Series")
+                        .WithMany("ProductLines")
+                        .HasForeignKey("SeriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Series");
+                });
+
+            modelBuilder.Entity("ProductionMove.Models.Account", b =>
+                {
+                    b.OwnsMany("ProductionMove.Models.RefreshToken", "RefreshTokens", b1 =>
                         {
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
@@ -287,76 +398,86 @@ namespace ProductionMove.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.District", b =>
+            modelBuilder.Entity("ProductionMove.Models.District", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.Province", null)
+                    b.HasOne("ProductionMove.Models.Province", null)
                         .WithMany("Districts")
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Factory", b =>
+            modelBuilder.Entity("ProductionMove.Models.Factory", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.Ward", null)
+                    b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Factories")
                         .HasForeignKey("WardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.ServiceCenter", b =>
+            modelBuilder.Entity("ProductionMove.Models.ServiceCenter", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.Ward", null)
+                    b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("serviceCenters")
                         .HasForeignKey("WardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Store", b =>
+            modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.Ward", null)
+                    b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Stores")
                         .HasForeignKey("WardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Ward", b =>
+            modelBuilder.Entity("ProductionMove.Models.Ward", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.District", null)
+                    b.HasOne("ProductionMove.Models.District", null)
                         .WithMany("wards")
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Warehouse", b =>
+            modelBuilder.Entity("ProductionMove.Models.Warehouse", b =>
                 {
-                    b.HasOne("ProductionMove.Entities.Store", null)
+                    b.HasOne("ProductionMove.Models.Store", null)
                         .WithMany("warehouses")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.District", b =>
+            modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("ProductionMove.Data.Series", b =>
+                {
+                    b.Navigation("ProductLines");
+                });
+
+            modelBuilder.Entity("ProductionMove.Models.District", b =>
                 {
                     b.Navigation("wards");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Province", b =>
+            modelBuilder.Entity("ProductionMove.Models.Province", b =>
                 {
                     b.Navigation("Districts");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Store", b =>
+            modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
                     b.Navigation("warehouses");
                 });
 
-            modelBuilder.Entity("ProductionMove.Entities.Ward", b =>
+            modelBuilder.Entity("ProductionMove.Models.Ward", b =>
                 {
                     b.Navigation("Factories");
 

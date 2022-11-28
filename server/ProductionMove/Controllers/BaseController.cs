@@ -1,7 +1,7 @@
 ﻿namespace ProductionMove.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using ProductionMove.Entities;
+using ProductionMove.Models;
 
 [Route("api/[controller]")]
 [ApiController]

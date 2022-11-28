@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Authorization;
-using ProductionMove.Entities;
-using ProductionMove.Models.Accounts;
+using ProductionMove.Models;
+using ProductionMove.ViewModels.Accounts;
 using ProductionMove.Services;
 
 namespace ProductionMove.Controllers

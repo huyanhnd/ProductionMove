@@ -1,11 +1,15 @@
 namespace ProductionMove.Helpers;
 
 using AutoMapper;
-using ProductionMove.Entities;
+using ProductionMove.Data;
 using ProductionMove.Models;
-using ProductionMove.Models.Accounts;
-using ProductionMove.Models.Address;
-using ProductionMove.Models.Factory;
+using ProductionMove.ViewModels;
+using ProductionMove.ViewModels.Accounts;
+using ProductionMove.ViewModels.Address;
+using ProductionMove.ViewModels.Factory;
+using ProductionMove.ViewModels.Product;
+using ProductionMove.ViewModels.ProductLine;
+using ProductionMove.ViewModels.Series;
 
 public class AutoMapperProfile : Profile
 {
@@ -36,21 +40,40 @@ public class AutoMapperProfile : Profile
         CreateMap<Province, ProvinceResponse>();
         CreateMap<District, DistrictResponse>();
         CreateMap<Ward, WardResponse>();
+        
         //Factory
         CreateMap<Factory, FactoryResponse>();
         CreateMap<FactoryRequest, Factory>();
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        
         //Store
         CreateMap<Factory, FactoryResponse>();
         CreateMap<FactoryRequest, Factory>();
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        
         //Warehouse
         CreateMap<Factory, FactoryResponse>();
         CreateMap<FactoryRequest, Factory>();
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        
         //ServiceCenter
         CreateMap<Factory, FactoryResponse>();
         CreateMap<FactoryRequest, Factory>();
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        
+        //Series
+        CreateMap<Series, SeriesResponse>();
+        CreateMap<SeriesRequest, Series>();
+        CreateMap<QueryResult<Series>, QueryResult<SeriesResponse>>();
+        
+        //ProductLine
+        CreateMap<ProductLine, ProductLineResponse>();
+        CreateMap<ProductLineRequest, ProductLine>();
+        CreateMap<QueryResult<ProductLine>, QueryResult<ProductLineResponse>>();
+        
+        //Product
+        CreateMap<Product, ProductResponse>();
+        CreateMap<ProductRequest, Product>();
+        CreateMap<QueryResult<ProductLine>, QueryResult<ProductResponse>>();
     }
 }
