@@ -87,11 +87,11 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 ### 1. Front-end Technology
 
 - ReactJS (Function Components)
-- Context API (State management)
-- SCSS (Styling)
+- Redux (State management)
+- CSS (Styling)
+- MUI (React UI tools)
 - React-Router (Routing)
 - Axios (HTTP client)
-- Vite (Bundler)
 
 **KNOWLEDGE REQUIRED**
 - ReactJS

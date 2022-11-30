@@ -1,43 +1,89 @@
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
-import "./style/dark.scss";
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
+
+import { Children } from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Topbar from "./components/topbar/Topbar";
+import Sidebar from "./components/sidebar/Sidebar"
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import "./App.css";
+import UserList from "./pages/userList/UserList";
+import User from "./pages/user/User";
+import NewUser from "./pages/newUser/NewUser";
+import ProductList from "./pages/productList/ProductList";
+import Product from "./pages/product/Product";
+import NewProduct from "./pages/newProduct/NewProduct";
+import { useSelector } from "react-redux";
+
+const Layout = () => {
+  return (
+    <div>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+const ProtectedRoute = ({ children }) => {
+  const user = useSelector((state) => state.user.currentUser);
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/users",
+    element: <UserList />,
+  },
+  {
+    path: "/user/:userId",
+    element: <User />,
+  },
+  {
+    path: "/newUser",
+    element: <NewUser />,
+  },
+  {
+    path: "/products",
+    element: <ProductList />,
+  },
+  {
+    path: "/product/:productId",
+    element: <Product />,
+  },
+  {
+    path: "/newproduct",
+    element: <NewProduct />,
+  },
+]);
 
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
-
   return (
-    <div className={darkMode ? "app dark" : "app"}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
-            </Route>
-            <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
-              />
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }

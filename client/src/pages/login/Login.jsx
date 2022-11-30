@@ -1,63 +1,43 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
-import "./login.scss";
+import { useState } from "react";
+import { login } from "../../redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-  });
-  const [err, setErr] = useState(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching } = useSelector((state) => state.user);
 
-  const navigate = useNavigate()
-
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-  const { login } = useContext(AuthContext);
-
-  const handleLogin = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    try {
-      await login(inputs);
-      navigate("/")
-    } catch (err) {
-      setErr(err.response.data);
-    }
+    login(dispatch, { username, password });
   };
 
   return (
-    <div className="login">
-      <div className="card">
-        <div className="left">
-          <h1>Production Move</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
-          </p>
-        </div>
-        <div className="right">
-          <h1>Login</h1>
-          <form>
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-              onChange={handleChange}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
-            {err && err}
-            <button onClick={handleLogin}>Login</button>
-          </form>
-        </div>
-      </div>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <input
+        style={{ padding: 10, marginBottom: 20 }}
+        type="text"
+        placeholder="username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        style={{ padding: 10, marginBottom: 20 }}
+        type="password"
+        placeholder="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleClick} style={{ padding: 10, width:100 }} disabled={isFetching}>
+        Login
+      </button>
     </div>
   );
 };
