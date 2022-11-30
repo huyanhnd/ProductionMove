@@ -87,11 +87,10 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 ### 1. Front-end Technology
 
 - ReactJS (Function Components)
-- Context API (State management)
-- SCSS (Styling)
-- React-Router (Routing)
-- Axios (HTTP client)
-- Vite (Bundler)
+- Redux (Quản lý state)
+- Css
+- React-Router-Dom (Chuyển hướng)
+- Axios (Gọi API)
 
 **KNOWLEDGE REQUIRED**
 - ReactJS
@@ -99,8 +98,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
   - Functional Components
   - Props and State
   - JSX
-  - Rerender in React (*) -> Optimal
-
+  
 **SOURCE CODE**
 
 Cơ bản **Base** sẽ như thế này.
