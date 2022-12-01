@@ -12,28 +12,8 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
-import { useSelector } from "react-redux";
-
-const Layout = () => {
-  return (
-    <div>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Outlet />
-      </div>
-    </div>
-  );
-};
-
-const ProtectedRoute = ({ children }) => {
-  const user = useSelector((state) => state.user.currentUser);
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
-
-  return children;
-};
+import ProtectedRoute from "./routes/ProtectRoute";
+import Layout from "./layout/Layout";
 
 const router = createBrowserRouter([
   {
@@ -48,35 +28,35 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/users",
+        element: <UserList />,
+      },
+      {
+        path: "/user/:userId",
+        element: <User />,
+      },
+      {
+        path: "/newUser",
+        element: <NewUser />,
+      },
+      {
+        path: "/products",
+        element: <ProductList />,
+      },
+      {
+        path: "/product/:productId",
+        element: <Product />,
+      },
+      {
+        path: "/newproduct",
+        element: <NewProduct />,
+      },
     ],
   },
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/users",
-    element: <UserList />,
-  },
-  {
-    path: "/user/:userId",
-    element: <User />,
-  },
-  {
-    path: "/newUser",
-    element: <NewUser />,
-  },
-  {
-    path: "/products",
-    element: <ProductList />,
-  },
-  {
-    path: "/product/:productId",
-    element: <Product />,
-  },
-  {
-    path: "/newproduct",
-    element: <NewProduct />,
   },
 ]);
 
