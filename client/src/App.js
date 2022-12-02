@@ -3,10 +3,11 @@ import { Children } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar"
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 import "./App.css";
 import UserList from "./pages/userList/UserList";
+import Series from "./pages/series/Series";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/newproduct",
         element: <NewProduct />,
+      },
+      {
+        path: "/series",
+        element: <Series />,
       },
     ],
   },

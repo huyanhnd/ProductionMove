@@ -51,10 +51,10 @@ export default function Sidebar() {
                 Factory
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/series" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
-                Products
+                Series
               </li>
             </Link>
             <li className="sidebarListItem">
