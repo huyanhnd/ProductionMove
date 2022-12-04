@@ -8,7 +8,7 @@ import { useState, useContext, useEffect } from "react";
 
 export default function FactoryList() {
   const dataContext = useContext(DataContext)
-  console.log("re-render")
+  // console.log("re-render")
 
   const [data, setData] = useState(dataContext);
   const handleDelete = (id) => {
@@ -25,7 +25,7 @@ export default function FactoryList() {
       headerName: "Factory Name",
       width: 200,
     },
-    { field: "code", headerName: "Code", width: 200 },
+    { field: "wardId", headerName: "Ward ID", width: 200 },
     {
       field: "address",
       headerName: "Address",
@@ -39,11 +39,6 @@ export default function FactoryList() {
           </>
         );
       },
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
     },
     {
       field: "action",

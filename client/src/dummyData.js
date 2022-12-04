@@ -254,7 +254,7 @@ export const factoryRows = [
   {
     id: 1,
     name: "Asus Xuân Thủy",
-    code: "UET-001",
+    wardId: "UET-001",
     address: "Số 144 Xuân Thủy - Dịch Vọng Hậu - Phường Cầu Giấy - TP.Hà Nội",
     status: "Active",
     province: 1
@@ -262,7 +262,7 @@ export const factoryRows = [
   {
     id: 2,
     name: "Asus Ninh Bình",
-    code: "UET-002",
+    wardId: "UET-002",
     address: "Ninh Bình - Việt Nam",
     status: "Active",
     province: 2
@@ -270,7 +270,7 @@ export const factoryRows = [
   {
     id: 3,
     name: "Asus Nghệ An",
-    code: "UET-003",
+    wardId: "UET-003",
     address: "Vinh - Nghệ An",
     status: "Active",
     province: 3
@@ -278,7 +278,7 @@ export const factoryRows = [
   {
     id: 4,
     name: "Asus Mỹ Đình",
-    code: "UET-004",
+    wardId: "UET-004",
     address: "394 Mỹ Đình - Hà Nội",
     status: "Active",
     province: 1
@@ -286,7 +286,7 @@ export const factoryRows = [
   {
     id: 5,
     name: "Asus Nghĩa Hưng",
-    code: "UET-005",
+    wardId: "UET-005",
     address: "Nghĩa Hưng - Nam Định",
     status: "Active",
     province: 4
