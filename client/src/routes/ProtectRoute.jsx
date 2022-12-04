@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 const ProtectedRoute = ({ children }) => {
     const { currentUser } = useSelector((state) => state.user);;
 
-    if (!currentUser) {
-        return <Navigate to="/login" />;
-    }
+    // if (!currentUser) {
+    //     return <Navigate to="/login" />;
+    // }
     return children;
 };
 
