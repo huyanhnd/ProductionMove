@@ -89,7 +89,7 @@ export default function Sidebar() {
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <WorkOutline className="sidebarIcon" />
-              Manage
+              Service Center
             </li>
             <li className="sidebarListItem">
               <Timeline className="sidebarIcon" />

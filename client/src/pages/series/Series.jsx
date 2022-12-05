@@ -12,28 +12,8 @@ export default function Series() {
     getSeries(dispatch);
   }, [dispatch]);
 
-  const columns = [
-    {
-      field: "id",
-      headerName: "ID",
-      width: 90,
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      width: 200,
-    },
-  ];
-
   return (
     <div className="productList">
-      <DataGrid
-        rows={series}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
     </div>
   );
 }
