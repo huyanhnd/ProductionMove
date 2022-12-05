@@ -1,0 +1,76 @@
+.seriItemSection {
+    display: flex;
+    flex-direction: column;
+    /* background-color: aqua; */
+    width: 15.5%;
+    height: 90%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(238, 238, 238);
+    /* font-family: ; */
+}
+
+.imgContainer {
+    width: 100%;
+    height: 30%;
+    position: relative;
+}
+
+.imgContainer img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out; */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.imgContainer:hover .img-front {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.imgContainer .img-back {
+    opacity: 0%;
+    cursor: pointer;
+}
+
+.imgContainer:hover .img-back {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+
+.img {
+    width: 100%;
+    object-fit: contain;
+    /* object-fit: cover; */
+}
+
+.seriName {
+    font-size: 25px;
+    align-self: center;
+}
+
+.link {
+    /* width: 100%; */
+}
+.seemore-Btn {
+    width: 90%;
+    color: #3598fb;
+    padding: 4px 0;
+    margin-left: 5%;
+    border: 2px solid #3598fb;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #fff;
+}
+
+.seemore-Btn:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #3598fb;
+}
