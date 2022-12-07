@@ -94,7 +94,6 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
   
 **SOURCE CODE**
 
-Cơ bản **Base** sẽ như thế này.
 Khi truy cập vào url: ví dụ http://localhost:3000/
 
 React Router sẽ xử lý cái này, nó bắt được url ("/").
