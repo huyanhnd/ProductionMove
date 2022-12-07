@@ -11,8 +11,8 @@ namespace ProductionMove.Services
     public interface IAddressService
     {
         IEnumerable<ProvinceResponse> GetAllProvince();
-        IEnumerable<DistrictResponse> GetDistrictByProvince(int provinceId);
-        IEnumerable<WardResponse> GetWardByDistrict(int districtId);
+        IEnumerable<DistrictResponse> GetDistrictByProvince(string provinceCode);
+        IEnumerable<WardResponse> GetWardByDistrict(string districtCode);
     }
 
     public class AddressService : IAddressService
@@ -32,15 +32,15 @@ namespace ProductionMove.Services
             return _mapper.Map<IList<ProvinceResponse>>(provinces);
         }
 
-        public IEnumerable<DistrictResponse> GetDistrictByProvince(int provinceId)
+        public IEnumerable<DistrictResponse> GetDistrictByProvince(string provinceCode)
         {
-            var districts = _context.Dictricts.Where(x => x.ProvinceId == provinceId);
+            var districts = _context.Districts.Where(x => x.ProvinceCode == provinceCode);
             return _mapper.Map<IList<DistrictResponse>>(districts);
         }
 
-        public IEnumerable<WardResponse> GetWardByDistrict(int dictrictId)
+        public IEnumerable<WardResponse> GetWardByDistrict(string districtCode)
         {
-            var wards = _context.Wards.Where(x => x.DistrictId == dictrictId);
+            var wards = _context.Wards.Where(x => x.DistrictCode == districtCode);
             return _mapper.Map<IList<WardResponse>>(wards);
         }
     }

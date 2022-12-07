@@ -9,6 +9,6 @@
     flex-wrap: wrap;
 }
 
-//.productList{
-//    flex: 4;
-//}
+.productList{
+    flex: 4;
+}

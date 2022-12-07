@@ -34,13 +34,12 @@ namespace ProductionMove.Migrations
                 name: "Provinces",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Provinces", x => x.Id);
+                    table.PrimaryKey("PK_Provinces", x => x.Code);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,22 +83,21 @@ namespace ProductionMove.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Dictricts",
+                name: "Districts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProvinceId = table.Column<int>(type: "int", nullable: false)
+                    ProvinceCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dictricts", x => x.Id);
+                    table.PrimaryKey("PK_Districts", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Dictricts_Provinces_ProvinceId",
-                        column: x => x.ProvinceId,
+                        name: "FK_Districts_Provinces_ProvinceCode",
+                        column: x => x.ProvinceCode,
                         principalTable: "Provinces",
-                        principalColumn: "Id",
+                        principalColumn: "Code",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -107,8 +105,7 @@ namespace ProductionMove.Migrations
                 name: "ProductLines",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SeriesId = table.Column<int>(type: "int", nullable: false),
                     ScreenSize = table.Column<float>(type: "real", nullable: false),
@@ -122,7 +119,7 @@ namespace ProductionMove.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductLines", x => x.Id);
+                    table.PrimaryKey("PK_ProductLines", x => x.Code);
                     table.ForeignKey(
                         name: "FK_ProductLines_Series_SeriesId",
                         column: x => x.SeriesId,
@@ -135,19 +132,18 @@ namespace ProductionMove.Migrations
                 name: "Wards",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DistrictId = table.Column<int>(type: "int", nullable: false)
+                    DistrictCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wards", x => x.Id);
+                    table.PrimaryKey("PK_Wards", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Wards_Dictricts_DistrictId",
-                        column: x => x.DistrictId,
-                        principalTable: "Dictricts",
-                        principalColumn: "Id",
+                        name: "FK_Wards_Districts_DistrictCode",
+                        column: x => x.DistrictCode,
+                        principalTable: "Districts",
+                        principalColumn: "Code",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -157,6 +153,7 @@ namespace ProductionMove.Migrations
                 {
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProductLineId = table.Column<int>(type: "int", nullable: false),
+                    ProductLineCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ManufactureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     WarrantyPeriod = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InFatory = table.Column<bool>(type: "bit", nullable: false),
@@ -166,11 +163,10 @@ namespace ProductionMove.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Products_ProductLines_ProductLineId",
-                        column: x => x.ProductLineId,
+                        name: "FK_Products_ProductLines_ProductLineCode",
+                        column: x => x.ProductLineCode,
                         principalTable: "ProductLines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Code");
                 });
 
             migrationBuilder.CreateTable(
@@ -181,16 +177,16 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WardId = table.Column<int>(type: "int", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Factories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Factories_Wards_WardId",
-                        column: x => x.WardId,
+                        name: "FK_Factories_Wards_WardCode",
+                        column: x => x.WardCode,
                         principalTable: "Wards",
-                        principalColumn: "Id",
+                        principalColumn: "Code",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -202,16 +198,16 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WardId = table.Column<int>(type: "int", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceCenters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ServiceCenters_Wards_WardId",
-                        column: x => x.WardId,
+                        name: "FK_ServiceCenters_Wards_WardCode",
+                        column: x => x.WardCode,
                         principalTable: "Wards",
-                        principalColumn: "Id",
+                        principalColumn: "Code",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -223,16 +219,16 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WardId = table.Column<int>(type: "int", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stores", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Stores_Wards_WardId",
-                        column: x => x.WardId,
+                        name: "FK_Stores_Wards_WardCode",
+                        column: x => x.WardCode,
                         principalTable: "Wards",
-                        principalColumn: "Id",
+                        principalColumn: "Code",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -259,14 +255,14 @@ namespace ProductionMove.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dictricts_ProvinceId",
-                table: "Dictricts",
-                column: "ProvinceId");
+                name: "IX_Districts_ProvinceCode",
+                table: "Districts",
+                column: "ProvinceCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Factories_WardId",
+                name: "IX_Factories_WardCode",
                 table: "Factories",
-                column: "WardId");
+                column: "WardCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductLines_SeriesId",
@@ -274,9 +270,9 @@ namespace ProductionMove.Migrations
                 column: "SeriesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductLineId",
+                name: "IX_Products_ProductLineCode",
                 table: "Products",
-                column: "ProductLineId");
+                column: "ProductLineCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_AccountId",
@@ -284,19 +280,19 @@ namespace ProductionMove.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceCenters_WardId",
+                name: "IX_ServiceCenters_WardCode",
                 table: "ServiceCenters",
-                column: "WardId");
+                column: "WardCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Stores_WardId",
+                name: "IX_Stores_WardCode",
                 table: "Stores",
-                column: "WardId");
+                column: "WardCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Wards_DistrictId",
+                name: "IX_Wards_DistrictCode",
                 table: "Wards",
-                column: "DistrictId");
+                column: "DistrictCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Warehouses_StoreId",
@@ -337,7 +333,7 @@ namespace ProductionMove.Migrations
                 name: "Wards");
 
             migrationBuilder.DropTable(
-                name: "Dictricts");
+                name: "Districts");
 
             migrationBuilder.DropTable(
                 name: "Provinces");

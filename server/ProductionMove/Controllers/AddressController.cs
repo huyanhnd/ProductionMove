@@ -22,20 +22,20 @@ namespace ProductionMove.Controllers
             }
         }
 
-        [HttpGet("dictricts")]
-        public IActionResult GetDictrictByProvince(int provinceId)
+        [HttpGet("districts")]
+        public IActionResult GetDistrictByProvince(string provinceCode)
         {
             {
-                var result = _addressService.GetDistrictByProvince(provinceId);
+                var result = _addressService.GetDistrictByProvince(provinceCode);
                 return Ok(result);
             }
         }
 
         [HttpGet("wards")]
-        public IActionResult GetWardByDistrict(int districtId)
+        public IActionResult GetWardByDistrict(string districtCode)
         {
             {
-                var result = _addressService.GetWardByDistrict(districtId);
+                var result = _addressService.GetWardByDistrict(districtCode);
                 return Ok(result);
             }
         }

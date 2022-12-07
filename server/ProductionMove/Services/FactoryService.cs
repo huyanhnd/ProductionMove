@@ -10,7 +10,7 @@ namespace ProductionMove.Services
 {
     public interface IFactoryService
     {
-        Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int wardId);
+        Task<QueryResult<FactoryResponse>> ListAsync(FactoryQuery query);
         Task<FactoryResponse> FindAsync(int id);
         Task<FactoryResponse> CreateAsync(FactoryRequest factory);
         Task<FactoryResponse> UpdateAsync(int id, FactoryRequest factory);
@@ -28,21 +28,37 @@ namespace ProductionMove.Services
             _mapper = mapper;
         }
 
-        public async Task<QueryResult<FactoryResponse>> ListAsync(Paging query, int wardId)
+        public async Task<QueryResult<FactoryResponse>> ListAsync(FactoryQuery query)
         {
-            // AsNoTracking tells EF Core it doesn't need to
-            // track changes on listed Models. Disabling entity
-            // tracking makes the code a little faster
-            IQueryable<Factory> queryable = _context.Factories.AsNoTracking();
+            var jointable = _context.Factories
+                        .Join(_context.Wards, factory => factory.WardCode, ward => ward.Code, (factory, ward) => new { factory, ward })
+                        .Join(_context.Districts, factoryWard => factoryWard.ward.DistrictCode, dictrict => dictrict.Code, (factoryWard, dictrict) => new { factoryWard, dictrict })
+                        .Select(m => new FactoryResponse
+                        {
+                            Id = m.factoryWard.factory.Id,
+                            Name = m.factoryWard.factory.Name,
+                            Address = m.factoryWard.factory.Address,
+                            WardCode = m.factoryWard.ward.Code,
+                            DistrictCode = m.dictrict.Code,
+                            ProvinceCode = m.dictrict.ProvinceCode
+                        });
 
-            if (wardId > 0)
+            if (query.WardCode != "")
             {
-                queryable = queryable.Where(p => p.WardId == wardId);
+                jointable = jointable.Where(p => p.WardCode == query.WardCode);
             }
+            else if (query.DistrictCode != "")
+            {
+                jointable = jointable.Where(p => p.DistrictCode == query.DistrictCode);
+            }
+            else if (query.ProvinceCode != "")
+            {
+                jointable = jointable.Where(p => p.ProvinceCode == query.ProvinceCode);
+            };
 
-            var result = await PaginatedList<Factory>.CreateAsync(queryable, query.PageNumber, query.PageSize);
+            var result = await PaginatedList<FactoryResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
 
-            return _mapper.Map<QueryResult<Factory>, QueryResult<FactoryResponse>>(result);
+            return result;
         }
 
         public async Task<FactoryResponse> FindAsync(int id)
