@@ -10,7 +10,7 @@ import UserList from "./pages/userList/UserList";
 import Series from "./pages/series/Series";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
-import ProductList from "./pages/productList/ProductList";
+import ProductList from "./pages/productList/ProductLine";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import ProtectedRoute from "./routes/ProtectRoute";

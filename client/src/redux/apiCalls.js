@@ -5,11 +5,20 @@ import {
   getSeriesFailure,
 } from "./seriesRedux";
 import {
-  getProductsStart,
-  getProductsSuccess,
-  getProductsFailure,
+  getProductLineStart,
+  getProductLineSuccess,
+  getProductLineFailure,
+  deleteProducLineStart,
+  deleteProductLineSuccess,
+  deleteProductLineFailure,
+  updateProductLineStart,
+  updateProductLineSuccess,
+  updateProductLineFailure,
+  addProductLineStart,
+  addProductLineSuccess,
+  addProductLineFailure,
 } from "./productRedux";
-import { publicRequest } from "../requestMethods";
+import { publicRequest, userRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -33,12 +42,41 @@ export const getSeries = async (dispatch) => {
 };
 
 export const getProductLine = async (dispatch) => {
-  dispatch(getProductsStart());
+  dispatch(getProductLineStart());
   try {
     const res = await publicRequest.get("/productline");
     console.log(res);
-    dispatch(getProductsSuccess(res.data));
+    dispatch(getProductLineSuccess(res.data));
   } catch (err) {
-    dispatch(getProductsFailure());
+    dispatch(getProductLineFailure());
+  }
+};
+export const deleteProductLine = async (code, dispatch) => {
+  dispatch(deleteProducLineStart());
+  try {
+    // const res = await userRequest.delete(`/products/${id}`);
+    dispatch(deleteProductLineSuccess(code));
+  } catch (err) {
+    dispatch(deleteProductLineFailure());
+  }
+};
+
+export const updateProductLine = async (code, product, dispatch) => {
+  dispatch(updateProductLineStart());
+  try {
+    // update
+    dispatch(updateProductLineSuccess({ code, product }));
+  } catch (err) {
+    dispatch(updateProductLineFailure());
+  }
+};
+
+export const addProductLine = async (product, dispatch) => {
+  dispatch(addProductLineStart());
+  try {
+    const res = await userRequest.post('/productline', product);
+    dispatch(addProductLineSuccess(res.data));
+  } catch (err) {
+    dispatch(addProductLineFailure());
   }
 };
