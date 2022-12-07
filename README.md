@@ -91,13 +91,6 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 - Css
 - React-Router-Dom (Chuyển hướng)
 - Axios (Gọi API)
-
-**KNOWLEDGE REQUIRED**
-- ReactJS
-  - Hooks (useState, useEffect, ...)
-  - Functional Components
-  - Props and State
-  - JSX
   
 **SOURCE CODE**
 
