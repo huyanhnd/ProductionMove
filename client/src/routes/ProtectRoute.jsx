@@ -5,8 +5,9 @@ const ProtectedRoute = ({ children }) => {
     const { currentUser } = useSelector((state) => state.user);;
 
     // if (!currentUser) {
-    //     return <Navigate to="/login" />;
-    // }
+    if (!true) {
+        return <Navigate to="/login" />;
+    }
     return children;
 };
 
