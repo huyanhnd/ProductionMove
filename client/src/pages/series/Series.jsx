@@ -18,12 +18,9 @@ export default function Series() {
     console.log(series);
     return (
         <div className="seriesPage">
-            <SeriItem data={seriesData[0]}/>
-            <SeriItem data={seriesData[0]}/>
-            <SeriItem data={seriesData[0]}/>
-            <SeriItem data={seriesData[0]}/>
-            <SeriItem data={seriesData[0]}/>
-            <SeriItem data={seriesData[0]}/>
+            {seriesData.map((item,index) => {
+                return <SeriItem data={item} key={index}/>
+            })}
         </div>
     )
 }
