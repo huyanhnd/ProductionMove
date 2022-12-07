@@ -1,5 +1,5 @@
 
-import { Children } from "react";
+// import { Children } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar"
@@ -15,6 +15,7 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import ProtectedRoute from "./routes/ProtectRoute";
 import Layout from "./layout/Layout";
+import Factory from "./pages/factory/Factory";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,9 @@ const router = createBrowserRouter([
         element: <NewProduct />,
       },
       {
+        path: "/factory",
+        element: <Factory />,
+      }
         path: "/series",
         element: <Series />,
       },
