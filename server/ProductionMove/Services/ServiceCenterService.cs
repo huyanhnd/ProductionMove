@@ -10,7 +10,7 @@ namespace ProductionMove.Services
 {
     public interface IServiceCenterService
     {
-        Task<QueryResult<ServiceCenterResponse>> ListAsync(Paging query, int WardId);
+        Task<QueryResult<ServiceCenterResponse>> ListAsync(ServiceCenterQuery query);
         Task<ServiceCenterResponse> FindAsync(int id);
         Task<ServiceCenterResponse> CreateAsync(ServiceCenterRequest serviceCenter);
         Task<ServiceCenterResponse> UpdateAsync(int id, ServiceCenterRequest serviceCenter);
@@ -28,16 +28,16 @@ namespace ProductionMove.Services
             _mapper = mapper;
         }
 
-        public async Task<QueryResult<ServiceCenterResponse>> ListAsync(Paging query, int WardId)
+        public async Task<QueryResult<ServiceCenterResponse>> ListAsync(ServiceCenterQuery query)
         {
             // AsNoTracking tells EF Core it doesn't need to
             // track changes on listed Models. Disabling entity
             // tracking makes the code a little faster
             IQueryable<ServiceCenter> queryable = _context.ServiceCenters.AsNoTracking();
 
-            if (WardId > 0)
+            if (query.WardCode != "")
             {
-                queryable = queryable.Where(p => p.WardId == WardId);
+                queryable = queryable.Where(p => p.WardCode == query.WardCode);
             }
 
             var result = await PaginatedList<ServiceCenter>.CreateAsync(queryable, query.PageNumber, query.PageSize);

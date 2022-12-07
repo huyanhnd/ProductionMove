@@ -5,12 +5,13 @@ using ProductionMove.Models;
 using ProductionMove.Helpers;
 using ProductionMove.ViewModels.Store;
 using ProductionMove.ViewModels;
+using System.Drawing.Drawing2D;
 
 namespace ProductionMove.Services
 {
     public interface IStoreService
     {
-        Task<QueryResult<StoreResponse>> ListAsync(Paging query, int WardId);
+        Task<QueryResult<StoreResponse>> ListAsync(StoreQuery query);
         Task<StoreResponse> FindAsync(int id);
         Task<StoreResponse> CreateAsync(StoreRequest product);
         Task<StoreResponse> UpdateAsync(int id, StoreRequest product);
@@ -28,16 +29,16 @@ namespace ProductionMove.Services
             _mapper = mapper;
         }
 
-        public async Task<QueryResult<StoreResponse>> ListAsync(Paging query, int WardId)
+        public async Task<QueryResult<StoreResponse>> ListAsync(StoreQuery query)
         {
             // AsNoTracking tells EF Core it doesn't need to
             // track changes on listed Models. Disabling entity
             // tracking makes the code a little faster
             IQueryable<Store> queryable = _context.Stores.AsNoTracking();
 
-            if (WardId > 0)
+            if (query.WardCode != "")
             {
-                queryable = queryable.Where(p => p.WardId == WardId);
+                queryable = queryable.Where(p => p.WardCode == query.WardCode);
             }
 
             var result = await PaginatedList<Store>.CreateAsync(queryable, query.PageNumber, query.PageSize);

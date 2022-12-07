@@ -8,7 +8,7 @@ namespace ProductionMove.Data.Context
         public DataContext(DbContextOptions<DataContext> opt) : base(opt) { }
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Province> Provinces { get; set; } = null!;
-        public DbSet<District> Dictricts { get; set; } = null!;
+        public DbSet<District> Districts { get; set; } = null!;
         public DbSet<Ward> Wards { get; set; } = null!;
         public DbSet<Factory> Factories { get; set; } = null!;
         public DbSet<Store> Stores { get; set; } = null!;

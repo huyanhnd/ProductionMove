@@ -1,10 +1,13 @@
-﻿namespace ProductionMove.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProductionMove.Models
 {
     public class Ward
     {
-        public int Id { get; set; }
+        [Key]
+        public string Code { get; set; }
         public string Name { get; set; }
-        public int DistrictId { get; set; }
+        public string DistrictCode { get; set; }
         public List<Factory> Factories { get; set; }
         public List<Store> Stores { get; set; }
         public List<ServiceCenter> serviceCenters { get; set; }
