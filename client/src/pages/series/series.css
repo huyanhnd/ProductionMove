@@ -1,3 +1,14 @@
-.productList{
+.seriesPage {
+    display: flex;
     flex: 4;
+    font-family: 'Source Sans Pro', sans-serif;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 1%;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
+//.productList{
+//    flex: 4;
+//}
