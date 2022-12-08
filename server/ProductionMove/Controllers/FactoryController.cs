@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductionMove.Controllers;
 using ProductionMove.Models;
 using ProductionMove.ViewModels.Factory;
 using ProductionMove.Services;
 using ProductionMove.ViewModels;
+using ProductionMove.Authorization;
 
 namespace Supermarket.API.Controllers
 {
@@ -18,9 +18,9 @@ namespace Supermarket.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListAsync([FromQuery] Paging query, int WardId)
+        public async Task<IActionResult> ListAsync([FromQuery] FactoryQuery query)
         {
-            var result = await _factoryService.ListAsync(query, WardId);
+            var result = await _factoryService.ListAsync(query);
             return Ok(result);
         }
 
