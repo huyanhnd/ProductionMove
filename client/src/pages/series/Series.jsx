@@ -6,15 +6,20 @@ import { useEffect, useState } from "react";
 import "./series.css"
 
 export default function Series() {
-  const dispatch = useDispatch();
-  const series = useSelector((state) => state.series.series);
+    // const dispatch = useDispatch();
+    // const series = useSelector((state) => state.series.series);
 
-  useEffect(() => {
-    getSeries(dispatch);
-  }, [dispatch]);
+    // useEffect(() => {
+    //     getSeries(dispatch);
+    // }, [dispatch]);
 
-  return (
-    <div className="productList">
-    </div>
-  );
+    const series = seriesData;
+    console.log(series);
+    return (
+        <div className="seriesPage">
+            {seriesData.map((item,index) => {
+                return <SeriItem data={item} key={index}/>
+            })}
+        </div>
+    )
 }
