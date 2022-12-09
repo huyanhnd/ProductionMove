@@ -19,7 +19,7 @@ export default function FactoryList() {
   useEffect(()=>setData(dataContext),[useContext(DataContext)])
 
   const columns = [
-    { field: "id", headerName: "No.", width: 90 },
+    { field: "code", headerName: "No.", width: 90 },
     {
       field: "name",
       headerName: "Factory Name",
@@ -62,6 +62,7 @@ export default function FactoryList() {
 
   return (
       <DataGrid
+        getRowId={(row) => row.code} 
         rows={data}
         disableSelectionOnClick
         columns={columns}

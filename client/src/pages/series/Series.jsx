@@ -15,7 +15,6 @@ export default function Series() {
         getSeries(dispatch);
     }, [dispatch]);
 
-    console.log(series);
     return (
         <div className="seriesPage">
             {series.map((item,index) => {

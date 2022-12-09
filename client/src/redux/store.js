@@ -2,7 +2,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./userRedux";
 import seriesReducer from "./seriesRedux"
-import productLineReducer from "./productRedux"
+import productLineReducer from "./productLineRedux"
 import {
   persistStore,
   persistReducer,
