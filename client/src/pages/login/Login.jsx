@@ -2,11 +2,11 @@ import "./login.css"
 import { useState } from "react";
 import { login } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { AiOutlineUser } from "react-icons/ai";
-import { TbKey } from "react-icons/tb";
-import { Link } from "react-router-dom";
-import { IoIosLogIn } from "react-icons/io";
+// import { FaHeart, FaRegHeart } from 'react-icons/fa';
+// import { AiOutlineUser } from "react-icons/ai";
+// import { TbKey } from "react-icons/tb";
+// import { Link } from "react-router-dom";
+// import { IoIosLogIn } from "react-icons/io";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -24,14 +24,14 @@ const Login = () => {
       <div className="login-section">
         <div className="login-box">
           <div className="title">WELCOME BACK</div>
-          <div className="input username">
+          {/* <div className="input username">
             <AiOutlineUser/>
             <input type="text" placeholder=""/>
           </div>
           <div className="input password">
             <TbKey/>
             <input type="text" />
-          </div>
+          </div> */}
           <em className="forgot">Forgot password?</em>
           <button className="enter">LOG IN</button>
         </div>
