@@ -1,22 +1,19 @@
 import "./login.css"
 import { useState } from "react";
-import { login } from "../../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { login } from "../../api/authApi";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching } = useSelector((state) => state.user);
-
+  
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
-
-  console.log("username: ", username, "  pass: ", password);
 
   return (
     <div className='login-page'>
@@ -33,14 +30,18 @@ const Login = () => {
                 <div className="icon">
                   <PersonOutlineIcon />
                 </div>
-                <input type="text" placeholder="Enter your username" />
+                <input onChange={(e) => {
+                  setUsername(e.target.value)
+                }} type="text" placeholder="Enter your username" />
               </div>
               <div className="input-title">Password</div>
               <div className="input password">
                 <div className="icon">
                   <LockOutlinedIcon />
                 </div>
-                <input type="password" placeholder="• • • • • • • •" />
+                <input onChange={(e) => {
+                  setPassword(e.target.value)
+                }} type="password" placeholder="• • • • • • • •" />
               </div>
               <div className="incorrect">
                 <p className="inactive">The username or password is incorrect. Please try again!</p>

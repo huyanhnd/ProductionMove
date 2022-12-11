@@ -4,15 +4,14 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProductLine } from "../../redux/apiCalls";
-import { deleteProductLine } from "../../redux/apiCalls";
+import { getProductLines, deleteProductLine } from "../../api/productLineApi";
 
 export default function ProductLineList() {
   const dispatch = useDispatch();
   const productline = useSelector((state) => state.productline.productlines);
 
   useEffect(() => {
-    getProductLine(dispatch);
+    getProductLines(dispatch);
   }, [dispatch]);
 
   const handleDelete = (code) => {
@@ -38,10 +37,10 @@ export default function ProductLineList() {
         return (
           <>
             <Link to={"/productLine/" + params.row.code}>
-              <button className="productListEdit">Edit</button>
+              <button className="productLineListEdit">Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
+              className="productLineListDelete"
               onClick={() => handleDelete(params.row.code)}
             />
           </>
@@ -51,11 +50,11 @@ export default function ProductLineList() {
   ];
 
   return (
-    <div className="productList">
+    <div className="productLineList">
       <DataGrid
-        getRowId={(row) => row.code} 
-        rows={productline.items}
+        rows={productline}
         disableSelectionOnClick
+        getRowId={(row) => row.code} 
         columns={columns}
         pageSize={8}
         checkboxSelection

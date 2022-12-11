@@ -1,8 +1,9 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const productLineSlice = createSlice({
     name: "productline",
     initialState: {
+        totalItems: 0,
         productlines: [],
         isFetching: false,
         error: false,
@@ -15,7 +16,8 @@ export const productLineSlice = createSlice({
         },
         getProductLinesSuccess: (state, action) => {
             state.isFetching = false;
-            state.productlines = action.payload;
+            state.productlines = action.payload.items;
+            state.totalItems = action.payload.totalItems;
         },
         getProductLinesFailure: (state) => {
             state.isFetching = false;

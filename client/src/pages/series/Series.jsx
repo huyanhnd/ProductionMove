@@ -1,9 +1,7 @@
 import "./series.css";
-import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import { getSeries } from "../../redux/apiCalls";
-import { useEffect, useState } from "react";
-import { seriesData } from "../../dummyData";
+import { getSeries } from "../../api/seriesApi";
+import { useEffect } from "react";
 import SeriItem from "./SeriItem";
 import "./series.css"
 
