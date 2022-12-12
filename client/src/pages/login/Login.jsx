@@ -1,19 +1,15 @@
 import "./login.css"
 import { useState } from "react";
-import { login } from "../../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-// import { FaHeart, FaRegHeart } from 'react-icons/fa';
-// import { AiOutlineUser } from "react-icons/ai";
-// import { TbKey } from "react-icons/tb";
-// import { Link } from "react-router-dom";
-// import { IoIosLogIn } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { login } from "../../api/authApi";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching } = useSelector((state) => state.user);
-
+  
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
@@ -23,17 +19,37 @@ const Login = () => {
     <div className='login-page'>
       <div className="login-section">
         <div className="login-box">
-          <div className="title">WELCOME BACK</div>
-          {/* <div className="input username">
-            <AiOutlineUser/>
-            <input type="text" placeholder=""/>
+          <div className="content">
+            <div className="title-section">
+              <div className="title">WELCOME BACK</div>
+              <div className="sub-title">Please enter your details.</div>
+            </div>
+            <div className="input-section">
+              <div className="input-title">Username</div>
+              <div className="input username">
+                <div className="icon">
+                  <PersonOutlineIcon />
+                </div>
+                <input onChange={(e) => {
+                  setUsername(e.target.value)
+                }} type="text" placeholder="Enter your username" />
+              </div>
+              <div className="input-title">Password</div>
+              <div className="input password">
+                <div className="icon">
+                  <LockOutlinedIcon />
+                </div>
+                <input onChange={(e) => {
+                  setPassword(e.target.value)
+                }} type="password" placeholder="• • • • • • • •" />
+              </div>
+              <div className="incorrect">
+                <p className="inactive">The username or password is incorrect. Please try again!</p>
+              </div>
+              <em className="forgot">Forgot password?</em>
+            </div>
+            <button className="enter" onClick={handleClick}>LOG IN</button>
           </div>
-          <div className="input password">
-            <TbKey/>
-            <input type="text" />
-          </div> */}
-          <em className="forgot">Forgot password?</em>
-          <button className="enter">LOG IN</button>
         </div>
       </div>
       <div className="login-img">
