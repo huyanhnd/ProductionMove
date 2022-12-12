@@ -30,8 +30,8 @@ export const productLineSlice = createSlice({
         },
         deleteProductLineSuccess: (state, action) => {
             state.isFetching = false;
-            state.productlines.items.splice(
-                state.productlines.items.findIndex((item) => item.code === action.payload),
+            state.productlines.splice(
+                state.productlines.findIndex((item) => item.code === action.payload),
                 1
             );
         },

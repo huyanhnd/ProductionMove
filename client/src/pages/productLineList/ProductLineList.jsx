@@ -19,8 +19,8 @@ export default function ProductLineList() {
   };
 
   const columns = [
-    { field: "code", headerName: "CODE", width: 70},
-    { field: "name", headerName: "NAME"},
+    { field: "code", headerName: "Code", width: 70},
+    { field: "name", headerName: "Name"},
     { field: "seriesId", headerName: "SeriesId", width: 50 },
     { field: "screenSize", headerName: "ScreenSize", width: 90 },
     { field: "resolution", headerName: "Resolution", width: 90 },

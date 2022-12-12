@@ -6,6 +6,8 @@ import ProductLineList from "./pages/productLineList/ProductLineList";
 import { useSelector } from "react-redux";
 import Login from "./pages/login/Login";
 import UserList from "./pages/userList/UserList";
+import User from "./pages/user/User";
+import NewUser from "./pages/newUser/NewUser";
 import Series from "./pages/series/Series";
 import FactoryList from "./pages/factory/FactoryList";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
@@ -31,6 +33,8 @@ const appRouter = createBrowserRouter([
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <Home /> },
             { path: "/users", element: <UserList /> },
+            { path: "/user/:userid", element: <User /> },
+            { path: "/newuser", element: <NewUser /> },
             { path: "/series", element: <Series /> },
             { path: "/productlines", element: <ProductLineList /> },
             { path: "/factories", element: <FactoryList /> },
