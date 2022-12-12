@@ -28,7 +28,7 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <Layout />,
         children: [
-            { path: "*", element: <NotFoundPage />,},
+            { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <Home /> },
             { path: "/users", element: <UserList /> },
             { path: "/series", element: <Series /> },
@@ -46,9 +46,7 @@ function App() {
     const { currentUser } = useSelector((state) => state.auth);
     return (
         <div>
-            <RouterProvider router={
-                currentUser ?
-                appRouter : authRouter} />
+            <RouterProvider router={currentUser ? appRouter : authRouter} />
         </div>
     );
 }

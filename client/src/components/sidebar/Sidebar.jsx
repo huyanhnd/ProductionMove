@@ -1,27 +1,21 @@
 import "./sidebar.css";
 import {
   LineStyle,
-  Timeline,
-  TrendingUp,
   PermIdentity,
   Storefront,
-  AttachMoney,
-  BarChart,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
   WorkOutline,
   Laptop,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { getRole } from "../../helper/auth";
+import { useSelector } from "react-redux"
 
 export default function Sidebar() {
+  const { currentUser } = useSelector((state) => state.auth);
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         {/* Admin Menu */}
-        {getRole() === "Admin" ? <div className="sidebarMenu">
+        {currentUser.role === "Admin" ? <div className="sidebarMenu">
           <h3 className="sidebarTitle">Admin</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
@@ -51,7 +45,7 @@ export default function Sidebar() {
           </ul>
         </div> : null}
         {/* Factory Menu */}
-        {getRole() === "Factory" ?
+        {currentUser.role === "Factory" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Factory Manager</h3>
             <ul className="sidebarList">
@@ -70,7 +64,7 @@ export default function Sidebar() {
             </ul>
           </div> : null}
         {/* Store Menu */}
-        {getRole() === "Store" ?
+        {currentUser.role === "Store" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Store Manager</h3>
             <ul className="sidebarList">
@@ -83,7 +77,7 @@ export default function Sidebar() {
             </ul>
           </div> : null}
         {/* Service Center Menu */}
-        {getRole() === "ServiceCenter" ?
+        {currentUser.role === "ServiceCenter" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Service Center Manager</h3>
             <ul className="sidebarList">

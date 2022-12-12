@@ -8,7 +8,7 @@ const NotFoundPage = () => {
             <p className="mt-8 text-base">
                 The link you followed may be broken, or the page may have been removed.{' '}
                 <Link to="/">
-                    <a className="text-primary">Go back to Production Move</a>
+                    Go back to Production Move
                 </Link>
             </p>
         </div>

@@ -2,7 +2,7 @@ import {
     getSeriesStart,
     getSeriesSuccess,
     getSeriesFailure,
-} from "../redux/seriesRedux";
+} from "../redux/seriesSlice";
 import { publicRequest } from "./requestMethods";
 
 export const getSeries = async (dispatch) => {

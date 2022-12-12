@@ -11,8 +11,7 @@ import {
     addUserStart,
     addUserSuccess,
     addUserFailure,
-} from "../redux/userRedux";
-import axios from "axios";
+} from "../redux/userSlice";
 import { userRequest } from "./requestMethods"
 import { getToken } from "../helper/auth";
 

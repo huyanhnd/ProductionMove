@@ -11,7 +11,7 @@ import {
     addProductLineStart,
     addProductLineSuccess,
     addProductLineFailure,
-} from "../redux/productLineRedux";
+} from "../redux/productLineSlice";
 import { publicRequest } from "./requestMethods";
 
 export const getProductLines = async (dispatch) => {

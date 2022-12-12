@@ -1,11 +1,7 @@
 export function getToken() {
-    const auth = JSON.parse(localStorage.getItem("persist:root"))?.auth;
-    const currentUser = auth && JSON.parse(auth).currentUser;
-    return currentUser?.jwtToken;
+    return JSON.parse(localStorage.getItem("token"));
 }
 
-export function getRole() {
-    const auth = JSON.parse(localStorage.getItem("persist:root"))?.auth;
-    const currentUser = auth && JSON.parse(auth).currentUser;
-    return currentUser?.role;
+export function setToken(data) {
+    localStorage.setItem("token", JSON.stringify(data.jwtToken));
 }
