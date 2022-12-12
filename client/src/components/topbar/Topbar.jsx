@@ -1,8 +1,17 @@
 import React from "react";
 import "./topbar.css";
 import { NotificationsNone, Settings, Logout } from "@mui/icons-material";
+import { logout } from "../../redux/authSlice"
+import { useDispatch } from "react-redux";
 
 export default function Topbar() {
+  const dispatch = useDispatch();
+  
+  const handleLogout = (e) => {
+    dispatch(logout());
+    localStorage.clear();
+  };
+
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -17,7 +26,7 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <Settings />
           </div>
-          <div className="topbarIconContainer">
+          <div className="topbarIconContainer" onClick={handleLogout}>
             <Logout />
           </div>
         </div>
