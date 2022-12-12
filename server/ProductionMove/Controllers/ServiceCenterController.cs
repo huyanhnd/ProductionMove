@@ -18,9 +18,9 @@ namespace Supermarket.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListAsync([FromQuery] Paging query, int WardId)
+        public async Task<IActionResult> ListAsync([FromQuery] ServiceCenterQuery query)
         {
-            var fatories = await _serviceCenterService.ListAsync(query, WardId);
+            var fatories = await _serviceCenterService.ListAsync(query);
             return Ok(fatories);
         }
 

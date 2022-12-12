@@ -12,8 +12,8 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221128105731_updatedb1")]
-    partial class updatedb1
+    [Migration("20221208043227_updateImage")]
+    partial class updateImage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,9 @@ namespace ProductionMove.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageSub")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("ListPrice")
                         .HasColumnType("bigint");
 
@@ -111,6 +114,15 @@ namespace ProductionMove.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageSub")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -162,24 +174,22 @@ namespace ProductionMove.Migrations
 
             modelBuilder.Entity("ProductionMove.Models.District", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProvinceId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProvinceCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
-                    b.HasIndex("ProvinceId");
+                    b.HasIndex("ProvinceCode");
 
-                    b.ToTable("Dictricts");
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Factory", b =>
@@ -198,29 +208,27 @@ namespace ProductionMove.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WardId")
-                        .HasColumnType("int");
+                    b.Property<string>("WardCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WardId");
+                    b.HasIndex("WardCode");
 
                     b.ToTable("Factories");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Province", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
                     b.ToTable("Provinces");
                 });
@@ -239,12 +247,13 @@ namespace ProductionMove.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WardId")
-                        .HasColumnType("int");
+                    b.Property<string>("WardCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WardId");
+                    b.HasIndex("WardCode");
 
                     b.ToTable("ServiceCenters");
                 });
@@ -265,34 +274,33 @@ namespace ProductionMove.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WardId")
-                        .HasColumnType("int");
+                    b.Property<string>("WardCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WardId");
+                    b.HasIndex("WardCode");
 
                     b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Ward", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("DistrictId")
-                        .HasColumnType("int");
+                    b.Property<string>("DistrictCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
-                    b.HasIndex("DistrictId");
+                    b.HasIndex("DistrictCode");
 
                     b.ToTable("Wards");
                 });
@@ -404,7 +412,7 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Models.Province", null)
                         .WithMany("Districts")
-                        .HasForeignKey("ProvinceId")
+                        .HasForeignKey("ProvinceCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -413,7 +421,7 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Factories")
-                        .HasForeignKey("WardId")
+                        .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -422,7 +430,7 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("serviceCenters")
-                        .HasForeignKey("WardId")
+                        .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -431,7 +439,7 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Stores")
-                        .HasForeignKey("WardId")
+                        .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -440,7 +448,7 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Models.District", null)
                         .WithMany("wards")
-                        .HasForeignKey("DistrictId")
+                        .HasForeignKey("DistrictCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

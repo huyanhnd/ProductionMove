@@ -1,0 +1,89 @@
+
+.factoryPage {
+  flex: 4;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* .factoryListItem{
+  display: flex;
+  align-items: center;
+} */
+
+.factoryListEdit {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.factoryListDelete {
+  color: red;
+  cursor: pointer;
+}
+
+.factoryAddress {
+  white-space: pre-line;
+  word-break: break-all;
+}
+
+.filterSection {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  font-size: 14px;
+  color: #000000DE;
+  margin-right: 20px;
+}
+
+.factoryFilter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filterBox {
+  height: 35px;
+  width: 230px;
+}
+
+.filterInputBox {
+  height: 33px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  padding: 0px 10px;
+  width: 150px;
+  border-radius: 4px;
+}
+
+.filterInputBox:hover {
+      border-color: #000;
+}
+
+.filterInputBox:focus {
+  /* width: 149px; */
+  padding: 0px 9px;
+  height: 31px;
+  outline: none !important;
+  border: 2px solid #1976d2;
+  /* margin-right: 1px; */
+}
+
+.submit-btn {
+  line-height: 35px;
+  background-color: #1976d2;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 14px;
+  align-self: center;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+}
+
+.submit-btn:active {
+  background-color: #3598fb;
+}

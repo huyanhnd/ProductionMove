@@ -17,6 +17,7 @@ namespace ProductionMove.Data
         public string Graphics { get; set; }
         public long ListPrice { get; set; }
         public string Image { get; set; }
+        public string? ImageSub { get; set; }
         public List<Product>? Products { get; set; }
     }
 }

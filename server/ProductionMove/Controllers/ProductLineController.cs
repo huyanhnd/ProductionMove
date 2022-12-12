@@ -25,7 +25,7 @@ namespace Supermarket.API.Controllers
             return Ok(fatories);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{code}")]
         public async Task<IActionResult> GetAsync(string code)
         {
             var result = await _productLineService.FindByIdAsync(code);
@@ -39,14 +39,14 @@ namespace Supermarket.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{code}")]
         public async Task<IActionResult> PutAsync(string code, [FromBody] ProductLineRequest model)
         {
             var result = await _productLineService.UpdateAsync(code, model);
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{code}")]
         public async Task<IActionResult> DeleteAsync(string code)
         {
             await _productLineService.DeleteAsync(code);

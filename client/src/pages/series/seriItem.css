@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'SourceSansPro';
+    /* font-style: normal;
+    font-weight: normal; */
+    src: local('SourceSansPro'), url('../../../asset/font/SourceSansPro-Regular.ttf') format('ttf');
+}
+
+.seriItemSection {
+    display: flex;
+    flex-direction: column;
+    /* background-color: aqua; */
+    width: 15.5%;
+    height: 60%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(238, 238, 238);
+    /* font-family: ; */
+    justify-content: space-around;
+}
+
+.imgContainer {
+    width: 100%;
+    height: 30%;
+    position: relative;
+}
+
+.imgContainer img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out; */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.imgContainer:hover .img-front {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.imgContainer .img-back {
+    opacity: 0%;
+    cursor: pointer;
+}
+
+.imgContainer:hover .img-back {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+
+.img {
+    width: 100%;
+    object-fit: contain;
+    /* object-fit: cover; */
+}
+
+.seriName {
+    font-size: 25px;
+    color: #da4800;
+    align-self: center;
+    border-top: 1px solid #da4800;
+    border-bottom: 1px solid #da4800;
+    padding: 10px 60px;
+}
+
+.seri-description {
+    margin: 50px 20px;
+    text-align: justify;
+}
+
+.link {
+    /* width: 100%; */
+    margin-bottom: 20px;
+}
+
+.seemore-Btn {
+    width: 90%;
+    color: #3598fb;
+    padding: 4px 0;
+    margin-left: 5%;
+    border: 2px solid #3598fb;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #fff;
+}
+
+.seemore-Btn:hover {
+    cursor: pointer;
+    color: #fff;
+    transition: opacity 0.5s ease-in-out;
+    background-color: #3598fb;
+}
