@@ -7,9 +7,10 @@ import { useSelector } from "react-redux";
 import Login from "./pages/login/Login";
 import UserList from "./pages/userList/UserList";
 import Series from "./pages/series/Series";
-import FactoryList from "./pages/factory/FactoryList";
+import Factory from "./pages/factory/Factory";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
-import "./app.css"
+import "./App.css"
+import GroupedSelect from "./pages/factory/GroupedSelect";
 
 const Layout = () => {
     return (
@@ -33,7 +34,7 @@ const appRouter = createBrowserRouter([
             { path: "/users", element: <UserList /> },
             { path: "/series", element: <Series /> },
             { path: "/productlines", element: <ProductLineList /> },
-            { path: "/factories", element: <FactoryList /> },
+            { path: "/factories", element: <Factory /> },
         ],
     }
 ]);
