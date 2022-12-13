@@ -52,10 +52,13 @@ export default function Product() {
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                   </select>
-                  <label>Active</label>
+                  <label>Status</label>
                   <select name="active" id="active">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
+                      <option value="manufacture">Manufacture</option>
+                      <option value="store">Store</option>
+                      <option value="sold">Sold</option>
+                      <option value="error">Error</option>
+                      <option value="warranty">Warranty</option>
                   </select>
               </div>
               <div className="productFormRight">

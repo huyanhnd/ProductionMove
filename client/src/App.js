@@ -10,6 +10,9 @@ import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import Series from "./pages/series/Series";
 import FactoryList from "./pages/factory/FactoryList";
+import ProductList from "./pages/productList/ProductList";
+import NewProduct from "./pages/newProduct/NewProduct";
+import Product from "./pages/product/Product";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
 import "./app.css"
 
@@ -37,6 +40,9 @@ const appRouter = createBrowserRouter([
             { path: "/newuser", element: <NewUser /> },
             { path: "/series", element: <Series /> },
             { path: "/productlines", element: <ProductLineList /> },
+            { path: "/products", element: <ProductList /> },
+            { path: "/product/:code", element: <Product /> },
+            { path: "/newproduct", element: <NewProduct /> },
             { path: "/factories", element: <FactoryList /> },
         ],
     }

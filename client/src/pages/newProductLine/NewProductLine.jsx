@@ -3,7 +3,7 @@ import "./newProductLine.css";
 export default function NewProductLine() {
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
+      <h1 className="addProductTitle">New Product Line</h1>
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>

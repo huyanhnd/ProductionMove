@@ -84,6 +84,7 @@ export default function GroupedSelect() {
   * set factory name filter
   */
  const [factoryData, setFactoryData] = useState([]);
+ 
  useEffect(() => {
    async function axiosWardData() {
      try {
