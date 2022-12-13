@@ -22,7 +22,7 @@ export default function FactoryList() {
   //   getFactory(dispatch, provinceCode, districtCode, wardCode);
   // }, [provinceCode,districtCode,wardCode]);
 // var factory={}
-  const factory = useSelector((state) => state.factory.factory.items);
+  const factory = useSelector((state) => state.factory.factories);
   console.log(' ');
   console.log(factory);
 
@@ -38,12 +38,12 @@ export default function FactoryList() {
   // useEffect(()=>setData(dataContext),[useContext(DataContext)])
 
   const columns = [
-    { field: "id", headerName: "No.", width: 90 },
+    { field: "id", headerName: "No.", width: 50 },
     { field: "name", headerName: "Factory Name", width: 200 },
-    { field: "wardCode", headerName: "Ward Code", width: 200 },
-    { field: "districtCode", headerName: "District Code", width: 200 },
-    { field: "provinceCode", headerName: "Province Code", width: 200 },
-    { field: "address", headerName: "Address", width: 350 },
+    { field: "wardCode", headerName: "Ward Code", width: 120 },
+    { field: "districtCode", headerName: "District Code", width: 120 },
+    { field: "provinceCode", headerName: "Province Code", width: 120 },
+    { field: "address", headerName: "Address", width: 200 },
     {
       field: "action",
       headerName: "Action",

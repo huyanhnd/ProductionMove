@@ -6,10 +6,15 @@ import ProductLineList from "./pages/productLineList/ProductLineList";
 import { useSelector } from "react-redux";
 import Login from "./pages/login/Login";
 import UserList from "./pages/userList/UserList";
+import User from "./pages/user/User";
+import NewUser from "./pages/newUser/NewUser";
 import Series from "./pages/series/Series";
+import ProductList from "./pages/productList/ProductList";
+import NewProduct from "./pages/newProduct/NewProduct";
+import Product from "./pages/product/Product";
 import Factory from "./pages/factory/Factory";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
-import "./App.css"
+import "./app.css"
 import GroupedSelect from "./pages/factory/GroupedSelect";
 
 const Layout = () => {
@@ -32,8 +37,13 @@ const appRouter = createBrowserRouter([
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <Home /> },
             { path: "/users", element: <UserList /> },
+            { path: "/user/:userid", element: <User /> },
+            { path: "/newuser", element: <NewUser /> },
             { path: "/series", element: <Series /> },
             { path: "/productlines", element: <ProductLineList /> },
+            { path: "/products", element: <ProductList /> },
+            { path: "/product/:code", element: <Product /> },
+            { path: "/newproduct", element: <NewProduct /> },
             { path: "/factories", element: <Factory /> },
         ],
     }

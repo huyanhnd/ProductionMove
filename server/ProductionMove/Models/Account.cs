@@ -1,5 +1,13 @@
 namespace ProductionMove.Models;
 
+public enum Role
+{
+    Admin,
+    Store,
+    Factory,
+    ServiceCenter,
+    User
+}
 public class Account
 {
     public int Id { get; set; }
