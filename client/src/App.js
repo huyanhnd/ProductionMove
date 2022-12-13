@@ -9,12 +9,13 @@ import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import Series from "./pages/series/Series";
-import FactoryList from "./pages/factory/FactoryList";
 import ProductList from "./pages/productList/ProductList";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Product from "./pages/product/Product";
+import Factory from "./pages/factory/Factory";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
-import "./app.css"
+import "./App.css"
+import GroupedSelect from "./pages/factory/GroupedSelect";
 
 const Layout = () => {
     return (
@@ -43,7 +44,7 @@ const appRouter = createBrowserRouter([
             { path: "/products", element: <ProductList /> },
             { path: "/product/:code", element: <Product /> },
             { path: "/newproduct", element: <NewProduct /> },
-            { path: "/factories", element: <FactoryList /> },
+            { path: "/factories", element: <Factory /> },
         ],
     }
 ]);
