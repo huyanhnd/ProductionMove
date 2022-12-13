@@ -14,7 +14,7 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Product from "./pages/product/Product";
 import Factory from "./pages/factory/Factory";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
-import "./App.css"
+import "./app.css"
 import GroupedSelect from "./pages/factory/GroupedSelect";
 
 const Layout = () => {

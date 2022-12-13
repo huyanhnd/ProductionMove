@@ -14,12 +14,12 @@ export default function ProductLineList() {
     getProductLines(dispatch);
   }, [dispatch]);
 
-  const handleDelete = (code) => {
-    deleteProductLine(code, dispatch);
+  const handleDelete = (id) => {
+    deleteProductLine(id, dispatch);
   };
 
   const columns = [
-    { field: "code", headerName: "Code", width: 70},
+    { field: "id", headerName: "Id", width: 50},
     { field: "name", headerName: "Name"},
     { field: "seriesId", headerName: "SeriesId", width: 50 },
     { field: "screenSize", headerName: "ScreenSize", width: 90 },
@@ -36,12 +36,12 @@ export default function ProductLineList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/productLine/" + params.row.code}>
+            <Link to={"/productLine/" + params.row.id}>
               <button className="productLineListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="productLineListDelete"
-              onClick={() => handleDelete(params.row.code)}
+              onClick={() => handleDelete(params.row.id)}
             />
           </>
         );
@@ -54,7 +54,7 @@ export default function ProductLineList() {
       <DataGrid
         rows={productline}
         disableSelectionOnClick
-        getRowId={(row) => row.code} 
+        getRowId={(row) => row.id} 
         columns={columns}
         pageSize={8}
         checkboxSelection

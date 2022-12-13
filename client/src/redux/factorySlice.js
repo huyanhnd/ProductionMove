@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const factorySlice = createSlice({
     name: "factory",
     initialState: {
-        factory: [],
+        totalItems: 0,
+        factories: [],
         isFetching: false,
         error: false,
     },
@@ -15,7 +16,8 @@ export const factorySlice = createSlice({
         },
         getFactorySuccess: (state, action) => {
             state.isFetching = false;
-            state.factory = action.payload;
+            state.factories = action.payload.items;
+            state.totalItems = action.payload.totalItems;
         },
         getFactoryFailure: (state) => {
             state.isFetching = false;
