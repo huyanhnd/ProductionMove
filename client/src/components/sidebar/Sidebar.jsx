@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux"
 
 export default function Sidebar() {
-  const { currentUser } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.auth.currentUser);
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         {/* Admin Menu */}
-        {currentUser.role === "Admin" ? <div className="sidebarMenu">
+        {role === "Admin" ? <div className="sidebarMenu">
           <h3 className="sidebarTitle">Admin</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
@@ -45,7 +45,7 @@ export default function Sidebar() {
           </ul>
         </div> : null}
         {/* Factory Menu */}
-        {currentUser.role === "Factory" ?
+        {role === "Factory" || role === "Admin" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Factory Manager</h3>
             <ul className="sidebarList">
@@ -55,16 +55,10 @@ export default function Sidebar() {
                   Factory
                 </li>
               </Link>
-              <Link to="/series" className="link">
-                <li className="sidebarListItem">
-                  <Laptop className="sidebarIcon" />
-                  Series
-                </li>
-              </Link>
             </ul>
           </div> : null}
         {/* Store Menu */}
-        {currentUser.role === "Store" ?
+        {role === "Store" || role === "Admin" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Store Manager</h3>
             <ul className="sidebarList">
@@ -77,7 +71,7 @@ export default function Sidebar() {
             </ul>
           </div> : null}
         {/* Service Center Menu */}
-        {currentUser.role === "ServiceCenter" ?
+        {role === "ServiceCenter" || role === "Admin" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Service Center Manager</h3>
             <ul className="sidebarList">

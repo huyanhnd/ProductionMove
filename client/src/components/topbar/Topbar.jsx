@@ -9,7 +9,6 @@ export default function Topbar() {
   
   const handleLogout = (e) => {
     dispatch(logout());
-    localStorage.clear();
   };
 
   return (
