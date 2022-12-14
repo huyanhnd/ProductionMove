@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, deleteUser } from "../../api/userApi";
+import { getUsers, deleteUser } from "../../../api/userApi";
 import { useEffect } from "react";
 
 export default function UserList() {

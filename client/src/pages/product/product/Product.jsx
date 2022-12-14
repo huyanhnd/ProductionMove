@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import "./productLine.css";
-import Chart from "../../components/chart/Chart"
-import {productData} from "../../dummyData"
+import "./product.css";
+import Chart from "../../../components/chart/Chart"
+import {productData} from "../../../dummyData"
 import { Publish } from "@mui/icons-material";
 
-export default function ProductLine() {
+export default function Product() {
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -52,10 +52,13 @@ export default function ProductLine() {
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                   </select>
-                  <label>Active</label>
+                  <label>Status</label>
                   <select name="active" id="active">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
+                      <option value="manufacture">Manufacture</option>
+                      <option value="store">Store</option>
+                      <option value="sold">Sold</option>
+                      <option value="error">Error</option>
+                      <option value="warranty">Warranty</option>
                   </select>
               </div>
               <div className="productFormRight">

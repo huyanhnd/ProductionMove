@@ -1,5 +1,5 @@
 import { useState } from "react";
-import app from "../../firebase";
+import app from "../../../firebase"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import "./newUser.css";
 import { useDispatch } from "react-redux";

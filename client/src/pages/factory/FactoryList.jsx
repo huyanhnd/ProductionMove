@@ -21,11 +21,10 @@ export default function FactoryList() {
   // useEffect(() => {
   //   getFactory(dispatch, provinceCode, districtCode, wardCode);
   // }, [provinceCode,districtCode,wardCode]);
-// var factory={}
+  // var factory={}
   const factory = useSelector((state) => state.factory.factories);
-  console.log(' ');
-  console.log(factory);
-
+  const province = useSelector((state) => state.address.province)
+  console.log(province);
   // const dataContext = useContext(DataContext)
   // console.log("re-render")
 
@@ -42,12 +41,15 @@ export default function FactoryList() {
     { field: "name", headerName: "Factory Name", width: 200 },
     { field: "wardCode", headerName: "Ward Code", width: 120 },
     { field: "districtCode", headerName: "District Code", width: 120 },
-    { field: "provinceCode", headerName: "Province Code", width: 120 },
+    {
+      field: "provinceCode", headerName: "Province Code", width: 150,
+      valueGetter: (params) => {
+        return province.find(item => item.code === params.row.provinceCode).name; 
+      }
+    },
     { field: "address", headerName: "Address", width: 200 },
     {
-      field: "action",
-      headerName: "Action",
-      width: 150,
+      field: "action", headerName: "Action", width: 150,
       renderCell: (params) => {
         return (
           <>
