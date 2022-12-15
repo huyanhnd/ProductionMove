@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 export default function Topbar() {
   const dispatch = useDispatch();
   
-  const handleLogout = (e) => {
+  const handleLogout = () => {
     dispatch(logout());
   };
 

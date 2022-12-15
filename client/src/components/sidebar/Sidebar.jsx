@@ -42,10 +42,28 @@ export default function Sidebar() {
                 Products
               </li>
             </Link>
+            <Link to="/factories" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Factory
+              </li>
+            </Link>
+            <Link to="/stores" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Store
+              </li>
+            </Link>
+            <Link to="/servicecenters" className="link">
+              <li className="sidebarListItem">
+                <WorkOutline className="sidebarIcon" />
+                Service Center
+              </li>
+            </Link>
           </ul>
         </div> : null}
         {/* Factory Menu */}
-        {role === "Factory" || role === "Admin" ?
+        {role === "Factory" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Factory Manager</h3>
             <ul className="sidebarList">
@@ -58,7 +76,7 @@ export default function Sidebar() {
             </ul>
           </div> : null}
         {/* Store Menu */}
-        {role === "Store" || role === "Admin" ?
+        {role === "Store" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Store Manager</h3>
             <ul className="sidebarList">
@@ -71,7 +89,7 @@ export default function Sidebar() {
             </ul>
           </div> : null}
         {/* Service Center Menu */}
-        {role === "ServiceCenter" || role === "Admin" ?
+        {role === "ServiceCenter" ?
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Service Center Manager</h3>
             <ul className="sidebarList">

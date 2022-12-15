@@ -28,8 +28,8 @@ export const userSlice = createSlice({
         },
         deleteUserSuccess: (state, action) => {
             state.isFetching = false;
-            state.users.items.splice(
-                state.users.items.findIndex((item) => item.code === action.payload),
+            state.users.splice(
+                state.users.findIndex((item) => item.code === action.payload),
                 1
             );
         },
