@@ -1,4 +1,4 @@
-import "./factory.css";
+import "./addressFilter.css";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -12,7 +12,7 @@ import { setProvinceCode, setDistrictCode, setWardCode } from "../../redux/addre
 
 export const DataContext = createContext();
 
-export default function GroupedSelect() {
+export default function AddressFilter() {
   const dispatch = useDispatch();
   useEffect(() => {
     getProvince(dispatch);
