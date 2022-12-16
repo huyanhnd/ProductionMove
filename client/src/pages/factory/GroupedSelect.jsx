@@ -1,4 +1,4 @@
-import "./factory.css";
+import "./groupedSelect.css";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFactory } from "../../api/factoryApi";
 import { getDistrict, getProvince, getWard } from "../../api/addressApi";
 import { setProvinceCode, setDistrictCode, setWardCode } from "../../redux/addressSlice"
+import { useState } from "react";
+import { setFactoryByCode } from "../../redux/factorySlice";
 
 export const DataContext = createContext();
 
@@ -27,6 +29,7 @@ export default function GroupedSelect() {
     dispatch(setProvinceCode(e.target.value))
     dispatch(setDistrictCode('000'))
     dispatch(setWardCode('0000'))
+    setFactoryName('')
   }
 
   /**
@@ -40,6 +43,7 @@ export default function GroupedSelect() {
   const handleDistrictCodeChange = (e) => {
     dispatch(setDistrictCode(e.target.value))
     dispatch(setWardCode('0000'))
+    setFactoryName('')
   }
 
   /**
@@ -52,20 +56,30 @@ export default function GroupedSelect() {
   const wardCode = useSelector((state) => state.address.wardCode)
   const handleWardCodeChange = (e) => {
     dispatch(setWardCode(e.target.value))
+    setFactoryName('')
   }
 
   /**
    * Factory name filter box
   */
+  const factory = useSelector((state) => state.factory.factories);
+  const submitBox = document.getElementById('filterInputBox')
+  const [factoryName, setFactoryName] = useState('')
+  const handeInputChange = (e) => {
+    setFactoryName(e.target.value)
+  }
 
   /**
    * submit
   */
+  const [submit, setSubmit] = useState(true)
   useEffect(() => {
-    getFactory(dispatch, provinceCode, districtCode, wardCode);
-  }, [provinceCode,districtCode,wardCode]);
+    getFactory(dispatch, provinceCode, districtCode, wardCode, factoryName);
+    // dispatch(setFactoryByCode(factoryName))
+  }, [submit]);
   const HandleSubmit = (e) => {
-    
+    setSubmit(!submit)    
+    console.log(submit);
   }
 
   return (
@@ -125,12 +139,12 @@ export default function GroupedSelect() {
         {/* Tên nhà máy */}
         <div className="filterSection ">
           <div className="filterTitle">Factory name</div>
-          <input type="text" placeholder="Type factory name here" className="filterInputBox" />
+          <input type="text" placeholder="Type factory name here" id="filterInputBox" onChange={handeInputChange} value = {factoryName}/>
         </div>
         <div className="filterSection">
           <br />
           <div
-            className="submit-btn"
+            id="submit-btn"
             onClick={HandleSubmit}
           >Submit</div>
         </div>
