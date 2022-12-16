@@ -13,7 +13,8 @@ import UserList from "./pages/account/userList/UserList";
 import User from "./pages/account/user/User";
 import Product from "./pages/product/product/Product";
 import NewProduct from "./pages/product/newProduct/NewProduct";
-
+import ServiceCenter from "./pages/serviceCenter/ServiceCenter";
+import Store from "./pages/store/StoreList";
 import "./app.css"
 
 const Layout = () => {
@@ -43,6 +44,8 @@ const appRouter = createBrowserRouter([
             { path: "/product/:code", element: <Product /> },
             { path: "/newproduct", element: <NewProduct /> },
             { path: "/factories", element: <Factory /> },
+            { path: "/stores", element: <ServiceCenter /> },
+            { path: "/servicecenters", element: <ServiceCenter /> },
         ],
     }
 ]);

@@ -1,12 +1,12 @@
-import FactoryList from "./FactoryList"
+import ServiceCenterList from "./ServiceCenterList"
 import AddressFilter from "../../components/addressFilter/AddressFilter"
-import "./factory.css"
+import "./serviceCenter.css"
 
-export default function Factory() {
+export default function ServiceCenter() {
     return (
     <div className="factoryPage">
         <AddressFilter />
-        <FactoryList />
+        <ServiceCenterList />
     </div>
     )
 }

@@ -1,5 +1,5 @@
-import "./factory.css";
-import { DataContext } from "./Factory";
+import "./store.css";
+import { DataContext } from "./Store";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFactory } from "../../api/factoryApi";
 
 
-export default function FactoryList() {
+export default function StoreList() {
 
   const dispatch = useDispatch();
   const provinceCode = useSelector((state) => state.address.provinceCode)
@@ -26,6 +26,7 @@ export default function FactoryList() {
   const [data, setData] = useState(factory);
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
+
   };
 
   // useEffect(()=>setData(dataContext),[useContext(DataContext)])
