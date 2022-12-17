@@ -24,9 +24,6 @@ export const getFactory = async (dispatch, provinceCode, districtCode, wardCode,
                 }
             }
         }
-        console.log("av: ", res.data.items.filter(item => {
-            return item.name.includes(factoryName)
-        }));
         dispatch(getFactorySuccess(factoryName !== '' ? res.data.items.filter(item => {
             return item.name.includes(factoryName)
         }) :  res.data.items));

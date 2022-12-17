@@ -9,25 +9,13 @@ import { getFactory } from "../../api/factoryApi";
 
 
 export default function FactoryList() {
-
-  const dispatch = useDispatch();
-  const provinceCode = useSelector((state) => state.address.provinceCode)
-  const districtCode = useSelector((state) => state.address.districtCode)
-  const wardCode = useSelector((state) => state.address.wardCode)
-
-  // useEffect(() => {
-  //   getFactory(dispatch, provinceCode, districtCode, wardCode);
-  // }, [provinceCode,districtCode,wardCode]);
-  // var factory={}
   const factory = useSelector((state) => state.factory.factories);
   const province = useSelector((state) => state.address.province)
-  // const dataContext = useContext(DataContext)
-
   const [data, setData] = useState(factory);
+
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-
 
   const columns = [
     { field: "id", headerName: "No.", width: 50 },

@@ -15,7 +15,7 @@ import Product from "./pages/product/product/Product";
 import NewProduct from "./pages/product/newProduct/NewProduct";
 import ServiceCenter from "./pages/serviceCenter/ServiceCenter";
 import Store from "./pages/store/StoreList";
-import "./app.css"
+import "./App.css"
 
 const Layout = () => {
     return (
