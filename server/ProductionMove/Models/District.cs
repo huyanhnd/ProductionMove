@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProductionMove.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProductionMove.Models
 {

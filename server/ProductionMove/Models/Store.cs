@@ -1,4 +1,6 @@
-﻿namespace ProductionMove.Models
+﻿using ProductionMove.Data;
+
+namespace ProductionMove.Models
 {
     public class Store
     {
@@ -6,6 +8,7 @@
         public string Name { get; set; }
         public string Address { get; set; }
         public string WardCode { get; set; }
-        public List<Warehouse> warehouses { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

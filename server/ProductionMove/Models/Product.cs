@@ -22,5 +22,11 @@ namespace ProductionMove.Data
         public string Color { get; set; }
         public int Capacity { get; set; }
         public Status Status { get; set; }
+        public int FactoryId { get; set; }
+        public Factory Factory { get; set; }
+        public int StoreId { get; set; }
+        public Store Store { get; set; }
+        public int ServiceCenterId { get; set; }
+        public ServiceCenter ServiceCenter { get; set; }
     }
 }
