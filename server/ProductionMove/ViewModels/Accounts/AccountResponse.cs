@@ -9,5 +9,4 @@ public class AccountResponse
     public string Image { get; set; }
     public DateTime Created { get; set; }
     public DateTime? Updated { get; set; }
-    public bool IsVerified { get; set; }
 }

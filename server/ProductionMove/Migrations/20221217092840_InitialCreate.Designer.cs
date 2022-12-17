@@ -12,8 +12,8 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221213051914_init")]
-    partial class init
+    [Migration("20221217092840_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,13 +36,26 @@ namespace ProductionMove.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FactoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ManufactureDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductLineCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductLineId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ServiceCenterId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoreId")
                         .HasColumnType("int");
 
                     b.Property<string>("WarrantyPeriod")
@@ -51,18 +64,21 @@ namespace ProductionMove.Migrations
 
                     b.HasKey("Code");
 
-                    b.HasIndex("ProductLineId");
+                    b.HasIndex("FactoryId");
+
+                    b.HasIndex("ProductLineCode");
+
+                    b.HasIndex("ServiceCenterId");
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Battery")
                         .IsRequired()
@@ -105,7 +121,7 @@ namespace ProductionMove.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
                     b.HasIndex("SeriesId");
 
@@ -149,6 +165,9 @@ namespace ProductionMove.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -341,13 +360,37 @@ namespace ProductionMove.Migrations
 
             modelBuilder.Entity("ProductionMove.Data.Product", b =>
                 {
+                    b.HasOne("ProductionMove.Models.Factory", "Factory")
+                        .WithMany("Products")
+                        .HasForeignKey("FactoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("ProductionMove.Data.ProductLine", "ProductLine")
                         .WithMany("Products")
-                        .HasForeignKey("ProductLineId")
+                        .HasForeignKey("ProductLineCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProductionMove.Models.ServiceCenter", "ServiceCenter")
+                        .WithMany("Products")
+                        .HasForeignKey("ServiceCenterId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ProductionMove.Models.Store", "Store")
+                        .WithMany("Products")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Factory");
+
                     b.Navigation("ProductLine");
+
+                    b.Navigation("ServiceCenter");
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
@@ -463,7 +506,7 @@ namespace ProductionMove.Migrations
             modelBuilder.Entity("ProductionMove.Models.Warehouse", b =>
                 {
                     b.HasOne("ProductionMove.Models.Store", null)
-                        .WithMany("warehouses")
+                        .WithMany("Warehouses")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -484,14 +527,26 @@ namespace ProductionMove.Migrations
                     b.Navigation("wards");
                 });
 
+            modelBuilder.Entity("ProductionMove.Models.Factory", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("ProductionMove.Models.Province", b =>
                 {
                     b.Navigation("Districts");
                 });
 
+            modelBuilder.Entity("ProductionMove.Models.ServiceCenter", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
-                    b.Navigation("warehouses");
+                    b.Navigation("Products");
+
+                    b.Navigation("Warehouses");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Ward", b =>
