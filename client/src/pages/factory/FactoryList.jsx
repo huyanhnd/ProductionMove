@@ -28,20 +28,11 @@ export default function FactoryList() {
     setData(data.filter((item) => item.id !== id));
   };
 
-  // useEffect(()=>setData(dataContext),[useContext(DataContext)])
 
   const columns = [
     { field: "id", headerName: "No.", width: 50 },
     { field: "name", headerName: "Factory Name", width: 200 },
-    { field: "wardCode", headerName: "Ward Code", width: 120 },
-    { field: "districtCode", headerName: "District Code", width: 120 },
-    {
-      field: "provinceCode", headerName: "Province Code", width: 150,
-      valueGetter: (params) => {
-        return province.find(item => item.code === params.row.provinceCode).name; 
-      }
-    },
-    { field: "address", headerName: "Address", width: 200 },
+    { field: "address", headerName: "Address", width: 450 },
     {
       field: "action", headerName: "Action", width: 150,
       renderCell: (params) => {

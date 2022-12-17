@@ -40,6 +40,8 @@
 }
 
 .login-box {
+    min-width: 300px;
+    min-height: 500px;
     display: flex;
     width: 60%;
     height: 60%;
@@ -123,6 +125,7 @@
     color: #000;
     text-decoration: underline;
     align-self: flex-end;
+    margin-bottom: 30px;
 }
 
 .forgot:hover {
@@ -139,7 +142,7 @@
     width: 100%;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 40%;
+    margin-bottom: 30%;
 }
 .enter:hover {
     cursor: pointer;
@@ -169,3 +172,18 @@
 .inactive {
     display: none;
 }
+
+@media only screen and (max-width: 900px) {
+    .login-section{
+        width: 100vw;
+    }
+    .login-box {
+        margin-left: 0;
+    }
+    .title {
+        font-size: 25px;
+    }
+    .login-img{
+        display: none;
+    }
+  }
