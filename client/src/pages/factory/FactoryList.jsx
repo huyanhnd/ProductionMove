@@ -3,18 +3,26 @@ import { DataContext } from "./Factory";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFactory } from "../../api/factoryApi";
-
+import { setCurrentFactoryInfo } from "../../redux/currentFactorySlice";
 
 export default function FactoryList() {
+  const dispatch = useDispatch();
   const factory = useSelector((state) => state.factory.factories);
-  const province = useSelector((state) => state.address.province)
-  const [data, setData] = useState(factory);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  /**
+   * handle Delete
+   */
+  const handleDelete = (row) => {
+    // setData(data.filter((item) => item.id !== id));
+  };
+  /**
+   * handle Edit
+   */
+  const handleEdit = (row) => {
+    dispatch(setCurrentFactoryInfo(row))
   };
 
   const columns = [
@@ -26,12 +34,15 @@ export default function FactoryList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
-              <button className="factoryListEdit">Edit</button>
-            </Link>
+              <Link to={"/product/" + params.row.id}>
+                <button 
+                className="factoryListEdit"
+              onClick={() => handleEdit(params.row)}
+                >Edit</button>
+              </Link>
             <DeleteOutline
               className="factoryListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row)}
             />
           </>
         );

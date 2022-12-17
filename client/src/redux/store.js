@@ -54,6 +54,7 @@ import productLineReducer from "./productLineSlice"
 import authReducer from "./authSlice"
 import factoryReducer from "./factorySlice"
 import addressReducer from "./addressSlice"
+import currentFactoryReducer from "./currentFactorySlice"
 
 export const store = configureStore({
   reducer: {
@@ -63,5 +64,6 @@ export const store = configureStore({
     auth: authReducer,
     factory: factoryReducer,
     address: addressReducer,
+    currentFactory: currentFactoryReducer,
   },
 });

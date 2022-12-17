@@ -1,16 +1,11 @@
 import "./addressFilter.css";
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import ListSubheader from '@mui/material/ListSubheader';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useEffect, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getFactory } from "../../api/factoryApi";
 import { getDistrict, getProvince, getWard } from "../../api/addressApi";
-import { setProvinceCode, setDistrictCode, setWardCode } from "../../redux/addressSlice"
-
-export const DataContext = createContext();
 
 export default function AddressFilter() {
   const dispatch = useDispatch();
@@ -22,11 +17,13 @@ export default function AddressFilter() {
    * Province filter box
   */
   const province = useSelector((state) => state.address.province);
-  const provinceCode = useSelector((state) => state.address.provinceCode)
+  // const provinceCode = useSelector((state) => state.address.provinceCode)
+  const [provinceCode, setProvinceCode] = useState('00')
   const handleProvinceCodeChange = (e) => {
-    dispatch(setProvinceCode(e.target.value))
-    dispatch(setDistrictCode('000'))
-    dispatch(setWardCode('0000'))
+    setProvinceCode(e.target.value)
+    setDistrictCode('000')
+    setWardCode('0000')
+    setFactoryName('')
   }
 
   /**
@@ -36,10 +33,12 @@ export default function AddressFilter() {
     getDistrict(dispatch, provinceCode);
   }, [provinceCode])
   const district = useSelector((state) => state.address.district);
-  const districtCode = useSelector((state) => state.address.districtCode)
+  // const districtCode = useSelector((state) => state.address.districtCode)
+  const [districtCode, setDistrictCode] = useState('000')
   const handleDistrictCodeChange = (e) => {
-    dispatch(setDistrictCode(e.target.value))
-    dispatch(setWardCode('0000'))
+    setDistrictCode(e.target.value)
+    setWardCode('0000')
+    setFactoryName('')
   }
 
   /**
@@ -49,23 +48,31 @@ export default function AddressFilter() {
     getWard(dispatch, districtCode);
   }, [districtCode])
   const ward = useSelector((state) => state.address.ward);
-  const wardCode = useSelector((state) => state.address.wardCode)
+  // const wardCode = useSelector((state) => state.address.wardCode)
+  const [wardCode, setWardCode] = useState('0000')
   const handleWardCodeChange = (e) => {
-    dispatch(setWardCode(e.target.value))
+    setWardCode(e.target.value)
+    setFactoryName('')
   }
 
   /**
    * Factory name filter box
   */
+  const factory = useSelector((state) => state.factory.factories);
+  const [factoryName, setFactoryName] = useState('')
+  const handeInputChange = (e) => {
+    setFactoryName(e.target.value)
+  }
 
   /**
    * submit
   */
+  const [submit, setSubmit] = useState(true)
   useEffect(() => {
-    getFactory(dispatch, provinceCode, districtCode, wardCode);
-  }, [provinceCode,districtCode,wardCode]);
+    getFactory(dispatch, provinceCode, districtCode, wardCode, factoryName);
+  }, [submit]);
   const HandleSubmit = (e) => {
-    
+    setSubmit(!submit)
   }
 
   return (
@@ -125,19 +132,16 @@ export default function AddressFilter() {
         {/* Tên nhà máy */}
         <div className="filterSection ">
           <div className="filterTitle">Factory name</div>
-          <input type="text" placeholder="Type factory name here" className="filterInputBox" />
+          <input type="text" placeholder="Type factory name here" id="filterInputBox" onChange={handeInputChange} value={factoryName} />
         </div>
         <div className="filterSection">
           <br />
           <div
-            className="submit-btn"
+            id="submit-btn"
             onClick={HandleSubmit}
           >Submit</div>
         </div>
       </div>
-      {/* <DataContext.Provider value={factory}>
-        <FactoryList />
-      </DataContext.Provider> */}
     </div>
   );
 }
