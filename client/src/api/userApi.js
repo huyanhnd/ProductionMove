@@ -45,10 +45,11 @@ export const updateUser = async (id, User, dispatch) => {
         dispatch(updateUserFailure());
     }
 };
+
 export const addUser = async (User, dispatch) => {
     dispatch(addUserStart());
     try {
-        const res = await userRequest.post(`/products`, User);
+        const res = await userRequest.post(`/Account`, User);
         dispatch(addUserSuccess(res.data));
     } catch (err) {
         dispatch(addUserFailure());

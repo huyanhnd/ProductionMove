@@ -7,45 +7,71 @@ import {
   Laptop,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 export default function Sidebar() {
-  const { currentUser } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.auth.currentUser);
+  const linkColor = document.querySelectorAll(".sidebarListItem");
+  function colorLink() {
+    linkColor.forEach((l) => l.classList.remove("active"));
+    this.classList.add("active");
+  }
+  linkColor.forEach(l => l.addEventListener("click", colorLink));
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         {/* Admin Menu */}
-        {currentUser.role === "Admin" ? <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Admin</h3>
-          <ul className="sidebarList">
-            <Link to="/" className="link">
-              <li className="sidebarListItem active">
-                <LineStyle className="sidebarIcon" />
-                Home
-              </li>
-            </Link>
-            <Link to="/users" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Accounts
-              </li>
-            </Link>
-            <Link to="/productlines" className="link">
-              <li className="sidebarListItem">
-                <Laptop className="sidebarIcon" />
-                ProductLines
-              </li>
-            </Link>
-            <Link to="/products" className="link">
-              <li className="sidebarListItem">
-                <Laptop className="sidebarIcon" />
-                Products
-              </li>
-            </Link>
-          </ul>
-        </div> : null}
+        {role === "Admin" ? (
+          <div className="sidebarMenu">
+            <h3 className="sidebarTitle">Admin</h3>
+            <ul className="sidebarList">
+              <Link to="/" className="link">
+                <li className="sidebarListItem">
+                  <LineStyle className="sidebarIcon" />
+                  Home
+                </li>
+              </Link>
+              <Link to="/users" className="link">
+                <li className="sidebarListItem">
+                  <PermIdentity className="sidebarIcon" />
+                  Accounts
+                </li>
+              </Link>
+              <Link to="/productlines" className="link">
+                <li className="sidebarListItem">
+                  <Laptop className="sidebarIcon" />
+                  ProductLines
+                </li>
+              </Link>
+              <Link to="/products" className="link">
+                <li className="sidebarListItem">
+                  <Laptop className="sidebarIcon" />
+                  Products
+                </li>
+              </Link>
+              <Link to="/factories" className="link">
+                <li className="sidebarListItem">
+                  <Storefront className="sidebarIcon" />
+                  Factory
+                </li>
+              </Link>
+              <Link to="/stores" className="link">
+                <li className="sidebarListItem">
+                  <Storefront className="sidebarIcon" />
+                  Store
+                </li>
+              </Link>
+              <Link to="/servicecenters" className="link">
+                <li className="sidebarListItem">
+                  <WorkOutline className="sidebarIcon" />
+                  Service Center
+                </li>
+              </Link>
+            </ul>
+          </div>
+        ) : null}
         {/* Factory Menu */}
-        {currentUser.role === "Factory" ?
+        {role === "Factory" ? (
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Factory Manager</h3>
             <ul className="sidebarList">
@@ -55,16 +81,11 @@ export default function Sidebar() {
                   Factory
                 </li>
               </Link>
-              <Link to="/series" className="link">
-                <li className="sidebarListItem">
-                  <Laptop className="sidebarIcon" />
-                  Series
-                </li>
-              </Link>
             </ul>
-          </div> : null}
+          </div>
+        ) : null}
         {/* Store Menu */}
-        {currentUser.role === "Store" ?
+        {role === "Store" ? (
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Store Manager</h3>
             <ul className="sidebarList">
@@ -75,9 +96,10 @@ export default function Sidebar() {
                 </li>
               </Link>
             </ul>
-          </div> : null}
+          </div>
+        ) : null}
         {/* Service Center Menu */}
-        {currentUser.role === "ServiceCenter" ?
+        {role === "ServiceCenter" ? (
           <div className="sidebarMenu">
             <h3 className="sidebarTitle">Service Center Manager</h3>
             <ul className="sidebarList">
@@ -88,7 +110,8 @@ export default function Sidebar() {
                 </li>
               </Link>
             </ul>
-          </div> : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

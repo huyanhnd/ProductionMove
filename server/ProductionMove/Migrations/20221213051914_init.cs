@@ -48,7 +48,10 @@ namespace ProductionMove.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageSub = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,21 +108,24 @@ namespace ProductionMove.Migrations
                 name: "ProductLines",
                 columns: table => new
                 {
-                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SeriesId = table.Column<int>(type: "int", nullable: false),
                     ScreenSize = table.Column<float>(type: "real", nullable: false),
-                    Resolution = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Processor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Memory = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Hardware = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Graphics = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Chip = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Camera = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ram = table.Column<int>(type: "int", nullable: false),
+                    RefreshRate = table.Column<int>(type: "int", nullable: false),
+                    Battery = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false),
                     ListPrice = table.Column<long>(type: "bigint", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageSub = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductLines", x => x.Code);
+                    table.PrimaryKey("PK_ProductLines", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProductLines_Series_SeriesId",
                         column: x => x.SeriesId,
@@ -153,20 +159,21 @@ namespace ProductionMove.Migrations
                 {
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProductLineId = table.Column<int>(type: "int", nullable: false),
-                    ProductLineCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ManufactureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     WarrantyPeriod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InFatory = table.Column<bool>(type: "bit", nullable: false),
-                    IsUpdate = table.Column<bool>(type: "bit", nullable: false)
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Products_ProductLines_ProductLineCode",
-                        column: x => x.ProductLineCode,
+                        name: "FK_Products_ProductLines_ProductLineId",
+                        column: x => x.ProductLineId,
                         principalTable: "ProductLines",
-                        principalColumn: "Code");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,9 +277,9 @@ namespace ProductionMove.Migrations
                 column: "SeriesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductLineCode",
+                name: "IX_Products_ProductLineId",
                 table: "Products",
-                column: "ProductLineCode");
+                column: "ProductLineId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_AccountId",

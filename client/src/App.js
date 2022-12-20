@@ -1,14 +1,19 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/home/Home";
-import ProductLineList from "./pages/productLineList/ProductLineList";
-import { useSelector } from "react-redux";
+import ProductList from "./pages/product/productList/ProductList";
+import NewUser from "./pages/account/newUser/NewUser";
+import ProductLine from "./pages/product/productLine/ProductLine";
+import Factory from "./pages/factory/Factory";
 import Login from "./pages/login/Login";
-import UserList from "./pages/userList/UserList"
-import Series from "./pages/series/Series";
-import FactoryList from "./pages/factory/FactoryList";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
+import UserList from "./pages/account/userList/UserList";
+import User from "./pages/account/user/User";
+import Product from "./pages/product/product/Product";
+import NewProduct from "./pages/product/newProduct/NewProduct";
+
 import "./App.css"
 
 const Layout = () => {
@@ -31,9 +36,13 @@ const appRouter = createBrowserRouter([
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <Home /> },
             { path: "/users", element: <UserList /> },
-            { path: "/series", element: <Series /> },
-            { path: "/productlines", element: <ProductLineList /> },
-            { path: "/factories", element: <FactoryList /> },
+            { path: "/user/:userid", element: <User /> },
+            { path: "/newuser", element: <NewUser /> },
+            { path: "/productlines", element: <ProductLine /> },
+            { path: "/products", element: <ProductList /> },
+            { path: "/product/:code", element: <Product /> },
+            { path: "/newproduct", element: <NewProduct /> },
+            { path: "/factories", element: <Factory /> },
         ],
     }
 ]);

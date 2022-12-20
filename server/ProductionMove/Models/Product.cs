@@ -3,6 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductionMove.Data
 {
+    public enum Status
+    {
+        Manufacture,
+        Store,
+        Sold,
+        Error,
+        Warranty
+    }
     public class Product
     {
         [Key]
@@ -11,7 +19,8 @@ namespace ProductionMove.Data
         public ProductLine ProductLine { get; set; }
         public DateTime ManufactureDate { get; set; }
         public string WarrantyPeriod { get; set; }
-        public bool InFatory { get; set; }
-        public bool IsUpdate { get; set; }
+        public string Color { get; set; }
+        public int Capacity { get; set; }
+        public Status Status { get; set; }
     }
 }

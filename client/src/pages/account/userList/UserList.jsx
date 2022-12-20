@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, deleteUser } from "../../api/userApi";
+import { getUsers, deleteUser } from "../../../api/userApi";
 import { useEffect } from "react";
 
 export default function UserList() {
@@ -24,31 +24,20 @@ export default function UserList() {
     { field: "username", headerName: "Username", width: 90 },
     { field: "role", headerName: "Role", width: 90 },
     { field: "created", headerName: "Create At", width: 200 },
-    { field: "updated", headerName: "Update At", width: 200 },
-    // {
-    //   field: "user",
-    //   headerName: "User",
-    //   width: 200,
-    //   renderCell: (params) => {
-    //     return (
-    //       <div className="userListUser">
-    //         <img className="userListImg" src={params.row.avatar} alt="" />
-    //         {params.row.username}
-    //       </div>
-    //     );
-    //   },
-    // },
-    // { field: "email", headerName: "Email", width: 200 },
-    // {
-    //   field: "status",
-    //   headerName: "Status",
-    //   width: 120,
-    // },
-    // {
-    //   field: "transaction",
-    //   headerName: "Transaction Volume",
-    //   width: 160,
-    // },
+    { field: "updated", headerName: "Update At", width: 50 },
+    {
+      field: "image",
+      headerName: "Image",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="userListItem">
+            <img className="userListImg" src={params.row.img} alt="" />
+            {params.row.title}
+          </div>
+        );
+      },
+    },
     {
       field: "action",
       headerName: "Action",
@@ -75,7 +64,7 @@ export default function UserList() {
         rows={user}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={5}
         checkboxSelection
       />
     </div>

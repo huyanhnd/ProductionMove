@@ -12,8 +12,8 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221208043227_updateImage")]
-    partial class updateImage
+    [Migration("20221213051914_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,19 +29,20 @@ namespace ProductionMove.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("InFatory")
-                        .HasColumnType("bit");
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsUpdate")
-                        .HasColumnType("bit");
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ManufactureDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProductLineCode")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("ProductLineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("WarrantyPeriod")
@@ -50,21 +51,28 @@ namespace ProductionMove.Migrations
 
                     b.HasKey("Code");
 
-                    b.HasIndex("ProductLineCode");
+                    b.HasIndex("ProductLineId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
                 {
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("Graphics")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Battery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Hardware")
+                    b.Property<string>("Camera")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Chip")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -78,21 +86,15 @@ namespace ProductionMove.Migrations
                     b.Property<long>("ListPrice")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Memory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Processor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Ram")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Resolution")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RefreshRate")
+                        .HasColumnType("int");
 
                     b.Property<float>("ScreenSize")
                         .HasColumnType("real");
@@ -100,7 +102,10 @@ namespace ProductionMove.Migrations
                     b.Property<int>("SeriesId")
                         .HasColumnType("int");
 
-                    b.HasKey("Code");
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("SeriesId");
 
@@ -338,7 +343,9 @@ namespace ProductionMove.Migrations
                 {
                     b.HasOne("ProductionMove.Data.ProductLine", "ProductLine")
                         .WithMany("Products")
-                        .HasForeignKey("ProductLineCode");
+                        .HasForeignKey("ProductLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ProductLine");
                 });
