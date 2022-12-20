@@ -1,23 +1,31 @@
-.factoryFilter {
+.updateFactory-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 20px;
+    flex: 4;
 }
 
-.filterSection {
+.updateFactory-content{
+    flex:1;
+    background-color: #ccc;
+    margin: 0px 50px;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.select-section {
     /* font-family: 'Source Sans Pro', sans-serif; */
     font-size: 14px;
     color: #000000DE;
     margin-right: 20px;
 }
 
-.filterBox {
+.select-box {
     height: 35px;
     width: 230px;
 }
 
-#filterInputBox {
+#input-box {
     height: 33px;
     border: 1px solid #ccc;
     font-size: 14px;
@@ -26,35 +34,15 @@
     border-radius: 4px;
 }
 
-#filterInputBox:hover {
+#input-box:hover {
     border-color: #000;
 }
 
-#filterInputBox:focus {
+#input-box:focus {
     /* width: 149px; */
     padding: 0px 9px;
     height: 31px;
     outline: none !important;
     border: 2px solid #1976d2;
     /* margin-right: 1px; */
-}
-
-
-#submit-btn {
-    line-height: 35px;
-    background-color: #3bb077;
-    color: #fff;
-    border-radius: 5px;
-    padding: 0 10px;
-    font-size: 14px;
-    align-self: center;
-}
-
-#submit-btn:hover {
-    cursor: pointer;
-    opacity: 0.85;
-}
-
-#submit-btn:active {
-    background-color: #155737;
 }

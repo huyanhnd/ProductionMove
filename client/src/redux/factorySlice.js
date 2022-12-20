@@ -23,16 +23,8 @@ export const factorySlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
-        setFactoryByCode: (state, action) => {
-            if (action.payload !== ''){
-                const temp = state.factories.filter(item => {
-                    return item.name.includes(action.payload)
-                })
-            }
-            console.log("factory: ", state.factories);
-        },
     },
 });
 
-export const { getFactoryStart, getFactorySuccess, getFactoryFailure, setFactoryByCode } = factorySlice.actions;
+export const { getFactoryStart, getFactorySuccess, getFactoryFailure } = factorySlice.actions;
 export default factorySlice.reducer;
