@@ -2,12 +2,18 @@ import {
     getProvinceStart,
     getProvinceSuccess,
     getProvinceFailure,
+    getProvinceCode,
+    setProvinceCode,
     getDistrictStart,
     getDistrictSuccess,
     getDistrictFailure,
+    getDistrictCode,
+    setDistrictCode,
     getWardStart,
     getWardSuccess,
     getWardFailure,
+    getWardCode,
+    setWardCode
 } from "../redux/addressSlice";
 import axios from "axios";
 import { useSelector } from "react-redux";

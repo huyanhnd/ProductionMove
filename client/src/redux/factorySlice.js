@@ -16,6 +16,8 @@ export const factorySlice = createSlice({
         },
         getFactorySuccess: (state, action) => {
             state.isFetching = false;
+            // state.factories = action.payload.items;
+            // state.totalItems = action.payload.totalItems;
             state.factories = action.payload;
             // state.totalItems = action.payload.totalItems;
         },

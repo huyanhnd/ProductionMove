@@ -2,7 +2,7 @@
 {
     public class ProductLineResponse
     {
-        public string Code { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public int SeriesId { get; set; }
         public float ScreenSize { get; set; }

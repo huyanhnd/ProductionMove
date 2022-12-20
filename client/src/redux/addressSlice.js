@@ -27,6 +27,7 @@ export const addressSlice = createSlice({
             state.isProvinceFetching = false;
             state.errorProvince = true;
         },
+
         //Get district
         getDistrictStart: (state) => {
             state.isDistrictFetching = true;
@@ -40,6 +41,7 @@ export const addressSlice = createSlice({
             state.isDistrictFetching = false;
             state.errorDistrict = true;
         },
+
         //Get ward
         getWardStart: (state) => {
             state.isWardFetching = true;

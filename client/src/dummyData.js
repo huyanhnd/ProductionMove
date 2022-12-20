@@ -337,3 +337,63 @@ export const seriesData = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   }
 ];
+
+export const productLineData = [
+  {
+    id: 1,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 2,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 3,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 4,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 5,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 6,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 7,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+  {
+    id: 8,
+    name: "Iphone 14 Pro Max 128GB",
+    ram: "128",
+    price: "32.990.000",
+    img: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+  },
+
+];

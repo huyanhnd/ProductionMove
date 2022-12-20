@@ -65,6 +65,7 @@
 .factoryListDelete {
   color: red;
   cursor: pointer;
+  opacity: 0.85;
 }
 
 .factoryAddress {

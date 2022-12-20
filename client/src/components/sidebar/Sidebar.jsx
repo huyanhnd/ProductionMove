@@ -7,7 +7,7 @@ import {
   Laptop,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export default function Sidebar() {

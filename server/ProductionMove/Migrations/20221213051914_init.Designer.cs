@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductionMove.Data.Context;
 
@@ -11,9 +12,10 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221213051914_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,26 +36,13 @@ namespace ProductionMove.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FactoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ManufactureDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ProductLineCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductLineId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceCenterId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StoreId")
                         .HasColumnType("int");
 
                     b.Property<string>("WarrantyPeriod")
@@ -62,13 +51,7 @@ namespace ProductionMove.Migrations
 
                     b.HasKey("Code");
 
-                    b.HasIndex("FactoryId");
-
-                    b.HasIndex("ProductLineCode");
-
-                    b.HasIndex("ServiceCenterId");
-
-                    b.HasIndex("StoreId");
+                    b.HasIndex("ProductLineId");
 
                     b.ToTable("Products");
                 });
@@ -80,10 +63,6 @@ namespace ProductionMove.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Battery")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Battery")
                         .IsRequired()
@@ -126,7 +105,7 @@ namespace ProductionMove.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("Code");
+                    b.HasKey("Id");
 
                     b.HasIndex("SeriesId");
 
@@ -170,9 +149,6 @@ namespace ProductionMove.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -365,37 +341,13 @@ namespace ProductionMove.Migrations
 
             modelBuilder.Entity("ProductionMove.Data.Product", b =>
                 {
-                    b.HasOne("ProductionMove.Models.Factory", "Factory")
-                        .WithMany("Products")
-                        .HasForeignKey("FactoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ProductionMove.Data.ProductLine", "ProductLine")
                         .WithMany("Products")
-                        .HasForeignKey("ProductLineCode")
+                        .HasForeignKey("ProductLineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProductionMove.Models.ServiceCenter", "ServiceCenter")
-                        .WithMany("Products")
-                        .HasForeignKey("ServiceCenterId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ProductionMove.Models.Store", "Store")
-                        .WithMany("Products")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Factory");
-
                     b.Navigation("ProductLine");
-
-                    b.Navigation("ServiceCenter");
-
-                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("ProductionMove.Data.ProductLine", b =>
@@ -511,7 +463,7 @@ namespace ProductionMove.Migrations
             modelBuilder.Entity("ProductionMove.Models.Warehouse", b =>
                 {
                     b.HasOne("ProductionMove.Models.Store", null)
-                        .WithMany("Warehouses")
+                        .WithMany("warehouses")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -532,26 +484,14 @@ namespace ProductionMove.Migrations
                     b.Navigation("wards");
                 });
 
-            modelBuilder.Entity("ProductionMove.Models.Factory", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("ProductionMove.Models.Province", b =>
                 {
                     b.Navigation("Districts");
                 });
 
-            modelBuilder.Entity("ProductionMove.Models.ServiceCenter", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
-                    b.Navigation("Products");
-
-                    b.Navigation("Warehouses");
+                    b.Navigation("warehouses");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Ward", b =>

@@ -15,9 +15,7 @@ export default function NewUser() {
       return { ...prev, [e.target.name]: e.target.value }
     })
   }
-
-  console.log(inputs);
-
+  
   const handleClick = (e) => {
     e.preventDefault();
     const fileName = new Date().getTime() + file.name;
