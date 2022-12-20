@@ -22,4 +22,6 @@ public class CreateRequest
     [Required]
     [Compare("Password")]
     public string ConfirmPassword { get; set; }
+
+    public string Image { get; set; }
 }

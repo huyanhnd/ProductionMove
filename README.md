@@ -19,12 +19,15 @@ BigCorp là một tập đoàn chuyên sản xuất các mặt hàng công nghi�
 Tập đoàn này có nhiều cơ sở/nhà máy sản xuất cùng nhiều trung tâm bảo hành sản phẩm trên toàn quốc. Mặt khác, tập đoàn đã thiết lập một hệ thống rộng khắp các đại lý phân phối sản phẩm.
 
 Sản xuất và phân phối sản phẩm
+
 Sản phẩm của BigCorp, sau khi được sản xuất sẽ được nhập vào nhà kho chứa sản phẩm mới của nhà máy. Sau đó, sản phẩm được đưa đến các đại lý phân phối, rồi trao đến tay khách hàng. Mỗi đại lý có thể có một hoặc nhiều kho riêng để chứa các sản phẩm mới nhập từ nhà máy về mà chưa bán.
 
 Bảo hành
+
 Một sản phẩm khi đã đến tay khách hàng và đang trong thời gian bảo hành, gặp lỗi sẽ được khách hàng yêu cầu bảo hành. Sản phẩm được đưa đến trung tâm bảo hành gần nhất, sửa chữa, rồi chuyển lại cho khách hàng. Trường hợp không sửa chữa được thì BigCorp sẽ phải đổi trả sản phẩm mới cho khách hàng. Sản phẩm lỗi được đưa về cơ sở sản xuất của BigCorp để nghiên cứu và tái chế.
 
 Triệu hồi sản phẩm
+
 Trường hợp có nhiều khách hàng báo cùng một lỗi hoặc bộ phận kỹ thuật của BigCorp phát hiện ra một lỗi kỹ thuật nào đó của một dòng sản phẩm, toàn bộ các sản phẩm có lỗi đã phân phối cho khách sẽ được triệu hồi để sửa chữa. Sản phẩm được đưa về các trung tâm bảo hành để khắc phục lỗi sau đó sẽ trả lại cho khách hàng.
 
 Mỗi dòng sản phẩm có mã riêng. Mỗi sản phẩm cũng được gán định danh riêng để tiện quản lý. Tất cả các sản phẩm được theo dõi từ khi ra đời cho đến hết thời gian bảo hành hoặc bị hủy do lỗi. Các trạng thái của sản phẩm bao gồm (với chú thích địa điểm của sản phẩm):
@@ -42,6 +45,7 @@ Mỗi dòng sản phẩm có mã riêng. Mỗi sản phẩm cũng được gán 
 - Trả lại cơ sở sản xuất (do lâu không bán được)
 
 ProductionMove là phần mềm được BigCorp sử dụng để theo dõi vòng đời các sản phẩm của họ. Các cơ sở sản xuất, đại lý phân phối, trung tâm bảo hành đều sử dụng ProductionMove để cộng tác trong việc phân phối và theo dõi vòng đời của sản phẩm.
+
 Vai trò của các bên tham gia như sau:
 
 Ban điều hành BigCorp

@@ -20,24 +20,23 @@ export default function UserList() {
 
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
-    { field: "fullName", headerName: "Full Name", width: 90 },
-    { field: "username", headerName: "Username", width: 90 },
-    { field: "role", headerName: "Role", width: 90 },
-    { field: "created", headerName: "Create At", width: 200 },
-    { field: "updated", headerName: "Update At", width: 50 },
     {
-      field: "image",
+      field: "User",
       headerName: "Image",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="userListItem">
             <img className="userListImg" src={params.row.img} alt="" />
-            {params.row.title}
+            {params.row.fullName}
           </div>
         );
       },
     },
+    { field: "username", headerName: "Username", width: 90 },
+    { field: "role", headerName: "Role", width: 90 },
+    { field: "created", headerName: "Create At", width: 200 },
+    { field: "updated", headerName: "Update At", width: 50 },
     {
       field: "action",
       headerName: "Action",
@@ -64,7 +63,7 @@ export default function UserList() {
         rows={user}
         disableSelectionOnClick
         columns={columns}
-        pageSize={5}
+        pageSize={7}
         checkboxSelection
       />
     </div>

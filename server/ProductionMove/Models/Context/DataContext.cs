@@ -17,5 +17,17 @@ namespace ProductionMove.Data.Context
         public DbSet<Series> Series { get; set; } = null!;
         public DbSet<ProductLine> ProductLines { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.HasOne(f => f.Factory).WithMany(p => p.Products).OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(s => s.Store).WithMany(p => p.Products).OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(sc => sc.ServiceCenter).WithMany(p => p.Products).OnDelete(DeleteBehavior.NoAction);
+            });
+        }
     }
 }

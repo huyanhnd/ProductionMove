@@ -49,7 +49,7 @@ export const updateUser = async (id, User, dispatch) => {
 export const addUser = async (User, dispatch) => {
     dispatch(addUserStart());
     try {
-        const res = await userRequest.post(`/Account`, User);
+        const res = await userRequest(getToken()).post(`/Account`, User);
         dispatch(addUserSuccess(res.data));
     } catch (err) {
         dispatch(addUserFailure());

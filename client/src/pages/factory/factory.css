@@ -1,4 +1,3 @@
-
 .factoryPage {
   flex: 4;
   font-family: 'Source Sans Pro', sans-serif;
@@ -8,6 +7,50 @@
   display: flex;
   align-items: center;
 } */
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.request-container {
+  display: flex;
+  position: relative;
+}
+
+.notification {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+#request-btn {
+  line-height: 35px;
+  background-color: #3bb077;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  align-self: center;
+}
+
+#request-btn:hover {
+  cursor: pointer;
+  background-color: #59bc8c;
+}
+
+#request-btn:active {
+  background-color: #155737;
+}
 
 .factoryListEdit {
   border: none;
@@ -22,69 +65,10 @@
 .factoryListDelete {
   color: red;
   cursor: pointer;
+  opacity: 0.85;
 }
 
 .factoryAddress {
   white-space: pre-line;
   word-break: break-all;
-}
-
-.filterSection {
-  /* font-family: 'Source Sans Pro', sans-serif; */
-  font-size: 14px;
-  color: #000000DE;
-  margin-right: 20px;
-}
-
-.factoryFilter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.filterBox {
-  height: 35px;
-  width: 230px;
-}
-
-.filterInputBox {
-  height: 33px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  padding: 0px 10px;
-  width: 200px;
-  border-radius: 4px;
-}
-
-.filterInputBox:hover {
-      border-color: #000;
-}
-
-.filterInputBox:focus {
-  /* width: 149px; */
-  padding: 0px 9px;
-  height: 31px;
-  outline: none !important;
-  border: 2px solid #1976d2;
-  /* margin-right: 1px; */
-}
-
-.submit-btn {
-  line-height: 35px;
-  background-color: #00008B;
-  color: #fff;
-  border-radius: 4px;
-  padding: 0 10px;
-  font-size: 14px;
-  align-self: center;
-}
-
-.submit-btn:hover {
-  cursor: pointer;
-  opacity: 0.85;
-}
-
-.submit-btn:active {
-  background-color: #000039;
 }

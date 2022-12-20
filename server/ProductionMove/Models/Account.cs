@@ -14,6 +14,7 @@ public class Account
     public string? FullName { get; set; }
     public string? Username { get; set; }
     public string? PasswordHash { get; set; }
+    public string? Image { get; set; }
     public Role Role { get; set; }
     public string? ResetToken { get; set; }
     public DateTime? ResetTokenExpires { get; set; }
