@@ -24,7 +24,7 @@ export default function FactoryProduct({ item }) {
       <td className="factoryProduct-date">{item.date}</td>
       <td className="factoryProduct-price">{item.price}</td>
       <td className="factoryProduct-status">
-        <FormControl >
+        <FormControl variant="standard">
           <Select className="status-select"
             value={status}
             onChange={handleStatus}

@@ -81,7 +81,7 @@ export default function Sidebar() {
         {
           icon: Settings,
           title: "Process",
-          link: "/factories",
+          link: "/factory_process",
           key: 3,
         },
       ]
