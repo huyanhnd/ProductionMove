@@ -1,0 +1,91 @@
+
+.factoryProduct-name{
+  font-weight: 400;
+}
+
+.factoryProduct-status { 
+  width: 250px;
+}
+
+.factoryProduct-name { 
+  width: 250px;
+}
+
+.factoryProduct-serial { 
+  width: 250px;
+}
+
+.factoryProduct-date { 
+  width: 200px;
+}
+
+.factoryProduct-no { 
+  width: 50px;
+}
+
+.factoryProduct-price { 
+  width: 100px;
+}
+
+
+
+.factoryProduct-Img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.factoryProduct-date,
+.factoryProduct-price,
+.factoryProduct-no,
+.factoryProduct-serial{
+  font-weight: 300;
+}
+
+.factoryProduct-Button {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+}
+
+.factoryProduct-Button.Approved{
+    background-color: #e5faf2;
+    color: #3bb077;
+}
+.factoryProduct-Button.Declined{
+    background-color: #fff0f1;
+    color: #d95087;
+
+}
+.factoryProduct-Button.Pending{
+    background-color: #ebf1fe;
+    color: #2a7ade;
+
+}
+
+.accept-btn-active {
+  height: 30px;
+  border: none;
+  background-color: #3bb077;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 8px;
+  margin-left: 10px;
+}
+
+.accept-btn-inactive {
+  height: 30px;
+  border: none;
+  background-color: #a5a5a5;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 8px;
+  margin-left: 10px;
+}
+
+.status-select {
+  height: 30px;
+  width: 130px;
+}

@@ -397,3 +397,96 @@ export const productLineData = [
   },
 
 ];
+
+
+export var factory_products = [
+  {
+    id: 0,
+    name: "Iphone 7",
+    serial: "ABC123XYZ456",
+    date: "21/12/2022",
+    price: "$100",
+    status: 0
+  },
+  {
+    id: 1,
+    name: "Iphone 7 Plus",
+    serial: "AVB456XYZ423",
+    date: "21/12/2022",
+    price: "$150",
+    status: 0
+  },
+  {
+    id: 2,
+    name: "Iphone 7 Plus",
+    serial: "ABA456XYZ423",
+    date: "21/12/2022",
+    price: "$150",
+    status: 0
+  },
+  {
+    id: 3,
+    name: "Iphone X",
+    serial: "AFW123XYZ456",
+    date: "21/12/2022",
+    price: "$400",
+    status: 0
+  },
+  {
+    id: 4,
+    name: "Iphone XS",
+    serial: "ABC123XYZ456",
+    date: "21/12/2022",
+    price: "$450",
+    status: 0
+  },
+  {
+    id: 5,
+    name: "Iphone XS",
+    serial: "GER578XYZ456",
+    date: "21/12/2022",
+    price: "$450",
+    status: 0
+  },
+  {
+    id: 6,
+    name: "Iphone 13",
+    serial: "ABC123XYZ456",
+    date: "21/12/2022",
+    price: "$600",
+    status: 0
+  },
+  {
+    id: 7,
+    name: "Iphone 14",
+    serial: "HRT343XYZ456",
+    date: "21/12/2022",
+    price: "$700",
+    status: 0
+  },
+  {
+    id: 8,
+    name: "Iphone 14",
+    serial: "HRT343XYZ476",
+    date: "21/12/2022",
+    price: "$700",
+    status: 0
+  },
+  {
+    id: 9,
+    name: "Iphone 14 Pro Max",
+    serial: "IPA343PRM476",
+    date: "21/12/2022",
+    price: "$799",
+    status: 0
+  },
+  {
+    id: 10,
+    name: "Iphone 14 Pro Max",
+    serial: "IPA343PRM476",
+    date: "21/12/2022",
+    price: "$799",
+    status: 0
+  },
+  
+]
