@@ -18,7 +18,6 @@ $ cd ProductionMove
 
 ```sh
 $ cd client -> npm install
-$ npm install
 ```
 
 3. **_Change your Connection String_**
