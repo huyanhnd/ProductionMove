@@ -1,33 +1,33 @@
 .seriItemSection {
-    display: flex;
-    flex-direction: column;
-    /* background-color: aqua; */
-    width: 15.5%;
-    height: 60%;
     border-radius: 15px;
     box-shadow: 0px 0px 20px rgb(238, 238, 238);
     margin-right: 1%;
     position: relative;
-    /* font-family: ; */
-    /* justify-content: space-around; */
     margin-bottom: 5%;
 }
 
 .productline_slider {
     background-color: #fff;
-    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
 }
 
 .productline_info {
-    display: flex;
-    justify-content: space-evenly;
+    /* padding-top: 10px; */
+    /* background-color: #d70018;
+    width: 150px; */
+    
 }
 
 .productline_link {
-    width: 15%;
+    /* width: 50%; */
+    /* flex-basis: 30%; */
+    /* flex-basis: 5%; */
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    padding: 30px 12px 12px;
-    border-radius: 5px;
+    padding: 20px 12px 12px;
+    border-radius: 5px;  
 }
 
 .productline_item_text {
@@ -89,61 +89,9 @@
     color: #d70018;
 }
 
-.imgContainer {
-    width: 100%;
-    height: 30%;
-    position: relative;
-}
-
-.imgContainer img {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.5s ease-in-out;
-    object-fit: contain;
-}
-
-.imgContainer:hover .img-front {
-    opacity: 0;
-    cursor: pointer;
-}
-
-.imgContainer .img-back {
-    opacity: 0%;
-    cursor: pointer;
-}
-
-.imgContainer:hover .img-back {
-    opacity: 100%;
-    cursor: pointer;
-}
-
-
 .img {
 
     /* object-fit: cover; */
-}
-
-.seriName {
-    font-size: 25px;
-    color: #da4800;
-    align-self: center;
-    border-top: 1px solid #da4800;
-    border-bottom: 1px solid #da4800;
-    padding: 10px;
-    width: 70%;
-    text-align: center;
-}
-
-.seri-description {
-    margin: 50px 20px;
-    text-align: justify;
-}
-
-.link {
-    /* width: 100%; */
-    margin-bottom: 20px;
 }
 
 .seemore-Btn {
@@ -156,9 +104,9 @@
     font-size: 18px;
     font-weight: 600;
     background-color: #fff;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0px;
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
 }
 
 .seemore-Btn:hover {
