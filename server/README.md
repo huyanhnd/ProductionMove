@@ -1,10 +1,35 @@
 # PRODUCTIONMOVE API
-Create the database:
-- Step 1: dotnet tool install --global dotnet-ef
-- Step 2: dotnet ef migrations add InitialCreate
-- Step 3: dotnet ef database update
-Use api: 
-- Step 1: cd server/ProductionMove
-- Step 2: dotnet run
-- Step 3: https://localhost:7102/swagger/index.html
+## Create the database:
+1. **_Install EFCore_**
+
+```sh
+$ dotnet tool install --global dotnet-ef
+```
+2. **_Add Migration_**
+```sh
+$ dotnet ef migrations add InitialCreate
+```
+
+3. **_Update Database_**
+
+```sh
+$ dotnet ef database update
+```
+
+## Use api: 
+1. **_Navigate to dotnet project_**
+
+```sh
+$ cd server/ProductionMove
+```
+2. **_Build and run project_**
+```sh
+$ dotnet run
+```
+
+3. **_Browser_**
+
+```sh
+https://localhost:7102/swagger/index.html
+```
 

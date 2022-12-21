@@ -1,6 +1,58 @@
 # ProductionMove
 Product Lifecycle Management System
-## I. OVERVIEW
+## Getting Started
+> This is an list of needed instructions to set up your project locally, to get a local copy up and running follow these instructuins.
+### Installation
+
+1. **_Clone the repository_**
+
+```sh
+$ git clone https://github.com/huyanhnd/ProductionMove.git
+```
+2. **_Navigate to repository directory_**
+```sh
+$ cd ProductionMove
+```
+
+3. **_Install client dependencies_**
+
+```sh
+$ cd client -> npm install
+$ npm install
+```
+
+3. **_Change your Connection String_**
+
+```sh
+In File ProductionMove/server/ProductionMove/appsettings.json, change your SqlServerConnection to your ConnectionString.
+```
+
+
+### Running
+
+**_Compiles and hot-reloads for development_**
+```sh
+$ cd client -> npm run dev
+$ cd server/Instagram.API -> dotnet run
+```
+## I. TECHNOLOGY:
+|  STT  | Ứng dụng | Ngôn ngữ      | Framework, Library                  |
+| :---: | :------- | :------------ | :---------------------------------- |
+|   1   | Client   | HTML, CSS, JS | ReactJS                             |
+|   2   | Server   | C#            | ASP.NET core, Entity Framework Core |
+|   3   | Database | SQL           | SQL Server                          |
+### 1. Front-end Technology
+- [ReactJS (Function Components)](https://reactjs.org/)
+- [Redux Toolkit (Quản lý state) ](https://redux-toolkit.js.org/)
+- [Axios](https://github.com/axios/axios)
+- Css
+- React-Router-Dom (Chuyển hướng)
+### 2. Back-end Technology
+- [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet)
+- [Entity Framework](https://docs.microsoft.com/en-us/ef/)
+- [Auto Mapper](https://automapper.org/)
+- [JWT Token](https://jwt.io/)
+## II. OVERVIEW
 ### 1. Thực hiện
 |  STT  | Tiêu chí                                                                                                                                                      |
 | :---: | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -78,27 +130,8 @@ Trung tâm bảo hành
 - Thống kê và báo cáo số liệu sản phẩm theo từng loại (trạng thái), theo tháng, quý, năm.
 
 Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ ôtô, xe máy, máy nông nghiệp, ..., khảo sát các dòng sản phẩm, khảo sát hoặc tự đặt ra quy tắc đặt tên cho các dòng sản phẩm cũng như đặt định danh cho từng sản phẩm. Ngoài tên và định danh, nhóm thực hiện cũng cần khảo sát để bổ sung các thuộc tính phù hợp cho sản phẩm và dòng sản phẩm, ví dụ ngày sản xuất, thời gian bảo hành (số tháng), model, các thông số cấu hình, hình ảnh sản phẩm, ...
-## II. TECHNOLOGY:
-|  STT  | Ứng dụng | Ngôn ngữ      | Framework, Library                  |
-| :---: | :------- | :------------ | :---------------------------------- |
-|   1   | Client   | HTML, CSS, JS | ReactJS                             |
-|   2   | Server   | C#            | ASP.NET core, Entity Framework Core |
-|   3   | Database | SQL           | SQL Server                          |
-### 1. Front-end Technology
-
-- ReactJS (Function Components)
-- Redux (Quản lý state)
-- Css
-- React-Router-Dom (Chuyển hướng)
-- Axios (Gọi API)
-
-### 2. Back-end Technology
-- C#
-- Asp.net Core
-- Entity Framework
-
 ## III. Application
-### 1. Role: Ban điều hành BigCorp
+> ### 1. Role: Ban điều hành BigCorp
 #### Page: Home
 - **Path**: /
 - **Use Case**: Trang chủ, có các biểu đồ và bảng thống kê có thể chuyển hướng sang trang /products 
@@ -130,7 +163,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
 - **Use Case**: 
   - Khi vào trang sẽ hiện ra danh sách các cơ sở. Có các filter theo tỉnh, huyện, xã và search box theo tên.
   - Mặc định lúc vào là get all phân trang, mỗi trang có size = 10
-### 2. Role: Cơ sở sản xuất
+> ### 2. Role: Cơ sở sản xuất
 #### Page: Home
 - **Path**: /
 - **Use Case**: Trang chủ, có các biểu đồ và bảng thống kê có thể chuyển hướng sang trang /products 
@@ -155,7 +188,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
   - Mặc định lúc vào là get all phân trang, mỗi trang có size = 10.
   - Khi các đại lý gửi yêu cầu, danh sách yêu cầu sẽ được cập nhật data từ api (t sẽ viết sau m tạo data fake tạm cần trường gì m tạo trước r ta thống nhất). 
   - Kiểm tra điều kiện, số hàng thì có thẻ xác nhận yêu cầu của đại lý hoặc trung tâm bảo hành
-### 3. Role: Đại lý phân phối
+> ### 3. Role: Đại lý phân phối
 #### Page: Home
 - **Path**: /
 - **Use Case**: Trang chủ, có các biểu đồ và bảng thống kê có thể chuyển hướng sang trang /products 
@@ -183,7 +216,7 @@ Lưu ý: Mỗi nhóm tự chọn một loại sản phẩm nào đó, ví dụ �
   - Mặc định lúc vào là get all phân trang, mỗi trang có size = 10.
   - Khi các đại lý gửi yêu cầu, danh sách yêu cầu sẽ được cập nhật data từ api (t sẽ viết sau m tạo data fake tạm cần trường gì m tạo trước r ta thống nhất). 
   - Kiểm tra điều kiện, số hàng thì có thẻ xác nhận yêu cầu của đại lý hoặc trung tâm bảo hành
-### 4. Role: Trung tâm bảo hành
+> ### 4. Role: Trung tâm bảo hành
 #### Page: Home
 - **Path**: /
 - **Use Case**: Trang chủ, có các biểu đồ và bảng thống kê có thể chuyển hướng sang trang /products 
