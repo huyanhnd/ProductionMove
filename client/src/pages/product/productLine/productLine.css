@@ -17,9 +17,38 @@
   justify-content: center;
 }
 
+.seriesItemAdd {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  margin: 0 10px 10px 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.seriesItemAdd1 {
+  /* align-items: center; */
+  font-size: 30px;
+}
+
 .listItem {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  flex-wrap: wrap;
 }
 
+.productline_link {
+  /* max-height: 100px; */
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  padding: 20px 12px 12px;
+  border-radius: 5px;  
+  height: 300px;
+  display: row;
+}
+
+.textAdd {
+  font-size: 15px;
+  text-align: center;
+}

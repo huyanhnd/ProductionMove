@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./productLineItem.css";
 
+
 export default function ProductLineItem({ data }) {
   return (
     <div className="seriItemSection">
