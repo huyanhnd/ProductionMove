@@ -18,6 +18,7 @@ import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProducts from "./pages/factory/products/FactoryProducts";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
+import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
 
 const Layout = () => {
     return (
@@ -48,6 +49,7 @@ const appRouter = createBrowserRouter([
             { path: "/factory", element:  <FactoryHome />},
             { path: "/factory_products", element:  <FactoryProducts />},
             { path: "/factory_process", element:  <FactoryProcess />},
+            { path: "/factory_process/request:code", element:  <UpdateStoreRequest />},
             { path: "/factories", element: <Factory /> },
             { path: "/stores", element: <ServiceCenter /> },
             { path: "/servicecenters", element: <ServiceCenter /> },
