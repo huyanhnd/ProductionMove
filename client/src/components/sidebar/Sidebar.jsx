@@ -5,6 +5,8 @@ import {
   Storefront,
   WorkOutline,
   Laptop,
+  PhoneIphone,
+  Settings
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -66,15 +68,21 @@ export default function Sidebar() {
       navChild: [
         {
           icon: LineStyle,
-          title: "Factory",
+          title: "Home",
           link: "/factory",
           key: 1,
         },
         {
-          icon: WorkOutline,
-          title: "Factory",
-          link: "/factories",
-          key: 7,
+          icon: PhoneIphone,
+          title: "Factory Products",
+          link: "/factory_products",
+          key: 2,
+        },
+        {
+          icon: Settings,
+          title: "Process",
+          link: "/factory_process",
+          key: 3,
         },
       ]
     },
