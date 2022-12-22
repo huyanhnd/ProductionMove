@@ -74,7 +74,7 @@ export default function Sidebar() {
         },
         {
           icon: PhoneIphone,
-          title: "Factory Products",
+          title: "Products",
           link: "/factory_products",
           key: 2,
         },
