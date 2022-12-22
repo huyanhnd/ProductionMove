@@ -7,10 +7,6 @@ export default function Factory() {
     <div className="factoryPage">
         <div className="header">
         <AddressFilter />
-        <div className="request-container">
-        <div className="notification">56</div>
-        <div id="request-btn">Request</div>
-        </div>
         </div>
         <FactoryList />
     </div>
