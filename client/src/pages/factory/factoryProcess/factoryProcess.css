@@ -1,3 +1,98 @@
 .factoryProcess-page {
     flex: 4;
 }
+
+.request-dataGrid {
+    font-size: 16px;
+}
+
+.process {
+    display: inline-block;
+    position: relative;
+    margin: 0 15px 15px 15px;
+}
+
+.notification {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -8px;
+    /* align-items: flex-start; */
+    right: -8px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.process-btn {
+    line-height: 35px;
+    background-color: #ebf1fe;
+    color: #2a7ade;
+    border: 1px solid #2a7ade;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 14px;
+    align-self: center;
+}
+
+.process-btn:hover {
+    cursor: pointer;
+    background-color: #ddecff;
+}
+
+.process-btn:active {
+    background-color: #b5cdff;
+}
+
+.process-btn-inactive {
+    line-height: 36px;
+    background-color: rgb(229, 229, 229);
+    color: rgb(56, 56, 56);
+    border-radius: 5px;
+    padding: 0 11px;
+    font-size: 14px;
+    align-self: center;
+    /* border: rgb(176, 176, 176); */
+}
+
+.process-btn-inactive:hover {
+    cursor: pointer;
+    background-color: rgb(235, 235, 235);
+}
+
+.process-btn-inactive:active {
+    background-color: #b4b4b4;
+}
+
+.accept-request {
+    padding: 5px 7px;
+    border: solid 1px #3bb077;
+    border-radius: 6px;
+    background-color: #e5faf2;
+    color: #3bb077;
+    margin-right: 10px;
+}
+.accept-request:hover {
+    background-color: #3bb077;
+    color: #ffffff;
+}
+
+.refuse-request:hover {
+    background-color: #d95087;
+    color: #fff;
+}
+.refuse-request {
+    padding: 5px 7px;
+    border: solid 1px #d95087;
+    border-radius: 6px;
+    background-color: #fff0f1;
+    color: #d95087;
+}
+
+.none-display {
+    display: none;
+}
