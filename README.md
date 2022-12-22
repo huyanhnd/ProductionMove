@@ -32,7 +32,7 @@ In File ProductionMove/server/ProductionMove/appsettings.json, change your SqlSe
 **_Compiles and hot-reloads for development_**
 ```sh
 $ cd client -> npm run dev
-$ cd server/Instagram.API -> dotnet run
+$ cd server/ProductionMove -> dotnet run
 ```
 ## I. TECHNOLOGY:
 |  STT  | Ứng dụng | Ngôn ngữ      | Framework, Library                  |
