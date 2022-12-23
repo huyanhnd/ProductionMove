@@ -16,7 +16,6 @@ import ServiceCenter from "./pages/admin/serviceCenters/ServiceCenter";
 import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
 import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
-import FactoryProducts from "./pages/factory/products/FactoryProducts";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
 import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
 import ServiceCenterProduct from "./pages/serviceCenter/products/ServiceCenterProducts"
