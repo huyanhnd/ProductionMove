@@ -78,6 +78,23 @@
     background-color: #b4b4b4;
 }
 
+.view-details {
+    padding: 2px 7px;
+    border: solid 1px #5048e5;
+    border-radius: 3px;
+    background-color: #ffffff;
+    color: #5048e5;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.view-details:hover {
+    background-color: #5048e5;
+    color: #ffffff;
+    cursor: pointer;
+}
+
 .accept-request {
     padding: 5px 7px;
     border: solid 1px #3bb077;
@@ -112,4 +129,45 @@
 
 .none-display {
     display: none;
+}
+
+
+.status-button.Complete {
+    background-color: #3bb077;
+    color: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    padding: 4px 8px;
+    width: 70px;
+}
+
+.status-button.Rejected {
+    background-color: #d95087;
+    color: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    padding: 4px 8px;
+    width: 70px;
+}
+
+.status-button.Canceled {
+    background-color: #ffab19;
+    color: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    padding: 4px 8px;
+    width: 70px;
+}
+
+.status-button.Pending {
+    background-color: #2196f3;
+    color: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    border: none;
+    padding: 4px 8px;
+    width: 70px;
 }
