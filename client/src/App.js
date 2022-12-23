@@ -18,8 +18,7 @@ import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
 import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
-import FactoryWarehouse from "./pages/factory/warehouse/FactoryWarehouse";
-import AddProduct from "./pages/factory/warehouse/AddProduct";
+import ServiceCenterProduct from "./pages/serviceCenter/products/ServiceCenterProducts"
 
 const Layout = () => {
     return (
@@ -47,14 +46,18 @@ const appRouter = createBrowserRouter([
             { path: "/products", element: <ProductList /> },
             { path: "/product/:code", element: <UpdateFactory /> },
             { path: "/newproduct", element: <NewProduct /> },
-            { path: "/factory", element:  <FactoryHome />},
-            { path: "/factory-warehouse", element:  <FactoryWarehouse />},
-            { path: "/factory-warehouse/addproducts", element:  <AddProduct />},
-            { path: "/factory-process", element:  <FactoryProcess />},
-            { path: "/factory-process/request:code", element:  <UpdateStoreRequest />},
             { path: "/factories", element: <Factory /> },
             { path: "/stores", element: <ServiceCenter /> },
             { path: "/servicecenters", element: <ServiceCenter /> },
+
+            //Role: Factory
+            { path: "/factory", element:  <FactoryHome />},
+            { path: "/factory_products", element:  <FactoryProducts />},
+            { path: "/factory_process", element:  <FactoryProcess />},
+            { path: "/factory_process/request:code", element:  <UpdateStoreRequest />},
+
+            //Role: Service Centers
+            { path: "/servicecenters_products", element: <ServiceCenterProduct /> },
         ],
     }
 ]);

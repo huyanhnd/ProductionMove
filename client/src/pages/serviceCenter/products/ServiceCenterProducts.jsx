@@ -1,11 +1,11 @@
-import "./factoryProducts.scss";
+import "./serviceCenterProducts.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const FactoryProducts = () => {
+const ServiceCenterProduct = () => {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
@@ -60,4 +60,4 @@ const FactoryProducts = () => {
   );
 };
 
-export default FactoryProducts;
+export default ServiceCenterProduct;

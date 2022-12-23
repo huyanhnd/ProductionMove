@@ -116,8 +116,14 @@ export default function Sidebar() {
         {
           icon: WorkOutline,
           title: "ServiceCenter",
-          link: "/servicecenters",
-          key: 7,
+          link: "/servicecenters_products",
+          key: 2,
+        },
+        {
+          icon: Settings,
+          title: "Process",
+          link: "/factory_process",
+          key: 3,z
         },
       ]
     },

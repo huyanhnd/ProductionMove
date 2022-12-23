@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import ProductLineItem from "./ProductLineItem";
 import { productLineData } from "../../../../dummyData";
 import "./productLine.css";
+import { Add } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function ProductLine() {
   const [data, setData] = useState(productLineData);
@@ -23,11 +25,20 @@ export default function ProductLine() {
         {series.map((item, index) => {
           return <button className="seriesItem">{item.name}</button>;
         })}
+        <Link to={"/newProductLine/"}>
+          <Add className="seriesItemAdd"></Add>
+        </Link>
       </div>
       <div className="listItem">
         {data.map((item) => (
           <ProductLineItem data={item} />
         ))}
+        <div>
+          <div className="productline_link">
+            <Add className="seriesItemAdd1" />
+            <text className="textAdd">Thêm sản phẩm mới</text>
+          </div>
+        </div>
       </div>
     </div>
   );
