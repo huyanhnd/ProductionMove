@@ -17,7 +17,7 @@ import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
 import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
-import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
+import UpdateStoreRequest from "./pages/factory/process/storeRequest/UpdateStoreRequest";
 import FactoryWarehouse from "./pages/factory/warehouse/FactoryWarehouse";
 import AddProduct from "./pages/factory/warehouse/AddProduct";
 
