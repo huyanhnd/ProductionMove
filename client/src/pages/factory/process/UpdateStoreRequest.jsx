@@ -13,7 +13,7 @@ export default function UpdateStoreRequest() {
     function Request(props) {
         return (
             <tr>
-                <td className="td">{props.index}</td>
+                <td className="td">{props.index + 1}</td>
                 <td className="td">{props.item.productLine}</td>
                 <td className="td">{props.item.color}</td>
                 <td className="td">{props.item.memory}</td>
