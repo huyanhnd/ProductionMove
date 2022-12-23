@@ -524,21 +524,18 @@ export var requestFromStore = [
     status: "Pending",
     orderDetails: [
       {
-        id: 1,
         productLine: "iPhone 14 Pro Max",
         color: "Star Light",
         memory: "256 GB",
         quantity: 10,
       },
       {
-        id: 2,
         productLine: "iPhone 13 Pro",
         color: "Sierra Blue",
         memory: "256 GB",
         quantity: 10,
       },
       {
-        id: 3,
         productLine: "iPhone 11 Pro Max",
         color: "Purple",
         memory: "256 GB",
