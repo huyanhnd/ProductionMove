@@ -40,7 +40,7 @@ export default function FactoryProcess() {
                     <>
                         <Button type={params.row.status} />
                         <Link
-                            to={"/factory_process/request" + params.row.id}
+                            to={"/factory-process/request" + params.row.id}
                             className="view-details"
                             onClick={() => handleViewDetails(params.row)}
                         // onClick={() => handleEdit(params.row)}
