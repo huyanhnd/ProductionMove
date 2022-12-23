@@ -1,7 +1,7 @@
 import "./serviceCenterProducts.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
+import { userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -14,6 +14,7 @@ const ServiceCenterProduct = () => {
 
   const actionColumn = [
     {
+
       field: "action",
       headerName: "Action",
       width: 200,
@@ -51,7 +52,7 @@ const ServiceCenterProduct = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={actionColumn}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

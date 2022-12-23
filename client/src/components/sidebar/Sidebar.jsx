@@ -123,7 +123,7 @@ export default function Sidebar() {
           icon: Settings,
           title: "Process",
           link: "/factory_process",
-          key: 3,z
+          key: 3,
         },
       ]
     },

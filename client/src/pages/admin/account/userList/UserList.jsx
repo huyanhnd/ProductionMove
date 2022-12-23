@@ -37,7 +37,7 @@ export default function UserList() {
     { field: "id", headerName: "Id", width: 50 },
     {
       field: "User",
-      headerName: "Image",
+      headerName: "FullName",
       width: 200,
       renderCell: (params) => {
         return (
@@ -48,8 +48,8 @@ export default function UserList() {
         );
       },
     },
-    { field: "username", headerName: "Username", width: 90 },
-    { field: "role", headerName: "Role", width: 90 },
+    { field: "username", headerName: "Username", width: 120 },
+    { field: "role", headerName: "Role", width: 120 },
     {
       field: "created",
       headerName: "Create At",
