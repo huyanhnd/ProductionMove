@@ -1,20 +1,21 @@
 import "./login.css"
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { login } from "../../api/authApi";
+import { useEffect } from "react";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  
+  const error = useSelector((state) => state.auth.error)
+  useEffect(()=>{},[error])
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
-
   return (
     <div className='login-page'>
       <div className="login-section">
@@ -44,7 +45,7 @@ const Login = () => {
                 }} type="password" placeholder="• • • • • • • •" />
               </div>
               <div className="incorrect">
-                <p className="inactive">The username or password is incorrect. Please try again!</p>
+                <p className={error ? "" : "inactive"}>The username or password is incorrect. Please try again!</p>
               </div>
               <em className="forgot">Forgot password?</em>
             </div>

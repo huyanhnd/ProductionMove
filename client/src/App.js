@@ -2,24 +2,23 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar";
-import Home from "./pages/home/Home";
-import ProductList from "./pages/product/productList/ProductList";
-import NewUser from "./pages/account/newUser/NewUser";
-import ProductLine from "./pages/product/productLine/ProductLine";
-import Factory from "./pages/factory/Factory";
+import Home from "./pages/admin/home/Home";
+import ProductList from "./pages/admin/products/productList/ProductList";
+import NewUser from "./pages/admin/account/newUser/NewUser";
+import ProductLine from "./pages/admin/productLines/productLine/ProductLine";
+import Factory from "./pages/admin/factories/Factory";
 import Login from "./pages/login/Login";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
-import UserList from "./pages/account/userList/UserList";
-import User from "./pages/account/user/User";
-import Product from "./pages/product/product/Product";
-import NewProduct from "./pages/product/newProduct/NewProduct";
-import ServiceCenter from "./pages/serviceCenter/ServiceCenter";
-import Store from "./pages/store/StoreList";
-import UpdateFactory from "./pages/factory/updateFactory/UpdateFactory";
+import UserList from "./pages/admin/account/userList/UserList";
+import User from "./pages/admin/account/user/User";
+import NewProduct from "./pages/admin/products/newProduct/NewProduct";
+import ServiceCenter from "./pages/admin/serviceCenters/ServiceCenter";
+import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
 import "./App.css"
-import FactoryHome from "./pages/factory/FactoryHome";
-import FactoryProducts from "./pages/factory/factoryProducts/FactoryProducts";
-import FactoryProcess from "./pages/factory/factoryProcess/FactoryProcess";
+import FactoryHome from "./pages/factory/home/FactoryHome";
+import FactoryProducts from "./pages/factory/products/FactoryProducts";
+import FactoryProcess from "./pages/factory/process/FactoryProcess";
+import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
 
 const Layout = () => {
     return (
@@ -50,6 +49,7 @@ const appRouter = createBrowserRouter([
             { path: "/factory", element:  <FactoryHome />},
             { path: "/factory_products", element:  <FactoryProducts />},
             { path: "/factory_process", element:  <FactoryProcess />},
+            { path: "/factory_process/request:code", element:  <UpdateStoreRequest />},
             { path: "/factories", element: <Factory /> },
             { path: "/stores", element: <ServiceCenter /> },
             { path: "/servicecenters", element: <ServiceCenter /> },

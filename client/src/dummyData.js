@@ -305,7 +305,7 @@ export const seriesData = [
     id: 2,
     name: "ExpertBook",
     url: "https://cdn.hoanghamobile.com/i/preview/Uploads/2022/06/21/asus-expertbook-p2451f-bv3136t-i3-8.png",
-    url_sub:"https://www.papayatop.com/wp-content/uploads/2022/08/ExpertBook-B9_B9400CBA_Product-photo_1A_Star-Black_13_NumberPad-off_2400X2400.png",
+    url_sub: "https://www.papayatop.com/wp-content/uploads/2022/08/ExpertBook-B9_B9400CBA_Product-photo_1A_Star-Black_13_NumberPad-off_2400X2400.png",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   {
@@ -333,7 +333,7 @@ export const seriesData = [
     id: 6,
     name: "Studio book",
     url: "https://media-api-beta.thinkpro.vn/media/core/products/2022/8/3/asus-proart-studiobook-16-oled-thinkpro-01.png",
-    url_sub:"https://dlcdnwebimgs.asus.com/gain/27dfe91f-c4f8-42d1-9c16-e250534f0ebe/",
+    url_sub: "https://dlcdnwebimgs.asus.com/gain/27dfe91f-c4f8-42d1-9c16-e250534f0ebe/",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   }
 ];
@@ -488,5 +488,470 @@ export var factory_products = [
     price: "$799",
     status: 0
   },
-  
+]
+
+export var requestFromStore = [
+  {
+    id: 0,
+    request: "HN00001",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 1,
+    request: "HN00002",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 2,
+    request: "HN00003",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 3,
+    request: "NB00001",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 4,
+    request: "NB00002",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 5,
+    request: "NA00001",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 6,
+    request: "NA00002",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 7,
+    request: "NA00003",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+  {
+    id: 8,
+    request: "ND0001",
+    receivedAt: "05:06 27/12/2022",
+    status: "Pending",
+    orderDetails: [
+      {
+        productLine: "iPhone 14 Pro Max",
+        color: "Star Light",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 13 Pro",
+        color: "Sierra Blue",
+        memory: "256 GB",
+        quantity: 10,
+      },
+      {
+        productLine: "iPhone 11 Pro Max",
+        color: "Purple",
+        memory: "256 GB",
+        quantity: 10,
+      },
+    ],
+  },
+
+]
+
+export var warrantyError = [
+  {
+    id: 0,
+    product: "Iphone 14 Pro",
+    code: "0",
+    color: "Starlight",
+    memory: "64GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 2,
+    product: "Iphone X",
+    code: "2",
+    color: "Gold",
+    memory: "256GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 3,
+    product: "Iphone 12 Pro Max",
+    code: "3",
+    color: "Blue",
+    memory: "128GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 4,
+    product: "Iphone 11",
+    code: "4",
+    color: "white",
+    memory: "64GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 5,
+    product: "Iphone 12",
+    code: "5",
+    color: "white",
+    memory: "128GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 6,
+    product: "Iphone X",
+    code: "6",
+    color: "white",
+    memory: "64GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+
+  {
+    id: 7,
+    product: "Iphone 12 Pro Max",
+    code: "7",
+    color: "Black",
+    memory: "256GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+
+  {
+    id: 8,
+    product: "Iphone 13",
+    code: "8",
+    color: "Green",
+    memory: "128GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+  {
+    id: 9,
+    product: "Iphone 12 Pro Max",
+    code: "9",
+    color: "Red",
+    memory: "64GB",
+    url: "https://media.techz.vn/media2019/upload2019/2022/08/28/cuando-sale-el-iphone-14.jpeg"
+  },
+]
+
+export var inWarehouse = [
+  {
+    id: 0,
+    product: "Iphone 14 Pro",
+    code: "0",
+    color: "Starlight",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 2,
+    product: "Iphone X",
+    code: "2",
+    color: "Gold",
+    memory: "256GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 3,
+    product: "Iphone 12 Pro Max",
+    code: "3",
+    color: "Blue",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 4,
+    product: "Iphone 11",
+    code: "4",
+    color: "white",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 5,
+    product: "Iphone 12",
+    code: "5",
+    color: "white",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 6,
+    product: "Iphone X",
+    code: "6",
+    color: "white",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+
+  {
+    id: 7,
+    product: "Iphone 12 Pro Max",
+    code: "7",
+    color: "Black",
+    memory: "256GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+
+  {
+    id: 8,
+    product: "Iphone 13",
+    code: "8",
+    color: "Green",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 9,
+    product: "Iphone 12 Pro Max",
+    code: "9",
+    color: "Red",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 10,
+    product: "Iphone 14 Pro",
+    code: "10",
+    color: "Starlight",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 11,
+    product: "Iphone X",
+    code: "11",
+    color: "Gold",
+    memory: "256GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 12,
+    product: "Iphone 12 Pro Max",
+    code: "12",
+    color: "Blue",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 13,
+    product: "Iphone 11",
+    code: "13",
+    color: "white",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 14,
+    product: "Iphone 12",
+    code: "14",
+    color: "white",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 15,
+    product: "Iphone X",
+    code: "15",
+    color: "white",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+
+  {
+    id: 16,
+    product: "Iphone 12 Pro Max",
+    code: "16",
+    color: "Black",
+    memory: "256GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+
+  {
+    id: 17,
+    product: "Iphone 13",
+    code: "17",
+    color: "Green",
+    memory: "128GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
+  {
+    id: 18,
+    product: "Iphone 12 Pro Max",
+    code: "18",
+    color: "Red",
+    memory: "64GB",
+    url: "https://image.thanhnien.vn/w1024/Uploaded/2022/aybunux/2022_08_30/1-470.jpg"
+  },
 ]

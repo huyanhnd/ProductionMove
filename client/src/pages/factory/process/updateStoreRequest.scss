@@ -1,0 +1,85 @@
+.page {
+    flex: 4;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        align-content: center;
+        .title {
+            font-size: 24px;
+            color: gray;
+            margin-bottom: 10px;
+            display: flex;
+            align-self: flex-start;
+            margin-right: 20px;
+        }
+
+        .approve-request {
+            width: 70px;
+            padding: 5px 7px;
+            border: solid 1px #3bb077;
+            border-radius: 6px;
+            background-color: #e5faf2;
+            color: #3bb077;
+            margin-right: 10px;
+
+            &:hover {
+                background-color: #3bb077;
+                color: #ffffff;
+            }
+        }
+
+
+        .reject-request {
+            width: 55px;
+            padding: 5px 7px;
+            border: solid 1px #d95087;
+            border-radius: 6px;
+            background-color: #fff0f1;
+            color: #d95087;
+
+            &:hover {
+                background-color: #d95087;
+                color: #fff;
+            }
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        .field {
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 25px;
+            width: 100px;
+            color: rgb(75, 75, 75);
+        }
+
+        .param {
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 25px;
+            // width: 150px;
+            color: rgb(75, 75, 75);
+        }
+    }
+
+    .request {
+        display: flex;
+        flex-direction: column;
+
+        table {
+            width: 700px;
+            border-spacing: 20px;
+
+            th {
+                text-align: left;
+            }
+        }
+
+    }
+}
