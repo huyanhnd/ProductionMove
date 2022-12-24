@@ -11,16 +11,42 @@ import {
     addProductLineStart,
     addProductLineSuccess,
     addProductLineFailure,
+    getProductLineByIdStart,
+    getProductLineByIdSuccess,
+    getProductLineByIdFailure,
+    getProductLineByCodeStart,
+    getProductLineByCodeSuccess,
+    getProductLineByCodeFailure,
 } from "../redux/productLineSlice";
 import { publicRequest } from "./requestMethods";
 
-export const getProductLines = async (dispatch) => {
+export const getProductLines = async (dispatch,id) => {
     dispatch(getProductLinesStart());
     try {
-        const res = await publicRequest.get(`/productline`);
+        const res = await publicRequest.get(`/Productline`);
         dispatch(getProductLinesSuccess(res.data));
     } catch (err) {
         dispatch(getProductLinesFailure());
+    }
+};
+
+export const getProductLineById = async (dispatch,id) => {
+    dispatch(getProductLineByIdStart());
+    try {
+        const res = await publicRequest.get(`/Productline/${id}`);
+        dispatch(getProductLineByIdSuccess(res.data));
+    } catch (err) {
+        dispatch(getProductLineByIdFailure());
+    }
+};
+
+export const getProductLineByCode = async (dispatch,Code) => {
+    dispatch(getProductLineByCodeStart());
+    try {
+        const res = await publicRequest.get(`/Productline/${Code}`);
+        dispatch(getProductLineByCodeSuccess(res.data));
+    } catch (err) {
+        dispatch(getProductLineByCodeFailure());
     }
 };
 

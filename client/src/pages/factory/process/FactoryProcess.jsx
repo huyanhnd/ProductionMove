@@ -1,7 +1,8 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getProducts } from "../../../api/productsApi";
 import { inWarehouse, requestFromStore, warrantyError } from "../../../dummyData";
 import { setCurrentStoreRequest } from "../../../redux/currentStoreRequestSlice";
 import Export from "./export/Export";
@@ -11,6 +12,10 @@ import WarrantyError from "./warrantyError/WarrantyError";
 
 export default function FactoryProcess() {
     const dispatch = useDispatch();
+    useEffect(() => {
+        getProducts(dispatch);
+    }, [dispatch]);
+    const products = useSelector((state) => state.product.products);
     const Button = ({ type }) => {
         return <button className={"status-button " + type}>{type}</button>;
     };
@@ -29,12 +34,12 @@ export default function FactoryProcess() {
      * Export
      */
     const inWarehouseData = inWarehouse;
-    
+
     /**
      * warrantyError
      */
     const warrantyErrorData = warrantyError;
-    
+
 
     return (
         <div className="factoryProcess-page">
@@ -70,11 +75,11 @@ export default function FactoryProcess() {
             </div>
 
             <div className={process === 2 ? "data-table" : "none-display"}>
-                <Export/>
+                <Export />
             </div>
 
             <div className={process === 3 ? "data-table" : "none-display"}>
-                <WarrantyError/>
+                <WarrantyError />
             </div>
         </div>
     )

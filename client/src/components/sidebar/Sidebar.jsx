@@ -93,14 +93,20 @@ export default function Sidebar() {
         {
           icon: LineStyle,
           title: "Home",
-          link: "/",
+          link: "/store",
           key: 1,
         },
         {
           icon: Storefront,
           title: "Store",
-          link: "/stores",
-          key: 7,
+          link: "/store-products",
+          key: 2,
+        },
+        {
+          icon: Settings,
+          title: "Process",
+          link: "/stores-process",
+          key: 3,
         },
       ]
     },

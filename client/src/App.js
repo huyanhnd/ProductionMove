@@ -17,6 +17,9 @@ import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
 import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
+import StoreHome from "./pages/store/home/StoreHome"
+import StoreProducts from "./pages/store/products/StoreProducts"
+import StoreProcess from "./pages/store/process/StoreProcess"
 import UpdateStoreRequest from "./pages/factory/process/storeRequest/UpdateStoreRequest";
 import FactoryWarehouse from "./pages/factory/warehouse/FactoryWarehouse";
 import AddFactoryProduct from "./pages/factory/warehouse/AddFactoryProduct";
@@ -56,7 +59,9 @@ const appRouter = createBrowserRouter([
             { path: "/factory-process", element:  <FactoryProcess />},
             { path: "/factory-process/request:code", element:  <UpdateStoreRequest />},
             { path: "/factories", element: <Factory /> },
-            { path: "/stores", element: <ServiceCenter /> },
+            { path: "/store", element: <StoreHome /> },
+            { path: "/store-products", element: <StoreProducts /> },
+            { path: "/store-process", element: <StoreProcess /> },
             { path: "/servicecenters", element: <ServiceCenter /> },
             { path: "/servicecenters_products", element: <ServiceCenterProduct /> },
             { path: "/servicecenters_products/addproducts", element: <AddServiceCenterProduct /> },
