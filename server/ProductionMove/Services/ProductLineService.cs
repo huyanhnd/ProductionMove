@@ -11,10 +11,10 @@ namespace ProductionMove.Services
     public interface IProductLineService
     {
         Task<QueryResult<ProductLineResponse>> ListAsync(Paging query, int seriesId);
-        Task<ProductLineResponse> FindByIdAsync(string code);
+        Task<ProductLineResponse> FindByIdAsync(int id);
         Task<ProductLineResponse> CreateAsync(ProductLineRequest factory);
-        Task<ProductLineResponse> UpdateAsync(string code, ProductLineRequest factory);
-        Task DeleteAsync(string code);
+        Task<ProductLineResponse> UpdateAsync(int id, ProductLineRequest factory);
+        Task DeleteAsync(int id);
     }
     public class ProductLineService : IProductLineService
     {
@@ -41,9 +41,9 @@ namespace ProductionMove.Services
             return _mapper.Map<QueryResult<ProductLine>, QueryResult<ProductLineResponse>>(result);
         }
 
-        public async Task<ProductLineResponse> FindByIdAsync(string code)
+        public async Task<ProductLineResponse> FindByIdAsync(int id)
         {
-            var productLine = await FindAsync(code);
+            var productLine = await FindAsync(id);
             return _mapper.Map<ProductLineResponse>(productLine);
         }
 
@@ -57,9 +57,9 @@ namespace ProductionMove.Services
             return _mapper.Map<ProductLineResponse>(productLine);
         }
 
-        public async Task<ProductLineResponse> UpdateAsync(string code, ProductLineRequest model)
+        public async Task<ProductLineResponse> UpdateAsync(int id, ProductLineRequest model)
         {
-            var productLine = await FindAsync(code);
+            var productLine = await FindAsync(id);
 
             _mapper.Map(model, productLine);
             _context.ProductLines.Update(productLine);
@@ -68,16 +68,16 @@ namespace ProductionMove.Services
             return _mapper.Map<ProductLineResponse>(productLine);
         }
 
-        public async Task DeleteAsync(string code)
+        public async Task DeleteAsync(int id)
         {
-            var productLine = await FindAsync(code);
+            var productLine = await FindAsync(id);
             _context.ProductLines.Remove(productLine);
             await _context.SaveChangesAsync();
         }
 
-        private async Task<ProductLine> FindAsync(string code)
+        private async Task<ProductLine> FindAsync(int id)
         {
-            var productLine = await _context.ProductLines.FindAsync(code);
+            var productLine = await _context.ProductLines.FindAsync(id);
             if (productLine == null) throw new KeyNotFoundException("Product not found");
             return productLine;
         }
