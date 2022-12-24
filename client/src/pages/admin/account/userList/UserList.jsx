@@ -39,7 +39,7 @@ export default function UserList() {
     { field: "id", headerName: "Id", width: 50 },
     {
       field: "User",
-      headerName: "Image",
+      headerName: "FullName",
       width: 200,
       renderCell: (params) => {
         return (
