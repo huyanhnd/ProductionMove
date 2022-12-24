@@ -1,6 +1,6 @@
 import "./addProduct.css";
 
-export default function AddProduct() {
+export default function AddFactoryProduct() {
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
