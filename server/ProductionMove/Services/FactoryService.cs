@@ -87,6 +87,8 @@ namespace ProductionMove.Services
             _context.Factories.Update(_mapper.Map<Factory>(factory));
             await _context.SaveChangesAsync();
 
+            List<string> mylist = new List<string>(new string[] { "element1", "element2", "element3" });
+
             return factory;
         }
 

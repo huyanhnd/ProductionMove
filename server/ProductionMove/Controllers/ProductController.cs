@@ -6,7 +6,7 @@ using ProductionMove.ViewModels.Factory;
 using ProductionMove.ViewModels.ProductLine;
 using ProductionMove.Services;
 using ProductionMove.ViewModels;
-using ProductionMove.ViewModels.Product;
+using ProductionMove.ViewModels.ProductModel;
 
 namespace Supermarket.API.Controllers
 {
@@ -20,24 +20,24 @@ namespace Supermarket.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListAsync([FromQuery] Paging query, int SeriesId)
+        public async Task<IActionResult> ListAsync([FromQuery] ProductQuery query)
         {
-            var fatories = await _productService.ListAsync(query, SeriesId);
-            return Ok(fatories);
+            var products = await _productService.ListAsync(query);
+            return Ok(products);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{code}")]
         public async Task<IActionResult> GetAsync(string code)
         {
-            var result = await _productService.FindByIdAsync(code);
+            var result = await _productService.FindByCodeAsync(code);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ProductRequest model)
+        public async Task<IActionResult> PostAsync([FromBody] ProductRequest model, int quantity)
         {
-            var result = await _productService.CreateAsync(model);
-            return Ok(result);
+            await _productService.CreateAsync(model, quantity);
+            return Ok(new { message = "Products add successfully" });
         }
 
         [HttpPut("{id}")]

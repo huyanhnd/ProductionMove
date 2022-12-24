@@ -4,6 +4,7 @@ namespace ProductionMove.ViewModels.ProductLine
 {
     public class ProductLineRequest
     {
+        public string Code { get; set; }
         public string Name { get; set; }
         public int SeriesId { get; set; }
         public float ScreenSize { get; set; }
