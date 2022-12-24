@@ -122,7 +122,7 @@ export default function Sidebar() {
         {
           icon: Settings,
           title: "Process",
-          link: "/factory_process",
+          link: "/servicecenters_process",
           key: 3,
         },
       ]

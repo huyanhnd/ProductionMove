@@ -2,20 +2,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { inWarehouse, requestFromStore, warrantyError } from "../../../dummyData";
-import "./factoryProcess.css"
+import "./servicecenterProcess.css"
 
-export default function FactoryProcess() {
-    /**
-     * Process
-     * 1: request, 2: Nhập kho, 3: Bảo hành
-     */
+export default function ServiceCenterProcess() {
+
     const [process, setProcess] = useState(1)
 
 
     /**
-     * Request
+     * In Warranty
      */
-    const requestData = requestFromStore;
+    const requestData = inWarehouse;
     const requestColumns = [
         {
             field: "id", headerName: "No.", width: 50,
@@ -33,14 +30,15 @@ export default function FactoryProcess() {
                             alt=""
                             className="widgetLgImg"
                         />
-                        <div>{params.row.productLine}</div>
+                        <div>{params.row.product}</div>
                     </>
                 )
             }
         },
+        { field: "code", headerName: "Code", width: 120 },
         { field: "color", headerName: "Color", width: 120 },
         { field: "memory", headerName: "Memory", width: 120 },
-        { field: "quantity", headerName: "Quantity", width: 120 },
+        // { field: "quantity", headerName: "Quantity", width: 120 },
         {
             field: "action", headerName: "Action", width: 150,
             renderCell: (params) => {
@@ -49,11 +47,11 @@ export default function FactoryProcess() {
                         <button
                             className="accept-request"
                         // onClick={() => handleEdit(params.row)}
-                        >Accept</button>
+                        >Warranted</button>
                         <button
                             className="refuse-request"
                         // onClick={() => handleEdit(params.row)}
-                        >Refuse</button>
+                        >Error</button>
 
                     </>
                 );
@@ -62,7 +60,7 @@ export default function FactoryProcess() {
     ];
 
     /**
-     * in Warehouse
+     * Warranted
      */
     const inWarehouseData = inWarehouse;
     const inWarehouseColums = [
@@ -90,28 +88,28 @@ export default function FactoryProcess() {
         { field: "code", headerName: "Code", width: 120 },
         { field: "color", headerName: "Color", width: 120 },
         { field: "memory", headerName: "Memory", width: 120 },
-        {
-            field: "action", headerName: "Action", width: 150,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <button
-                            className="accept-request"
-                        // onClick={() => handleEdit(params.row)}
-                        >Accept</button>
-                        <button
-                            className="refuse-request"
-                        // onClick={() => handleEdit(params.row)}
-                        >Refuse</button>
+        // {
+        //     field: "action", headerName: "Action", width: 150,
+        //     renderCell: (params) => {
+        //         return (
+        //             <>
+        //                 <button
+        //                     className="accept-request"
+        //                 // onClick={() => handleEdit(params.row)}
+        //                 >Accept</button>
+        //                 <button
+        //                     className="refuse-request"
+        //                 // onClick={() => handleEdit(params.row)}
+        //                 >Refuse</button>
 
-                    </>
-                );
-            },
-        },
+        //             </>
+        //         );
+        //     },
+        // },
     ];
 
     /**
-     * warrantyError
+     * Error
      */
     const warrantyErrorData = warrantyError;
     const warrantyErrorColums = [
@@ -166,7 +164,7 @@ export default function FactoryProcess() {
                 <div
                     className={process == 1 ? "process-btn" : "process-btn-inactive"}
                     onClick={() => { setProcess(1) }}
-                >Request</div>
+                >In Warranty</div>
             </div>
 
             <div className="process">
@@ -174,7 +172,7 @@ export default function FactoryProcess() {
                 <div
                     className={process == 2 ? "process-btn" : "process-btn-inactive"}
                     onClick={() => { setProcess(2) }}
-                >In warehouse</div>
+                >Warranted</div>
             </div>
 
             <div className="process">
@@ -182,7 +180,7 @@ export default function FactoryProcess() {
                 <div
                     className={process == 3 ? "process-btn" : "process-btn-inactive"}
                     onClick={() => { setProcess(3) }}
-                >Warranty error</div>
+                >Error</div>
             </div>
 
             <DataGrid
