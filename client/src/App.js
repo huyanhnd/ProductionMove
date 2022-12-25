@@ -26,6 +26,7 @@ import AddFactoryProduct from "./pages/factory/warehouse/AddFactoryProduct";
 import ServiceCenterProduct from "./pages/serviceCenter/products/ServiceCenterProducts"
 import AddServiceCenterProduct from "./pages/serviceCenter/products/AddServiceCenterProduct";
 import ServiceCenterProcess from "./pages/serviceCenter/process/ServiceCenterProcess";
+import StoreRequestProduct from "./pages/store/products/StoreRequestProduct";
 
 const Layout = () => {
     return (
@@ -61,6 +62,7 @@ const appRouter = createBrowserRouter([
             { path: "/factories", element: <Factory /> },
             { path: "/store", element: <StoreHome /> },
             { path: "/store-products", element: <StoreProducts /> },
+            { path: "/store-products/request", element: <StoreRequestProduct /> },
             { path: "/store-process", element: <StoreProcess /> },
             { path: "/servicecenters", element: <ServiceCenter /> },
             { path: "/servicecenters_products", element: <ServiceCenterProduct /> },

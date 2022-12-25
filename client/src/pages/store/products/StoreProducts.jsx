@@ -17,6 +17,10 @@ const StoreProducts = () => {
   }, [dispatch]);
   const products = useSelector((state) => state.product.products);
   
+  const [searchName, setSearchName] = useState("")
+  const handleSearch = (e) => {
+    setSearchName(e.target.value)
+  }
   // const GetProductLineById = (Id) => {
   //   getProductLineById(dispatch,Id)
   //   const productName = useSelector((state) => state.productline.productlineById)
@@ -31,7 +35,7 @@ const StoreProducts = () => {
     { field: "name", headerName: "Name", width: 140,
   renderCell: (params) => {
     return (
-      "Thinh dep trai"
+      params.row.status
     )
   } },
     { field: "capacity", headerName: "Memory", width: 70,
@@ -60,11 +64,12 @@ const StoreProducts = () => {
       <div className="datatableTitle">
         Products
         <div className="search">
-          <input type="text" placeholder="Search..." />
+          <input type="text" placeholder="Search product name..." value = {searchName} onChange={handleSearch}/>
           <SearchOutlinedIcon />
         </div>
-        <Link to="/users/new" className="link">
-          Add Product
+        <div className="blank"></div>
+        <Link to="/store-products/request" className="link">
+          Request Product
         </Link>
       </div>
       <DataGrid

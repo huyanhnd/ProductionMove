@@ -20,7 +20,7 @@ import {
 } from "../redux/productLineSlice";
 import { publicRequest } from "./requestMethods";
 
-export const getProductLines = async (dispatch,id) => {
+export const getProductLines = async (dispatch) => {
     dispatch(getProductLinesStart());
     try {
         const res = await publicRequest.get(`/Productline`);
