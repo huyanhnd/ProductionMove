@@ -6,7 +6,7 @@ using ProductionMove.Services;
 using ProductionMove.ViewModels;
 using ProductionMove.Authorization;
 
-namespace Supermarket.API.Controllers
+namespace ProductionMove.Controllers
 {
     public class FactoryController : BaseController
     {

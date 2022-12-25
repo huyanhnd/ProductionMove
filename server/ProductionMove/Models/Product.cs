@@ -1,32 +1,36 @@
-﻿using ProductionMove.Models;
-using System.ComponentModel.DataAnnotations;
-
-namespace ProductionMove.Data
+﻿namespace ProductionMove.Models
 {
-    public enum Status
+    public enum ProductStatus : byte
     {
-        Manufacture,
-        Store,
+        InFactory,
+        InStore,
         Sold,
+        InWarranty,
+        Warranted,
         Error,
-        Warranty
+        OutOfWarranty,
     }
+
     public class Product
     {
-        [Key]
+        public int Id { get; set; }
         public string Code { get; set; }
         public int ProductLineId { get; set; }
         public ProductLine ProductLine { get; set; }
         public DateTime ManufactureDate { get; set; }
         public string WarrantyPeriod { get; set; }
+        public int WarrantyTime { get; set; }
         public string Color { get; set; }
-        public int Capacity { get; set; }
-        public Status Status { get; set; }
+        public string Capacity { get; set; }
+        public ProductStatus Status { get; set; }
+        public string Price { get; set; }
         public int FactoryId { get; set; }
         public Factory Factory { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
         public int ServiceCenterId { get; set; }
         public ServiceCenter ServiceCenter { get; set; }
+        public int ProcessId { get; set; }
+        public Process Process { get; set; }
     }
 }

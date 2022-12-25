@@ -25,7 +25,6 @@ namespace ProductionMove.Services
             _context = context;
             _mapper = mapper;
         }
-
         public IEnumerable<ProvinceResponse> GetAllProvince()
         {
             var provinces = _context.Provinces;

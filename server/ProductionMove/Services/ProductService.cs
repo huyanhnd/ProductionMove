@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using ProductionMove.Data;
 using ProductionMove.Data.Context;
+using ProductionMove.Helpers;
 using ProductionMove.Models;
 using ProductionMove.ViewModels;
-using ProductionMove.ViewModels.Product;
+using ProductionMove.ViewModels.ProductModel;
 
 namespace ProductionMove.Services
 {
     public interface IProductService
     {
-        Task<QueryResult<ProductResponse>> ListAsync(Paging query, int seriesId);
-        Task<ProductResponse> FindByIdAsync(string code);
-        Task<ProductResponse> CreateAsync(ProductRequest product);
+        Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query);
+        Task<ProductResponse> FindByCodeAsync(string code);
+        Task CreateAsync(ProductRequest model, int quantity);
         Task<ProductResponse> UpdateAsync(string code, ProductRequest product);
         Task DeleteAsync(string code);
     }
@@ -26,35 +26,71 @@ namespace ProductionMove.Services
             _context = context;
             _mapper = mapper;
         }
-
-        public async Task<QueryResult<ProductResponse>> ListAsync(Paging query, int seriesId)
+        public async Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query)
         {
-            IQueryable<Product> queryable = _context.Products.AsNoTracking();
+            var jointable = (from p in _context.Products
+                        join pl in _context.ProductLines on p.ProductLineId equals pl.Id
+                        join f in _context.Factories on p.FactoryId equals f.Id
+                        join s in _context.Stores on p.StoreId equals s.Id
+                        join sc in _context.ServiceCenters on p.ServiceCenterId equals sc.Id
+                        join pc in _context.Processes on p.ProcessId equals pc.Id
+                        select new ProductResponse
+                        {
+                            Id = p.Id,
+                            Code = p.Code,
+                            Name = pl.Name,
+                            ProductLineId = pl.Id,
+                            Capacity = p.Capacity,
+                            Color = p.Color,
+                            ManufactureDate = p.ManufactureDate,
+                            Status = (int) p.Status,
+                            WarrantyPeriod = p.WarrantyPeriod,
+                            Price = p.Price,
+                            FactoryId = f.Id,
+                            StoreId = s.Id,
+                            ServiceCenterId = sc.Id,
+                            ProcessId = pc.Id,
+                        });
 
- /*           if (seriesId > 0)
+            if (query.FactoryId != 0)
             {
-                queryable = queryable.Where(p => p.SeriesId == seriesId);
-            }*/
+                jointable = jointable.Where(p => p.FactoryId == query.FactoryId);
+            }
+            else if (query.StoreId != 0)
+            {
+                jointable = jointable.Where(p => p.StoreId == query.StoreId);
+            }
+            else if (query.ServiceCenterId != 0)
+            {
+                jointable = jointable.Where(p => p.ServiceCenterId == query.ServiceCenterId);
+            };
 
-            var result = await PaginatedList<Product>.CreateAsync(queryable, query.PageNumber, query.PageSize);
+            var result = await PaginatedList<ProductResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
 
-            return _mapper.Map<QueryResult<Product>, QueryResult<ProductResponse>>(result);
+            return result;
         }
 
-        public async Task<ProductResponse> FindByIdAsync(string code)
+        public async Task<ProductResponse> FindByCodeAsync(string code)
         {
-            var productLine = await FindAsync(code);
-            return _mapper.Map<ProductResponse>(productLine);
+            var product = await findProductByCodeAsync(code);
+            return _mapper.Map<ProductResponse>(product);
         }
 
-        public async Task<ProductResponse> CreateAsync(ProductRequest model)
+        public async Task CreateAsync(ProductRequest model, int quantity)
         {
-            var productLine = _mapper.Map<Product>(model);
+            var models = new ProductRequest[quantity];
+            Array.Fill(models, model);
 
-            await _context.Products.AddAsync(productLine);
+            var products = new Product[quantity];
+
+            for (int i = 0; i < quantity; i++)
+            {
+                products[i] = _mapper.Map<Product>(models[i]);
+                products[i].ManufactureDate = DateTime.UtcNow;
+            }
+
+            await _context.Products.AddRangeAsync(products);
             await _context.SaveChangesAsync();
-
-            return _mapper.Map<ProductResponse>(productLine);
         }
 
         public async Task<ProductResponse> UpdateAsync(string code, ProductRequest model)
@@ -80,6 +116,13 @@ namespace ProductionMove.Services
             var productLine = await _context.Products.FindAsync(code);
             if (productLine == null) throw new KeyNotFoundException("Product not found");
             return productLine;
+        }
+
+        private async Task<Product> findProductByCodeAsync(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            return product;
         }
     }
 }
