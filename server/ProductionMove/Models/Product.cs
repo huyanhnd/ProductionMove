@@ -1,9 +1,16 @@
-﻿using ProductionMove.Models;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ProductionMove.Models
+﻿namespace ProductionMove.Models
 {
+    public enum ProductStatus : byte
+    {
+        InFactory,
+        InStore,
+        Sold,
+        InWarranty,
+        Warranted,
+        Error,
+        OutOfWarranty,
+    }
+
     public class Product
     {
         public int Id { get; set; }
@@ -12,9 +19,11 @@ namespace ProductionMove.Models
         public ProductLine ProductLine { get; set; }
         public DateTime ManufactureDate { get; set; }
         public string WarrantyPeriod { get; set; }
+        public int WarrantyTime { get; set; }
         public string Color { get; set; }
-        public int Capacity { get; set; }
-        public string Status { get; set; }
+        public string Capacity { get; set; }
+        public ProductStatus Status { get; set; }
+        public string Price { get; set; }
         public int FactoryId { get; set; }
         public Factory Factory { get; set; }
         public int StoreId { get; set; }

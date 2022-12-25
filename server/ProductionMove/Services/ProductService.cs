@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using ProductionMove.Data;
 using ProductionMove.Data.Context;
 using ProductionMove.Helpers;
 using ProductionMove.Models;
 using ProductionMove.ViewModels;
-using ProductionMove.ViewModels.Factory;
 using ProductionMove.ViewModels.ProductModel;
 
 namespace ProductionMove.Services
@@ -31,23 +28,28 @@ namespace ProductionMove.Services
         }
         public async Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query)
         {
-            var jointable = _context.Products
-                        .Join(_context.Factories, product => product.FactoryId, factory => factory.Id, (product, factory) => new { product, factory })
-                        .Join(_context.Stores, productFactory => productFactory.product.StoreId, store => store.Id, (productFactory, store) => new { productFactory, store })
-                        .Select(m => new ProductResponse
+            var jointable = (from p in _context.Products
+                        join pl in _context.ProductLines on p.ProductLineId equals pl.Id
+                        join f in _context.Factories on p.FactoryId equals f.Id
+                        join s in _context.Stores on p.StoreId equals s.Id
+                        join sc in _context.ServiceCenters on p.ServiceCenterId equals sc.Id
+                        join pc in _context.Processes on p.ProcessId equals pc.Id
+                        select new ProductResponse
                         {
-                            Id = m.productFactory.product.Id,
-                            Code = m.productFactory.product.Code,
-                            ProductLineId = m.productFactory.product.ProductLineId,
-                            Capacity = m.productFactory.product.Capacity,
-                            Color = m.productFactory.product.Color,
-                            ManufactureDate = m.productFactory.product.ManufactureDate,
-                            Status = m.productFactory.product.Status,
-                            WarrantyPeriod = m.productFactory.product.Status,
-                            FactoryId = m.productFactory.factory.Id,
-                            StoreId = m.store.Id,
-                            ServiceCenterId = 0,
-                            ProcessId = 0,
+                            Id = p.Id,
+                            Code = p.Code,
+                            Name = pl.Name,
+                            ProductLineId = pl.Id,
+                            Capacity = p.Capacity,
+                            Color = p.Color,
+                            ManufactureDate = p.ManufactureDate,
+                            Status = (int) p.Status,
+                            WarrantyPeriod = p.WarrantyPeriod,
+                            Price = p.Price,
+                            FactoryId = f.Id,
+                            StoreId = s.Id,
+                            ServiceCenterId = sc.Id,
+                            ProcessId = pc.Id,
                         });
 
             if (query.FactoryId != 0)
@@ -81,9 +83,10 @@ namespace ProductionMove.Services
 
             var products = new Product[quantity];
 
-            for(int i=0; i< quantity; i++)
+            for (int i = 0; i < quantity; i++)
             {
                 products[i] = _mapper.Map<Product>(models[i]);
+                products[i].ManufactureDate = DateTime.UtcNow;
             }
 
             await _context.Products.AddRangeAsync(products);
