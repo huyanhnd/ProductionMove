@@ -65,6 +65,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<ISeriesService, SeriesService>();
     services.AddScoped<IProductLineService, ProductLineService>();
     services.AddScoped<IProductService, ProductService>();
+    services.AddScoped<IProcessService, ProcessService>();
 }
 
 var app = builder.Build();

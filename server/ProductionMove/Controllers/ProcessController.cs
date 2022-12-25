@@ -4,7 +4,7 @@ using ProductionMove.Services;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.ProcessModel;
 
-namespace Supermarket.API.Controllers
+namespace ProductionMove.Controllers
 {
     public class ProcessController : BaseController
     {

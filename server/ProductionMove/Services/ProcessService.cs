@@ -5,6 +5,7 @@ using ProductionMove.Models;
 using ProductionMove.ViewModels.ProcessModel;
 using ProductionMove.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Principal;
 
 namespace ProductionMove.Services
 {
@@ -29,57 +30,57 @@ namespace ProductionMove.Services
 
         public async Task<QueryResult<ProcessResponse>> ListAsync(Paging query)
         {
-            IQueryable<Product> queryable = _context.Products.AsNoTracking();
+            IQueryable<Process> queryable = _context.Processes.AsNoTracking();
 
-            /*           if (seriesId > 0)
-                       {
-                           queryable = queryable.Where(p => p.SeriesId == seriesId);
-                       }*/
+            var result = await PaginatedList<Process>.CreateAsync(queryable, query.PageNumber, query.PageSize);
 
-            var result = await PaginatedList<Product>.CreateAsync(queryable, query.PageNumber, query.PageSize);
-
-            return _mapper.Map<QueryResult<Product>, QueryResult<ProcessResponse>>(result);
+            return _mapper.Map<QueryResult<Process>, QueryResult<ProcessResponse>>(result);
         }
 
         public async Task<ProcessResponse> FindByIdAsync(int id)
         {
-            var productLine = await FindAsync(id);
-            return _mapper.Map<ProcessResponse>(productLine);
+            var process = await FindAsync(id);
+            return _mapper.Map<ProcessResponse>(process);
         }
 
         public async Task<ProcessResponse> CreateAsync(ProcessRequest model)
         {
-            var productLine = _mapper.Map<Product>(model);
+            var process = _mapper.Map<Process>(model);
 
-            await _context.Products.AddAsync(productLine);
+            process.RequiredDate = DateTime.UtcNow;
+
+            await _context.Processes.AddAsync(process);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<ProcessResponse>(productLine);
+            return _mapper.Map<ProcessResponse>(process);
         }
 
-        public async Task<ProcessResponse> UpdateAsync(int id, ProcessRequest process)
+        public async Task<ProcessResponse> UpdateAsync(int id, ProcessRequest model)
         {
-            var productLine = await FindAsync(id);
+            var process = await FindAsync(id);
 
-            _mapper.Map(process, productLine);
-            _context.Products.Update(productLine);
+            _mapper.Map(model, process);
+
+            process.ApprovedDate = DateTime.UtcNow;
+
+            _context.Processes.Update(process);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<ProcessResponse>(productLine);
+            return _mapper.Map<ProcessResponse>(process);
         }
 
         public async Task DeleteAsync(int id)
         {
-            var productLine = await FindAsync(id);
-            _context.Products.Remove(productLine);
+            var process = await FindAsync(id);
+            _context.Processes.Remove(process);
             await _context.SaveChangesAsync();
         }
 
-        private async Task<Product> FindAsync(int id)
+        private async Task<Process> FindAsync(int id)
         {
-            var productLine = await _context.Products.FindAsync(id);
-            if (productLine == null) throw new KeyNotFoundException("Process not found");
-            return productLine;
+            var process = await _context.Processes.FindAsync(id);
+            if (process == null) throw new KeyNotFoundException("Process not found");
+            return process;
         }
     }
 }
