@@ -10,7 +10,7 @@
         public string WarrantyPeriod { get; set; }
         public string Color { get; set; }
         public string Capacity { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public string Price { get; set; }
         public int FactoryId { get; set; }
         public int StoreId { get; set; }

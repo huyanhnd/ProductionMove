@@ -43,7 +43,7 @@ namespace ProductionMove.Services
                             Capacity = p.Capacity,
                             Color = p.Color,
                             ManufactureDate = p.ManufactureDate,
-                            Status = (int) p.Status,
+                            Status = p.Status.ToString(),
                             WarrantyPeriod = p.WarrantyPeriod,
                             Price = p.Price,
                             FactoryId = f.Id,
