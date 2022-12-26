@@ -10,6 +10,8 @@ using ProductionMove.ViewModels.ProductLine;
 using ProductionMove.ViewModels.Series;
 using ProductionMove.ViewModels.ProcessModel;
 using ProductionMove.ViewModels.ProductModel;
+using ProductionMove.ViewModels.Store;
+using ProductionMove.ViewModels.ServiceCenter;
 
 public class AutoMapperProfile : Profile
 {
@@ -47,19 +49,14 @@ public class AutoMapperProfile : Profile
         CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
         
         //Store
-        CreateMap<Factory, FactoryResponse>();
-        CreateMap<FactoryRequest, Factory>();
-        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
-        
-        //Warehouse
-        CreateMap<Factory, FactoryResponse>();
-        CreateMap<FactoryRequest, Factory>();
-        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        CreateMap<Store, StoreResponse>();
+        CreateMap<StoreRequest, Store>();
+        CreateMap<QueryResult<Store>, QueryResult<StoreResponse>>(); 
         
         //ServiceCenter
-        CreateMap<Factory, FactoryResponse>();
-        CreateMap<FactoryRequest, Factory>();
-        CreateMap<QueryResult<Factory>, QueryResult<FactoryResponse>>();
+        CreateMap<ServiceCenter, ServiceCenterResponse>();
+        CreateMap<ServiceCenterRequest, ServiceCenter>();
+        CreateMap<QueryResult<ServiceCenter>, QueryResult<ServiceCenterResponse>>();
         
         //Series
         CreateMap<Series, SeriesResponse>();
@@ -74,8 +71,6 @@ public class AutoMapperProfile : Profile
         //Product
         CreateMap<Product, ProductResponse>();
         CreateMap<ProductRequest, Product>();
-/*        CreateMap<Product[], ProductResponse[]>();
-        CreateMap<ProductRequest[], Product[]>();*/
         CreateMap<QueryResult<Product>, QueryResult<ProductResponse>>();
 
         //Product
