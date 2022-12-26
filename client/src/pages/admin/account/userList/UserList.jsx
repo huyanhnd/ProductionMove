@@ -29,15 +29,17 @@ export default function UserList() {
       hour12: false,
       timeZone: "Asia/Ho_Chi_Minh",
     };
-    const date = new Date(created);
-    console.log(new Intl.DateTimeFormat("en-US", options).format(date));
+    const dateFomat = new Date(created);
+    const [date,time] = (new Intl.DateTimeFormat("en-US", options).format(dateFomat)).split(',')
+    const [month,day,year] = date.split('/')
+    return time.concat(" - ",date)
   };
 
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
     {
       field: "User",
-      headerName: "Image",
+      headerName: "FullName",
       width: 200,
       renderCell: (params) => {
         return (
@@ -56,13 +58,20 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-          <>
             <div className="">{createdDate(params.row.created)}</div>
-          </>
         );
       },
     },
-    { field: "updated", headerName: "Update At", width: 90 },
+    {
+      field: "updated",
+      headerName: "Update At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+            <div className="">{params.row.updated===null ? "Undefine" : createdDate(params.row.updated)}</div>
+        );
+      },
+    },
     {
       field: "action",
       headerName: "Action",

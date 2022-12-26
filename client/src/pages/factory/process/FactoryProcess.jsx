@@ -1,136 +1,45 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getProducts } from "../../../api/productsApi";
 import { inWarehouse, requestFromStore, warrantyError } from "../../../dummyData";
 import { setCurrentStoreRequest } from "../../../redux/currentStoreRequestSlice";
+import Export from "./export/Export";
 import "./factoryProcess.css"
+import StoreRequest from "./storeRequest/StoreRequest";
+import WarrantyError from "./warrantyError/WarrantyError";
 
 export default function FactoryProcess() {
     const dispatch = useDispatch();
+    useEffect(() => {
+        getProducts(dispatch);
+    }, [dispatch]);
+    const products = useSelector((state) => state.product.products);
     const Button = ({ type }) => {
         return <button className={"status-button " + type}>{type}</button>;
     };
     /**
      * Process
-     * 1: store request, 2: Nhập kho, 3: Bảo hành
+     * 1: store request, 2: export, 3: Warranty
      */
     const [process, setProcess] = useState(1)
 
     /**
-     * Request
-     */
+      * Request
+      */
     const requestData = requestFromStore;
-    const handleViewDetails = (row) => {
-        dispatch(setCurrentStoreRequest(row.id))
-    }
-    const requestColumns = [
-        {
-            field: "id", headerName: "No.", width: 50,
-            renderCell: (params) => {
-                return params.row.id + 1;
-            }
-        },
-        { field: "request", headerName: "Request", width: 150, },
-        { field: "receivedAt", headerName: "Received At", width: 200 },
-        {
-            field: "status", headerName: "Status", width: 200,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <Button type={params.row.status} />
-                        <Link
-                            to={"/factory-process/request" + params.row.id}
-                            className="view-details"
-                            onClick={() => handleViewDetails(params.row)}
-                        // onClick={() => handleEdit(params.row)}
-                        >View details</Link>
-                    </>
-                );
-            },
-        },
-    ];
 
     /**
      * Export
      */
     const inWarehouseData = inWarehouse;
-    const inWarehouseColums = [
-        {
-            field: "id", headerName: "No.", width: 50,
-            renderCell: (params) => {
-                return params.row.id + 1;
-            }
-        },
-        {
-            field: "product", headerName: "Product", width: 250,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <img
-                            src={params.row.url}
-                            alt=""
-                            className="widgetLgImg"
-                        />
-                        <div>{params.row.product}</div>
-                    </>
-                )
-            }
-        },
-        { field: "code", headerName: "Code", width: 120 },
-        { field: "color", headerName: "Color", width: 120 },
-        { field: "memory", headerName: "Memory", width: 120 },
-        {
-            field: "action", headerName: "Action", width: 150,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <button
-                            className="accept-request"
-                        // onClick={() => handleEdit(params.row)}
-                        >Accept</button>
-                        <button
-                            className="refuse-request"
-                        // onClick={() => handleEdit(params.row)}
-                        >Refuse</button>
-
-                    </>
-                );
-            },
-        },
-    ];
 
     /**
      * warrantyError
      */
     const warrantyErrorData = warrantyError;
-    const warrantyErrorColums = [
-        {
-            field: "id", headerName: "No.", width: 50,
-            renderCell: (params) => {
-                return params.row.id + 1;
-            }
-        },
-        {
-            field: "product", headerName: "Product", width: 250,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <img
-                            src={params.row.url}
-                            alt=""
-                            className="widgetLgImg"
-                        />
-                        <div>{params.row.product}</div>
-                    </>
-                )
-            }
-        },
-        { field: "code", headerName: "Code", width: 120 },
-        { field: "color", headerName: "Color", width: 120 },
-        { field: "memory", headerName: "Memory", width: 120 },
-        { field: "status", headerName: "Status", width: 120 },
-    ];
+
 
     return (
         <div className="factoryProcess-page">
@@ -162,34 +71,15 @@ export default function FactoryProcess() {
             </div>
 
             <div className={process === 1 ? "data-table" : "none-display"}>
-                <DataGrid
-                    rows={requestData}
-                    disableSelectionOnClick
-                    columns={requestColumns}
-                    pageSize={100}
-                    checkboxSelection
-                // onRowClick = {()=> { }}
-                />
+                <StoreRequest />
             </div>
 
             <div className={process === 2 ? "data-table" : "none-display"}>
-                <DataGrid
-                    rows={inWarehouseData}
-                    disableSelectionOnClick
-                    columns={inWarehouseColums}
-                    pageSize={100}
-                    checkboxSelection
-                />
+                <Export />
             </div>
 
             <div className={process === 3 ? "data-table" : "none-display"}>
-                <DataGrid
-                    rows={warrantyErrorData}
-                    disableSelectionOnClick
-                    columns={warrantyErrorColums}
-                    pageSize={100}
-                    checkboxSelection
-                />
+                <WarrantyError />
             </div>
         </div>
     )

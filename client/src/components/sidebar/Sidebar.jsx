@@ -93,14 +93,20 @@ export default function Sidebar() {
         {
           icon: LineStyle,
           title: "Home",
-          link: "/",
+          link: "/store",
           key: 1,
         },
         {
           icon: Storefront,
           title: "Store",
-          link: "/stores",
-          key: 7,
+          link: "/store-products",
+          key: 2,
+        },
+        {
+          icon: Settings,
+          title: "Process",
+          link: "/stores-process",
+          key: 3,
         },
       ]
     },
@@ -122,8 +128,8 @@ export default function Sidebar() {
         {
           icon: Settings,
           title: "Process",
-          link: "/factory_process",
-          key: 3,z
+          link: "/servicecenters_process",
+          key: 3,
         },
       ]
     },
@@ -141,7 +147,8 @@ export default function Sidebar() {
                   <Link onClick={() => { setIsActive(child.key) }} to={child.link} className="link">
                     <li className={isActive === child.key ? "sidebarListItem active" : "sidebarListItem"}>
                       <child.icon className="sidebarIcon" />
-                      {child.title}
+                      <h3 className="sidebarText">{child.title}</h3>
+                      {/* {child.title} */}
                     </li>
                   </Link>
                 ))

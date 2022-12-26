@@ -16,14 +16,16 @@
             align-items: center;
             border: 0.5px solid lightgray;
             padding: 3px;
+            margin-left: 20px;
 
             input {
                 border: none;
                 outline: none;
                 background: transparent;
+                width: 160px;
 
                 &::placeholder {
-                    font-size: 12px;
+                    font-size: 14px;
                 }
             }
         }
@@ -37,6 +39,14 @@
             padding: 5px;
             border-radius: 5px;
             cursor: pointer;
+
+            &:hover {
+                background-color: rgb(242, 255, 242);
+                // opacity: 0.5;
+            }
+        }
+        .blank {
+            flex: 1;
         }
     }
 
@@ -53,23 +63,48 @@
         }
     }
 
-    .cellWithStatus {
+    .status-button {
         padding: 5px;
         border-radius: 5px;
+        border: none;
 
-        &.active {
-            background-color: rgba(0, 128, 0, 0.05);
-            color: green;
+        &.aaaa {
+            background-color: #fbfffd;
+            color: #3bb077;
+            border: 1px solid #3bb077;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: 4px 8px;
+            width: 120px;
         }
 
-        &.pending {
-            background-color: rgba(255, 217, 0, 0.05);
-            color: goldenrod;
+        &.aaa {
+            background-color: #fffdf8;
+            color: #e69200;
+            border: 1px solid #e69200;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: 4px 8px;
+            width: 120px;
         }
 
-        &.passive {
-            background-color: rgba(255, 0, 0, 0.05);
+        &.string {
+            background-color: #fff8fb;
             color: crimson;
+            border: 1px solid crimson;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: 4px 8px;
+            width: 120px;
+        }
+        &.Factory {
+            background-color: #fbfdff;
+            color: #2196f3;
+            border: 1px solid #2196f3;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: 4px 8px;
+            width: 120px;
         }
     }
 

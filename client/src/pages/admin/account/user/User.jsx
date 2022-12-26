@@ -5,11 +5,22 @@ import {
   PermIdentity,
   PhoneAndroid,
   Publish,
+  Man
 } from "@mui/icons-material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getUsers } from "../../../../api/userApi";
 import "./user.css";
 
 export default function User() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.users);
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -22,38 +33,38 @@ export default function User() {
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/1671172307669roberto-nickson-Gvm2wM3V5PA-unsplash.jpg?alt=media&token=4e9bcb67-6160-4074-9850-ce734b3c6a92"
               alt=""
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              {/* <span className="userShowUsername">{user.fullname}</span> */}
+              <span className="userShowUserTitle">Fullname</span>
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">username</span>
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
+              <span className="userShowInfoTitle">created</span>
             </div>
-            <span className="userShowTitle">Contact Details</span>
+            {/* <span className="userShowTitle">Description Details</span> */}
             <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
+              <Man className="userShowIcon" />
+              <span className="userShowInfoTitle">Role</span>
             </div>
-            <div className="userShowInfo">
+            {/* <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
               <span className="userShowInfoTitle">annabeck99@gmail.com</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
               <span className="userShowInfoTitle">New York | USA</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="userUpdate">
@@ -64,7 +75,7 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder="annabeck99"
+                  placeholder="username"
                   className="userUpdateInput"
                 />
               </div>
@@ -72,7 +83,7 @@ export default function User() {
                 <label>Full Name</label>
                 <input
                   type="text"
-                  placeholder="Anna Becker"
+                  placeholder="fullname"
                   className="userUpdateInput"
                 />
               </div>
@@ -85,27 +96,28 @@ export default function User() {
                 />
               </div>
               <div className="userUpdateItem">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  placeholder="+1 123 456 67"
-                  className="userUpdateInput"
-                />
+                <label>Role</label>
+                <select className="selectRole">
+                  <option value="manufacture">Admin</option>
+                  <option value="store">Factory</option>
+                  <option value="sold">Store</option>
+                  <option value="error">ServiceCenter</option>
+                </select>
               </div>
-              <div className="userUpdateItem">
+              {/* <div className="userUpdateItem">
                 <label>Address</label>
                 <input
                   type="text"
                   placeholder="New York | USA"
                   className="userUpdateInput"
                 />
-              </div>
+              </div> */}
             </div>
             <div className="userUpdateRight">
               <div className="userUpdateUpload">
                 <img
                   className="userUpdateImg"
-                  src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/1671172307669roberto-nickson-Gvm2wM3V5PA-unsplash.jpg?alt=media&token=4e9bcb67-6160-4074-9850-ce734b3c6a92"
                   alt=""
                 />
                 <label htmlFor="file">

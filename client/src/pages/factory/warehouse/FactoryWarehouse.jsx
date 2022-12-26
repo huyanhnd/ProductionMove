@@ -9,8 +9,8 @@ const FactoryWarehouse = () => {
   const [data, setData] = useState(userRows);
   const Button = ({ type }) => {
     return <button className={"status-button " + type}>{type}</button>;
-};
-  const userColumns = [
+  };
+  const columns = [
     { field: "id", headerName: "No.", width: 70 },
     {
       field: "user",
@@ -31,17 +31,12 @@ const FactoryWarehouse = () => {
       headerName: "Color",
       width: 100,
     },
-  
     {
       field: "age",
       headerName: "Memory",
       width: 100,
       renderCell: (params) => {
-        return (
-          <div className="cellWithImg">
-            {params.row.age} GB
-          </div>
-        );
+        return <div className="cellWithImg">{params.row.age} GB</div>;
       },
     },
     {
@@ -49,18 +44,15 @@ const FactoryWarehouse = () => {
       headerName: "Status",
       width: 160,
       renderCell: (params) => {
-        return (
-          <Button type={params.row.status}/>
-        );
+        return <Button type={params.row.status} />;
       },
     },
   ];
-  
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
-  
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -76,9 +68,9 @@ const FactoryWarehouse = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         checkboxSelection
       />
     </div>

@@ -17,8 +17,16 @@ import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
 import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
-import UpdateStoreRequest from "./pages/factory/process/UpdateStoreRequest";
+import StoreHome from "./pages/store/home/StoreHome"
+import StoreProducts from "./pages/store/products/StoreProducts"
+import StoreProcess from "./pages/store/process/StoreProcess"
+import UpdateStoreRequest from "./pages/factory/process/storeRequest/UpdateStoreRequest";
+import FactoryWarehouse from "./pages/factory/warehouse/FactoryWarehouse";
+import AddFactoryProduct from "./pages/factory/warehouse/AddFactoryProduct";
 import ServiceCenterProduct from "./pages/serviceCenter/products/ServiceCenterProducts"
+import AddServiceCenterProduct from "./pages/serviceCenter/products/AddServiceCenterProduct";
+import ServiceCenterProcess from "./pages/serviceCenter/process/ServiceCenterProcess";
+import StoreRequestProduct from "./pages/store/products/StoreRequestProduct";
 
 const Layout = () => {
     return (
@@ -46,18 +54,20 @@ const appRouter = createBrowserRouter([
             { path: "/products", element: <ProductList /> },
             { path: "/product/:code", element: <UpdateFactory /> },
             { path: "/newproduct", element: <NewProduct /> },
-            { path: "/factories", element: <Factory /> },
-            { path: "/stores", element: <ServiceCenter /> },
-            { path: "/servicecenters", element: <ServiceCenter /> },
-
-            //Role: Factory
             { path: "/factory", element:  <FactoryHome />},
-            { path: "/factory_products", element:  <FactoryProducts />},
-            { path: "/factory_process", element:  <FactoryProcess />},
-            { path: "/factory_process/request:code", element:  <UpdateStoreRequest />},
-
-            //Role: Service Centers
+            { path: "/factory-warehouse", element:  <FactoryWarehouse />},
+            { path: "/factory-warehouse/addproducts", element:  <AddFactoryProduct />},
+            { path: "/factory-process", element:  <FactoryProcess />},
+            { path: "/factory-process/request:code", element:  <UpdateStoreRequest />},
+            { path: "/factories", element: <Factory /> },
+            { path: "/store", element: <StoreHome /> },
+            { path: "/store-products", element: <StoreProducts /> },
+            { path: "/store-products/request", element: <StoreRequestProduct /> },
+            { path: "/store-process", element: <StoreProcess /> },
+            { path: "/servicecenters", element: <ServiceCenter /> },
             { path: "/servicecenters_products", element: <ServiceCenterProduct /> },
+            { path: "/servicecenters_products/addproducts", element: <AddServiceCenterProduct /> },
+            { path: "/servicecenters_process", element:  <ServiceCenterProcess />},
         ],
     }
 ]);

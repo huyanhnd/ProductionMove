@@ -152,3 +152,8 @@
     color: white;
     font-weight: 600;
 }
+
+.selectRole {
+  width: 120px;
+  height: 30px;
+}

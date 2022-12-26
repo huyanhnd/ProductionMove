@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import "./productLineItem.css";
 
-
 export default function ProductLineItem({ data }) {
+  const popup = document.getElementById("popup");
+  function openPopup() {
+    popup.classList.add("open_popup");
+  }
   return (
     <div className="seriItemSection">
       <div className="productline_slider">
@@ -27,12 +30,35 @@ export default function ProductLineItem({ data }) {
               </div>
               <div className="productline_price">{data.price}</div>
             </div>
-            <Link to="/products" className="link">
-              <button className="seemore-Btn">See more</button>
-            </Link>
+            <div className="link">
+              <button className="seemore-Btn" onClick={() => openPopup()}>
+                See more
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      {/* <div class="modal-background"></div>
+      <div className="popup" id="popup">
+        <header className="modal-card-head">
+          <p className="modal-card-title is-flex">Thông số kĩ thuật</p>
+        </header>
+        <section className="modal-card-body">
+          <div className="modal-content">
+            <ul className="technical-content-modal">
+              <li>
+                <p className="title-1">Màn hình</p>
+                <div className="modal-item-description">
+                  <div className="select-1">
+                    <p>Kích thước màn hình</p>
+                    <div>6.7 inches</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div> */}
     </div>
   );
 }

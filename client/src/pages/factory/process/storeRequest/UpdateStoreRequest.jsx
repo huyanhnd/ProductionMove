@@ -1,6 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid"
 import { useSelector } from "react-redux"
-import { requestFromStore } from "../../../dummyData"
+import { requestFromStore } from "../../../../dummyData"
 import "./updateStoreRequest.scss"
 
 export default function UpdateStoreRequest() {

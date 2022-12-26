@@ -40,12 +40,12 @@
 
 .process-btn {
     line-height: 35px;
-    background-color: #ebf1fe;
+    background-color: #fff;
     color: #2a7ade;
     border: 1px solid #2a7ade;
     border-radius: 5px;
     padding: 0 10px;
-    font-size: 14px;
+    font-size: 16px;
     align-self: center;
 }
 
@@ -60,11 +60,12 @@
 
 .process-btn-inactive {
     line-height: 36px;
-    background-color: rgb(229, 229, 229);
+    background-color: rgb(238, 238, 238);
     color: rgb(56, 56, 56);
+    border: 1px solid #d5d5d5;
     border-radius: 5px;
-    padding: 0 11px;
-    font-size: 14px;
+    padding: 0 10px;
+    font-size: 16px;
     align-self: center;
     /* border: rgb(176, 176, 176); */
 }
