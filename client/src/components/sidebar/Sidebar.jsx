@@ -141,7 +141,8 @@ export default function Sidebar() {
                   <Link onClick={() => { setIsActive(child.key) }} to={child.link} className="link">
                     <li className={isActive === child.key ? "sidebarListItem active" : "sidebarListItem"}>
                       <child.icon className="sidebarIcon" />
-                      {child.title}
+                      <h3 className="sidebarText">{child.title}</h3>
+                      {/* {child.title} */}
                     </li>
                   </Link>
                 ))
