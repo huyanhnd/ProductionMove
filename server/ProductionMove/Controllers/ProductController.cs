@@ -8,7 +8,7 @@ using ProductionMove.Services;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.ProductModel;
 
-namespace Supermarket.API.Controllers
+namespace ProductionMove.Controllers
 {
     public class ProductController : BaseController
     {

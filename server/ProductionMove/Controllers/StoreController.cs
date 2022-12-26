@@ -6,7 +6,7 @@ using ProductionMove.ViewModels.Store;
 using ProductionMove.Services;
 using ProductionMove.ViewModels;
 
-namespace Supermarket.API.Controllers
+namespace ProductionMove.Controllers
 {
     public class StoreController : BaseController
     {
