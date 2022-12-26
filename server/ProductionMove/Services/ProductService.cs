@@ -12,7 +12,7 @@ namespace ProductionMove.Services
     {
         Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query);
         Task<ProductResponse> FindByCodeAsync(string code);
-        Task CreateAsync(ProductRequest model, int quantity);
+        Task CreateAsync(ProductRequest model);
         Task<ProductResponse> UpdateAsync(string code, ProductRequest product);
         Task DeleteAsync(string code);
     }
@@ -30,10 +30,10 @@ namespace ProductionMove.Services
         {
             var jointable = (from p in _context.Products
                         join pl in _context.ProductLines on p.ProductLineId equals pl.Id
-                        join f in _context.Factories on p.FactoryId equals f.Id
+                        /*join f in _context.Factories on p.FactoryId equals f.Id
                         join s in _context.Stores on p.StoreId equals s.Id
                         join sc in _context.ServiceCenters on p.ServiceCenterId equals sc.Id
-                        join pc in _context.Processes on p.ProcessId equals pc.Id
+                        join pc in _context.Processes on p.ProcessId equals pc.Id*/
                         select new ProductResponse
                         {
                             Id = p.Id,
@@ -43,13 +43,13 @@ namespace ProductionMove.Services
                             Capacity = p.Capacity,
                             Color = p.Color,
                             ManufactureDate = p.ManufactureDate,
-                            Status = (int) p.Status,
+                            Status = p.Status.ToString(),
                             WarrantyPeriod = p.WarrantyPeriod,
                             Price = p.Price,
-                            FactoryId = f.Id,
-                            StoreId = s.Id,
-                            ServiceCenterId = sc.Id,
-                            ProcessId = pc.Id,
+                            FactoryId = p.FactoryId,
+                            StoreId = p.StoreId,
+                            ServiceCenterId = p.ServiceCenterId,
+                            ProcessId = p.ProcessId,
                         });
 
             if (query.FactoryId != 0)
@@ -76,14 +76,14 @@ namespace ProductionMove.Services
             return _mapper.Map<ProductResponse>(product);
         }
 
-        public async Task CreateAsync(ProductRequest model, int quantity)
+        public async Task CreateAsync(ProductRequest model)
         {
-            var models = new ProductRequest[quantity];
+            var models = new ProductRequest[model.Quantity];
             Array.Fill(models, model);
 
-            var products = new Product[quantity];
+            var products = new Product[model.Quantity];
 
-            for (int i = 0; i < quantity; i++)
+            for (int i = 0; i < model.Quantity; i++)
             {
                 products[i] = _mapper.Map<Product>(models[i]);
                 products[i].ManufactureDate = DateTime.UtcNow;

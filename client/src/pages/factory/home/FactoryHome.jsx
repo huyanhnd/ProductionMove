@@ -7,7 +7,7 @@ import { userData } from "../../../dummyData";
 
 const FactoryHome = () => {
     return (
-        <div className="home">
+        <div className="homeFactory">
             <div className="homeContainer">
                 <div className="widgets">
                     <Widget type="user" />

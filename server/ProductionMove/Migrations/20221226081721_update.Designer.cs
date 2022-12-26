@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductionMove.Data.Context;
 
@@ -11,9 +12,10 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221226081721_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,6 +169,7 @@ namespace ProductionMove.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("FactoryId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ManufactureDate")
@@ -183,6 +186,7 @@ namespace ProductionMove.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ServiceCenterId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<byte>("Status")
@@ -191,6 +195,7 @@ namespace ProductionMove.Migrations
                         .HasDefaultValue((byte)0);
 
                     b.Property<int?>("StoreId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("WarrantyPeriod")
@@ -481,7 +486,8 @@ namespace ProductionMove.Migrations
                     b.HasOne("ProductionMove.Models.Factory", "Factory")
                         .WithMany("Products")
                         .HasForeignKey("FactoryId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("ProductionMove.Models.Process", "Process")
                         .WithMany("Products")
@@ -496,12 +502,14 @@ namespace ProductionMove.Migrations
                     b.HasOne("ProductionMove.Models.ServiceCenter", "ServiceCenter")
                         .WithMany("Products")
                         .HasForeignKey("ServiceCenterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("ProductionMove.Models.Store", "Store")
                         .WithMany("Products")
                         .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Factory");
 

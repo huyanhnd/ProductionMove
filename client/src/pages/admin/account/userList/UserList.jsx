@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../../api/userApi";
 import { useEffect } from "react";
+import { formatDate } from "../../../../helper/formatDate";
 
 export default function UserList() {
   const dispatch = useDispatch();
@@ -18,23 +19,6 @@ export default function UserList() {
     deleteUser(id, dispatch);
   };
 
-  const createdDate = (created) => {
-    let options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: false,
-      timeZone: "Asia/Ho_Chi_Minh",
-    };
-    const dateFomat = new Date(created);
-    const [date,time] = (new Intl.DateTimeFormat("en-US", options).format(dateFomat)).split(',')
-    const [month,day,year] = date.split('/')
-    return time.concat(" - ",date)
-  };
-
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
     {
@@ -44,7 +28,8 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <div className="userListItem">
-            <img className="userListImg" src={params.row.img} alt="" />
+            {/* src={params.row.image} */}
+            <img className="userListImg" src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/1671172307669roberto-nickson-Gvm2wM3V5PA-unsplash.jpg?alt=media&token=4e9bcb67-6160-4074-9850-ce734b3c6a92" alt="" />
             {params.row.fullName}
           </div>
         );
@@ -58,7 +43,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{createdDate(params.row.created)}</div>
+            <div className="">{formatDate(params.row.created)}</div>
         );
       },
     },
@@ -68,7 +53,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{params.row.updated===null ? "Undefine" : createdDate(params.row.updated)}</div>
+            <div className="">{params.row.updated===null ? "Undefine" : formatDate(params.row.updated)}</div>
         );
       },
     },

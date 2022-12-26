@@ -11,15 +11,10 @@ export default function FactoryList() {
   const dispatch = useDispatch();
   const factory = useSelector((state) => state.factory.factories);
 
-  /**
-   * handle Delete
-   */
   const handleDelete = (row) => {
     // setData(data.filter((item) => item.id !== id));
   };
-  /**
-   * handle Edit
-   */
+
   const handleEdit = (row) => {
     dispatch(setCurrentFactoryInfo(row))
   };

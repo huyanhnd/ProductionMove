@@ -1,18 +1,11 @@
 .factoryPage {
   flex: 4;
-  font-family: 'Source Sans Pro', sans-serif;
 }
-
-/* .factoryListItem{
-  display: flex;
-  align-items: center;
-} */
 
 .header {
   display: flex;
   flex-direction: row;
 }
-
 
 .factoryListEdit {
   border: none;

@@ -1,6 +1,6 @@
 .home{
-    flex: 4;
-    flex-direction: column;
+   flex: 4;
+   flex-direction: column;
 }
 
 .homeWidgets{
