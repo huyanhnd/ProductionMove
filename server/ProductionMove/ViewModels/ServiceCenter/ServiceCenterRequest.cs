@@ -11,6 +11,9 @@ namespace ProductionMove.ViewModels.ServiceCenter
         public string Address { get; set; }
 
         [Required]
-        public int WardId { get; set; }
+        public string WardCode { get; set; }
+
+        [Required]
+        public int AccountId { get; set; }
     }
 }

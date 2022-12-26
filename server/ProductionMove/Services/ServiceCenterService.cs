@@ -5,6 +5,10 @@ using ProductionMove.Models;
 using ProductionMove.Helpers;
 using ProductionMove.ViewModels.ServiceCenter;
 using ProductionMove.ViewModels;
+using Newtonsoft.Json.Linq;
+using ProductionMove.ViewModels.Accounts;
+using System.Security.Principal;
+using ProductionMove.ViewModels.ProductModel;
 
 namespace ProductionMove.Services
 {
@@ -12,8 +16,8 @@ namespace ProductionMove.Services
     {
         Task<QueryResult<ServiceCenterResponse>> ListAsync(ServiceCenterQuery query);
         Task<ServiceCenterResponse> FindAsync(int id);
-        Task<ServiceCenterResponse> CreateAsync(ServiceCenterRequest serviceCenter);
-        Task<ServiceCenterResponse> UpdateAsync(int id, ServiceCenterRequest serviceCenter);
+        Task<ServiceCenterResponse> CreateAsync(ServiceCenterRequest ServiceCenter);
+        Task<ServiceCenterResponse> UpdateAsync(int id, ServiceCenterRequest ServiceCenter);
         Task<ServiceCenterResponse> DeleteAsync(int id);
     }
 
@@ -30,58 +34,74 @@ namespace ProductionMove.Services
 
         public async Task<QueryResult<ServiceCenterResponse>> ListAsync(ServiceCenterQuery query)
         {
-            // AsNoTracking tells EF Core it doesn't need to
-            // track changes on listed Models. Disabling entity
-            // tracking makes the code a little faster
-            IQueryable<ServiceCenter> queryable = _context.ServiceCenters.AsNoTracking();
+            var jointable = _context.ServiceCenters
+                        .Join(_context.Wards, s => s.WardCode, ward => ward.Code, (s, ward) => new { s, ward })
+                        .Join(_context.Districts, sw => sw.ward.DistrictCode, dictrict => dictrict.Code, (sw, dictrict) => new { sw, dictrict })
+                        .Select(m => new ServiceCenterResponse
+                        {
+                            Id = m.sw.s.Id,
+                            Name = m.sw.s.Name,
+                            Address = m.sw.s.Address,
+                            WardCode = m.sw.ward.Code,
+                            DistrictCode = m.dictrict.Code,
+                            ProvinceCode = m.dictrict.ProvinceCode
+                        });
 
             if (query.WardCode != "")
             {
-                queryable = queryable.Where(p => p.WardCode == query.WardCode);
+                jointable = jointable.Where(p => p.WardCode == query.WardCode);
             }
+            else if (query.DistrictCode != "")
+            {
+                jointable = jointable.Where(p => p.DistrictCode == query.DistrictCode);
+            }
+            else if (query.ProvinceCode != "")
+            {
+                jointable = jointable.Where(p => p.ProvinceCode == query.ProvinceCode);
+            };
 
-            var result = await PaginatedList<ServiceCenter>.CreateAsync(queryable, query.PageNumber, query.PageSize);
+            var result = await PaginatedList<ServiceCenterResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
 
-            return _mapper.Map<QueryResult<ServiceCenter>, QueryResult<ServiceCenterResponse>>(result);
+            return result;
         }
 
         public async Task<ServiceCenterResponse> FindAsync(int id)
         {
-            var serviceCenter = await _context.ServiceCenters.FindAsync(id);
-            if (serviceCenter == null)
-                throw new AppException("Factory not found");
-            return _mapper.Map<ServiceCenterResponse>(serviceCenter);
+            var store = await _context.ServiceCenters.FindAsync(id);
+            if (store == null)
+                throw new AppException("ServiceCenter not found");
+            return _mapper.Map<ServiceCenterResponse>(store);
         }
 
         public async Task<ServiceCenterResponse> CreateAsync(ServiceCenterRequest model)
         {
-            var serviceCenter = _mapper.Map<ServiceCenter>(model);
+            var store = _mapper.Map<ServiceCenter>(model);
 
-            await _context.ServiceCenters.AddAsync(serviceCenter);
+            await _context.ServiceCenters.AddAsync(store);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<ServiceCenterResponse>(serviceCenter);
+            return _mapper.Map<ServiceCenterResponse>(store);
         }
 
         public async Task<ServiceCenterResponse> UpdateAsync(int id, ServiceCenterRequest model)
         {
-            var serviceCenter = await FindAsync(id);
+            var store = await FindAsync(id);
 
-            _mapper.Map(model, serviceCenter);
-            _context.ServiceCenters.Update(_mapper.Map<ServiceCenter>(serviceCenter));
+            _mapper.Map(model, store);
+            _context.ServiceCenters.Update(_mapper.Map<ServiceCenter>(store));
             await _context.SaveChangesAsync();
 
-            return serviceCenter;
+            return store;
         }
 
         public async Task<ServiceCenterResponse> DeleteAsync(int id)
         {
-            var serviceCenter = await FindAsync(id);
+            var store = await FindAsync(id);
 
-            _context.ServiceCenters.Remove(_mapper.Map<ServiceCenter>(serviceCenter));
+            _context.ServiceCenters.Remove(_mapper.Map<ServiceCenter>(store));
             await _context.SaveChangesAsync();
 
-            return serviceCenter;
+            return store;
         }
     }
 }
