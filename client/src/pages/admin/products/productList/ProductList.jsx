@@ -1,73 +1,29 @@
-import "./productList.css";
-import { DataGrid } from "@mui/x-data-grid";
+import "./productList.scss";
 import { DeleteOutline } from "@mui/icons-material";
-import { productRows } from "../../../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../../../api/productsApi";
+import { DataGrid } from "@mui/x-data-grid";
+import { formatDate } from "../../../../helper/formatDate";
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-
-  /*
-  const handleDelete = (id) => {
-    deleteProductLine(id, dispatch);
+    products.filter((item) => item.id !== id);
   };
 
   const columns = [
-    { field: "id", headerName: "Id", width: 50},
-    { field: "name", headerName: "Name"},
-    { field: "seriesId", headerName: "SeriesId", width: 50 },
-    { field: "screenSize", headerName: "ScreenSize", width: 90 },
-    { field: "chip", headerName: "Resolution", width: 90 },
-    { field: "camera", headerName: "Processor", width: 90 },
-    { field: "ram", headerName: "Memory", width: 90 },
-    { field: "refreshRate", headerName: "HardWare", width: 90 },
-    { field: "battery", headerName: "Graphics", width: 90 },
-    { field: "weight", headerName: "ListPrice", width: 90 },
-    { field: "listPrice", headerName: "ListPrice", width: 90 },
+    { field: "code", headerName: "Code", width: 100 },
     {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={"/productLine/" + params.row.id}>
-              <button className="productLineListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="productLineListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
-    },
-  ];
-
-  return (
-    <div className="productLineList">
-      <DataGrid
-        rows={productline}
-        disableSelectionOnClick
-        getRowId={(row) => row.id} 
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
-    </div>
-  );
-  */
-
-  const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "product",
-      headerName: "Product",
+      field: "productLineId",
+      headerName: "Product Line",
       width: 200,
       renderCell: (params) => {
         return (
@@ -78,10 +34,31 @@ export default function ProductList() {
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
+      field: "manufactureDate",
+      headerName: "Ngày sản xuất",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.manufactureDate}
+          </div>
+        );
+      },
+    },
+    {
+      field: "warrantyPeriod",
+      headerName: "Warranty Period",
+      width: 150,
+    },
+    {
+      field: "color",
+      headerName: "Color",
+      width: 120,
+    },
+    {
+      field: "capacity",
+      headerName: "Memory",
       width: 120,
     },
     {
@@ -90,20 +67,12 @@ export default function ProductList() {
       width: 160,
     },
     {
-      field: "action",
-      headerName: "Action",
-      width: 150,
+      field: "status",
+      headerName: "Status",
+      width: 120,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={"/product/" + params.row.id}>
-              <button className="productListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
+          <span className={`status ${params.row.status}`}>{params.row.status}</span>
         );
       },
     },
@@ -112,11 +81,10 @@ export default function ProductList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={data}
-        disableSelectionOnClick
+        rows={products}
         columns={columns}
-        pageSize={8}
-        checkboxSelection
+        pageSize={10}
+        disableSelectionOnClick
       />
     </div>
   );
