@@ -1,64 +1,110 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./productLineItem.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function ProductLineItem({ data }) {
-  const popup = document.getElementById("popup");
-  function openPopup() {
-    popup.classList.add("open_popup");
-  }
+  const [isSeemore, setIsSeemore] = useState(false);
+  const handleSeemore = (e) => {
+    setIsSeemore(!isSeemore);
+  };
   return (
     <div className="seriItemSection">
-      <div className="productline_slider">
-        <div className="productline_info">
-          <div className="productline_link">
-            <div className="productline_img">
-              {/* <img className="imgsize" src={data.img}></img> */}
-              <img
-                src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
-                width="358"
-                height="358"
-                // alt="iPhone 14 Pro Max 128GB | Chính hãng VN/A"
-                class="product__img"
-              ></img>
-            </div>
-            <div className="productline_item_text">
-              <div className="productline_name">{data.name}</div>
-              <div className="productline_badge">
-                <p className="productline_more">6.7 inches</p>
-                <p className="productline_more">6 GB</p>
-                <p className="productline_more">{data.ram} GB</p>
+      {isSeemore ? (
+        <div className="detail">
+          <div className="detail-content">
+            <div className="table-header">
+              <div className="title">Thông số kỹ thuật</div>
+              <div className="close" onClick={handleSeemore}>
+                +
               </div>
-              <div className="productline_price">{data.price}</div>
             </div>
-            <div className="link">
-              <button className="seemore-Btn" onClick={() => openPopup()}>
-                See more
-              </button>
-            </div>
+            <section className="table-section">
+              {/* <table id="table-data">
+                <tr>
+                  <td>Tên sản phẩm</td>
+                  <td>{data.name}</td>
+                </tr>
+                <tr>
+                  <td>Kích thước màn hình</td>
+                  <td>{data.screenSize} inches</td>
+                </tr>
+                <tr>
+                  <td>Chipset</td>
+                  <td>{data.chip}</td>
+                </tr>
+                <tr>
+                  <td>Camera</td>
+                  <td>{data.camera}</td>
+                </tr>
+                <tr>
+                  <td>Ram</td>
+                  <td>{data.ram}GB</td>
+                </tr>
+                <tr>
+                  <td>Tần số quét</td>
+                  <td>{data.refreshRate}hz</td>
+                </tr>
+                <tr>
+                  <td>Dung lượng pin</td>
+                  <td>{data.battery}</td>
+                </tr>
+                <tr>
+                  <td>Trọng lượng</td>
+                  <td>{data.weight}</td>
+                </tr>
+              </table> */}
+              <div className="table-data">
+                <div className="detail-data">
+                  <p>Kích thước màn hình</p>
+                  <div>{data.screenSize}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Chipset</p>
+                  <div>{data.chip}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Camera</p>
+                  <div>{data.camera}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Ram</p>
+                  <div>{data.ram}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Tần số quét</p>
+                  <div>{data.refreshRate}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Dung lượng pin</p>
+                  <div>{data.battery}</div>
+                </div>
+                <div className="detail-data">
+                  <p>Trọng lượng</p>
+                  <div>{data.weight}</div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
+      ) : (
+        <></>
+      )}
+      <div className="imgContainer">
+        <img src={data.imageSub} alt="" className="img img-back" />
+        <img src={data.image} alt="" className="img img-front" />
       </div>
-      {/* <div class="modal-background"></div>
-      <div className="popup" id="popup">
-        <header className="modal-card-head">
-          <p className="modal-card-title is-flex">Thông số kĩ thuật</p>
-        </header>
-        <section className="modal-card-body">
-          <div className="modal-content">
-            <ul className="technical-content-modal">
-              <li>
-                <p className="title-1">Màn hình</p>
-                <div className="modal-item-description">
-                  <div className="select-1">
-                    <p>Kích thước màn hình</p>
-                    <div>6.7 inches</div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div> */}
+      <div className="seriName">{data.name}</div>
+      <div className="price">${data.listPrice}</div>
+      <div className="seri-description">
+        <div className="description">{data.screenSize} inch</div>
+        <div className="description">{data.chip}</div>
+        {/* <div className="description">{data.camera}</div> */}
+        <div className="description">{data.ram}GB RAM</div>
+      </div>
+      <button className="seemore-Btn" onClick={handleSeemore}>
+        See more
+      </button>
     </div>
   );
 }
