@@ -3,21 +3,22 @@ import { getSeries } from "../../../../api/seriesApi";
 import { getProductLines } from "../../../../api/productLineApi";
 import { useEffect, useState } from "react";
 import ProductLineItem from "./ProductLineItem";
-import { productLineData } from "../../../../dummyData";
 import "./productLine.css";
 import { Add } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 export default function ProductLine() {
-  const [data, setData] = useState(productLineData);
+  // const [data, setData] = useState(productLineData);
   const dispatch = useDispatch();
-  const productline = useSelector((state) => state.productline.productlines);
+  const productlines = useSelector((state) => state.productline.productlines);
   const series = useSelector((state) => state.series.series);
 
   useEffect(() => {
     getSeries(dispatch);
     getProductLines(dispatch);
   }, [dispatch]);
+
+  console.log(productlines);
 
   return (
     <div className="productLine">
@@ -30,16 +31,14 @@ export default function ProductLine() {
         </Link>
       </div>
       <div className="listItem">
-        {data.map((item) => (
-          <ProductLineItem data={item} />
+        {productlines.map((item, index) => (
+          <ProductLineItem data={item} key={index} />
         ))}
-        <div>
           <div className="productline_link">
-            <Add className="seriesItemAdd1" />
+            <div className="seriesItemAdd1">+</div>
             <text className="textAdd">Thêm sản phẩm mới</text>
           </div>
-        </div>
       </div>
     </div>
-  );
+  )
 }

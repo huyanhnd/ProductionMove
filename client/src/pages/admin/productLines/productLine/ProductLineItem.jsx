@@ -1,38 +1,101 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./productLineItem.css";
-
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ProductLineItem({ data }) {
+  const [isSeemore, setIsSeemore] = useState(false)
+  const handleSeemore = (e) => {
+    setIsSeemore(!isSeemore)
+  }
   return (
     <div className="seriItemSection">
-      <div className="productline_slider">
-        <div className="productline_info">
-          <div className="productline_link">
-            <div className="productline_img">
-              {/* <img className="imgsize" src={data.img}></img> */}
-              <img
-                src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
-                width="358"
-                height="358"
-                // alt="iPhone 14 Pro Max 128GB | Chính hãng VN/A"
-                class="product__img"
-              ></img>
-            </div>
-            <div className="productline_item_text">
-              <div className="productline_name">{data.name}</div>
-              <div className="productline_badge">
-                <p className="productline_more">6.7 inches</p>
-                <p className="productline_more">6 GB</p>
-                <p className="productline_more">{data.ram} GB</p>
-              </div>
-              <div className="productline_price">{data.price}</div>
-            </div>
-            <Link to="/products" className="link">
-              <button className="seemore-Btn">See more</button>
-            </Link>
+      {isSeemore ? <div className="detail">
+        <div className="detail-content">
+          <div className="table-header">
+            <div className="title">Thông số kỹ thuật</div>
+            <div className = "close" onClick={handleSeemore}>+</div>
           </div>
+          <table id="table-data">
+            <tr>
+              <td>Tên sản phẩm</td>
+              <td>{data.name}</td>
+            </tr>
+            <tr>
+              <td>Kích thước màn hình</td>
+              <td>{data.screenSize} inches</td>
+            </tr>
+            <tr>
+              <td>Chipset</td>
+              <td>{data.chip}</td>
+            </tr>
+            <tr>
+              <td>Camera</td>
+              <td>{data.camera}</td>
+            </tr>
+            <tr>
+              <td>Ram</td>
+              <td>{data.ram}GB</td>
+            </tr>
+            <tr>
+              <td>Tần số quét</td>
+              <td>{data.refreshRate}hz</td>
+            </tr>
+            <tr>
+              <td>Dung lượng pin</td>
+              <td>{data.battery}</td>
+            </tr>
+            <tr>
+              <td>Trọng lượng</td>
+              <td>{data.weight}</td>
+            </tr>
+          </table>
         </div>
+      </div> : <></>}
+      <div className="imgContainer">
+        <img src={data.imageSub} alt="" className="img img-back" />
+        <img src={data.image} alt="" className="img img-front" />
       </div>
+      <div className="seriName">{data.name}</div>
+      <div className="price">${data.listPrice}</div>
+      <div className="seri-description">
+        <div className="description">{data.screenSize} inch</div>
+        <div className="description">{data.chip}</div>
+        {/* <div className="description">{data.camera}</div> */}
+        <div className="description">{data.ram}GB RAM</div>
+      </div>
+      <button className="seemore-Btn" onClick={handleSeemore}>See more</button>
     </div>
+
+    // <div className="seriItemSection">
+    //   <div className="productline_slider">
+    //     <div className="productline_info">
+    //       <div className="productline_link">
+    //         <div className="productline_img">
+    //           {/* <img
+    //             src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
+    //             width="358"
+    //             height="358"
+    //             class="product__img"
+    //           ></img> */}
+    //           <img src={data.imageSub} alt="" className="img img-back"/>
+    //             <img src={data.image} alt="" className="img img-front"/>
+    //         </div>
+    //         <div className="productline_item_text">
+    //           <div className="productline_name">{data.name}</div>
+    //           <div className="productline_badge">
+    //             <p className="productline_more">6.7 inches</p>
+    //             <p className="productline_more">6 GB</p>
+    //             <p className="productline_more">{data.ram} GB</p>
+    //           </div>
+    //           <div className="productline_price">{data.price}</div>
+    //         </div>
+    //         <Link to="/products" className="link">
+    //           <button className="seemore-Btn">See more</button>
+    //         </Link>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
