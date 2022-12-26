@@ -5,6 +5,8 @@ export const productLineSlice = createSlice({
     initialState: {
         totalItems: 0,
         productlines: [],
+        productlineById: {},
+        productlineByCode: {},
         isFetching: false,
         error: false,
     },
@@ -19,7 +21,33 @@ export const productLineSlice = createSlice({
             state.productlines = action.payload.items;
             state.totalItems = action.payload.totalItems;
         },
-        getProductLinesFailure: (state) => {
+        getProductLineByIdFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        //GET BY ID
+        getProductLineByIdStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        getProductLineByIdSuccess: (state, action) => {
+            state.isFetching = false;
+            state.productlineById = action.payload;
+        },
+        getProductLineByIdFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        //GET BY CODE
+        getProductLineByCodeStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        getProductLineByCodeSuccess: (state, action) => {
+            state.isFetching = false;
+            state.productlineByCode = action.payload;
+        },
+        getProductLineByCodeFailure: (state) => {
             state.isFetching = false;
             state.error = true;
         },
@@ -83,5 +111,11 @@ export const {
     addProductLineStart,
     addProductLineSuccess,
     addProductLineFailure,
+    getProductLineByIdStart,
+    getProductLineByIdSuccess,
+    getProductLineByIdFailure,
+    getProductLineByCodeStart,
+    getProductLineByCodeSuccess,
+    getProductLineByCodeFailure,
 } = productLineSlice.actions;
 export default productLineSlice.reducer;

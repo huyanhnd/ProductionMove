@@ -1,0 +1,58 @@
+.requestProduct-page {
+    display: flex;
+    flex: 4;
+    margin-left: 30px;
+    flex-direction: column;
+}
+
+.requestProductTitle {
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(67, 67, 67);
+    margin-bottom: 10px;
+}
+
+.requestProductForm {
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.requestProductButton {
+    width: 130px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00008B;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.requestProductButton:hover {
+    opacity: 0.85;
+}
+
+.add {
+    width: 44px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00008B;
+    color: white;
+    font-weight: 600;
+    font-size: 33px;
+    cursor: pointer;
+    line-height: 20px;
+    margin-right: 20px;
+}
+
+.add:hover {
+    opacity: 0.85;
+}
