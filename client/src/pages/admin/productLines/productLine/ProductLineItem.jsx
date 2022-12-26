@@ -67,35 +67,5 @@ export default function ProductLineItem({ data }) {
       <button className="seemore-Btn" onClick={handleSeemore}>See more</button>
     </div>
 
-    // <div className="seriItemSection">
-    //   <div className="productline_slider">
-    //     <div className="productline_info">
-    //       <div className="productline_link">
-    //         <div className="productline_img">
-    //           {/* <img
-    //             src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png"
-    //             width="358"
-    //             height="358"
-    //             class="product__img"
-    //           ></img> */}
-    //           <img src={data.imageSub} alt="" className="img img-back"/>
-    //             <img src={data.image} alt="" className="img img-front"/>
-    //         </div>
-    //         <div className="productline_item_text">
-    //           <div className="productline_name">{data.name}</div>
-    //           <div className="productline_badge">
-    //             <p className="productline_more">6.7 inches</p>
-    //             <p className="productline_more">6 GB</p>
-    //             <p className="productline_more">{data.ram} GB</p>
-    //           </div>
-    //           <div className="productline_price">{data.price}</div>
-    //         </div>
-    //         <Link to="/products" className="link">
-    //           <button className="seemore-Btn">See more</button>
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
