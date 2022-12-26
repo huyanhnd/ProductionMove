@@ -10,7 +10,7 @@ const FactoryWarehouse = () => {
   const Button = ({ type }) => {
     return <button className={"status-button " + type}>{type}</button>;
   };
-  const userColumns = [
+  const columns = [
     { field: "id", headerName: "No.", width: 70 },
     {
       field: "user",
@@ -68,9 +68,9 @@ const FactoryWarehouse = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         checkboxSelection
       />
     </div>
