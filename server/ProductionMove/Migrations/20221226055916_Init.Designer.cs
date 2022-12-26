@@ -12,8 +12,8 @@ using ProductionMove.Data.Context;
 namespace ProductionMove.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221225103412_update")]
-    partial class update
+    [Migration("20221226055916_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,6 +95,9 @@ namespace ProductionMove.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,6 +111,8 @@ namespace ProductionMove.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("WardCode");
 
@@ -319,6 +324,9 @@ namespace ProductionMove.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
@@ -330,6 +338,8 @@ namespace ProductionMove.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("WardCode");
 
@@ -344,6 +354,9 @@ namespace ProductionMove.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -357,6 +370,8 @@ namespace ProductionMove.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("WardCode");
 
@@ -448,11 +463,19 @@ namespace ProductionMove.Migrations
 
             modelBuilder.Entity("ProductionMove.Models.Factory", b =>
                 {
+                    b.HasOne("ProductionMove.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Factories")
                         .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Product", b =>
@@ -511,20 +534,36 @@ namespace ProductionMove.Migrations
 
             modelBuilder.Entity("ProductionMove.Models.ServiceCenter", b =>
                 {
+                    b.HasOne("ProductionMove.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("serviceCenters")
                         .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Store", b =>
                 {
+                    b.HasOne("ProductionMove.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProductionMove.Models.Ward", null)
                         .WithMany("Stores")
                         .HasForeignKey("WardCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("ProductionMove.Models.Ward", b =>
