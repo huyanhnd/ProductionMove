@@ -60,6 +60,18 @@ namespace ProductionMove.Services
             _context.SaveChanges();
 
             var response = _mapper.Map<AuthenticateResponse>(account);
+            if (response.Role == "Factory")
+            {
+                response.ManagementId = (from f in _context.Factories where f.AccountId == response.Id select f.Id).First();
+            }
+            if (response.Role == "Store")
+            {
+                response.ManagementId = (from s in _context.Stores where s.AccountId == response.Id select s.Id).First();
+            }
+            if (response.Role == "ServiceCenter")
+            {
+                response.ManagementId = (from sc in _context.ServiceCenters where sc.AccountId == response.Id select sc.Id).First();
+            }
             response.JwtToken = jwtToken;
             response.RefreshToken = refreshToken.Token;
             return response;

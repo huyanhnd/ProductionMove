@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProductionMove.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,11 +179,18 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Factories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Factories_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Factories_Wards_WardCode",
                         column: x => x.WardCode,
@@ -200,11 +207,18 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceCenters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServiceCenters_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceCenters_Wards_WardCode",
                         column: x => x.WardCode,
@@ -221,11 +235,18 @@ namespace ProductionMove.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Stores_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Stores_Wards_WardCode",
                         column: x => x.WardCode,
@@ -246,7 +267,7 @@ namespace ProductionMove.Migrations
                     WarrantyPeriod = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WarrantyTime = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Capacity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
                     Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FactoryId = table.Column<int>(type: "int", nullable: false),
@@ -292,6 +313,11 @@ namespace ProductionMove.Migrations
                 column: "ProvinceCode");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Factories_AccountId",
+                table: "Factories",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Factories_WardCode",
                 table: "Factories",
                 column: "WardCode");
@@ -332,9 +358,19 @@ namespace ProductionMove.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ServiceCenters_AccountId",
+                table: "ServiceCenters",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ServiceCenters_WardCode",
                 table: "ServiceCenters",
                 column: "WardCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stores_AccountId",
+                table: "Stores",
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stores_WardCode",
@@ -371,10 +407,10 @@ namespace ProductionMove.Migrations
                 name: "Stores");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Series");
 
             migrationBuilder.DropTable(
-                name: "Series");
+                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Wards");

@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./App.css"
 import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/admin/home/Home";
-import ProductList from "./pages/admin/products/productList/ProductList";
+import Products from "./pages/admin/products/productList/Products";
 import NewUser from "./pages/admin/account/newUser/NewUser";
 import ProductLine from "./pages/admin/productLines/productLine/ProductLine";
 import Factory from "./pages/admin/factories/Factory";
@@ -14,7 +15,6 @@ import User from "./pages/admin/account/user/User";
 import NewProduct from "./pages/admin/products/newProduct/NewProduct";
 import ServiceCenter from "./pages/admin/serviceCenters/ServiceCenter";
 import UpdateFactory from "./pages/admin/factories/updateFactory/UpdateFactory";
-import "./App.css"
 import FactoryHome from "./pages/factory/home/FactoryHome";
 import FactoryProcess from "./pages/factory/process/FactoryProcess";
 import StoreHome from "./pages/store/home/StoreHome"
@@ -51,7 +51,7 @@ const appRouter = createBrowserRouter([
             { path: "/user/:userid", element: <User /> },
             { path: "/newuser", element: <NewUser /> },
             { path: "/productlines", element: <ProductLine /> },
-            { path: "/products", element: <ProductList /> },
+            { path: "/products", element: <Products /> },
             { path: "/product/:code", element: <UpdateFactory /> },
             { path: "/newproduct", element: <NewProduct /> },
             { path: "/factory", element:  <FactoryHome />},

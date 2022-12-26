@@ -24,13 +24,13 @@
         public string Capacity { get; set; }
         public ProductStatus Status { get; set; }
         public string Price { get; set; }
-        public int FactoryId { get; set; }
-        public Factory Factory { get; set; }
-        public int StoreId { get; set; }
-        public Store Store { get; set; }
-        public int ServiceCenterId { get; set; }
-        public ServiceCenter ServiceCenter { get; set; }
-        public int ProcessId { get; set; }
-        public Process Process { get; set; }
+        public int? FactoryId { get; set; }
+        public Factory? Factory { get; set; }
+        public int? StoreId { get; set; }
+        public Store? Store { get; set; }
+        public int? ServiceCenterId { get; set; }
+        public ServiceCenter? ServiceCenter { get; set; }
+        public int? ProcessId { get; set; }
+        public Process? Process { get; set; }
     }
 }

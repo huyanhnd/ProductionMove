@@ -34,9 +34,12 @@ namespace ProductionMove.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ProductRequest model, int quantity)
+        public async Task<IActionResult> PostAsync([FromBody] List<ProductRequest> models)
         {
-            await _productService.CreateAsync(model, quantity);
+            foreach (var model in models)
+            {
+                await _productService.CreateAsync(model);
+            }
             return Ok(new { message = "Products add successfully" });
         }
 
