@@ -4,11 +4,11 @@ import "./factory.css"
 
 export default function Factory() {
     return (
-    <div className="factoryPage">
-        <div className="header">
-        <AddressFilter />
+        <div className="factoryPage">
+            <div className="header">
+                <AddressFilter />
+            </div>
+            <FactoryList />
         </div>
-        <FactoryList />
-    </div>
     )
 }

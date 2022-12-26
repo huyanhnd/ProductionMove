@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 export const productsSlice = createSlice({
     name: "products",
@@ -21,9 +21,27 @@ export const productsSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        postNewProductsStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        postNewProductsSuccess: (state, action) => {
+            state.isFetching = false;
+            state.users.push(action.payload);
+        },
+        postNewProductsFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     },
 });
 
-export const { getProductsStart, getProductsSuccess, getProductsFailure } = productsSlice.actions;
+export const {
+    getProductsStart,
+    getProductsSuccess,
+    getProductsFailure,
+    postNewProductsFailure,
+    postNewProductsStart,
+    postNewProductsSuccess,
+} = productsSlice.actions;
 export default productsSlice.reducer;
-

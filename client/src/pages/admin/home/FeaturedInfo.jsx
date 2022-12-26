@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProducts } from "../../../api/productsApi";
 import { products } from "../../../dummyData";
-import { getDate } from "../../../helper/getDate";
+// import { getDate } from "../../../helper/getDate";
 import { getDMY } from "../../../helper/getDMY";
 
 export default function FeaturedInfo() {

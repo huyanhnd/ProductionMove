@@ -64,7 +64,25 @@ export default function UpdateFactory() {
         setAddress(e.target.value)
     }
 
-
+    const handleSubmit = (e) => {
+        const newFactoryName = document.getElementsByClassName('input-box')[0].value
+        const newProvinceCode = provinceCode
+        const newProvinceName = province.find(curValue => {
+            return curValue.code == newProvinceCode
+        }).name
+        const newDistrictCode = districtCode
+        const newDistrictName = district.find(curValue => {
+            return curValue.code == newDistrictCode
+        }).name
+        const newWardCode = wardCode
+        const newWardName = ward.find(curValue => {
+            return curValue.code == newWardCode
+        }).name
+        const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
+        const newInfo = { factoryName: newFactoryName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
+        const [a,c,...d] = newInfo.address.split(" - ")
+        console.log(d);
+    }
     return (
         <div className="updateFactory-container">
             <div className="updateFactory-content">
@@ -75,7 +93,7 @@ export default function UpdateFactory() {
                 {/* sửa tên nhà máy */}
                 <div className="select-section">
                     <div className="select-title">Factory name</div>
-                    <input type="text" placeholder="Type factory name here" id="input-box" value={factoryName} onChange={handeFactoryNameChange} />
+                    <input type="text" placeholder="Type factory name here" class="input-box" value={factoryName} onChange={handeFactoryNameChange} />
                 </div>
 
                 {/* Sửa thành phố */}
@@ -126,8 +144,12 @@ export default function UpdateFactory() {
                 {/* Sửa địa chỉ cụ thể */}
                 <div className="select-section">
                     <div className="select-title">Address</div>
-                    <input type="text" placeholder="Type address here" id="input-box" value={address} onChange={handeAddressChange} />
+                    <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
                 </div>
+                <div
+                    id="submit-btn"
+                    onClick={handleSubmit}
+                >Submit</div>
             </div>
         </div>
     )
