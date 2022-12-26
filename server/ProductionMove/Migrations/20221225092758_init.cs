@@ -18,6 +18,7 @@ namespace ProductionMove.Migrations
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<int>(type: "int", nullable: false),
                     ResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResetTokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -28,6 +29,22 @@ namespace ProductionMove.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Processes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RequiredDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ApprovedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Processes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,6 +127,7 @@ namespace ProductionMove.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SeriesId = table.Column<int>(type: "int", nullable: false),
                     ScreenSize = table.Column<float>(type: "real", nullable: false),
@@ -150,29 +168,6 @@ namespace ProductionMove.Migrations
                         column: x => x.DistrictCode,
                         principalTable: "Districts",
                         principalColumn: "Code",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProductLineId = table.Column<int>(type: "int", nullable: false),
-                    ManufactureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WarrantyPeriod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Code);
-                    table.ForeignKey(
-                        name: "FK_Products_ProductLines_ProductLineId",
-                        column: x => x.ProductLineId,
-                        principalTable: "ProductLines",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -240,25 +235,55 @@ namespace ProductionMove.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Warehouses",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WardId = table.Column<int>(type: "int", nullable: false),
-                    StoreId = table.Column<int>(type: "int", nullable: false)
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false, computedColumnSql: "dbo.getProductLineCode(ProductLineId) + '-' + RIGHT('00000'+CAST(Id AS VARCHAR(5)),5)"),
+                    ProductLineId = table.Column<int>(type: "int", nullable: false),
+                    ManufactureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WarrantyPeriod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WarrantyTime = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FactoryId = table.Column<int>(type: "int", nullable: false),
+                    StoreId = table.Column<int>(type: "int", nullable: false),
+                    ServiceCenterId = table.Column<int>(type: "int", nullable: false),
+                    ProcessId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Warehouses", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Warehouses_Stores_StoreId",
-                        column: x => x.StoreId,
-                        principalTable: "Stores",
+                        name: "FK_Products_Factories_FactoryId",
+                        column: x => x.FactoryId,
+                        principalTable: "Factories",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Products_Processes_ProcessId",
+                        column: x => x.ProcessId,
+                        principalTable: "Processes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductLines_ProductLineId",
+                        column: x => x.ProductLineId,
+                        principalTable: "ProductLines",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ServiceCenters_ServiceCenterId",
+                        column: x => x.ServiceCenterId,
+                        principalTable: "ServiceCenters",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Products_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -277,9 +302,29 @@ namespace ProductionMove.Migrations
                 column: "SeriesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_FactoryId",
+                table: "Products",
+                column: "FactoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProcessId",
+                table: "Products",
+                column: "ProcessId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductLineId",
                 table: "Products",
                 column: "ProductLineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ServiceCenterId",
+                table: "Products",
+                column: "ServiceCenterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_StoreId",
+                table: "Products",
+                column: "StoreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_AccountId",
@@ -300,18 +345,10 @@ namespace ProductionMove.Migrations
                 name: "IX_Wards_DistrictCode",
                 table: "Wards",
                 column: "DistrictCode");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Warehouses_StoreId",
-                table: "Warehouses",
-                column: "StoreId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Factories");
-
             migrationBuilder.DropTable(
                 name: "Products");
 
@@ -319,19 +356,22 @@ namespace ProductionMove.Migrations
                 name: "RefreshToken");
 
             migrationBuilder.DropTable(
-                name: "ServiceCenters");
+                name: "Factories");
 
             migrationBuilder.DropTable(
-                name: "Warehouses");
+                name: "Processes");
 
             migrationBuilder.DropTable(
                 name: "ProductLines");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "ServiceCenters");
 
             migrationBuilder.DropTable(
                 name: "Stores");
+
+            migrationBuilder.DropTable(
+                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Series");

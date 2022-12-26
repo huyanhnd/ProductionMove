@@ -7,7 +7,7 @@ using ProductionMove.ViewModels.ProductLine;
 using ProductionMove.Services;
 using ProductionMove.ViewModels;
 
-namespace Supermarket.API.Controllers
+namespace ProductionMove.Controllers
 {
     public class ProductLineController : BaseController
     {
@@ -25,10 +25,10 @@ namespace Supermarket.API.Controllers
             return Ok(fatories);
         }
 
-        [HttpGet("{code}")]
-        public async Task<IActionResult> GetAsync(string code)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            var result = await _productLineService.FindByIdAsync(code);
+            var result = await _productLineService.FindByIdAsync(id);
             return Ok(result);
         }
 
@@ -39,17 +39,17 @@ namespace Supermarket.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{code}")]
-        public async Task<IActionResult> PutAsync(string code, [FromBody] ProductLineRequest model)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] ProductLineRequest model)
         {
-            var result = await _productLineService.UpdateAsync(code, model);
+            var result = await _productLineService.UpdateAsync(id, model);
             return Ok(result);
         }
 
-        [HttpDelete("{code}")]
-        public async Task<IActionResult> DeleteAsync(string code)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _productLineService.DeleteAsync(code);
+            await _productLineService.DeleteAsync(id);
             return Ok(new { message = "Product Line deleted successfully" });
         }
     }

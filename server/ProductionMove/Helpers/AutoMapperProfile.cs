@@ -1,15 +1,15 @@
 namespace ProductionMove.Helpers;
 
 using AutoMapper;
-using ProductionMove.Data;
 using ProductionMove.Models;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.Accounts;
 using ProductionMove.ViewModels.Address;
 using ProductionMove.ViewModels.Factory;
-using ProductionMove.ViewModels.Product;
 using ProductionMove.ViewModels.ProductLine;
 using ProductionMove.ViewModels.Series;
+using ProductionMove.ViewModels.ProcessModel;
+using ProductionMove.ViewModels.ProductModel;
 
 public class AutoMapperProfile : Profile
 {
@@ -74,6 +74,13 @@ public class AutoMapperProfile : Profile
         //Product
         CreateMap<Product, ProductResponse>();
         CreateMap<ProductRequest, Product>();
-        CreateMap<QueryResult<ProductLine>, QueryResult<ProductResponse>>();
+/*        CreateMap<Product[], ProductResponse[]>();
+        CreateMap<ProductRequest[], Product[]>();*/
+        CreateMap<QueryResult<Product>, QueryResult<ProductResponse>>();
+
+        //Product
+        CreateMap<Process, ProcessResponse>();
+        CreateMap<ProcessRequest, Process>();
+        CreateMap<QueryResult<Process>, QueryResult<ProcessResponse>>();
     }
 }

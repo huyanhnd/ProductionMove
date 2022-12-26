@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using ProductionMove.Data;
 using ProductionMove.Data.Context;
-using ProductionMove.Helpers;
-using ProductionMove.ViewModels.Accounts;
-using ProductionMove.ViewModels.Factory;
+using ProductionMove.Models;
 using ProductionMove.ViewModels.Series;
 
 namespace ProductionMove.Services

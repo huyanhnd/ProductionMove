@@ -1,4 +1,4 @@
-﻿using ProductionMove.Data;
+﻿using ProductionMove.Models;
 
 namespace ProductionMove.Models
 {

@@ -1,4 +1,4 @@
-﻿namespace ProductionMove.Data
+﻿namespace ProductionMove.Models
 {
     public class Series
     {

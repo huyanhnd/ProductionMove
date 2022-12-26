@@ -29,8 +29,10 @@ export default function UserList() {
       hour12: false,
       timeZone: "Asia/Ho_Chi_Minh",
     };
-    const date = new Date(created);
-    console.log(new Intl.DateTimeFormat("en-US", options).format(date));
+    const dateFomat = new Date(created);
+    const [date,time] = (new Intl.DateTimeFormat("en-US", options).format(dateFomat)).split(',')
+    const [month,day,year] = date.split('/')
+    return time.concat(" - ",date)
   };
 
   const columns = [
@@ -48,21 +50,28 @@ export default function UserList() {
         );
       },
     },
-    { field: "username", headerName: "Username", width: 120 },
-    { field: "role", headerName: "Role", width: 120 },
+    { field: "username", headerName: "Username", width: 90 },
+    { field: "role", headerName: "Role", width: 90 },
     {
       field: "created",
       headerName: "Create At",
       width: 200,
       renderCell: (params) => {
         return (
-          <>
             <div className="">{createdDate(params.row.created)}</div>
-          </>
         );
       },
     },
-    { field: "updated", headerName: "Update At", width: 90 },
+    {
+      field: "updated",
+      headerName: "Update At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+            <div className="">{params.row.updated===null ? "Undefine" : createdDate(params.row.updated)}</div>
+        );
+      },
+    },
     {
       field: "action",
       headerName: "Action",
