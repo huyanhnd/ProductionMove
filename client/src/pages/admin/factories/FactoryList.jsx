@@ -6,11 +6,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentFactoryInfo } from "../../../redux/currentFactorySlice";
+import { getFactory } from "../../../api/factoryApi";
 
 export default function FactoryList() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    getFactory(dispatch, '00', '000', '0000', '')
+  }, [dispatch])
   const factory = useSelector((state) => state.factory.factories);
-
   const handleDelete = (row) => {
     // setData(data.filter((item) => item.id !== id));
   };
@@ -28,12 +31,12 @@ export default function FactoryList() {
       renderCell: (params) => {
         return (
           <>
-              <Link to={"/product/" + params.row.id}>
-                <button 
+            <Link to={"/product/" + params.row.id}>
+              <button
                 className="factoryListEdit"
-              onClick={() => handleEdit(params.row)}
-                >Edit</button>
-              </Link>
+                onClick={() => handleEdit(params.row)}
+              >Edit</button>
+            </Link>
             <DeleteOutline
               className="factoryListDelete"
               onClick={() => handleDelete(params.row)}

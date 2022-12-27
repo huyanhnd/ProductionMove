@@ -5,7 +5,10 @@ using ProductionMove.Models;
 using ProductionMove.Helpers;
 using ProductionMove.ViewModels.Store;
 using ProductionMove.ViewModels;
-using System.Drawing.Drawing2D;
+using Newtonsoft.Json.Linq;
+using ProductionMove.ViewModels.Accounts;
+using System.Security.Principal;
+using ProductionMove.ViewModels.ProductModel;
 
 namespace ProductionMove.Services
 {
@@ -13,8 +16,8 @@ namespace ProductionMove.Services
     {
         Task<QueryResult<StoreResponse>> ListAsync(StoreQuery query);
         Task<StoreResponse> FindAsync(int id);
-        Task<StoreResponse> CreateAsync(StoreRequest product);
-        Task<StoreResponse> UpdateAsync(int id, StoreRequest product);
+        Task<StoreResponse> CreateAsync(StoreRequest model);
+        Task<StoreResponse> UpdateAsync(int id, StoreRequest model);
         Task<StoreResponse> DeleteAsync(int id);
     }
 
@@ -31,26 +34,42 @@ namespace ProductionMove.Services
 
         public async Task<QueryResult<StoreResponse>> ListAsync(StoreQuery query)
         {
-            // AsNoTracking tells EF Core it doesn't need to
-            // track changes on listed Models. Disabling entity
-            // tracking makes the code a little faster
-            IQueryable<Store> queryable = _context.Stores.AsNoTracking();
+            var jointable = _context.Stores
+                        .Join(_context.Wards, s => s.WardCode, ward => ward.Code, (s, ward) => new { s, ward })
+                        .Join(_context.Districts, sw => sw.ward.DistrictCode, dictrict => dictrict.Code, (sw, dictrict) => new { sw, dictrict })
+                        .Select(m => new StoreResponse
+                        {
+                            Id = m.sw.s.Id,
+                            Name = m.sw.s.Name,
+                            Address = m.sw.s.Address,
+                            WardCode = m.sw.ward.Code,
+                            DistrictCode = m.dictrict.Code,
+                            ProvinceCode = m.dictrict.ProvinceCode
+                        });
 
             if (query.WardCode != "")
             {
-                queryable = queryable.Where(p => p.WardCode == query.WardCode);
+                jointable = jointable.Where(p => p.WardCode == query.WardCode);
             }
+            else if (query.DistrictCode != "")
+            {
+                jointable = jointable.Where(p => p.DistrictCode == query.DistrictCode);
+            }
+            else if (query.ProvinceCode != "")
+            {
+                jointable = jointable.Where(p => p.ProvinceCode == query.ProvinceCode);
+            };
 
-            var result = await PaginatedList<Store>.CreateAsync(queryable, query.PageNumber, query.PageSize);
+            var result = await PaginatedList<StoreResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
 
-            return _mapper.Map<QueryResult<Store>, QueryResult<StoreResponse>>(result);
+            return result;
         }
 
         public async Task<StoreResponse> FindAsync(int id)
         {
             var store = await _context.Stores.FindAsync(id);
             if (store == null)
-                throw new AppException("Factory not found");
+                throw new AppException("Store not found");
             return _mapper.Map<StoreResponse>(store);
         }
 

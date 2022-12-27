@@ -25,8 +25,27 @@ export const factorySlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        //ADD
+        addFactoryStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        addFactorySuccess: (state, action) => {
+            state.isFetching = false;
+            state.factories.push(action.payload);
+        },
+        addFactoryFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     },
 });
 
-export const { getFactoryStart, getFactorySuccess, getFactoryFailure } = factorySlice.actions;
+export const {
+    getFactoryStart,
+    getFactorySuccess,
+    getFactoryFailure,
+    addFactoryStart,
+    addFactorySuccess,
+    addFactoryFailure, } = factorySlice.actions;
 export default factorySlice.reducer;

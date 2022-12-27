@@ -2,6 +2,9 @@ import {
     getFactoryStart,
     getFactorySuccess,
     getFactoryFailure,
+    addFactoryStart,
+    addFactorySuccess,
+    addFactoryFailure,
 } from "../redux/factorySlice";
 import { publicRequest } from "./requestMethods";
 
@@ -29,5 +32,15 @@ export const getFactory = async (dispatch, provinceCode, districtCode, wardCode,
         }) :  res.data.items));
     } catch (err) {
         dispatch(getFactoryFailure());
+    }
+};
+
+export const addFactory = async (factory, dispatch) => {
+    dispatch(addFactoryStart());
+    try {
+        const res = await publicRequest.post(`/Factory`, factory);
+        dispatch(addFactorySuccess(res.data));
+    } catch (err) {
+        dispatch(addFactoryFailure());
     }
 };

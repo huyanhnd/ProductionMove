@@ -1,24 +1,25 @@
-import "./updateFactory.css"
+import "./addFactory.css"
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getDistrict, getProvince, getWard } from "../../../../api/addressApi";
-import { FactoryInfo } from "../FactoryList";
+import { getUsers } from "../../../../api/userApi";
+import { addFactory } from "../../../../api/factoryApi";
 
 
-export default function UpdateFactory() {
+export default function AddFactory() {
     const dispatch = useDispatch();
     useEffect(() => {
         getProvince(dispatch);
+        getUsers(dispatch)
     }, [dispatch]);
-    const factoryInfo = useSelector((state) => state.currentFactory.factoryInfo);
 
     /**
      * name handle
     */
-    const [factoryName, setFactoryName] = useState(factoryInfo.name)
+    const [factoryName, setFactoryName] = useState("")
     const handeFactoryNameChange = (e) => {
         setFactoryName(e.target.value)
     }
@@ -26,7 +27,7 @@ export default function UpdateFactory() {
      * province handle
      */
     const province = useSelector((state) => state.address.province);
-    const [provinceCode, setProvinceCode] = useState(factoryInfo.provinceCode)
+    const [provinceCode, setProvinceCode] = useState('00')
     const handleProvinceCodeChange = (e) => {
         setProvinceCode(e.target.value)
         setDistrictCode('000')
@@ -39,7 +40,7 @@ export default function UpdateFactory() {
         getDistrict(dispatch, provinceCode);
     }, [provinceCode])
     const district = useSelector((state) => state.address.district);
-    const [districtCode, setDistrictCode] = useState(factoryInfo.districtCode)
+    const [districtCode, setDistrictCode] = useState('000')
     const handleDistrictCodeChange = (e) => {
         setDistrictCode(e.target.value)
         setWardCode('0000')
@@ -51,38 +52,50 @@ export default function UpdateFactory() {
         getWard(dispatch, districtCode);
     }, [districtCode])
     const ward = useSelector((state) => state.address.ward);
-    // const wardCode = useSelector((state) => state.address.wardCode)
-    const [wardCode, setWardCode] = useState(factoryInfo.wardCode)
+    const [wardCode, setWardCode] = useState('0000')
     const handleWardCodeChange = (e) => {
         setWardCode(e.target.value)
     }
     /**
      * address handle
      */
-    const [address, setAddress] = useState(factoryInfo.address)
+    const [address, setAddress] = useState('')
     const handeAddressChange = (e) => {
         setAddress(e.target.value)
     }
 
-    const handleSubmit = (e) => {
-        const newFactoryName = document.getElementsByClassName('input-box')[0].value
-        const newProvinceCode = provinceCode
-        const newProvinceName = province.find(curValue => {
-            return curValue.code == newProvinceCode
-        }).name
-        const newDistrictCode = districtCode
-        const newDistrictName = district.find(curValue => {
-            return curValue.code == newDistrictCode
-        }).name
-        const newWardCode = wardCode
-        const newWardName = ward.find(curValue => {
-            return curValue.code == newWardCode
-        }).name
-        const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
-        const newInfo = { factoryName: newFactoryName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
-        const [a,c,...d] = newInfo.address.split(" - ")
-        console.log(d);
-    }
+    /**
+     * factory id handle
+     */
+    const allUsers = useSelector((state) => state.user.users);
+    console.log(allUsers);
+    // const factoryIds = allUsers.filter(user => {
+    //     return user.role == 'Factory'
+    // })
+    // const [factoryId, setFactoryId] = useState(factoryIds[factoryIds.length -1].id)
+    // const handleFactoryIdChange = (e) => {
+    //     setFactoryId(e.target.value)
+    // }
+
+    // const handleSubmit = (e) => {
+    //     const newFactoryName = document.getElementsByClassName('input-box')[0].value
+    //     const newProvinceCode = provinceCode
+    //     const newProvinceName = province.find(curValue => {
+    //         return curValue.code == newProvinceCode
+    //     }).name
+    //     const newDistrictCode = districtCode
+    //     const newDistrictName = district.find(curValue => {
+    //         return curValue.code == newDistrictCode
+    //     }).name
+    //     const newWardCode = wardCode
+    //     const newWardName = ward.find(curValue => {
+    //         return curValue.code == newWardCode
+    //     }).name
+    //     const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName, ' - ', newDistrictName, ' - ', newProvinceName)
+    //     const newFactoryId = factoryId
+    //     const newFactory = { "name": newFactoryName, "address" : newAddress, "wardCode" : newWardCode,  "accountId" : newFactoryId }
+    //     addFactory(newFactory, dispatch)
+    // }
     return (
         <div className="updateFactory-container">
             <div className="updateFactory-content">
@@ -146,9 +159,24 @@ export default function UpdateFactory() {
                     <div className="select-title">Address</div>
                     <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
                 </div>
+
+                {/* Sửa Factory */}
+                <div className="select-section">
+                    <div className="select-title">Authorized account</div>
+                    <FormControl >
+                        {/* <Select className="select-box"
+                            value={factoryId}
+                            onChange={handleFactoryIdChange}
+                        >
+                            {factoryIds.map((data, index) => {
+                                return <MenuItem value={data.id} key={index}>{data.fullName}</MenuItem>
+                            })}
+                        </Select> */}
+                    </FormControl>
+                </div>
                 <div
                     id="submit-btn"
-                    onClick={handleSubmit}
+                    // onClick={handleSubmit}
                 >Submit</div>
             </div>
         </div>
