@@ -26,9 +26,9 @@ export default function ProductLine() {
         {series.map((item, index) => {
           return <button className="seriesItem">{item.name}</button>;
         })}
-        <Link to={"/newProductLine/"}>
+        {/* <Link to={"/newProductLine/"}>
           <Add className="seriesItemAdd"></Add>
-        </Link>
+        </Link> */}
       </div>
       <div className="listItem">
         {productlines.map((item, index) => (
