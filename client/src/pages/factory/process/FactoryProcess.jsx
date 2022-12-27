@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getProducts } from "../../../api/productsApi";
 import { inWarehouse, requestFromStore, warrantyError } from "../../../dummyData";
 import { setCurrentStoreRequest } from "../../../redux/currentStoreRequestSlice";
-import Export from "./export/Export";
+import Export from "./export/FactoryExport";
 import "./factoryProcess.css"
 import StoreRequest from "./storeRequest/StoreRequest";
 import WarrantyError from "./warrantyError/WarrantyError";
@@ -31,7 +31,7 @@ export default function FactoryProcess() {
     const requestData = requestFromStore;
 
     /**
-     * Export
+     * Export To Store
      */
     const inWarehouseData = inWarehouse;
 

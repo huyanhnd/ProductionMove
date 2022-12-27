@@ -1,5 +1,6 @@
 import "./sidebar.css";
 import {
+  SendToMobile,
   Home,
   PermIdentity,
   Storefront,
@@ -70,7 +71,7 @@ export default function Sidebar() {
         {
           icon: BarChart,
           title: "Home",
-          link: "/factory",
+          link: "/",
           key: 1,
         },
         {
@@ -80,8 +81,14 @@ export default function Sidebar() {
           key: 2,
         },
         {
+          icon: SendToMobile,
+          title: "Export Product",
+          link: "/factory-export",
+          key: 4,
+        },
+        {
           icon: Settings,
-          title: "Process",
+          title: "Error Product",
           link: "/factory-process",
           key: 3,
         },
@@ -93,7 +100,7 @@ export default function Sidebar() {
         {
           icon: Home,
           title: "Home",
-          link: "/store",
+          link: "/",
           key: 1,
         },
         {

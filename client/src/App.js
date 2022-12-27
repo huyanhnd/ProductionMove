@@ -1,33 +1,34 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./App.css"
-import Login from "./pages/login/Login";
-
-
+import { authRouter } from "./router/authRouter";
 import { adminRouter } from "./router/adminRouter";
-import { Layout } from "./layout/layout";
+import { factoryRouter } from "./router/factoryRouter"
+import { storeRouter } from "./router/storeRouter";
+import { serviceCenterRouter } from "./router/serviceCenterRouter"
 
-const appRouter = createBrowserRouter([
-    {
-        path: "/",
-        element: <Layout />,
-        children: [
-            
-
-
-        ],
+const checkRoute = (role) => {
+    switch (role) {
+        case "Admin":
+            return adminRouter;
+        case "Factory":
+            return factoryRouter;
+        case 'Store':
+            return storeRouter;
+        case 'ServiceCenter':
+            return serviceCenterRouter;
     }
-]);
-
-const authRouter = createBrowserRouter([
-    { path: "/", element: <Login /> }
-])
+}
 
 function App() {
     const { currentUser } = useSelector((state) => state.auth);
     return (
         <div>
-            <RouterProvider router={currentUser ? adminRouter : authRouter} />
+            <RouterProvider router=
+                {
+                    currentUser ? checkRoute(currentUser.role) : authRouter
+                }
+            />
         </div>
     );
 }

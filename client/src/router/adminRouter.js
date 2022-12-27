@@ -24,7 +24,7 @@ export const adminRouter = createBrowserRouter([
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <Home /> },
             { path: "/users", element: <UserList /> },
-            { path: "/user/:userid", element: <User /> },
+            { path: "/user/:userid", element: <User id="1" /> },
             { path: "/newuser", element: <NewUser /> },
             { path: "/productlines", element: <ProductLine /> },
             { path: "/products", element: <Products /> },

@@ -28,8 +28,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <div className="userListItem">
-            {/* src={params.row.image} */}
-            <img className="userListImg" src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/1671172307669roberto-nickson-Gvm2wM3V5PA-unsplash.jpg?alt=media&token=4e9bcb67-6160-4074-9850-ce734b3c6a92" alt="" />
+            <img className="userListImg" src={params.row.image} alt="" />
             {params.row.fullName}
           </div>
         );
@@ -82,7 +81,7 @@ export default function UserList() {
       <div className="datatableTitle">
         Users
         <Link to="/factory-warehouse/addproducts" className="linkAddProduct">
-          Add Product
+          Add User
         </Link>
       </div>
       <DataGrid

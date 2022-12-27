@@ -56,13 +56,13 @@ const FactoryWarehouse = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Products
+        Products Of Factory
         <div className="search">
           <input type="text" placeholder="Search..." />
           <SearchOutlinedIcon />
         </div>
         <Link to="/factory-warehouse/addproducts" className="link">
-          Add Product
+          Add Product Into Warehouse
         </Link>
       </div>
       <DataGrid
