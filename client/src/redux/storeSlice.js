@@ -21,9 +21,28 @@ export const storesSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        //ADD
+        addStoreStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        addStoreSuccess: (state, action) => {
+            state.isFetching = false;
+            state.stores.push(action.payload);
+        },
+        addStoreFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     },
 });
 
-export const { getStoresStart, getStoresSuccess, getStoresFailure } = storesSlice.actions;
+export const {
+    getStoresStart,
+    getStoresSuccess,
+    getStoresFailure,
+    addStoreStart,
+    addStoreSuccess,
+    addStoreFailure, } = storesSlice.actions;
 export default storesSlice.reducer;
 

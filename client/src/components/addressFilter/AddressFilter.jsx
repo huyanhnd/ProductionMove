@@ -5,9 +5,11 @@ import Select from '@mui/material/Select';
 import { useState, useEffect, createContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getFactory } from "../../api/factoryApi";
+import { getStore } from "../../api/storesApi";
+import { getServiceCenter } from "../../api/serviceCenterApi";
 import { getDistrict, getProvince, getWard } from "../../api/addressApi";
 
-export default function AddressFilter() {
+export default function AddressFilter({ type }) {
   const dispatch = useDispatch();
   useEffect(() => {
     getProvince(dispatch);
@@ -23,7 +25,7 @@ export default function AddressFilter() {
     setProvinceCode(e.target.value)
     setDistrictCode('000')
     setWardCode('0000')
-    setFactoryName('')
+    setTypeSelect('')
   }
 
   /**
@@ -38,7 +40,7 @@ export default function AddressFilter() {
   const handleDistrictCodeChange = (e) => {
     setDistrictCode(e.target.value)
     setWardCode('0000')
-    setFactoryName('')
+    setTypeSelect('')
   }
 
   /**
@@ -52,16 +54,27 @@ export default function AddressFilter() {
   const [wardCode, setWardCode] = useState('0000')
   const handleWardCodeChange = (e) => {
     setWardCode(e.target.value)
-    setFactoryName('')
+    setTypeSelect('')
   }
 
   /**
-   * Factory name filter box
+   *  name filter box
   */
-  const factory = useSelector((state) => state.factory.factories);
-  const [factoryName, setFactoryName] = useState('')
+  var typeInput = []
+  const factories = useSelector((state) => state.factory.factories);
+  const stores = useSelector((state) => state.store.stores);
+  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+  if (type == 'Factory') {
+    typeInput = factories
+  } else if (type == 'Store') {
+    typeInput = stores
+  } else if (type == 'ServiceCenter') {
+    typeInput = serviceCenters
+  }
+
+  const [typeSelect, setTypeSelect] = useState('')
   const handeInputChange = (e) => {
-    setFactoryName(e.target.value)
+    setTypeSelect(e.target.value)
   }
 
   /**
@@ -69,7 +82,13 @@ export default function AddressFilter() {
   */
   const [submit, setSubmit] = useState(true)
   useEffect(() => {
-    getFactory(dispatch, provinceCode, districtCode, wardCode, factoryName);
+    if (type == 'Factory') {
+      getFactory(dispatch, provinceCode, districtCode, wardCode, typeSelect);
+    } else if (type == "Store") {
+      getStore(dispatch, provinceCode, districtCode, wardCode, typeSelect);
+    } else if (type == "ServiceCenter") {
+      getServiceCenter(dispatch, provinceCode, districtCode, wardCode, typeSelect);
+    }
   }, [submit]);
   const HandleSubmit = (e) => {
     setSubmit(!submit)
@@ -131,8 +150,8 @@ export default function AddressFilter() {
         </div>
         {/* Tên nhà máy */}
         <div className="filterSection ">
-          <div className="filterTitle">Factory name</div>
-          <input type="text" placeholder="Type factory name here" id="filterInputBox" onChange={handeInputChange} value={factoryName} />
+          <div className="filterTitle">{type} name</div>
+          <input type="text" placeholder={`Type ${type} name here`} id="filterInputBox" onChange={handeInputChange} value={typeSelect} />
         </div>
         <div className="filterSection">
           <br />
