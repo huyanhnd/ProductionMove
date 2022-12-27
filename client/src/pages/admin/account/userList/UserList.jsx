@@ -28,8 +28,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <div className="userListItem">
-            {/* src={params.row.image} */}
-            <img className="userListImg" src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/1672128083859FB_IMG_1663258148945.jpg?alt=media&token=b8ba6629-d573-4175-aecf-00025ba67956" alt="" />
+            <img className="userListImg" src={params.row.image} alt="" />
             {params.row.fullName}
           </div>
         );
@@ -43,7 +42,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{formatDate(params.row.created)}</div>
+          <div className="">{formatDate(params.row.created)}</div>
         );
       },
     },
@@ -53,7 +52,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{params.row.updated===null ? "Undefine" : formatDate(params.row.updated)}</div>
+          <div className="">{params.row.updated === null ? "Undefine" : formatDate(params.row.updated)}</div>
         );
       },
     },
@@ -79,6 +78,12 @@ export default function UserList() {
 
   return (
     <div className="userList">
+      <div className="datatableTitle">
+        Users
+        <Link to="/factory-warehouse/addproducts" className="linkAddProduct">
+          Add User
+        </Link>
+      </div>
       <DataGrid
         rows={user}
         disableSelectionOnClick

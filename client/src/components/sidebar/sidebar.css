@@ -3,11 +3,10 @@
   height: calc(100vh - 50px);
   background-color: rgb(251, 251, 255);
   position: sticky;
-  top: 50px;
 }
 
 .sidebarWrapper {
-  padding: 20px;
+  padding: 15px;
   color: #555;
 }
 
@@ -16,7 +15,8 @@
 }
 
 .sidebarTitle {
-  font-size: 13px;
+  margin-left: 10px;
+  font-size: 20px;
   color: rgb(187, 186, 186);
 }
 
