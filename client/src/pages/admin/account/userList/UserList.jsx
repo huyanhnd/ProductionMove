@@ -80,7 +80,7 @@ export default function UserList() {
     <div className="userList">
       <div className="datatableTitle">
         Users
-        <Link to="/factory-warehouse/addproducts" className="linkAddProduct">
+        <Link to="/factory/warehouse/addproducts" className="linkAddProduct">
           Add User
         </Link>
       </div>

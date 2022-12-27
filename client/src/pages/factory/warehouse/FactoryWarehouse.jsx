@@ -61,7 +61,7 @@ const FactoryWarehouse = () => {
           <input type="text" placeholder="Search..." />
           <SearchOutlinedIcon />
         </div>
-        <Link to="/factory-warehouse/addproducts" className="link">
+        <Link to="/factory/warehouse/addproducts" className="link">
           Add Product Into Warehouse
         </Link>
       </div>

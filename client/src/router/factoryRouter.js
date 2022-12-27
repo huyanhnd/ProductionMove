@@ -2,11 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import FactoryHome from "../pages/factory/home/FactoryHome"
 import FactoryWarehouse from "../pages/factory/warehouse/FactoryWarehouse";
 import AddFactoryProduct from "../pages/factory/warehouse/AddFactoryProduct";
-import FactoryProcess from "../pages/factory/process/FactoryProcess";
-import UpdateStoreRequest from "../pages/factory/process/storeRequest/UpdateStoreRequest";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Layout } from "../layout/layout";
-import FactoryExport from "../pages/factory/process/export/FactoryExport";
+import NewExport from "../pages/factory/export/newExport/NewExport";
+import ExportList from "../pages/factory/export/exportList/ExportList";
 
 export const factoryRouter = createBrowserRouter([
     {
@@ -15,11 +14,10 @@ export const factoryRouter = createBrowserRouter([
         children: [
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <FactoryHome /> },
-            { path: "/factory-warehouse", element: <FactoryWarehouse /> },
-            { path: "/factory-warehouse/addproducts", element: <AddFactoryProduct /> },
-            { path: "/factory-process", element: <FactoryProcess /> },
-            { path: "/factory-process/request:code", element: <UpdateStoreRequest /> },
-            { path: "/factory-export", element: <FactoryExport /> },
+            { path: "/factory/warehouse", element: <FactoryWarehouse /> },
+            { path: "/factory/export", element: <ExportList /> },
+            { path: "/factory/newexport", element: <NewExport />},
+            { path: "/factory/warehouse/addproducts", element: <AddFactoryProduct /> },
         ],
     }
 ])

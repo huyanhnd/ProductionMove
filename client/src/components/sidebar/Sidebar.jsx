@@ -77,20 +77,20 @@ export default function Sidebar() {
         {
           icon: Warehouse,
           title: "Warehouse",
-          link: "/factory-warehouse",
+          link: "/factory/warehouse",
           key: 2,
         },
         {
           icon: SendToMobile,
-          title: "Export Product",
-          link: "/factory-export",
-          key: 4,
+          title: "Export",
+          link: "/factory/export",
+          key: 3,
         },
         {
           icon: Settings,
           title: "Error Product",
-          link: "/factory-process",
-          key: 3,
+          link: "/factory/process",
+          key: 4,
         },
       ]
     },

@@ -59,6 +59,7 @@ import currentStoreRequestReducer from "./currentStoreRequestSlice";
 import productsReducer from "./productsSlice";
 import storesReducer from "./storeSlice"
 import serviceCentersReducer from "./serviceCenter"
+import processSlice from "./processSlice";
 
 export const store = configureStore({
   reducer: {
@@ -73,5 +74,6 @@ export const store = configureStore({
     serviceCenter: serviceCentersReducer,
     currentFactory: currentFactoryReducer,
     currentStoreRequest: currentStoreRequestReducer,
+    process: processSlice,
   },
 });

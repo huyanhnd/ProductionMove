@@ -2,10 +2,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../../api/productsApi";
-import { inWarehouse, requestFromStore, warrantyError } from "../../../dummyData";
-import { setCurrentStoreRequest } from "../../../redux/currentStoreRequestSlice";
-import Export from "./export/FactoryExport";
+import { getProducts } from "../../../../api/productsApi";
+import { inWarehouse, requestFromStore, warrantyError } from "../../../../dummyData";
+import { setCurrentStoreRequest } from "../../../../redux/currentStoreRequestSlice";
+import Export from "../exportProduct/FactoryExport";
 import "./factoryProcess.css"
 import StoreRequest from "./storeRequest/StoreRequest";
 import WarrantyError from "./warrantyError/WarrantyError";
