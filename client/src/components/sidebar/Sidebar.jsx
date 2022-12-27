@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import {
-  LineStyle,
+  Home,
   PermIdentity,
   Storefront,
   WorkOutline,
@@ -22,7 +22,7 @@ export default function Sidebar() {
       role: "Admin",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
           link: "/",
           key: 1,
@@ -91,7 +91,7 @@ export default function Sidebar() {
       role: "Store",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
           link: "/store",
           key: 1,
@@ -114,7 +114,7 @@ export default function Sidebar() {
       role: "ServiceCenter",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
           link: "/",
           key: 1,

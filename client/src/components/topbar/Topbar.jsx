@@ -15,7 +15,8 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <span className="logo">Production Move</span>
+          <img src="https://firebasestorage.googleapis.com/v0/b/productionmove-3cd59.appspot.com/o/corporation.png?alt=media&token=704eb759-5d32-4ab0-86c4-74ad3f5c2d52" alt="" className="logo"/>
+          <span className="logoTitle">Production Move</span>
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">

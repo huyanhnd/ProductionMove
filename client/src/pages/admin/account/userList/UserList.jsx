@@ -43,7 +43,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{formatDate(params.row.created)}</div>
+          <div className="">{formatDate(params.row.created)}</div>
         );
       },
     },
@@ -53,7 +53,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{params.row.updated===null ? "Undefine" : formatDate(params.row.updated)}</div>
+          <div className="">{params.row.updated === null ? "Undefine" : formatDate(params.row.updated)}</div>
         );
       },
     },
@@ -79,6 +79,12 @@ export default function UserList() {
 
   return (
     <div className="userList">
+      <div className="datatableTitle">
+        Users
+        <Link to="/factory-warehouse/addproducts" className="linkAddProduct">
+          Add Product
+        </Link>
+      </div>
       <DataGrid
         rows={user}
         disableSelectionOnClick
