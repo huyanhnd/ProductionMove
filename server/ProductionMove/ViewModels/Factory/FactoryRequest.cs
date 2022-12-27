@@ -12,5 +12,8 @@ namespace ProductionMove.ViewModels.Factory
 
         [Required]
         public string WardCode { get; set; }
+
+        [Required]
+        public int AccountId { get; set; }
     }
 }

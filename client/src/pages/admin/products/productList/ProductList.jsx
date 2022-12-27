@@ -6,31 +6,96 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../../api/productsApi";
 import { DataGrid } from "@mui/x-data-grid";
 import { formatDate } from "../../../../helper/formatDate";
+import { getFactory } from "../../../../api/factoryApi";
+import { getStore } from "../../../../api/storesApi";
+import { getServiceCenter } from "../../../../api/serviceCenterApi";
 
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
+  const factories = useSelector((state) => state.factory.factories);
+  const stores = useSelector((state) => state.store.stores);
+  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
 
   useEffect(() => {
     getProducts(dispatch);
+    getFactory(dispatch, '00', '000', '0000', '')
+    getStore(dispatch, '00', '000', '0000', '')
+    getServiceCenter(dispatch, '00', '000', '0000', '')
   }, [dispatch]);
 
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);
   };
-
+  var no = 0;
   const columns = [
-    { field: "code", headerName: "Code", width: 100 },
     {
-      field: "productLineId",
+      field: "stt", headerName: "No.", width: 50,
+      renderCell: () => {
+        no++
+        return <div>{no}</div>;
+      }
+    },
+    {
+      field: "name",
       headerName: "Product Line",
-      width: 200,
+      width: 150,
+    },
+    {
+      field: "capacity",
+      headerName: "Memory",
+      width: 100,
+    },
+    {
+      field: "color",
+      headerName: "Color",
+      width: 100,
+    },
+    {
+      field: "price",
+      headerName: "Price",
+      width: 100,
+      renderCell: (param) => {
+        return <div>${param.row.price}</div>
+      }
+    },
+    { field: "code", headerName: "Code", width: 120 },
+    {
+      field: "factoryId",
+      headerName: "Cơ sở sản xuất",
+      width: 150,
       renderCell: (params) => {
+        const factory = factories.find(item => {
+          return item.id == params.row.factoryId
+        })
         return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
-          </div>
+          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "storeId",
+      headerName: "Cửa hàng",
+      width: 150,
+      renderCell: (params) => {
+        const store = stores.find(item => {
+          return item.id == params.row.storeId
+        })
+        return (
+          <div>{typeof(store.name) == 'string' ? store.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "serviceCenterId",
+      headerName: "Trung tâm bảo hành",
+      width: 150,
+      renderCell: (params) => {
+        const serviceCenter = serviceCenters.find(item => {
+          return item.id == params.row.serviceCenterId
+        })
+        return (
+          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
         );
       },
     },
@@ -50,21 +115,6 @@ export default function ProductList() {
       field: "warrantyPeriod",
       headerName: "Warranty Period",
       width: 150,
-    },
-    {
-      field: "color",
-      headerName: "Color",
-      width: 120,
-    },
-    {
-      field: "capacity",
-      headerName: "Memory",
-      width: 120,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
     },
     {
       field: "status",

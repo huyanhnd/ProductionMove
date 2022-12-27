@@ -23,7 +23,7 @@ import { publicRequest } from "./requestMethods";
 export const getProductLines = async (dispatch) => {
     dispatch(getProductLinesStart());
     try {
-        const res = await publicRequest.get(`/Productline`);
+        const res = await publicRequest.get(`/ProductLine`);
         dispatch(getProductLinesSuccess(res.data));
     } catch (err) {
         dispatch(getProductLinesFailure());
@@ -33,7 +33,7 @@ export const getProductLines = async (dispatch) => {
 export const getProductLineById = async (dispatch,id) => {
     dispatch(getProductLineByIdStart());
     try {
-        const res = await publicRequest.get(`/Productline/${id}`);
+        const res = await publicRequest.get(`/ProductLine/${id}`);
         dispatch(getProductLineByIdSuccess(res.data));
     } catch (err) {
         dispatch(getProductLineByIdFailure());
