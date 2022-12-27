@@ -34,10 +34,10 @@ export default function ProductLine() {
         {productlines.map((item, index) => (
           <ProductLineItem data={item} key={index} />
         ))}
-          <div className="productline_link">
+          <Link to={"/newproductline/"} className="productline_link">
             <div className="seriesItemAdd1">+</div>
             <text className="textAdd">Thêm sản phẩm mới</text>
-          </div>
+          </Link>
       </div>
     </div>
   )

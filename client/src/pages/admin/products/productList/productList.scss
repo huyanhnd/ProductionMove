@@ -1,0 +1,19 @@
+.productList {
+    height: 635px;
+    width: 100%;
+
+    .status {
+        padding: 5px;
+        border-radius: 5px;
+
+        &.InFactory {
+            color: green;
+            background-color: rgba(0, 128, 0, 0.151);
+        }
+
+        &.InStore {
+            color: goldenrod;
+            background-color: rgba(189, 189, 3, 0.103);
+        }
+    }
+}

@@ -7,7 +7,8 @@ import { userData } from "../../../dummyData";
 
 const StoreHome = () => {
     return (
-        <div className="home">
+        <div className="homeStore">
+            HUHUHUHUHUHUHUHUHUHUHUHUHUHU
         </div>
     );
 };

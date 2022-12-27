@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../../api/userApi";
 import { useEffect } from "react";
+import { formatDate } from "../../../../helper/formatDate";
 
 export default function UserList() {
   const dispatch = useDispatch();
@@ -16,23 +17,6 @@ export default function UserList() {
 
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
-  };
-
-  const createdDate = (created) => {
-    let options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: false,
-      timeZone: "Asia/Ho_Chi_Minh",
-    };
-    const dateFomat = new Date(created);
-    const [date,time] = (new Intl.DateTimeFormat("en-US", options).format(dateFomat)).split(',')
-    const [month,day,year] = date.split('/')
-    return time.concat(" - ",date)
   };
 
   const columns = [
@@ -59,7 +43,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{createdDate(params.row.created)}</div>
+            <div className="">{formatDate(params.row.created)}</div>
         );
       },
     },
@@ -69,7 +53,7 @@ export default function UserList() {
       width: 200,
       renderCell: (params) => {
         return (
-            <div className="">{params.row.updated===null ? "Undefine" : createdDate(params.row.updated)}</div>
+            <div className="">{params.row.updated===null ? "Undefine" : formatDate(params.row.updated)}</div>
         );
       },
     },
