@@ -52,6 +52,8 @@
   margin: 0px 0.833333%;
   min-width: 225px;
   margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
 }
 
 .seriesItemAdd1 {
