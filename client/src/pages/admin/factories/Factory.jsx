@@ -8,6 +8,7 @@ export default function Factory() {
         <div className="factoryPage">
             <div className="header">
                 <AddressFilter type='Factory'/>
+                <div className="range"></div>
                 <Link to="/factories/addfactory" className="add-factory">
                     Add Factory
                 </Link>

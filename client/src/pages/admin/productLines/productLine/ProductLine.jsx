@@ -18,6 +18,11 @@ export default function ProductLine() {
     getProductLines(dispatch);
   }, [dispatch]);
 
+  // const [productline, setProductline] = useState('0')
+  // const handleProductlineChange = (e) => {
+  //   setProductline(e.target.value)
+  // }
+
   console.log(productlines);
 
   return (
