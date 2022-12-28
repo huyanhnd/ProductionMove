@@ -1,4 +1,6 @@
-﻿namespace ProductionMove.ViewModels.ProductModel
+﻿using ProductionMove.Models;
+
+namespace ProductionMove.ViewModels.ProductModel
 {
     public class ProductQuery
     {
@@ -7,6 +9,7 @@
         public int FactoryId { get; set; }
         public int StoreId { get; set; }
         public int ServiceCenterId { get; set; }
+        public ProductStatus Status { get; set; }
         public ProductQuery()
         {
             PageNumber = 1;
@@ -14,6 +17,7 @@
             FactoryId = 0;
             StoreId = 0;
             ServiceCenterId = 0;
+            Status = ProductStatus.All;
         }
         public ProductQuery(int pageNumber, int pageSize)
         {

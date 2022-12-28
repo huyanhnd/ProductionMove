@@ -9,6 +9,7 @@
         Warranted,
         Error,
         OutOfWarranty,
+        All,
     }
 
     public class Product
@@ -19,7 +20,10 @@
         public ProductLine ProductLine { get; set; }
         public DateTime ManufactureDate { get; set; }
         public string WarrantyPeriod { get; set; }
+        public DateTime WarrantyDate { get; set; }
         public int WarrantyTime { get; set; }
+        public DateTime SoldDate { get; set; }
+        public DateTime ErrorDate { get; set; }
         public string Color { get; set; }
         public string Capacity { get; set; }
         public ProductStatus Status { get; set; }

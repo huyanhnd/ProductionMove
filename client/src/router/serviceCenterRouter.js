@@ -13,9 +13,9 @@ export const serviceCenterRouter = createBrowserRouter([
         element: <Layout />,
         children: [
             { path: "*", element: <NotFoundPage />, },
-            { path: "/servicecenters_products", element: <ServiceCenter /> },
-            { path: "/servicecenters_products/addproducts", element: <AddServiceCenterProduct /> },
-            { path: "/servicecenters_process", element: <ServiceCenterProcess /> },
+            { path: "/servicecenters/products", element: <ServiceCenter /> },
+            { path: "/servicecenters/products/addproducts", element: <AddServiceCenterProduct /> },
+            { path: "/servicecenters/process", element: <ServiceCenterProcess /> },
         ],
     }
 ])
