@@ -11,5 +11,6 @@ namespace ProductionMove.Models
         public int AccountId { get; set; }
         public Account Account { get; set; }
         public List<Product> Products { get; set; }
+        public List<Process> Processes { get; set; }
     }
 }

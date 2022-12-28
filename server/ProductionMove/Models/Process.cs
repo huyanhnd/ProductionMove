@@ -8,6 +8,12 @@ namespace ProductionMove.Models
         Cancelled,
     }
 
+    public enum ProcessType : byte
+    {
+        Export,
+        Import
+    }
+
     public class Process
     {
         public int Id { get; set; }
@@ -16,6 +22,11 @@ namespace ProductionMove.Models
         public DateTime ApprovedDate { get; set; }
         public DateTime CancelledDate { get; set; }
         public ProcessStatus Status { get; set; }
+        public ProcessType Type { get; set; }
         public List<Product>? Products { get; set; }
+        public int? FactoryId { get; set; }
+        public Factory? Factory { get; set; }
+        public int? StoreId { get; set; }
+        public Store? Store { get; set; }
     }
 }
