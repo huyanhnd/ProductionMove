@@ -188,12 +188,6 @@ export default function ServiceCenterFilter() {
             Submit
           </div>
         </div>
-        <Link
-          to="/servicecenters_products/addproducts"
-          className="linkServiceCenter"
-        >
-          Add Product
-        </Link>
       </div>
     </div>
   );
