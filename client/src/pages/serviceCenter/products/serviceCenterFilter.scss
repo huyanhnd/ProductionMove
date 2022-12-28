@@ -1,5 +1,5 @@
 .factoryFilter {
-    display: flex;
+    flex: 4;
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
@@ -69,7 +69,7 @@
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 200px;
+    // margin-left: 200px;
 
     &:hover {
         background-color: rgb(242, 255, 242);
