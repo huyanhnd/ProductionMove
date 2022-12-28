@@ -1,4 +1,4 @@
-import "./storeProducts.scss";
+import "./factoryProduct.scss";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -10,7 +10,7 @@ import { getStore } from "../../../api/storesApi";
 import { getServiceCenter } from "../../../api/serviceCenterApi";
 
 
-export default function StoreProducts() {
+export default function FactoryProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const factories = useSelector((state) => state.factory.factories);
@@ -52,19 +52,19 @@ export default function StoreProducts() {
       width: 100,
     },
     { field: "code", headerName: "Code", width: 120 },
-    {
-      field: "factoryId",
-      headerName: "Cơ sở sản xuất",
-      width: 150,
-      renderCell: (params) => {
-        const factory = factories.find(item => {
-          return item.id == params.row.factoryId
-        })
-        return (
-          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
-        );
-      },
-    },
+    // {
+    //   field: "factoryId",
+    //   headerName: "Cơ sở sản xuất",
+    //   width: 150,
+    //   renderCell: (params) => {
+    //     const factory = factories.find(item => {
+    //       return item.id == params.row.factoryId
+    //     })
+    //     return (
+    //       <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+    //     );
+    //   },
+    // },
     {
       field: "serviceCenterId",
       headerName: "Trung tâm bảo hành",
