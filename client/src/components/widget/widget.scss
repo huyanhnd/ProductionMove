@@ -8,6 +8,10 @@
   border-radius: 10px;
   height: 100px;
 
+  .left {
+    align-items: flex-start;
+  }
+
   .left,
   .right {
     display: flex;
@@ -16,18 +20,18 @@
 
     .title {
       font-weight: bold;
-      font-size: 14px;
-      color: rgb(160, 160, 160);
+      font-size: 21px;
+      color: rgb(44, 44, 44);
     }
 
     .counter {
       font-size: 28px;
-      font-weight: 300;
+      font-weight: 450;
     }
 
     .link {
-      width: max-content;
-      font-size: 12px;
+      // width: max-content;
+      font-size: 14px;
       border-bottom: 1px solid gray;
     }
 

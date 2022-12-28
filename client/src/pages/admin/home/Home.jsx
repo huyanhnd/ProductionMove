@@ -1,4 +1,3 @@
-import FeaturedInfo from "./FeaturedInfo";
 import "./home.css";
 import { userData } from "../../../dummyData";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,13 +6,14 @@ import { useEffect } from "react";
 import { getProducts } from "../../../api/productsApi";
 import ChartBar from "../../../components/chart/ChartBar";
 import { getFactory } from "../../../api/factoryApi";
+import FeaturedInfoHome from "./FeaturedInfoHome";
 
 export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     getProductLines(dispatch);
     getProducts(dispatch)
-    getFactory(dispatch, '00','000','0000','')
+    getFactory(dispatch, '00', '000', '0000', '')
   }, [dispatch]);
   const products = useSelector((state) => state.product.products);
   /**
@@ -31,7 +31,13 @@ export default function Home() {
   /**
    * Thống kê theo trạng thái
   */
-  const status = ['factory']
+  const statuses = ['InFactory', 'InStore', 'Sold', 'InWarranty', 'Warranted', 'Error', 'OutOfWarranty']
+  const statusData = statuses.map((status, index) => {
+    const quantity = products.filter((product) => {
+      return status == product.status
+    })
+    return { name: status, "Quantity of Product": quantity.length }
+  })
 
   /**
    * Thống kê theo nhà máy
@@ -41,34 +47,44 @@ export default function Home() {
     const quantity = products.filter((product) => {
       return product.factoryId == factory.id
     })
-    return { name: factory.name, "Quantity of product": quantity.length }
+    return { name: factory.name, "Quantity of Product": quantity.length }
   })
 
   /**
    * Thống kê theo cửa hàng
   */
   const stores = useSelector((state) => state.store.stores);
-  const storeData = factories.map((store, index) => {
+  const storeData = stores.map((store, index) => {
     const quantity = products.filter((product) => {
       return product.storeId == store.id
     })
-    return { name: store.name, "Quantity of Store": quantity.length }
+    return { name: store.name, "Quantity of Product": quantity.length }
   })
 
   /**
    * Thống kê theo cửa hàng
   */
+  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+  const serviceCenterData = serviceCenters.map((serviceCenter, index) => {
+    const quantity = products.filter((product) => {
+      return product.serviceCenterId == serviceCenter.id
+    })
+    return { name: serviceCenter.name, "Quantity of Product": quantity.length }
+  })
 
   return (
     <div className="home">
-      <FeaturedInfo />
+      <FeaturedInfoHome />
       {/* Tổng sp trên toàn quốc */}
       <ChartBar data={productData} title="All of products" grid dataKey="Quantity" />
       {/* Tổng sp theo trạng thái */}
+      <ChartBar data={statusData} title="All of products by Status" grid dataKey="Quantity of Product" />
       {/* Tổng sp theo nhà máy */}
-      <ChartBar data={factoryData} title="Products by Factory" grid dataKey="Quantity of product" />
+      <ChartBar data={factoryData} title="Products by Factory" grid dataKey="Quantity of Product" />
       {/* Tổng sp theo Đại lý phân phối */}
+      <ChartBar data={storeData} title="Products by Store" grid dataKey="Quantity of Product" />
       {/* Tổng sp theo TT bảo hành */}
+      <ChartBar data={serviceCenterData} title="Products by Service center" grid dataKey="Quantity of Product" />
     </div>
   );
 }

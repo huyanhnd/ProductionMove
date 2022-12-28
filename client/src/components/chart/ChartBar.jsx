@@ -6,6 +6,7 @@ import {
   ResponsiveContainer,
   BarChart,
   Bar,
+  Legend,
 } from "recharts";
 
 export default function ChartBar({ title, data, dataKey, grid }) {
@@ -16,9 +17,9 @@ export default function ChartBar({ title, data, dataKey, grid }) {
       <ResponsiveContainer  width="100%" aspect={4 / 1} className="chartContent">
         <BarChart data={data}>
           <XAxis dataKey="name" stroke="#5550bd" />
-          <Bar dataKey={dataKey} barSize={30} fill="#5550bd" />
           <Tooltip />
           {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />}
+          <Bar dataKey={dataKey} barSize={30} fill="#5550bd" />
         </BarChart>
       </ResponsiveContainer>
     </div>
