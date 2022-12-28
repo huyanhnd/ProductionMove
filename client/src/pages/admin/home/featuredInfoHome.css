@@ -6,7 +6,9 @@
 }
 
 .featuredItem {
+    display: flex;
   flex: 1;
+  justify-content: space-between;
   flex-direction: row;
   margin: 0px 20px;
   padding: 30px;
@@ -14,9 +16,36 @@
   cursor: pointer;
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
+.right{
+    display: flex;
+    justify-content: space-between;
+flex-direction: column;
+align-items: flex-end;
+}
+.icon {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.red {
+    background-color: rgb(255, 205, 205);
+    color: rgb(228, 59, 59);
+border: rgb(255, 146, 146) solid 1px;
+}
 
+.green {
+    background-color: rgb(205, 255, 234);
+    color: rgb(32, 182, 32);
+border: rgb(146, 255, 184) solid 1px;
+}
+.yellow {
+    background-color: rgb(255, 221, 171);
+    color: rgb(237, 161, 31);
+border: rgb(255, 203, 134) solid 1px;
+}
 .featuredTitle{
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 550;
 }
 
 .featuredContainer{
@@ -53,6 +82,6 @@
 }
 
 .featuredSub{
-    font-size: 15px;
-    color: gray;
+    font-size: 17px;
+    color: rgb(99, 99, 99);
 }
