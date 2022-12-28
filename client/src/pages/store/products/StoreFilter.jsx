@@ -182,9 +182,6 @@ export default function StoreFilter() {
             Submit
           </div>
         </div>
-        <Link to="/store-products/request" className="linkRequest">
-          Request Product
-        </Link>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import ServiceCenter from "../pages/admin/serviceCenters/ServiceCenter";
 import AddServiceCenter from "../pages/admin/serviceCenters/addServiceCenter/AddServiceCenter";
 import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
 import { Layout } from "../layout/layout";
+import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
 
 export const adminRouter = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ export const adminRouter = createBrowserRouter([
             { path: "/newproductline", element: <NewProductLine /> },
             { path: "/products", element: <Products /> },
             { path: "/product/:code", element: <UpdateFactory /> },
-            { path: "/newproduct", element: <NewProduct /> },
+            { path: "/products/newproduct", element: <NewProduct /> },
             { path: "/factories", element: <Factory /> },
             { path: "/factories/addfactory", element: <AddFactory /> },
             { path: "/stores", element: <Store /> },

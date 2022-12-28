@@ -5,10 +5,11 @@ import { Link } from "react-router-dom"
 
 export default function Store() {
     return (
-        <div className="factoryPage">
+        <div className="storePage">
             <div className="header">
                 <AddressFilter type='Store' />
-                <Link to="/stores/addstore" className="add-factory">
+                <div className="range"></div>
+                <Link to="/stores/addstore" className="add-store">
                     Add Store
                 </Link>
             </div>
