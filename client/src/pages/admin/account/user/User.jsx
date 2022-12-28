@@ -17,6 +17,9 @@ export default function User() {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
 
+  const user = useSelector((state) => state.user.users);
+  const selectUser = user.find(u => u.id == userId)
+
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({ role: "Factory" });
   const [file, setFile] = useState(null);
@@ -57,22 +60,19 @@ export default function User() {
         }
       },
       (error) => {
-        // Handle unsuccessful uploads
+        alert("Update Image Error!");
       },
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const user = { ...inputs, image: downloadURL };
-          updateUser(userId, user, dispatch);
+          const userModel = { ...inputs, image: downloadURL };
+          updateUser(userId, userModel, dispatch);
           alert("Update User Success!");
         });
       }
     );
   };
-
-  const user = useSelector((state) => state.user.users);
-  const selectUser = user.find(u => u.id == userId)
 
   return (
     <div className="user">
@@ -142,18 +142,23 @@ export default function User() {
               <div className="userUpdateUpload">
                 <img
                   className="userUpdateImg"
+                  id="file-ip-1-preview"
                   src={selectUser.image}
                   alt=""
-                  onChange={(e) => {
-                    if (file) {
-                      console.log(file)
-                    }
-                  }}
                 />
                 <label htmlFor="file">
                   <Publish className="userUpdateIcon" />
                 </label>
-                <input type="file" id="file" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
+                <input type="file" id="file" style={{ display: "none" }}
+                  onChange={(e) => {
+                    setFile(e.target.files[0])
+                    if (e.target.files.length > 0) {
+                      var src = URL.createObjectURL(e.target.files[0]);
+                      var preview = document.getElementById("file-ip-1-preview");
+                      preview.src = src;
+                      preview.style.display = "block";
+                    }
+                  }} />
               </div>
               <button className="userUpdateButton" onClick={handleClick}>Update</button>
             </div>
