@@ -1,6 +1,7 @@
 import "./sidebar.css";
 import {
-  LineStyle,
+  SendToMobile,
+  Home,
   PermIdentity,
   Storefront,
   WorkOutline,
@@ -22,7 +23,7 @@ export default function Sidebar() {
       role: "Admin",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
           link: "/",
           key: 1,
@@ -70,20 +71,26 @@ export default function Sidebar() {
         {
           icon: BarChart,
           title: "Home",
-          link: "/factory",
+          link: "/",
           key: 1,
         },
         {
           icon: Warehouse,
           title: "Warehouse",
-          link: "/factory-warehouse",
+          link: "/factory/warehouse",
           key: 2,
         },
         {
-          icon: Settings,
-          title: "Process",
-          link: "/factory-process",
+          icon: SendToMobile,
+          title: "Export",
+          link: "/factory/export",
           key: 3,
+        },
+        {
+          icon: Settings,
+          title: "Error Product",
+          link: "/factory/process",
+          key: 4,
         },
       ]
     },
@@ -91,9 +98,9 @@ export default function Sidebar() {
       role: "Store",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
-          link: "/store",
+          link: "/",
           key: 1,
         },
         {
@@ -114,7 +121,7 @@ export default function Sidebar() {
       role: "ServiceCenter",
       navChild: [
         {
-          icon: LineStyle,
+          icon: Home,
           title: "Home",
           link: "/",
           key: 1,

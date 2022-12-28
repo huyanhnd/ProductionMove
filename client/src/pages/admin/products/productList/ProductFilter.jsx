@@ -36,21 +36,21 @@ export default function ProductFilter() {
     setProductline(e.target.value)
   }
 
-  /**
- * memory filter box
-*/
-  const [memory, setMemory] = useState('0')
-  const handleMemoryChange = (e) => {
-    setMemory(e.target.value)
-  }
+//   /**
+//  * memory filter box
+// */
+//   const [memory, setMemory] = useState('0')
+//   const handleMemoryChange = (e) => {
+//     setMemory(e.target.value)
+//   }
 
-  /**
-* color filter box
-*/
-  const [color, setColor] = useState('0')
-  const handleColorChange = (e) => {
-    setColor(e.target.value)
-  }
+//   /**
+// * color filter box
+// */
+//   const [color, setColor] = useState('0')
+//   const handleColorChange = (e) => {
+//     setColor(e.target.value)
+//   }
 
   /**
 * factory filter box
@@ -81,12 +81,6 @@ export default function ProductFilter() {
   */
   const [submit, setSubmit] = useState(true)
   useEffect(() => {
-    console.log(productline, memory,
-      color,
-      factory,
-      store,
-      serviceCenter,);
-    console.log(products);
     setProductData(products.filter((item, index) => {
       return (productline != '0' && item.productLineId == productline)
         // && (color != '0' && item.color == color)
@@ -123,7 +117,7 @@ return (
         </FormControl>
       </div>
 
-      {/* memory */}
+      {/* memory
       <div className="filterSection">
         <div className="filterTitle">Memory</div>
         <FormControl >
@@ -141,7 +135,7 @@ return (
         </FormControl>
       </div>
 
-      {/* Color */}
+      color
       <div className="filterSection">
         <div className="filterTitle">Color</div>
         <FormControl >
@@ -157,7 +151,7 @@ return (
             })}
           </Select>
         </FormControl>
-      </div>
+      </div> */}
 
       {/* Cơ sở sản xuất */}
       <div className="filterSection">

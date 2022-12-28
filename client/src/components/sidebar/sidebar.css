@@ -7,7 +7,7 @@
 }
 
 .sidebarWrapper {
-  padding: 20px;
+  padding: 15px;
   color: #555;
 }
 
@@ -16,7 +16,8 @@
 }
 
 .sidebarTitle {
-  font-size: 13px;
+  margin-left: 10px;
+  font-size: 20px;
   color: rgb(187, 186, 186);
 }
 

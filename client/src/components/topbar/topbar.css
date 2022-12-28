@@ -7,6 +7,12 @@
   z-index: 999;
 }
 
+.logo {
+  cursor: pointer;
+  width: 30px;
+  margin-right: 5px;
+}
+
 .topbarWrapper {
   height: 100%;
   padding: 0px 20px;
@@ -15,16 +21,16 @@
   justify-content: space-between;
 }
 
-.logo {
+.logoTitle {
   font-weight: bold;
   font-size: 30px;
   color: darkblue;
   cursor: pointer;
 }
 
-.topRight{
-    display: flex;
-    align-items: center;
+.topRight {
+  display: flex;
+  align-items: center;
 }
 
 .topbarIconContainer {
@@ -34,24 +40,24 @@
   color: #555;
 }
 
-.topIconBadge{
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: -5px;
-    right: 0px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
+.topIconBadge {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
-.topAvatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
+.topAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }

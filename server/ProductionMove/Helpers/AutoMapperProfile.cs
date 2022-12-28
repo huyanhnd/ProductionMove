@@ -73,7 +73,7 @@ public class AutoMapperProfile : Profile
         CreateMap<ProductRequest, Product>();
         CreateMap<QueryResult<Product>, QueryResult<ProductResponse>>();
 
-        //Product
+        //Process
         CreateMap<Process, ProcessResponse>();
         CreateMap<ProcessRequest, Process>();
         CreateMap<QueryResult<Process>, QueryResult<ProcessResponse>>();

@@ -11,12 +11,15 @@
 }
 
 .seriesItem {
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   margin: 0 10px 10px 0;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgb(206, 206, 206);
+  cursor: pointer;
 }
 
 .seriesItemAdd {
@@ -49,6 +52,8 @@
   margin: 0px 0.833333%;
   min-width: 225px;
   margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
 }
 
 .seriesItemAdd1 {

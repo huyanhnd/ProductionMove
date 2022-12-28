@@ -26,18 +26,18 @@ export default function ProductLine() {
         {series.map((item, index) => {
           return <button className="seriesItem">{item.name}</button>;
         })}
-        <Link to={"/newProductLine/"}>
+        {/* <Link to={"/newProductLine/"}>
           <Add className="seriesItemAdd"></Add>
-        </Link>
+        </Link> */}
       </div>
       <div className="listItem">
         {productlines.map((item, index) => (
           <ProductLineItem data={item} key={index} />
         ))}
-          <div className="productline_link">
+          <Link to={"/newproductline/"} className="productline_link">
             <div className="seriesItemAdd1">+</div>
             <text className="textAdd">Thêm sản phẩm mới</text>
-          </div>
+          </Link>
       </div>
     </div>
   )
