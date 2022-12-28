@@ -5,6 +5,7 @@
 .header {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .factoryListEdit {
@@ -28,13 +29,22 @@
   word-break: break-all;
 }
 
+.range {
+  flex: 1;
+}
+
 .add-factory {
   text-decoration: none;
   color: green;
   font-size: 16px;
   font-weight: 400;
   border: 1px solid green;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
+
+.add-factory:hover {
+  background-color: rgb(242, 255, 242);
+}
+

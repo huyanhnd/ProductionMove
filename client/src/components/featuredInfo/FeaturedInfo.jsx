@@ -18,7 +18,7 @@ import { getDMY } from "../../helper/getDMY";
  * 
  */
 
-export default function FeaturedInfo({ type, data }) {
+export default function FeaturedInfo({ type, data, home }) {
   // const dispatch = useDispatch();
   // const products = useSelector((state) => state.product.products);
 
@@ -27,7 +27,8 @@ export default function FeaturedInfo({ type, data }) {
   // }, [dispatch]);
 
   const date = new Date();
-  const today = { day: date.getDate(), month: date.getMonth(), year: date.getFullYear() }
+  console.log(date)
+  const today = { day: date.getDate(), month: date.getMonth() + 1, year: date.getFullYear() }
 
   switch (type) {
     case "product":
@@ -36,12 +37,11 @@ export default function FeaturedInfo({ type, data }) {
   */
       const thisMonthSold = data.filter((item, index) => {
         const soldDate = getDMY(item.soldDate)
-        return soldDate.month == today.month
+        return soldDate.month == today.month && soldDate.year == today.year && (soldDate.year != '0001')
       });
-
       const lastMonthSold = data.filter((item, index) => {
         const soldDate = getDMY(item.soldDate)
-        return (today.month == 1 ? soldDate.month == 12 : soldDate.month == today.month - 1)
+        return (soldDate.year != '0001') && (today.month == 1 ? (soldDate.month == 12 && soldDate.year == today.year - 1) : (soldDate.month == today.month - 1 && soldDate.year == today.year))
       });
       const deviationSold = (thisMonthSold.length - lastMonthSold.length)
 
@@ -49,12 +49,17 @@ export default function FeaturedInfo({ type, data }) {
        * Manufactured list
        */
       const thisMonthManufactured = data.filter((item, index) => {
+        console.log(item);
         const manufactureDate = getDMY(item.manufactureDate)
-        return manufactureDate.month == today.month
+        console.log(manufactureDate);
+        console.log(manufactureDate.month == today.month);
+        return manufactureDate.month == today.month && manufactureDate.year == today.year && manufactureDate.year != '0001'
       });
+
+
       const lastMonthManufactured = data.filter((item, index) => {
         const manufactureDate = getDMY(item.manufactureDate)
-        return (today.month == 1 ? manufactureDate.month == 12 : manufactureDate.month == today.month - 1)
+        return manufactureDate.year != '0001' && (today.month == 1 ? (manufactureDate.month == 12 && manufactureDate.year == today.year - 1) : (manufactureDate.month == today.month - 1 && manufactureDate.year == today.year))
       });
       const deviationManufactured = thisMonthManufactured.length - lastMonthManufactured.length
 
@@ -63,11 +68,11 @@ export default function FeaturedInfo({ type, data }) {
        */
       const thisMonthError = data.filter((item, index) => {
         const errorDate = getDMY(item.warrantyDate)
-        return errorDate.month == today.month
+        return errorDate.month == today.month && errorDate.year == today.year && errorDate.year != '0001'
       });
       const lastMonthError = data.filter((item, index) => {
         const errorDate = getDMY(item.warrantyDate)
-        return (today.month == 1 ? errorDate.month == 12 : errorDate.month == today.month - 1)
+        return errorDate.year != '0001' && (today.month == 1 ? (errorDate.month == 12 && errorDate.year == today.year - 1) : (errorDate.month == today.month - 1 && errorDate.year == today.year))
       });
       const deviationError = thisMonthError.length - lastMonthError.length
       return (
@@ -86,7 +91,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <PrecisionManufacturing className="icon green" />
-              <Link to=''>View details</Link>
+              <Link to={home ? '/products' : '/factory/warehouse'}>View details</Link>
             </div>
           </div>
           <div className="blank"></div>
@@ -104,7 +109,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <ShoppingCart className="icon yellow" />
-              <Link to=''>View details</Link>
+              <Link to={home ? '/products' : '/factory/warehouse'}>View details</Link>
             </div>
           </div>
           <div className="blank"></div>
@@ -122,7 +127,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <ErrorOutline className="icon red" />
-              <Link to=''>View details</Link>
+              <Link to={home ? '/products' : '/factory/warehouse'}>View details</Link>
             </div>
           </div>
         </div>
@@ -136,12 +141,15 @@ export default function FeaturedInfo({ type, data }) {
 */
       const thisMonthSold_ = data.filter((item, index) => {
         const soldDate = getDMY(item.soldDate)
-        return soldDate.month == today.month
+        return soldDate.month == today.month && soldDate.year == today.year && (soldDate.year != '0001')
       });
 
       const lastMonthSold_ = data.filter((item, index) => {
         const soldDate = getDMY(item.soldDate)
-        return (today.month == 1 ? soldDate.month == 12 : soldDate.month == today.month - 1)
+        console.log('soldDate: ', soldDate);
+        console.log((soldDate.year != '0001') && (today.month == 1 ? (soldDate.month == 12 && soldDate.year == today.year - 1) : (soldDate.month == today.month - 1 && soldDate.year == today.year)))
+
+        return (soldDate.year != '0001') && (today.month == 1 ? (soldDate.month == 12 && soldDate.year == today.year - 1) : (soldDate.month == today.month - 1 && soldDate.year == today.year))
       });
       const deviationSold_ = (thisMonthSold_.length - lastMonthSold_.length)
 
@@ -158,20 +166,20 @@ export default function FeaturedInfo({ type, data }) {
       const lastEarnning = lastMonthSold_.reduce(function (total, currentValue) {
         return total + parseInt(currentValue.price);
       }, initialValue2);
-      
+
       const deviationEarnning = thisEarnning - lastEarnning
-      console.log(thisEarnning,lastEarnning,deviationEarnning);
+      console.log(thisEarnning, lastEarnning, deviationEarnning);
 
       /**
        * Error list
        */
       const thisMonthError_ = data.filter((item, index) => {
         const errorDate = getDMY(item.warrantyDate)
-        return errorDate.month == today.month
+        return errorDate.month == today.month && errorDate.year == today.year && errorDate.year != '0001'
       });
       const lastMonthError_ = data.filter((item, index) => {
         const errorDate = getDMY(item.warrantyDate)
-        return (today.month == 1 ? errorDate.month == 12 : errorDate.month == today.month - 1)
+        return errorDate.year != '0001' && (today.month == 1 ? (errorDate.month == 12 && errorDate.year == today.year - 1) : (errorDate.month == today.month - 1 && errorDate.year == today.year))
       });
       const deviationError_ = thisMonthError_.length - lastMonthError_.length
       return (
@@ -190,7 +198,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <MonetizationOn className="icon green" />
-              <Link to=''>View details</Link>
+              <Link to={'store/products'}>View details</Link>
             </div>
           </div>
           <div className="blank"></div>
@@ -208,7 +216,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <ShoppingCart className="icon yellow" />
-              <Link to=''>View details</Link>
+              <Link to={'/store/products'}>View details</Link>
             </div>
           </div>
           <div className="blank"></div>
@@ -226,7 +234,7 @@ export default function FeaturedInfo({ type, data }) {
             </div>
             <div className="right">
               <ErrorOutline className="icon red" />
-              <Link to=''>View details</Link>
+              <Link to={'store/products'}>View details</Link>
             </div>
           </div>
         </div>
@@ -234,158 +242,26 @@ export default function FeaturedInfo({ type, data }) {
       break;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
     case "serviceCenter":
-      case "product":
-        /**
-    * đã nhận vào
-    */
-        const thisMonthWarranty = data.filter((item, index) => {
-          const warrantyDate = getDMY(item.warrantyDate)
-          return warrantyDate.month == today.month
-        });
-  
-        const lastMonthWarranty = data.filter((item, index) => {
-          const warrantyDate = getDMY(item.warrantyDate)
-          return (today.month == 1 ? warrantyDate.month == 12 : warrantyDate.month == today.month - 1)
-        });
-        const deviationWarranty = (thisMonthWarranty.length - lastMonthWarranty.length)
-  
-        /**
-         * đang bảo hành
-         */
+      /**
+  * đã nhận vào
+  */
+      const thisMonthWarranty = data.filter((item, index) => {
+        const warrantyDate = getDMY(item.warrantyDate)
+        return warrantyDate.month == today.month && warrantyDate.year == today.year && warrantyDate.year != '0001'
+      });
 
-        let initialValue = 0
+      const lastMonthWarranty = data.filter((item, index) => {
+        const warrantyDate = getDMY(item.warrantyDate)
+        return warrantyDate.year != '0001' && (today.month == 1 ? (warrantyDate.month == 12 && warrantyDate.year == today.year - 1) : (warrantyDate.month == today.month - 1 && warrantyDate.year == today.year))
+      });
+      const deviationWarranty = (thisMonthWarranty.length - lastMonthWarranty.length)
+
+      /**
+       * đang bảo hành
+       */
+
+      let initialValue = 0
       const thisInWarranty = thisMonthWarranty.reduce(function (total, currentValue) {
         return total + (currentValue.status == 'InWarranty' ? 1 : 0);
       }, initialValue);
@@ -394,82 +270,82 @@ export default function FeaturedInfo({ type, data }) {
       const lastInWarranty = lastMonthWarranty.reduce(function (total, currentValue) {
         return total + (currentValue.status == 'InWarranty' ? 1 : 0);
       }, initialValue);
-        const deviationInWarranty = thisInWarranty - lastInWarranty
-  
-        /**
-         * sp lỗi
-         */
-        const thisMonthError__ = data.filter((item, index) => {
-          const errorDate = getDMY(item.warrantyDate)
-          return errorDate.month == today.month
-        });
-        const lastMonthError__ = data.filter((item, index) => {
-          const errorDate = getDMY(item.warrantyDate)
-          return (today.month == 1 ? errorDate.month == 12 : errorDate.month == today.month - 1)
-        });
+      const deviationInWarranty = thisInWarranty - lastInWarranty
+
+      /**
+       * sp lỗi
+       */
+      const thisMonthError__ = data.filter((item, index) => {
+        const errorDate = getDMY(item.warrantyDate)
+        return errorDate.month == today.month && errorDate.year == today.year && errorDate.year != '0001'
+      });
+      const lastMonthError__ = data.filter((item, index) => {
+        const errorDate = getDMY(item.warrantyDate)
+        return errorDate.year != '0001' && (today.month == 1 ? (errorDate.month == 12 && errorDate.year == today.year - 1) : (errorDate.month == today.month - 1 && errorDate.year == today.year))
+      });
 
 
-        const deviationError__ = thisMonthError__.length - lastMonthError__.length
-        return (
-          <div className="featured">
-            <div className="featuredItem">
-              <div className="left">
-                <span className="featuredTitle">Total of Products received</span>
-                <div className="featuredContainer">
-                  <span className="featuredDescription">{thisMonthWarranty.length}</span>
-                  <span className="featuredDescriptionRate">
-                    {deviationInWarranty >= 0 ? <div>+{deviationInWarranty}</div> : deviationInWarranty}
-                    {deviationInWarranty > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationInWarranty < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
-                  </span>
-                </div>
-                <span className="featuredSub">Compared to last month</span>
+      const deviationError__ = thisMonthError__.length - lastMonthError__.length
+      return (
+        <div className="featured">
+          <div className="featuredItem">
+            <div className="left">
+              <span className="featuredTitle">Total of Products received</span>
+              <div className="featuredContainer">
+                <span className="featuredDescription">{thisMonthWarranty.length}</span>
+                <span className="featuredDescriptionRate">
+                  {deviationWarranty >= 0 ? <div>+{deviationWarranty}</div> : deviationWarranty}
+                  {deviationWarranty > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationWarranty < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
+                </span>
               </div>
-              <div className="right">
-                <PrecisionManufacturing className="icon green" />
-                <Link to=''>View details</Link>
-              </div>
+              <span className="featuredSub">Compared to last month</span>
             </div>
-            <div className="blank"></div>
-            <div className="featuredItem">
-              <div className="left">
-                <span className="featuredTitle">In warranty products</span>
-                <div className="featuredContainer">
-                  <span className="featuredDescription">{thisInWarranty}</span>
-                  <span className="featuredDescriptionRate">
-                    {deviationInWarranty >= 0 ? <div>+{deviationInWarranty}</div> : deviationInWarranty}
-                    {deviationInWarranty > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationInWarranty < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
-                  </span>
-                </div>
-                <span className="featuredSub">Compared to last month</span>
-              </div>
-              <div className="right">
-                <ShoppingCart className="icon yellow" />
-                <Link to=''>View details</Link>
-              </div>
-            </div>
-            <div className="blank"></div>
-            <div className="featuredItem">
-              <div className="left">
-                <span className="featuredTitle">Error product</span>
-                <div className="featuredContainer">
-                  <span className="featuredDescription">{thisMonthError__.length}</span>
-                  <span className="featuredDescriptionRate">
-                    {deviationError__ >= 0 ? <div>+{deviationError__}</div> : deviationError__}
-                    {deviationError__ > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationError__ < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
-                  </span>
-                </div>
-                <span className="featuredSub">Compared to last month</span>
-              </div>
-              <div className="right">
-                <ErrorOutline className="icon red" />
-                <Link to=''>View details</Link>
-              </div>
+            <div className="right">
+              <PrecisionManufacturing className="icon green" />
+              <Link to={'/servicecenters/products'}>View details</Link>
             </div>
           </div>
-        );
-        break;
-  
-  
+          <div className="blank"></div>
+          <div className="featuredItem">
+            <div className="left">
+              <span className="featuredTitle">In warranty products</span>
+              <div className="featuredContainer">
+                <span className="featuredDescription">{thisInWarranty}</span>
+                <span className="featuredDescriptionRate">
+                  {deviationInWarranty >= 0 ? <div>+{deviationInWarranty}</div> : deviationInWarranty}
+                  {deviationInWarranty > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationInWarranty < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
+                </span>
+              </div>
+              <span className="featuredSub">Compared to last month</span>
+            </div>
+            <div className="right">
+              <ShoppingCart className="icon yellow" />
+              <Link to={'/servicecenters/products'}>View details</Link>
+            </div>
+          </div>
+          <div className="blank"></div>
+          <div className="featuredItem">
+            <div className="left">
+              <span className="featuredTitle">Error product</span>
+              <div className="featuredContainer">
+                <span className="featuredDescription">{thisMonthError__.length}</span>
+                <span className="featuredDescriptionRate">
+                  {deviationError__ >= 0 ? <div>+{deviationError__}</div> : deviationError__}
+                  {deviationError__ > 0 ? (<ArrowUpward className="featuredIcon" />) : (deviationError__ < 0 ? (<ArrowDownward className="featuredIcon negative" />) : <div className="featuredIcon equal">=</div>)}
+                </span>
+              </div>
+              <span className="featuredSub">Compared to last month</span>
+            </div>
+            <div className="right">
+              <ErrorOutline className="icon red" />
+              <Link to={'/servicecenters/products'}>View details</Link>
+            </div>
+          </div>
+        </div>
+      );
+      break;
+
+
       break;
 
     default:

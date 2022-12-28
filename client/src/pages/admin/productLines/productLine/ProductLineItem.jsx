@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import "./productLineItem.css";
-import CloseIcon from "@mui/icons-material/Close";
 
 export default function ProductLineItem({ data }) {
   const [isSeemore, setIsSeemore] = useState(false);
@@ -20,40 +18,6 @@ export default function ProductLineItem({ data }) {
               </div>
             </div>
             <section className="table-section">
-              {/* <table id="table-data">
-                <tr>
-                  <td>Tên sản phẩm</td>
-                  <td>{data.name}</td>
-                </tr>
-                <tr>
-                  <td>Kích thước màn hình</td>
-                  <td>{data.screenSize} inches</td>
-                </tr>
-                <tr>
-                  <td>Chipset</td>
-                  <td>{data.chip}</td>
-                </tr>
-                <tr>
-                  <td>Camera</td>
-                  <td>{data.camera}</td>
-                </tr>
-                <tr>
-                  <td>Ram</td>
-                  <td>{data.ram}GB</td>
-                </tr>
-                <tr>
-                  <td>Tần số quét</td>
-                  <td>{data.refreshRate}hz</td>
-                </tr>
-                <tr>
-                  <td>Dung lượng pin</td>
-                  <td>{data.battery}</td>
-                </tr>
-                <tr>
-                  <td>Trọng lượng</td>
-                  <td>{data.weight}</td>
-                </tr>
-              </table> */}
               <div className="table-data">
                 <div className="detail-data">
                   <p>Kích thước màn hình</p>

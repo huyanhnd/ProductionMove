@@ -1,38 +1,40 @@
-import "./productList.scss";
+import "./factoryProduct.scss";
 import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../../api/productsApi";
 import { DataGrid } from "@mui/x-data-grid";
-import { formatDate } from "../../../../helper/formatDate";
-import { getFactory } from "../../../../api/factoryApi";
-import { getStore } from "../../../../api/storesApi";
-import { getServiceCenter } from "../../../../api/serviceCenterApi";
+import { getProducts } from "../../../api/productsApi";
+import { getFactory } from "../../../api/factoryApi";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
-export default function ProductList() {
+
+export default function FactoryProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const factories = useSelector((state) => state.factory.factories);
   const stores = useSelector((state) => state.store.stores);
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
 
-  // useEffect(() => {
-  //   getProducts(dispatch);
-  //   getFactory(dispatch, '00', '000', '0000', '')
-  //   getStore(dispatch, '00', '000', '0000', '')
-  //   getServiceCenter(dispatch, '00', '000', '0000', '')
-  // }, [dispatch]);
+  useEffect(() => {
+    getProducts(dispatch);
+    getFactory(dispatch, '00', '000', '0000', '')
+    getStore(dispatch, '00', '000', '0000', '')
+    getServiceCenter(dispatch, '00', '000', '0000', '')
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);
   };
-
+  var no = 0;
   const columns = [
     {
-      field: "id",
-      headerName: "No.",
-      width: 50,
+      field: "stt", headerName: "No.", width: 50,
+      renderCell: () => {
+        no++
+        return <div>{no}</div>;
+      }
     },
     {
       field: "name",
@@ -49,41 +51,20 @@ export default function ProductList() {
       headerName: "Color",
       width: 100,
     },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 100,
-      renderCell: (param) => {
-        return <div>${param.row.price}</div>
-      }
-    },
     { field: "code", headerName: "Code", width: 120 },
-    {
-      field: "factoryId",
-      headerName: "Cơ sở sản xuất",
-      width: 150,
-      renderCell: (params) => {
-        const factory = factories.find(item => {
-          return item.id == params.row.factoryId
-        })
-        return (
-          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
-        );
-      },
-    },
-    {
-      field: "storeId",
-      headerName: "Cửa hàng",
-      width: 150,
-      renderCell: (params) => {
-        const store = stores.find(item => {
-          return item.id == params.row.storeId
-        })
-        return (
-          <div>{typeof(store.name) == 'string' ? store.name : ''}</div>
-        );
-      },
-    },
+    // {
+    //   field: "factoryId",
+    //   headerName: "Cơ sở sản xuất",
+    //   width: 150,
+    //   renderCell: (params) => {
+    //     const factory = factories.find(item => {
+    //       return item.id == params.row.factoryId
+    //     })
+    //     return (
+    //       <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+    //     );
+    //   },
+    // },
     {
       field: "serviceCenterId",
       headerName: "Trung tâm bảo hành",
@@ -127,7 +108,7 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
+    <div className="table">
       <DataGrid
         rows={products}
         columns={columns}

@@ -53,8 +53,8 @@ export default function NewUser() {
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const user = { ...inputs, image: downloadURL };
-          console.log(user);
           addUser(user, dispatch);
+          alert("Add User Success!");
         });
       }
     );
@@ -76,8 +76,8 @@ export default function NewUser() {
           <label>Role</label>
           <select className="newUserSelect" name="role" id="role" onChange={handleChange} >
             <option value="Factory">Factory</option>
-            <option value="store">Store</option>
-            <option value="serviceCenter">ServiceCenter</option>
+            <option value="Store">Store</option>
+            <option value="ServiceCenter">ServiceCenter</option>
           </select>
         </div>
         <div className="newUserItem">

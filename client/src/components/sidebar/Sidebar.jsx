@@ -89,7 +89,7 @@ export default function Sidebar() {
         {
           icon: Settings,
           title: "Error Product",
-          link: "/factory/process",
+          link: "/factory/error",
           key: 4,
         },
       ]
@@ -106,14 +106,20 @@ export default function Sidebar() {
         {
           icon: Storefront,
           title: "Store",
-          link: "/store-products",
+          link: "/store/products",
           key: 2,
         },
         {
           icon: Settings,
-          title: "Process",
-          link: "/stores-process",
+          title: "Import",
+          link: "/stores/import",
           key: 3,
+        },
+        {
+          icon: WorkOutline,
+          title: "Warranty",
+          link: "/stores/warranty",
+          key: 4,
         },
       ]
     },
@@ -129,13 +135,13 @@ export default function Sidebar() {
         {
           icon: WorkOutline,
           title: "ServiceCenter",
-          link: "/servicecenters_products",
+          link: "/servicecenters/products",
           key: 2,
         },
         {
           icon: Settings,
-          title: "Process",
-          link: "/servicecenters_process",
+          title: "Request",
+          link: "/servicecenters/warranty",
           key: 3,
         },
       ]

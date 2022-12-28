@@ -6,6 +6,7 @@ using ProductionMove.ViewModels.ProcessModel;
 using ProductionMove.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
+using System.Linq;
 
 namespace ProductionMove.Services
 {
@@ -45,11 +46,25 @@ namespace ProductionMove.Services
 
         public async Task<ProcessResponse> CreateAsync(ProcessRequest model)
         {
-            var process = _mapper.Map<Process>(model);
-
-            process.RequiredDate = DateTime.UtcNow;
+            var process = new Process
+            {
+                Name = model.Name,
+                RequiredDate = DateTime.UtcNow,
+                Status = ProcessStatus.Pending,
+                FactoryId = model.FactoryId,
+                StoreId = model.StoreId,
+            };
 
             await _context.Processes.AddAsync(process);
+            await _context.SaveChangesAsync();
+
+            var selected = _context.Products.Where(u => model.ProductIds.Contains(u.Id));
+
+            foreach (Product u in selected)
+            {
+                u.ProcessId = process.Id;
+            }
+
             await _context.SaveChangesAsync();
 
             return _mapper.Map<ProcessResponse>(process);

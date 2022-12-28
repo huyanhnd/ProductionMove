@@ -1,5 +1,6 @@
 .userList {
   flex: 4;
+  padding: 20px;
 }
 
 .userListItem {
@@ -26,6 +27,7 @@
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .userListImg {

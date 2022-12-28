@@ -1,93 +1,120 @@
 import "./serviceCenterProducts.scss";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DataGrid } from "@mui/x-data-grid";
+import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { serviceCenterRow } from "../../../dummyData";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { DataGrid } from "@mui/x-data-grid";
+import { getProducts } from "../../../api/productsApi";
+import { getFactory } from "../../../api/factoryApi";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
-const ServiceCenterProduct = () => {
-  const [data, setData] = useState(serviceCenterRow);
-  const Button = ({ type }) => {
-    return <button className={"status-button " + type}>{type}</button>;
-  };
+
+export default function ServiceCenterProducts() {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const factories = useSelector((state) => state.factory.factories);
+  const stores = useSelector((state) => state.store.stores);
+  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+
+  useEffect(() => {
+    getProducts(dispatch);
+    getFactory(dispatch, '00', '000', '0000', '')
+    getStore(dispatch, '00', '000', '0000', '')
+    getServiceCenter(dispatch, '00', '000', '0000', '')
+  }, [dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    products.filter((item) => item.id !== id);
   };
-
-  const actionColumn = [
-    { field: "id", headerName: "No.", width: 70 },
+  var no = 0;
+  const columns = [
     {
-      field: "user",
-      headerName: "Product",
-      width: 200,
+      field: "stt", headerName: "No.", width: 50,
+      renderCell: () => {
+        no++
+        return <div>{no}</div>;
+      }
+    },
+    {
+      field: "name",
+      headerName: "Product Line",
+      width: 150,
+    },
+    {
+      field: "capacity",
+      headerName: "Memory",
+      width: 100,
+    },
+    {
+      field: "color",
+      headerName: "Color",
+      width: 100,
+    },
+    { field: "code", headerName: "Code", width: 120 },
+    {
+      field: "factoryId",
+      headerName: "Cơ sở sản xuất",
+      width: 150,
+      renderCell: (params) => {
+        const factory = factories.find(item => {
+          return item.id == params.row.factoryId
+        })
+        return (
+          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "serviceCenterId",
+      headerName: "Trung tâm bảo hành",
+      width: 150,
+      renderCell: (params) => {
+        const serviceCenter = serviceCenters.find(item => {
+          return item.id == params.row.serviceCenterId
+        })
+        return (
+          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "manufactureDate",
+      headerName: "Ngày sản xuất",
+      width: 150,
       renderCell: (params) => {
         return (
-          <div className="cellWithImg">
-            <img className="cellImg" src={params.row.img} alt="avatar" />
-            {params.row.username}
+          <div>
+            {params.row.manufactureDate}
           </div>
         );
       },
     },
-    { field: "code", headerName: "Code", width: 150 },
     {
-      field: "email",
-      headerName: "Color",
-      width: 100,
+      field: "warrantyPeriod",
+      headerName: "Warranty Period",
+      width: 150,
     },
     {
       field: "status",
       headerName: "Status",
-      width: 160,
+      width: 120,
       renderCell: (params) => {
-        return <Button type={params.row.status} />;
+        return (
+          <span className={`status ${params.row.status}`}>{params.row.status}</span>
+        );
       },
     },
-    // {
-    //   field: "action",
-    //   headerName: "Action",
-    //   width: 200,
-    //   renderCell: (params) => {
-    //     return (
-    //       <div className="cellAction">
-    //         <Link to="/users/test" style={{ textDecoration: "none" }}>
-    //           <div className="viewButton">Edit</div>
-    //         </Link>
-    //         <div
-    //           className="deleteButton"
-    //           onClick={() => handleDelete(params.row.id)}
-    //         >
-    //           Delete
-    //         </div>
-    //       </div>
-    //     );
-    //   },
-    // },
   ];
-  
+
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-        Products
-        <div className="search">
-          <input type="text" placeholder="Search..." />
-          <SearchOutlinedIcon />
-        </div>
-        <Link to="/servicecenters_products/addproducts" className="link">
-          Add Product
-        </Link>
-      </div>
+    <div className="table">
       <DataGrid
-        className="datagrid"
-        rows={data}
-        columns={actionColumn}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
+        rows={products}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
       />
     </div>
   );
-};
-
-export default ServiceCenterProduct;
+}

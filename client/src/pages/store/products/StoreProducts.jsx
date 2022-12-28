@@ -1,87 +1,120 @@
 import "./storeProducts.scss";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
+import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsByStore } from "../../../api/productsApi";
-import { getProductLineByCode, getProductLineById, getProductLines } from "../../../api/productLineApi";
+import { DataGrid } from "@mui/x-data-grid";
+import { getProducts } from "../../../api/productsApi";
+import { getFactory } from "../../../api/factoryApi";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
-const StoreProducts = () => {
-  const store = useSelector((state) => state.auth.currentUser.username);
-  const storeID = store[store.length-1]
+
+export default function StoreProducts() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    getProductsByStore(dispatch, storeID);
-  }, [dispatch]);
   const products = useSelector((state) => state.product.products);
-  
-  const [searchName, setSearchName] = useState("")
-  const handleSearch = (e) => {
-    setSearchName(e.target.value)
-  }
-  // const GetProductLineById = (Id) => {
-  //   getProductLineById(dispatch,Id)
-  //   const productName = useSelector((state) => state.productline.productlineById)
-  //   console.log('prd: ', productName);
-  //   return productName.name;
-  // }
-  const Button = ({ type }) => {
-    return <button className={"status-button " + type}>{type}</button>;
+  const factories = useSelector((state) => state.factory.factories);
+  const stores = useSelector((state) => state.store.stores);
+  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+
+  useEffect(() => {
+    getProducts(dispatch);
+    getFactory(dispatch, '00', '000', '0000', '')
+    getStore(dispatch, '00', '000', '0000', '')
+    getServiceCenter(dispatch, '00', '000', '0000', '')
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    products.filter((item) => item.id !== id);
   };
+  var no = 0;
   const columns = [
-    { field: "id", headerName: "No.", width: 70 },
-    { field: "name", headerName: "Name", width: 140,
-  renderCell: (params) => {
-    return (
-      params.row.status
-    )
-  } },
-    { field: "capacity", headerName: "Memory", width: 70,
-    renderCell: (params) => {
-      return (
-        params.row.capacity + " GB"
-      )
-    } 
-  },
-    { field: "color", headerName: "Color", width: 100 },
-    { field: "code", headerName: "Serial Number", width: 120 },
-    { field: "manufactureDate", headerName: "Manufacture Date", width: 160 },
-    { field: "warrantyPeriod", headerName: "Warranty Period", width: 120 },
+    {
+      field: "stt", headerName: "No.", width: 50,
+      renderCell: () => {
+        no++
+        return <div>{no}</div>;
+      }
+    },
+    {
+      field: "name",
+      headerName: "Product Line",
+      width: 150,
+    },
+    {
+      field: "capacity",
+      headerName: "Memory",
+      width: 100,
+    },
+    {
+      field: "color",
+      headerName: "Color",
+      width: 100,
+    },
+    { field: "code", headerName: "Code", width: 120 },
+    {
+      field: "factoryId",
+      headerName: "Cơ sở sản xuất",
+      width: 150,
+      renderCell: (params) => {
+        const factory = factories.find(item => {
+          return item.id == params.row.factoryId
+        })
+        return (
+          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "serviceCenterId",
+      headerName: "Trung tâm bảo hành",
+      width: 150,
+      renderCell: (params) => {
+        const serviceCenter = serviceCenters.find(item => {
+          return item.id == params.row.serviceCenterId
+        })
+        return (
+          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
+        );
+      },
+    },
+    {
+      field: "manufactureDate",
+      headerName: "Ngày sản xuất",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.manufactureDate}
+          </div>
+        );
+      },
+    },
+    {
+      field: "warrantyPeriod",
+      headerName: "Warranty Period",
+      width: 150,
+    },
     {
       field: "status",
       headerName: "Status",
-      width: 160,
+      width: 120,
       renderCell: (params) => {
-        return <Button type={params.row.status} />;
+        return (
+          <span className={`status ${params.row.status}`}>{params.row.status}</span>
+        );
       },
     },
   ];
-  
+
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
-        Products
-        <div className="search">
-          <input type="text" placeholder="Search product name..." value = {searchName} onChange={handleSearch}/>
-          <SearchOutlinedIcon />
-        </div>
-        <div className="blank"></div>
-        <Link to="/store-products/request" className="link">
-          Request Product
-        </Link>
-      </div>
+    <div className="table">
       <DataGrid
-        className="datagrid"
         rows={products}
         columns={columns}
         pageSize={10}
-        rowsPerPageOptions={[10]}
-        checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );
-};
-
-export default StoreProducts;
+}

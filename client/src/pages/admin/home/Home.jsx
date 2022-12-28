@@ -7,6 +7,8 @@ import { getProducts } from "../../../api/productsApi";
 import ChartBar from "../../../components/chart/ChartBar";
 import { getFactory } from "../../../api/factoryApi";
 import FeaturedInfo from "../../../components/featuredInfo/FeaturedInfo";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ export default function Home() {
     getProductLines(dispatch);
     getProducts(dispatch)
     getFactory(dispatch, '00', '000', '0000', '')
+    getStore(dispatch, '00', '000', '0000', '')
+    getServiceCenter(dispatch, '00', '000', '0000', '')
   }, [dispatch]);
   const products = useSelector((state) => state.product.products);
   /**
@@ -75,7 +79,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="featureHome">
-        <FeaturedInfo type='product' data={products_}/>
+        <FeaturedInfo type='product' data={products} home/>
       </div>
       {/* Tổng sp trên toàn quốc */}
       <ChartBar data={productData} title="All of products" grid dataKey="Quantity" />
