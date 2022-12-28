@@ -1,12 +1,12 @@
 import "./home.css";
-import { userData } from "../../../dummyData";
+import { products_, userData } from "../../../dummyData";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductLines } from "../../../api/productLineApi";
 import { useEffect } from "react";
 import { getProducts } from "../../../api/productsApi";
 import ChartBar from "../../../components/chart/ChartBar";
 import { getFactory } from "../../../api/factoryApi";
-import FeaturedInfoHome from "./FeaturedInfoHome";
+import FeaturedInfo from "../../../components/featuredInfo/FeaturedInfo";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -74,7 +74,9 @@ export default function Home() {
 
   return (
     <div className="home">
-      <FeaturedInfoHome />
+      <div className="featureHome">
+        <FeaturedInfo type='product' data={products_}/>
+      </div>
       {/* Tổng sp trên toàn quốc */}
       <ChartBar data={productData} title="All of products" grid dataKey="Quantity" />
       {/* Tổng sp theo trạng thái */}
