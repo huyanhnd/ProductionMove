@@ -1,4 +1,6 @@
-﻿namespace ProductionMove.ViewModels.ProductModel
+﻿using ProductionMove.Models;
+
+namespace ProductionMove.ViewModels.ProductModel
 {
     public class ProductResponse
     {
@@ -10,7 +12,7 @@
         public string WarrantyPeriod { get; set; }
         public string Color { get; set; }
         public string Capacity { get; set; }
-        public string Status { get; set; }
+        public ProductStatus Status { get; set; }
         public string Price { get; set; }
         public int? FactoryId { get; set; }
         public int? StoreId { get; set; }

@@ -1,0 +1,40 @@
+.exportList {
+  flex: 4;
+  margin: 20px;
+
+  .view-details {
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: #2196f3;
+    border: 1px solid #2196f3;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .view-details:hover {
+    background-color: #2196f3;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .status {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Approved {
+      color: green;
+      background-color: rgba(0, 128, 0, 0.151);
+    }
+
+    &.Pending {
+      color: goldenrod;
+      background-color: rgba(189, 189, 3, 0.103);
+    }
+
+    &.Cancelled {
+      color: red;
+      background-color: rgba(189, 3, 3, 0.103);
+    }
+
+  }
+}

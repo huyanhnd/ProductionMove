@@ -7,6 +7,7 @@ using ProductionMove.ViewModels.ProductLine;
 using ProductionMove.Services;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.ProductModel;
+using ProductionMove.Authorization;
 
 namespace ProductionMove.Controllers
 {
@@ -20,7 +21,15 @@ namespace ProductionMove.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListAsync([FromQuery] ProductQuery query)
+        public async Task<IActionResult> ListProductOfAdmin([FromQuery] ProductQuery query)
+        {
+            var products = await _productService.ListAsync(query);
+            return Ok(products);
+        }
+
+        [Authorize(Role.Factory)]
+        [HttpGet("factory")]
+        public async Task<IActionResult> ListProductOfFactory([FromQuery] ProductQuery query)
         {
             var products = await _productService.ListAsync(query);
             return Ok(products);
@@ -55,6 +64,20 @@ namespace ProductionMove.Controllers
         {
             await _productService.DeleteAsync(code);
             return Ok(new { message = "Product deleted successfully" });
+        }
+
+        [HttpPut("export")]
+        public async Task<IActionResult> ApprovedExportAsync(List<int> ProductIds, int ProcessId)
+        {
+            await _productService.ApprovedExportAsync(ProductIds, ProcessId);
+            return Ok(new { message = "Product deleted successfully" });
+        }
+
+        [HttpPut("sold/{code}")]
+        public async Task<IActionResult> SoldProductAsync(string code)
+        {
+            await _productService.SoldProductAsync(code);
+            return Ok(new { message = "Product sold successfully" });
         }
     }
 }

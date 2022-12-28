@@ -13,6 +13,8 @@ namespace ProductionMove.Services
         Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query);
         Task<ProductResponse> FindByCodeAsync(string code);
         Task CreateAsync(ProductRequest model);
+        Task ApprovedExportAsync(List<int> ProductIds, int ProcessId);
+        Task SoldProductAsync(string code);
         Task<ProductResponse> UpdateAsync(string code, ProductRequest product);
         Task DeleteAsync(string code);
     }
@@ -43,7 +45,7 @@ namespace ProductionMove.Services
                             Capacity = p.Capacity,
                             Color = p.Color,
                             ManufactureDate = p.ManufactureDate,
-                            Status = p.Status.ToString(),
+                            Status = p.Status,
                             WarrantyPeriod = p.WarrantyPeriod,
                             Price = p.Price,
                             FactoryId = p.FactoryId,
@@ -63,6 +65,10 @@ namespace ProductionMove.Services
             else if (query.ServiceCenterId != 0)
             {
                 jointable = jointable.Where(p => p.ServiceCenterId == query.ServiceCenterId);
+            }
+            else if (query.Status != ProductStatus.All)
+            {
+                jointable = jointable.Where(p => p.Status == query.Status);
             };
 
             var result = await PaginatedList<ProductResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
@@ -111,11 +117,32 @@ namespace ProductionMove.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task ApprovedExportAsync(List<int> ProductIds, int processId)
+        {
+            var selected = _context.Products.Where(u => ProductIds.Contains(u.Id));
+
+            foreach (Product p in selected)
+            {
+                p.Status = ProductStatus.InStore;
+                p.ProcessId = processId;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task SoldProductAsync(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            product.Status = ProductStatus.Sold;
+            await _context.SaveChangesAsync();
+        }
+
         private async Task<Product> FindAsync(string code)
         {
-            var productLine = await _context.Products.FindAsync(code);
-            if (productLine == null) throw new KeyNotFoundException("Product not found");
-            return productLine;
+            var product = await _context.Products.FindAsync(code);
+            if (product == null) throw new KeyNotFoundException("Product not found");
+            return product;
         }
 
         private async Task<Product> findProductByCodeAsync(string code)

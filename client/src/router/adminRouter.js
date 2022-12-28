@@ -14,8 +14,8 @@ import Store from "../pages/admin/stores/Store";
 import AddStore from "../pages/admin/stores/addStore/AddStore";
 import ServiceCenter from "../pages/admin/serviceCenters/ServiceCenter";
 import AddServiceCenter from "../pages/admin/serviceCenters/addServiceCenter/AddServiceCenter";
-import { Layout } from "../layout/layout";
 import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
+import { Layout } from "../layout/layout";
 
 export const adminRouter = createBrowserRouter([
     {
