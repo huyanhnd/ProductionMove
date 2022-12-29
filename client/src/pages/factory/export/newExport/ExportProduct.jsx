@@ -125,14 +125,9 @@ console.log(productline);
             headerName: "Trung tâm bảo hành",
             width: 150,
             renderCell: (params) => {
-                const serviceCenter = serviceCenters.find((item) => {
-                    return item.id == params.row.serviceCenterId;
-                });
                 return (
                     <div>
-                        {typeof serviceCenter.name == "string"
-                            ? serviceCenter.name
-                            : ""}
+                        {params.row.serviceCenterName}
                     </div>
                 );
             },

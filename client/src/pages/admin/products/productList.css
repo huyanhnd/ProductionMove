@@ -1,3 +1,7 @@
+.productPage {
+    flex: 4;
+}
+
 .productList {
     margin-left: 10px;
 }
@@ -15,4 +19,9 @@
 .status.InStore {
     color: goldenrod;
     background-color: rgba(189, 189, 3, 0.103);
+}
+
+.status.Error {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.103);
 }

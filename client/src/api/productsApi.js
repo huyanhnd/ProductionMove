@@ -18,6 +18,9 @@ import {
     getProductsServiceCenterFilteredStart,
     getProductsServiceCenterFilteredSuccess,
     getProductsServiceCenterFilteredFailure,
+    getErrorProductsFactoryFailure,
+    getErrorProductsFactorySuccess,
+    getErrorProductsFactoryStart,
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
 import { userRequest } from "./requestMethods";
@@ -33,7 +36,7 @@ export const getProducts = async (dispatch) => {
     }
 };
 
-export const getProductsAdmin = async (dispatch,productlineId,factoryId,storeId,serviceCenterId) => {
+export const getProductsAdmin = async (dispatch, productlineId, factoryId, storeId, serviceCenterId) => {
     dispatch(getProductsStart());
     try {
         const res = await publicRequest.get(`/Product?FactoryId=${factoryId}&StoreId=${storeId}&ServiceCenterId=${serviceCenterId}&ProductLineId=${productlineId}`);
@@ -54,7 +57,7 @@ export const getProductFactory = async (
     Memory
 ) => {
     dispatch(getProductsFactoryStart());
-    
+
     try {
         const res = await publicRequest.get(
             // '/Product?PageNumber=1&PageSize=10&FactoryId=2&Status=InFactory&ProductLineId=0&Color=All&Capacity=64GB
@@ -101,6 +104,7 @@ export const getProductServiceCenterFiltered = async (
         dispatch(getProductsServiceCenterFilteredFailure());
     }
 };
+
 ///Product?ServiceCenterId=4&Status=All&Color=All
 export const getProductServiceCenter = async (
     dispatch,
@@ -135,5 +139,20 @@ export const postNewProducts = async (products, dispatch) => {
         dispatch(postNewProductsSuccess(res.data));
     } catch (err) {
         dispatch(postNewProductsFailure());
+    }
+};
+
+export const getFactoryProductError = async (
+    dispatch,
+    FactoryId
+) => {
+    dispatch(getErrorProductsFactoryStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product/?FactoryId=${FactoryId}&Status=Error`
+        );
+        dispatch(getErrorProductsFactorySuccess(res.data.items));
+    } catch (err) {
+        dispatch(getErrorProductsFactoryFailure());
     }
 };

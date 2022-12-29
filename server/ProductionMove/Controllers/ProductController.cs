@@ -68,11 +68,11 @@ namespace ProductionMove.Controllers
         }
 
 
-        [HttpPut("export")]
+        [HttpPut("import")]
         public async Task<IActionResult> ApprovedExportAsync(List<int> ProductIds, int ProcessId)
         {
             await _productService.ApprovedExportAsync(ProductIds, ProcessId);
-            return Ok(new { message = "Product deleted successfully" });
+            return Ok(new { message = "Product import successfully" });
         }
 
         [HttpPut("return/{code}")]

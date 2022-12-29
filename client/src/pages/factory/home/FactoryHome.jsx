@@ -1,12 +1,9 @@
 import FeaturedInfo from "../../../components/featuredInfo/FeaturedInfo";
-import { products_, yearlyData } from "../../../dummyData";
 import { getDMY } from "../../../helper/getDMY";
 import ChartStatistic from "../../../components/chart/ChartStatistic";
 import "./factoryHome.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../api/productsApi";
-import { getFactory } from "../../../api/factoryApi";
-import { getUsers } from "../../../api/userApi";
 import { useEffect } from "react";
 
 const FactoryHome = () => {
@@ -15,11 +12,9 @@ const FactoryHome = () => {
      */
     const dispatch = useDispatch();
     useEffect(() => {
-        getFactory(dispatch)
         getProducts(dispatch)
     }, [dispatch]);
     const products = useSelector((state) => state.product.products);
-    const factories = useSelector((state) => state.factory.factories);
     /**
      * get data's factory
      */

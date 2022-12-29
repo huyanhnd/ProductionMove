@@ -154,7 +154,7 @@ export default function ProductList() {
   ];
 
   return (
-    <>
+    <div className="productPage">
       <div className="factoryFilter">
         {/* productline */}
         <div className="filterSection">
@@ -259,6 +259,6 @@ export default function ProductList() {
           autoHeight
         />
       </div>
-    </>
+    </div>
   );
 }

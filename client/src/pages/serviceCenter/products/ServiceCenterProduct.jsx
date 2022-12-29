@@ -42,6 +42,7 @@ export default function ServiceCenterProduct() {
         getProductServiceCenter(dispatch, serviceCenterId, 0)
     }, [dispatch])
     console.log(productline, color, memory);
+    
     const columns = [
         { field: "id", headerName: "Id", width: 50 },
         { field: "code", headerName: "Code", width: 100 },

@@ -26,7 +26,6 @@ namespace ProductionMove.Controllers
             return Ok(fatories);
         }
 
-        [Authorize(Role.Admin)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(int id)
         {
@@ -34,7 +33,6 @@ namespace ProductionMove.Controllers
             return Ok(result);
         }
 
-        [Authorize(Role.Admin)]
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] ProductLineRequest model)
         {
@@ -42,7 +40,6 @@ namespace ProductionMove.Controllers
             return Ok(result);
         }
 
-        [Authorize(Role.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] ProductLineRequest model)
         {
@@ -50,7 +47,6 @@ namespace ProductionMove.Controllers
             return Ok(result);
         }
 
-        [Authorize(Role.Admin)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

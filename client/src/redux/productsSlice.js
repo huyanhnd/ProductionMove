@@ -5,6 +5,7 @@ export const productsSlice = createSlice({
     initialState: {
         // totalItems: 0,
         products: [],
+        errorProducts: [],
         productFactory: [],
         productStore: [],
         productServiceCenter: [],
@@ -92,6 +93,20 @@ export const productsSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+
+        //Factory Error Product
+        getErrorProductsFactoryStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        getErrorProductsFactorySuccess: (state, action) => {
+            state.isFetching = false;
+            state.errorProducts = action.payload;
+        },
+        getErrorProductsFactoryFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     },
 });
 
@@ -114,5 +129,8 @@ export const {
     getProductsServiceCenterFilteredStart,
     getProductsServiceCenterFilteredSuccess,
     getProductsServiceCenterFilteredFailure,
+    getErrorProductsFactoryStart,
+    getErrorProductsFactorySuccess,
+    getErrorProductsFactoryFailure,
 } = productsSlice.actions;
 export default productsSlice.reducer;

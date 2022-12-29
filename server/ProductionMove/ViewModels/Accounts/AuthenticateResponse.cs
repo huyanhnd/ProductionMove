@@ -11,6 +11,7 @@ public class AuthenticateResponse
     public DateTime Created { get; set; }
     public DateTime? Updated { get; set; }
     public int? ManagementId { get; set; }
+    public string ManagementName { get; set; }
     public string JwtToken { get; set; }
 
     [JsonIgnore] // refresh token is returned in http only cookie
