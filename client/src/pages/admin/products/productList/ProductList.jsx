@@ -67,7 +67,7 @@ export default function ProductList() {
           return item.id == params.row.factoryId
         })
         return (
-          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
+          <div>{factory.name}</div>
         );
       },
     },
@@ -80,7 +80,7 @@ export default function ProductList() {
           return item.id == params.row.storeId
         })
         return (
-          <div>{typeof(store.name) == 'string' ? store.name : ''}</div>
+          <div>{typeof(store.name)}</div>
         );
       },
     },
@@ -93,7 +93,7 @@ export default function ProductList() {
           return item.id == params.row.serviceCenterId
         })
         return (
-          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
+          <div>{typeof(serviceCenter.name)}</div>
         );
       },
     },

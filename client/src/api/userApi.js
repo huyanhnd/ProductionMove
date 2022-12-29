@@ -29,18 +29,18 @@ export const getUsers = async (dispatch) => {
 export const deleteUser = async (id, dispatch) => {
     dispatch(deleteUserStart());
     try {
-        // const res = await userRequest.delete(`/products/${id}`);
+        // const res = await userRequest(getToken()).delete(`/products/${id}`);
         dispatch(deleteUserSuccess(id));
     } catch (err) {
         dispatch(deleteUserFailure());
     }
 };
 
-export const updateUser = async (id, User, dispatch) => {
+export const updateUser = async (id, user, dispatch) => {
     dispatch(updateUserStart());
     try {
-        // update
-        dispatch(updateUserSuccess({ id, User }));
+        const res = await userRequest(getToken()).put(`/Account/${id}`, user);
+        dispatch(updateUserSuccess(id, res.data));
     } catch (err) {
         dispatch(updateUserFailure());
     }

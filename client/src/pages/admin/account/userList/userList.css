@@ -1,6 +1,7 @@
 .userList {
   flex: 4;
   padding: 20px;
+  height: 890px;
 }
 
 .userListItem {

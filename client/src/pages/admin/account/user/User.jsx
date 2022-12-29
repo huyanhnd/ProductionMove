@@ -2,11 +2,12 @@ import {
   CalendarToday,
   PermIdentity,
   Publish,
-  Man
+  Man,
+  LockOutlined
 } from "@mui/icons-material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { formatDate } from "../../../../helper/formatDate";
 import app from "../../../../firebase"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -69,6 +70,7 @@ export default function User() {
           const userModel = { ...inputs, image: downloadURL };
           updateUser(userId, userModel, dispatch);
           alert("Update User Success!");
+          <Navigate to="/users" replace={true} />
         });
       }
     );
@@ -117,6 +119,7 @@ export default function User() {
                   type="text"
                   placeholder="username"
                   className="userUpdateInput"
+                  name="username"
                   onChange={handleChange}
                 />
               </div>
@@ -124,17 +127,26 @@ export default function User() {
                 <label>Full Name</label>
                 <input
                   type="text"
-                  placeholder="fullname"
+                  placeholder="fullName"
                   className="userUpdateInput"
+                  name="fullName"
                   onChange={handleChange}
                 />
               </div>
               <div className="userUpdateItem">
+                <label>Password</label>
+                <input className="userUpdateInput" onChange={handleChange} type="password" placeholder="• • • • • • • •" name="password" />
+              </div>
+              <div className="userUpdateItem">
+                <label>Confirm Password</label>
+                <input className="userUpdateInput" onChange={handleChange} type="password" placeholder="• • • • • • • •" name="confirmPassword" />
+              </div>
+              <div className="userUpdateItem">
                 <label>Role</label>
-                <select className="selectRole" onChange={handleChange}>
-                  <option value="Factory">Factory</option>
-                  <option value="Store">Store</option>
-                  <option value="ServiceCenter">ServiceCenter</option>
+                <select className="selectUserRole" onChange={handleChange}>
+                  <option value="Factory">Quản lý cơ sở sản xuất</option>
+                  <option value="Store">Quản lý đại lý phân phối</option>
+                  <option value="ServiceCenter">Quản lý trung tâm bảo hành</option>
                 </select>
               </div>
             </div>

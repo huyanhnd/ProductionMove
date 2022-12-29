@@ -6,11 +6,11 @@
 }
 
 .featuredItem {
-    display: flex;
+ display: flex;
   flex: 1;
   justify-content: space-between;
   flex-direction: row;
-  margin: 0px 20px;
+  margin: 0px 30px;
   padding: 30px;
   border-radius: 10px;
   cursor: pointer;

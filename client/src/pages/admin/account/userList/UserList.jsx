@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../../api/userApi";
 import { useEffect } from "react";
 import { formatDate } from "../../../../helper/formatDate";
+import { checkRole } from "../../../../helper/checkRole";
 
 export default function UserList() {
   const dispatch = useDispatch();
@@ -35,11 +36,20 @@ export default function UserList() {
       },
     },
     { field: "username", headerName: "Username", width: 120 },
-    { field: "role", headerName: "Role", width: 120 },
+    {
+      field: "role",
+      headerName: "Role",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="">{checkRole(params.row.role)}</div>
+        );
+      },
+    },
     {
       field: "created",
       headerName: "Create At",
-      width: 200,
+      width: 170,
       renderCell: (params) => {
         return (
           <div className="">{formatDate(params.row.created)}</div>
@@ -49,7 +59,7 @@ export default function UserList() {
     {
       field: "updated",
       headerName: "Update At",
-      width: 100,
+      width: 170,
       renderCell: (params) => {
         return (
           <div className="">{params.row.updated === null ? "Undefine" : formatDate(params.row.updated)}</div>
