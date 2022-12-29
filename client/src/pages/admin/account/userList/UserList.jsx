@@ -24,7 +24,7 @@ export default function UserList() {
     {
       field: "User",
       headerName: "FullName",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="userListItem">
@@ -34,8 +34,8 @@ export default function UserList() {
         );
       },
     },
-    { field: "username", headerName: "Username", width: 90 },
-    { field: "role", headerName: "Role", width: 90 },
+    { field: "username", headerName: "Username", width: 120 },
+    { field: "role", headerName: "Role", width: 120 },
     {
       field: "created",
       headerName: "Create At",
@@ -49,7 +49,7 @@ export default function UserList() {
     {
       field: "updated",
       headerName: "Update At",
-      width: 200,
+      width: 100,
       renderCell: (params) => {
         return (
           <div className="">{params.row.updated === null ? "Undefine" : formatDate(params.row.updated)}</div>
@@ -80,7 +80,7 @@ export default function UserList() {
     <div className="userList">
       <div className="datatableTitle">
         Users
-        <Link to="/factory/warehouse/addproducts" className="linkAddProduct">
+        <Link to="/newuser" className="linkAddProduct">
           Add User
         </Link>
       </div>

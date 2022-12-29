@@ -52,7 +52,7 @@ export default function FactoryList() {
       rows={factory}
       disableSelectionOnClick
       columns={columns}
-      pageSize={100}
+      pageSize={10}
       checkboxSelection
     />
   );

@@ -17,24 +17,22 @@ export default function ProductList() {
   const stores = useSelector((state) => state.store.stores);
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
 
-  useEffect(() => {
-    getProducts(dispatch);
-    getFactory(dispatch, '00', '000', '0000', '')
-    getStore(dispatch, '00', '000', '0000', '')
-    getServiceCenter(dispatch, '00', '000', '0000', '')
-  }, [dispatch]);
+  // useEffect(() => {
+  //   getProducts(dispatch);
+  //   getFactory(dispatch, '00', '000', '0000', '')
+  //   getStore(dispatch, '00', '000', '0000', '')
+  //   getServiceCenter(dispatch, '00', '000', '0000', '')
+  // }, [dispatch]);
 
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);
   };
-  var no = 0;
+
   const columns = [
     {
-      field: "stt", headerName: "No.", width: 50,
-      renderCell: () => {
-        no++
-        return <div>{no}</div>;
-      }
+      field: "id",
+      headerName: "No.",
+      width: 50,
     },
     {
       field: "name",
