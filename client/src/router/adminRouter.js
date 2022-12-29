@@ -16,7 +16,6 @@ import ServiceCenter from "../pages/admin/serviceCenters/ServiceCenter";
 import AddServiceCenter from "../pages/admin/serviceCenters/addServiceCenter/AddServiceCenter";
 import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
 import { Layout } from "../layout/layout";
-import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
 
 export const adminRouter = createBrowserRouter([
     {
