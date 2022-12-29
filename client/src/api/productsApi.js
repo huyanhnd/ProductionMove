@@ -33,6 +33,16 @@ export const getProducts = async (dispatch) => {
     }
 };
 
+export const getProductsAdmin = async (dispatch,productlineId,factoryId,storeId,serviceCenterId) => {
+    dispatch(getProductsStart());
+    try {
+        const res = await publicRequest.get(`/Product?FactoryId=${factoryId}&StoreId=${storeId}&ServiceCenterId=${serviceCenterId}&ProductLineId=${productlineId}`);
+        dispatch(getProductsSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsFailure());
+    }
+};
+
 export const getProductFactory = async (
     dispatch,
     PageNumber,
