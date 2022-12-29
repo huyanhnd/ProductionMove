@@ -5,6 +5,7 @@ import Select from '@mui/material/Select';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getDistrict, getProvince, getWard } from "../../../../api/addressApi";
+import { updateFactory } from "../../../../api/factoryApi";
 
 export default function UpdateFactory() {
     const dispatch = useDispatch();
@@ -57,13 +58,17 @@ export default function UpdateFactory() {
     /**
      * address handle
      */
-    const [address, setAddress] = useState(factoryInfo.address)
+    var add = factoryInfo.address.split(' - ')
+    add.pop()
+    add.pop()
+    add.pop()
+    const [address, setAddress] = useState(add)
     const handeAddressChange = (e) => {
         setAddress(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        const newFactoryName = document.getElementsByClassName('input-box')[0].value
+        const newFactoryName = document.getElementsByClassName('input-box_')[0].value
         const newProvinceCode = provinceCode
         const newProvinceName = province.find(curValue => {
             return curValue.code == newProvinceCode
@@ -76,10 +81,10 @@ export default function UpdateFactory() {
         const newWardName = ward.find(curValue => {
             return curValue.code == newWardCode
         }).name
-        const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
-        const newInfo = { factoryName: newFactoryName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
-        const [a,c,...d] = newInfo.address.split(" - ")
-        console.log(d);
+        const newAddress = document.getElementsByClassName('input-box_')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
+        const newInfo = { name: newFactoryName, wardCode: newWardCode, address:newAddress,  accountId: factoryInfo.id}
+        updateFactory(factoryInfo.accountId, newAddress, dispatch)
+        console.log(factoryInfo);
     }
     return (
         <div className="updateFactory-container">
@@ -91,7 +96,7 @@ export default function UpdateFactory() {
                 {/* sửa tên nhà máy */}
                 <div className="select-section">
                     <div className="select-title">Factory name</div>
-                    <input type="text" placeholder="Type factory name here" class="input-box" value={factoryName} onChange={handeFactoryNameChange} />
+                    <input type="text" placeholder="Type factory name here" class="input-box_" value={factoryName} onChange={handeFactoryNameChange} />
                 </div>
 
                 {/* Sửa thành phố */}
@@ -142,7 +147,7 @@ export default function UpdateFactory() {
                 {/* Sửa địa chỉ cụ thể */}
                 <div className="select-section">
                     <div className="select-title">Address</div>
-                    <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
+                    <input type="text" placeholder="Type address here" class="input-box_" value={address} onChange={handeAddressChange} />
                 </div>
                 <div
                     id="submit-Factory"

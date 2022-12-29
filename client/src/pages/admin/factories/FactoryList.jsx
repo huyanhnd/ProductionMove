@@ -7,10 +7,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentFactoryInfo } from "../../../redux/currentFactorySlice";
 import { getFactory } from "../../../api/factoryApi";
+import { getUsers } from "../../../api/userApi";
 
 export default function FactoryList() {
   const dispatch = useDispatch();
   useEffect(() => {
+    getUsers(dispatch)
     getFactory(dispatch, '00', '000', '0000', '')
   }, [dispatch])
   const factory = useSelector((state) => state.factory.factories);

@@ -38,6 +38,21 @@ export const factorySlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+        //update
+        updateFactoryStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        updateFactorySuccess: (state, action) => {
+            state.isFetching = false;
+            state.factories[
+                state.factories.findIndex((item) => item.id === action.payload.id)
+            ] = action.payload.factory;
+        },
+        updateFactoryFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     },
 });
 
@@ -47,5 +62,8 @@ export const {
     getFactoryFailure,
     addFactoryStart,
     addFactorySuccess,
-    addFactoryFailure, } = factorySlice.actions;
+    addFactoryFailure,
+    updateFactoryStart,
+    updateFactorySuccess,
+    updateFactoryFailure } = factorySlice.actions;
 export default factorySlice.reducer;

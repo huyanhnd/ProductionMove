@@ -41,7 +41,9 @@ export const addStore = async (Store, dispatch) => {
     try {
         const res = await publicRequest.post(`/Store`, Store);
         dispatch(addStoreSuccess(res.data));
+        alert("Successfully!")
     } catch (err) {
         dispatch(addStoreFailure());
+        alert("Failure!")
     }
 }

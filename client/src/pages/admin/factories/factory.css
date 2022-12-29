@@ -46,6 +46,7 @@
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .add-factory:hover {

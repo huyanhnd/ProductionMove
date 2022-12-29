@@ -228,7 +228,27 @@ export default function ProductList() {
             </Select>
           </FormControl>
         </div>
+
+        <div className="filterSection">
+          <div className="filterTitle">Trạng thái </div>
+          <FormControl >
+            <Select className="filterBox"
+              value={serviceCenter}
+              onChange={handleServiceCenterChange}
+            >
+              <MenuItem value={"0"}>
+                <em>Tất cả</em>
+              </MenuItem>
+              {serviceCenters.map((data, index) => {
+                return <MenuItem value={data.id} key={index}>{data.name}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </div>
+        
       </div>
+
+      
 
 
       <div className="productList">
