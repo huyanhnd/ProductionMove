@@ -12,6 +12,16 @@
         All,
     }
 
+    public enum ProductColor : byte
+    {
+        Black,
+        Blue,
+        Gold,
+        White,
+        Gray,
+        All,
+    }
+
     public class Product
     {
         public int Id { get; set; }
@@ -24,7 +34,7 @@
         public int WarrantyTime { get; set; }
         public DateTime SoldDate { get; set; }
         public DateTime ErrorDate { get; set; }
-        public string Color { get; set; }
+        public ProductColor Color { get; set; }
         public string Capacity { get; set; }
         public ProductStatus Status { get; set; }
         public string Price { get; set; }
