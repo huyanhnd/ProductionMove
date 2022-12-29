@@ -7,85 +7,98 @@ import { formatDate } from "../../../helper/formatDate";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { Tabs, Tab } from '@mui/material';
+import { getFactoryProductError } from "../../../api/productsApi";
 
 export default function ErrorList() {
   const dispatch = useDispatch();
-  const processes = useSelector((state) => state.process.processes);
-  const [value, setValue] = useState(0)
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const errorProducts = useSelector((state) => state.product.errorProducts);
 
   useEffect(() => {
-    getProcesses(dispatch);
+    getFactoryProductError(dispatch, currentUser.managementId)
   }, [dispatch]);
 
-  const handleViewDetails = (row) => {
-    return null;
-  }
-
-  const handleTabs = (e, val) => {
-    setValue(val)
-  }
-
-  const handleDelete = (id) => {
-    deleteUser(id, dispatch);
-  };
-
   const columns = [
-    { field: "id", headerName: "Id", width: 50 },
-    { field: "name", headerName: "Username", width: 90 },
-    { field: "role", headerName: "Store", width: 90 },
+    { field: "id", headerName: "Id", width: 50, },
+    { field: "code", headerName: "Code", width: 120 },
     {
-      field: "requiredDate",
-      headerName: "Create At",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="">{formatDate(params.row.requiredDate)}</div>
-        );
-      },
+      field: "name",
+      headerName: "Product Line",
+      width: 150,
     },
     {
-      field: "approvedDate",
-      headerName: "Update At",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="">{params.row.approvedDate === null ? "Undefine" : formatDate(params.row.approvedDate)}</div>
-        );
-      },
+      field: "capacity",
+      headerName: "Memory",
+      width: 100,
     },
     {
-      field: "cancelledDate",
-      headerName: "Update At",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="">{params.row.cancelledDate === null ? "Undefine" : formatDate(params.row.cancelledDate)}</div>
-        );
-      },
+      field: "color",
+      headerName: "Color",
+      width: 100,
     },
     {
-      field: "status",
-      headerName: "FullName",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <span className={`status ${params.row.status}`}>{params.row.status}</span>
-        );
-      },
+      field: "price",
+      headerName: "Price",
+      width: 100,
+      renderCell: (param) => {
+        return <div>${param.row.price}</div>
+      }
     },
+
     {
-      field: "action",
-      headerName: "Action",
+      field: "factoryId",
+      headerName: "Cơ sở sản xuất",
       width: 150,
       renderCell: (params) => {
         return (
-            <Link
-              to={"/factory/process/" + params.row.id}
-              className="view-details"
-              onClick={() => handleViewDetails(params.row)}
-            >
-              View details
-            </Link>
+          params.row.factoryName
+        );
+      },
+    },
+    {
+      field: "storeId",
+      headerName: "Cửa hàng",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          params.row.storeName
+        );
+      },
+    },
+    {
+      field: "serviceCenterId",
+      headerName: "Trung tâm bảo hành",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          params.row.serviceCenterName
+        );
+      },
+    },
+    {
+      field: "manufactureDate",
+      headerName: "Ngày sản xuất",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div>
+            {formatDate(params.row.manufactureDate)}
+          </div>
+        );
+      },
+    },
+    {
+      field: "warrantyPeriod",
+      headerName: "Warranty Period",
+      width: 150,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+      renderCell: (params) => {
+        return (
+          <span className={`status ${params.row.status}`}>{params.row.status}</span>
         );
       },
     },
@@ -96,30 +109,12 @@ export default function ErrorList() {
       <div className="datatableTitle">
         Error Product
       </div>
-
       <DataGrid
-        rows={processes}
+        rows={errorProducts}
         disableSelectionOnClick
         columns={columns}
         pageSize={10}
       />
-
-      <Tabs value={value} onChange={handleTabs}>
-        <Tab label="All" />
-        <Tab label="Approved" />
-        <Tab label="Pending" />
-        <Tab label="Cancelled" />
-      </Tabs>
-
-      <TabPanel value={value} index={0}>
-      </TabPanel>
     </div>
   );
-};
-
-function TabPanel(props) {
-  const { children, value, index } = props;
-  return (
-    <div>{value === index && (<h1>{children}</h1>)}</div>
-  )
 }

@@ -93,7 +93,7 @@ export default function ExportList() {
       <div className="datatableTitle">
         Export Request
         <Link to="/factory/newexport" className="linkAddProduct">
-          New Export
+          Xuất sản phẩm cho đại lý
         </Link>
       </div>
 
