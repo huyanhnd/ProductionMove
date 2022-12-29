@@ -4,11 +4,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState, useEffect, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postProcess } from "../../../../api/processApi";
-import { getProducts } from "../../../../api/productsApi";
+import { getProductFactory, getProducts } from "../../../../api/productsApi";
 import { getFactory } from "../../../../api/factoryApi";
 import { getStore } from "../../../../api/storesApi";
-import { getServiceCenter } from "../../../../api/serviceCenterApi";
 import { getProductLines } from "../../../../api/productLineApi";
 
 export default function NewExportFilter() {
@@ -16,19 +14,15 @@ export default function NewExportFilter() {
     const products = useSelector((state) => state.product.products);
     const exportList = useSelector((state) => state.process.exportList);
     const productFactory = useSelector((state) => state.product.products);
-    const factories = useSelector((state) => state.factory.factories);
     const stores = useSelector((state) => state.store.stores);
-    const serviceCenters = useSelector(
-        (state) => state.serviceCenter.serviceCenters
-    );
-    const productLines = useSelector((state) => state.productline.productlines);
+
     const [productData, setProductData] = useState(products);
 
     useEffect(() => {
         getProducts(dispatch);
         getFactory(dispatch, "00", "000", "0000", "");
+        getProductFactory(dispatch, 1, 10, 2, "InFactory");
         getStore(dispatch, "00", "000", "0000", "");
-        getServiceCenter(dispatch, "00", "000", "0000", "");
         getProductLines(dispatch);
     }, []);
 
@@ -40,29 +34,33 @@ export default function NewExportFilter() {
         setProductline(e.target.value);
     };
 
-    /**
-     * factory filter box
-     */
-    const [factory, setFactory] = useState("0");
-    const handleFactoryChange = (e) => {
-        setFactory(e.target.value);
-    };
+
+    const productlines = productFactory.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.name }).includes(currentValue.name) ? total : [...total, currentValue];
+    }, []);
+
 
     /**
-     * store filter box
+     * color filter box
      */
-    const [store, setStore] = useState("0");
-    const handleStoreChange = (e) => {
-        setStore(e.target.value);
+    const [color, setColor] = useState("0");
+    const handleColorChange = (e) => {
+        setColor(e.target.value);
     };
+    const colors = productFactory.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.color }).includes(currentValue.color) ? total : [...total, currentValue];
+    }, []);
 
     /**
-     * serviceCenter filter box
+     * memory filter box
      */
-    const [serviceCenter, setServiceCenter] = useState("0");
-    const handleServiceCenterChange = (e) => {
-        setServiceCenter(e.target.value);
+    const [memory, setMemory] = useState("0");
+    const handleMemoryChange = (e) => {
+        setMemory(e.target.value);
     };
+    const memories = productFactory.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.capacity }).includes(currentValue.capacity) ? total : [...total, currentValue];
+    }, []);
 
     /**
      * submit
@@ -71,25 +69,25 @@ export default function NewExportFilter() {
     useEffect(() => {
         setProductData(
             products.filter((item, index) => {
-                return productline != "0" && item.productLineId == productline;
-                // && (color != '0' && item.color == color)
-                // && (memory != '0' && item.capacity == memory)
-                // && (factory != '0' && item.factoryId == factory)
-                // && (store != '0' && item.storeId == store)
-                // && (serviceCenter != '0' && item.serviceCenterId == serviceCenter)
+                return (productline != "0" && item.productLineId == productline)
+                    && (color != '0' && item.color == color)
+                    && ((memory != '0' && item.capacity == memory)  )
             })
+            
         );
         console.log(productData);
     }, [submit]);
+    
 
     const HandleSubmit = (e) => {
         setSubmit(!submit);
-        postProcess(dispatch, {
-            name: "note",
-            factoryId: 2,
-            storeId: 3,
-            productIds: exportList,
-        });
+        // setSubmit(!submit);
+        // postProcess(dispatch, {
+        //     name: "note",
+        //     factoryId: 2,
+        //     storeId: 3,
+        //     productIds: exportList,
+        // });
     };
 
     return (
@@ -107,50 +105,9 @@ export default function NewExportFilter() {
                             <MenuItem value={"0"}>
                                 <em>Tất cả</em>
                             </MenuItem>
-                            {productLines.map((data, index) => {
+                            {productlines.map((data, index) => {
                                 return (
-                                    <MenuItem value={data.id} key={index}>
-                                        {data.name}
-                                    </MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
-                </div>
-
-                {/* Cơ sở sản xuất
-      <div className="filterSection">
-        <div className="filterTitle">Cơ sở sản xuất</div>
-        <FormControl >
-          <Select className="filterBox"
-            value={factory}
-            onChange={handleFactoryChange}
-          >
-            <MenuItem value={"0"}>
-              <em>Tất cả</em>
-            </MenuItem>
-            {factories.map((data, index) => {
-              return <MenuItem value={data.id} key={index}>{data.name}</MenuItem>
-            })}
-          </Select>
-        </FormControl>
-      </div> */}
-
-                {/* Cơ sở cửa hàng */}
-                <div className="filterSection">
-                    <div className="filterTitle">Màu sắc</div>
-                    <FormControl>
-                        <Select
-                            className="filterBox"
-                            value={store}
-                            onChange={handleStoreChange}
-                        >
-                            <MenuItem value={"0"}>
-                                <em>Tất cả</em>
-                            </MenuItem>
-                            {stores.map((data, index) => {
-                                return (
-                                    <MenuItem value={data.id} key={index}>
+                                    <MenuItem value={data.productLineId} key={index}>
                                         {data.name}
                                     </MenuItem>
                                 );
@@ -161,20 +118,43 @@ export default function NewExportFilter() {
 
                 {/* Cơ sở cửa hàng */}
                 <div className="filterSection">
-                    <div className="filterTitle">Dung lượng</div>
+                    <div className="filterTitle">Color</div>
                     <FormControl>
                         <Select
                             className="filterBox"
-                            value={serviceCenter}
-                            onChange={handleServiceCenterChange}
+                            value={color}
+                            onChange={handleColorChange}
                         >
                             <MenuItem value={"0"}>
                                 <em>Tất cả</em>
                             </MenuItem>
-                            {serviceCenters.map((data, index) => {
+                            {colors.map((data, index) => {
                                 return (
-                                    <MenuItem value={data.id} key={index}>
-                                        {data.name}
+                                    <MenuItem value={data.color} key={index}>
+                                        {data.color}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+
+                {/* màu mắc */}
+                <div className="filterSection">
+                    <div className="filterTitle">Memory</div>
+                    <FormControl>
+                        <Select
+                            className="filterBox"
+                            value={memory}
+                            onChange={handleMemoryChange}
+                        >
+                            <MenuItem value={"0"}>
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {memories.map((data, index) => {
+                                return (
+                                    <MenuItem value={data.capacity} key={index}>
+                                        {data.capacity}
                                     </MenuItem>
                                 );
                             })}
