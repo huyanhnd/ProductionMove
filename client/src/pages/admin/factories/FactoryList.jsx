@@ -49,7 +49,7 @@ export default function FactoryList() {
   ];
 
   return (
-    <DataGrid
+    <DataGrid className="factoryList"
       rows={factory}
       disableSelectionOnClick
       columns={columns}

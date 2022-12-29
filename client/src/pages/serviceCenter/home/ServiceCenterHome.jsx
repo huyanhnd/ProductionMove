@@ -8,26 +8,26 @@ import { getProducts } from "../../../api/productsApi";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DbChartStatistic from "../../../components/chart/DbChartStatistic";
+import { getProductLines } from "../../../api/productLineApi";
 
 const ServiceCenterHome = () => {
-      /**
-     * get all data
-     */
-  const dispatch = useDispatch();
-  useEffect(() => {
-      getServiceCenter(dispatch)
-      getProducts(dispatch)
-  }, [dispatch]);
-  const products = useSelector((state) => state.product.products);
-  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
-   /**
-     * get data's svct
-     */
-   const auth = useSelector((state) => state.auth.currentUser);
-   const serviceCenterId = auth.managementId
-   const productData = products.filter((item) => { return item.serviceCenterId == serviceCenterId })
-   console.log(productData);
-
+    /**
+   * get all data
+   */
+    const dispatch = useDispatch();
+    useEffect(() => {
+        getServiceCenter(dispatch)
+        getProducts(dispatch)
+        getProductLines(dispatch)
+    }, [dispatch]);
+    const products = useSelector((state) => state.product.products);
+    const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+    /**
+      * get data's svct
+      */
+    const auth = useSelector((state) => state.auth.currentUser);
+    const serviceCenterId = auth.managementId
+    const productData = products.filter((item) => { return item.serviceCenterId == serviceCenterId })
     const date = new Date();
     const today = { day: date.getDate(), month: date.getMonth() + 1, year: date.getFullYear() }
     // const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -54,11 +54,11 @@ const ServiceCenterHome = () => {
             year: `Năm ${i}`,
             quantityOfRecieved: 0,
             quantityOfError: 0,
-        },...yearsData]
+        }, ...yearsData]
     }
-/**
- * for mat chart data
- */
+    /**
+     * for mat chart data
+     */
     for (let i = 0; i < productData.length; ++i) {
         const Recieved = getDMY(productData[i].warrantyDate).month
         const error = getDMY(productData[i].errorDate).month

@@ -3,12 +3,12 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../../api/productsApi";
+import { getProducts } from "../../../api/productsApi";
 import { DataGrid } from "@mui/x-data-grid";
-import { formatDate } from "../../../../helper/formatDate";
-import { getFactory } from "../../../../api/factoryApi";
-import { getStore } from "../../../../api/storesApi";
-import { getServiceCenter } from "../../../../api/serviceCenterApi";
+import { formatDate } from "../../../helper/formatDate";
+import { getFactory } from "../../../api/factoryApi";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
 export default function ProductList() {
   const dispatch = useDispatch();

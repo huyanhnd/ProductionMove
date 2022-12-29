@@ -1,0 +1,30 @@
+.accept-btn {
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: green;
+    border: 1px solid green;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.accept-btn:hover {
+    background-color: green;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.reject-btn {
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: red;
+    border: 1px solid red;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.reject-btn:hover {
+    background-color: red;
+    color: #ffffff;
+    cursor: pointer;
+}

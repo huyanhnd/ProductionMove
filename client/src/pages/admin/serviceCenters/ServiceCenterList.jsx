@@ -48,7 +48,7 @@ export default function ServiceCenterList() {
   ];
 
   return (
-    <DataGrid
+    <DataGrid className="servicecenterList"
       rows={serviceCenter}
       disableSelectionOnClick
       columns={columns}

@@ -7,6 +7,10 @@
   flex-direction: row;
 }
 
+.servicecenterList {
+  margin-left: 10px;
+}
+
 .add-serviceCenter {
   text-decoration: none;
   color: green;

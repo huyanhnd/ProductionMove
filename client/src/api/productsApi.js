@@ -8,7 +8,16 @@ import {
     postNewProductsSuccess,
     getProductsFactoryStart,
     getProductsFactoryFailure,
-    getProductsFactorySuccess
+    getProductsFactorySuccess,
+    getProductsStoreStart,
+    getProductsStoreSuccess,
+    getProductsStoreFailure,
+    getProductsServiceCenterFailure,
+    getProductsServiceCenterStart,
+    getProductsServiceCenterSuccess,
+    getProductsServiceCenterFilteredStart,
+    getProductsServiceCenterFilteredSuccess,
+    getProductsServiceCenterFilteredFailure,
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
 import { userRequest } from "./requestMethods";
@@ -29,16 +38,73 @@ export const getProductFactory = async (
     PageNumber,
     PageSize,
     FactoryId,
-    Status
+    Status,
+    ProductLineId,
+    Color,
+    Memory
 ) => {
     dispatch(getProductsFactoryStart());
+    
     try {
-        const res = await userRequest(getToken()).get(
-            `/Product/factory?PageNumber=${PageNumber}&PageSize=${PageSize}&FactoryId=${FactoryId}&Status=${Status}`
+        const res = await publicRequest.get(
+            // '/Product?PageNumber=1&PageSize=10&FactoryId=2&Status=InFactory&ProductLineId=0&Color=All&Capacity=64GB
+            `/Product?PageNumber=${PageNumber}&PageSize=${PageSize}&FactoryId=${FactoryId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}&Capacity=${Memory}`
         );
         dispatch(getProductsFactorySuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsFactoryFailure());
+    }
+};
+
+export const getProductStore = async (
+    dispatch,
+    StoreId,
+    Status,
+) => {
+    dispatch(getProductsStoreStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product/?StoreId=${StoreId}&Status=${Status}`
+        );
+        dispatch(getProductsStoreSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsStoreFailure());
+    }
+};
+
+///Product?ServiceCenterId=4&Status=All&Color=All
+export const getProductServiceCenterFiltered = async (
+    dispatch,
+    serviceCenterId,
+    Status,
+    ProductLineId,
+    Color,
+    Memory
+) => {
+    dispatch(getProductsServiceCenterFilteredStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product?ServiceCenterId=${serviceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory != "0" ? `&Capacity=${Memory}` : ''}`
+        );
+        dispatch(getProductsServiceCenterFilteredSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsServiceCenterFilteredFailure());
+    }
+};
+///Product?ServiceCenterId=4&Status=All&Color=All
+export const getProductServiceCenter = async (
+    dispatch,
+    serviceCenterId,
+    ProductLineId,
+) => {
+    dispatch(getProductsServiceCenterStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product?ServiceCenterId=${serviceCenterId}&Status=All&ProductLineId=${ProductLineId}`
+        );
+        dispatch(getProductsServiceCenterSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsServiceCenterFailure());
     }
 };
 
@@ -47,22 +113,6 @@ export const getProductsByFactory = async (dispatch, factoryId) => {
     try {
         const res = await publicRequest.get(`/Product?FactoryId=${factoryId}`);
         dispatch(getProductsSuccess(res.data.items));
-    } catch (err) {
-        dispatch(getProductsFailure());
-    }
-};
-
-export const getProductsByStore = async (dispatch, storeId) => {
-    dispatch(getProductsStart());
-    try {
-        const res = await publicRequest.get(`/Product`);
-        dispatch(
-            getProductsSuccess(
-                res.data.items.filter((item) => {
-                    return item.storeId == storeId;
-                })
-            )
-        );
     } catch (err) {
         dispatch(getProductsFailure());
     }
