@@ -5,7 +5,7 @@ import AddServiceCenterProduct from "../pages/serviceCenter/products/AddServiceC
 import ServiceCenterProcess from "../pages/serviceCenter/process/ServiceCenterProcess";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Layout } from "../layout/layout";
-import ServiceCenter from "../pages/serviceCenter/products/ServiceCenter";
+import ServiceCenterHome from "../pages/serviceCenter/home/ServiceCenterHome";
 
 export const serviceCenterRouter = createBrowserRouter([
     {
@@ -13,9 +13,10 @@ export const serviceCenterRouter = createBrowserRouter([
         element: <Layout />,
         children: [
             { path: "*", element: <NotFoundPage />, },
-            { path: "/servicecenters/products", element: <ServiceCenter /> },
-            { path: "/servicecenters/products/addproducts", element: <AddServiceCenterProduct /> },
-            { path: "/servicecenters/process", element: <ServiceCenterProcess /> },
+            { path: "/", element: <ServiceCenterHome /> },
+            { path: "/servicecenters_products", element: <ServiceCenterProduct /> },
+            { path: "/servicecenters_products/addproducts", element: <AddServiceCenterProduct /> },
+            { path: "/servicecenters_process", element: <ServiceCenterProcess /> },
         ],
     }
 ])
