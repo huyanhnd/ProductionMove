@@ -18,13 +18,13 @@ import {
     getProductLineByCodeSuccess,
     getProductLineByCodeFailure,
 } from "../redux/productLineSlice";
-import { userRequest } from "./requestMethods";
+import { publicRequest } from "./requestMethods";
 import { getToken } from "../helper/auth";
 
 export const getProductLines = async (dispatch) => {
     dispatch(getProductLinesStart());
     try {
-        const res = await userRequest(getToken()).get(`/ProductLine`);
+        const res = await publicRequest.get(`/ProductLine`);
         dispatch(getProductLinesSuccess(res.data));
     } catch (err) {
         dispatch(getProductLinesFailure());
@@ -34,7 +34,7 @@ export const getProductLines = async (dispatch) => {
 export const getProductLineById = async (dispatch,id) => {
     dispatch(getProductLineByIdStart());
     try {
-        const res = await userRequest(getToken()).get(`/ProductLine/${id}`);
+        const res = await publicRequest.get(`/ProductLine/${id}`);
         dispatch(getProductLineByIdSuccess(res.data));
     } catch (err) {
         dispatch(getProductLineByIdFailure());
@@ -44,7 +44,7 @@ export const getProductLineById = async (dispatch,id) => {
 export const getProductLineByCode = async (dispatch,Code) => {
     dispatch(getProductLineByCodeStart());
     try {
-        const res = await userRequest(getToken()).get(`/Productline/${Code}`);
+        const res = await publicRequest.get(`/Productline/${Code}`);
         dispatch(getProductLineByCodeSuccess(res.data));
     } catch (err) {
         dispatch(getProductLineByCodeFailure());
@@ -74,7 +74,7 @@ export const updateProductLine = async (code, productLine, dispatch) => {
 export const addProductLine = async (productLine, dispatch) => {
     dispatch(addProductLineStart());
     try {
-        const res = await userRequest(getToken()).post(`/products`, productLine);
+        const res = await publicRequest.post(`/products`, productLine);
         dispatch(addProductLineSuccess(res.data));
     } catch (err) {
         dispatch(addProductLineFailure());

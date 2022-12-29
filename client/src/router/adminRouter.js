@@ -4,11 +4,10 @@ import User from "../pages/admin/account/user/User";
 import NewUser from "../pages/admin/account/newUser/NewUser";
 import Home from "../pages/admin/home/Home";
 import ProductLine from "../pages/admin/productLines/productLine/ProductLine";
-import Products from "../pages/admin/products/productList/Products";
+import ProductList from "../pages/admin/products/ProductList";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import AddFactory from "../pages/admin/factories/addFactory/AddFactory";
 import UpdateFactory from "../pages/admin/factories/updateFactory/UpdateFactory";
-import NewProduct from "../pages/admin/products/newProduct/NewProduct";
 import Factory from "../pages/admin/factories/Factory";
 import Store from "../pages/admin/stores/Store";
 import AddStore from "../pages/admin/stores/addStore/AddStore";
@@ -18,7 +17,6 @@ import NewProductLine from "../pages/admin/productLines/newProductLine/NewProduc
 import { Layout } from "../layout/layout";
 import UpdateStore from "../pages/admin/stores/updateStore/UpdateStore";
 import UpdateServiceCenter from "../pages/admin/serviceCenters/updateServiceCenter/UpdateServiceCenter";
-
 
 export const adminRouter = createBrowserRouter([
     {
@@ -32,9 +30,8 @@ export const adminRouter = createBrowserRouter([
             { path: "/newuser", element: <NewUser /> },
             { path: "/productlines", element: <ProductLine /> },
             { path: "/newproductline", element: <NewProductLine />},
-            { path: "/products", element: <Products /> },
+            { path: "/products", element: <ProductList /> },
             { path: "/factories/:code", element: <UpdateFactory /> },
-            { path: "/products/newproduct", element: <NewProduct /> },
             { path: "/factories", element: <Factory /> },
             { path: "/factories/addfactory", element: <AddFactory /> },
             { path: "/stores", element: <Store /> },

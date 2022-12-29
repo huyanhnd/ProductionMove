@@ -27,14 +27,12 @@ export default function FactoryProduct() {
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);
   };
-  var no = 0;
+
   const columns = [
     {
-      field: "stt", headerName: "No.", width: 50,
-      renderCell: () => {
-        no++
-        return <div>{no}</div>;
-      }
+      field: "id",
+      headerName: "Id",
+      width: 50,
     },
     {
       field: "name",
@@ -70,11 +68,8 @@ export default function FactoryProduct() {
       headerName: "Trung tâm bảo hành",
       width: 150,
       renderCell: (params) => {
-        const serviceCenter = serviceCenters.find(item => {
-          return item.id == params.row.serviceCenterId
-        })
         return (
-          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
+          <div>{params.row.serviceCenterName}</div>
         );
       },
     },
@@ -114,6 +109,7 @@ export default function FactoryProduct() {
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
+        checkboxSelection
       />
     </div>
   );

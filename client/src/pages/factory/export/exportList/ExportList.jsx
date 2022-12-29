@@ -26,10 +26,6 @@ export default function ExportList() {
     setValue(val)
   }
 
-  const handleDelete = (id) => {
-    deleteUser(id, dispatch);
-  };
-
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
     { field: "name", headerName: "Username", width: 90 },
@@ -97,7 +93,7 @@ export default function ExportList() {
       <div className="datatableTitle">
         Export Request
         <Link to="/factory/newexport" className="linkAddProduct">
-          New Export
+          Xuất sản phẩm cho đại lý
         </Link>
       </div>
 

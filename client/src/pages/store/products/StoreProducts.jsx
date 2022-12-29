@@ -1,40 +1,23 @@
 import "./storeProducts.scss";
-import { DeleteOutline } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
-import { getProducts } from "../../../api/productsApi";
-import { getFactory } from "../../../api/factoryApi";
-import { getStore } from "../../../api/storesApi";
-import { getServiceCenter } from "../../../api/serviceCenterApi";
-
+import { getProductStore } from "../../../api/productsApi";
 
 export default function StoreProducts() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const factories = useSelector((state) => state.factory.factories);
-  const stores = useSelector((state) => state.store.stores);
-  const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+  const productStore = useSelector((state) => state.product.productStore)
+  const [status, setStatus] = useState();
 
   useEffect(() => {
-    getProducts(dispatch);
-    getFactory(dispatch, '00', '000', '0000', '')
-    getStore(dispatch, '00', '000', '0000', '')
-    getServiceCenter(dispatch, '00', '000', '0000', '')
+    getProductStore(dispatch, 3, "InFactory")
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    products.filter((item) => item.id !== id);
-  };
-  var no = 0;
   const columns = [
     {
-      field: "stt", headerName: "No.", width: 50,
-      renderCell: () => {
-        no++
-        return <div>{no}</div>;
-      }
+      field: "id",
+      headerName: "Id",
+      width: 50,
     },
     {
       field: "name",
@@ -52,32 +35,6 @@ export default function StoreProducts() {
       width: 100,
     },
     { field: "code", headerName: "Code", width: 120 },
-    {
-      field: "factoryId",
-      headerName: "Cơ sở sản xuất",
-      width: 150,
-      renderCell: (params) => {
-        const factory = factories.find(item => {
-          return item.id == params.row.factoryId
-        })
-        return (
-          <div>{typeof(factory.name) == 'string' ? factory.name : ''}</div>
-        );
-      },
-    },
-    {
-      field: "serviceCenterId",
-      headerName: "Trung tâm bảo hành",
-      width: 150,
-      renderCell: (params) => {
-        const serviceCenter = serviceCenters.find(item => {
-          return item.id == params.row.serviceCenterId
-        })
-        return (
-          <div>{typeof(serviceCenter.name) == 'string' ? serviceCenter.name : ''}</div>
-        );
-      },
-    },
     {
       field: "manufactureDate",
       headerName: "Ngày sản xuất",
@@ -110,7 +67,7 @@ export default function StoreProducts() {
   return (
     <div className="table">
       <DataGrid
-        rows={products}
+        rows={productStore}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick

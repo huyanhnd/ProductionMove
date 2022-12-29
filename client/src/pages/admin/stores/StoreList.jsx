@@ -48,12 +48,12 @@ export default function StoreList() {
   ];
 
   return (
-    <DataGrid
-      rows={store}
-      disableSelectionOnClick
-      columns={columns}
-      pageSize={10}
-      checkboxSelection
-    />
+      <DataGrid className="storeList"
+        rows={store}
+        disableSelectionOnClick
+        columns={columns}
+        pageSize={10}
+        checkboxSelection
+      />
   );
 }

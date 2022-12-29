@@ -11,7 +11,8 @@ namespace ProductionMove.Models
     public enum ProcessType : byte
     {
         Export,
-        Import
+        Import,
+        Warranty
     }
 
     public class Process
@@ -28,5 +29,7 @@ namespace ProductionMove.Models
         public Factory? Factory { get; set; }
         public int? StoreId { get; set; }
         public Store? Store { get; set; }
+        public int? ServiceCenterId { get; set; }
+        public ServiceCenter? ServiceCenter { get; set; }
     }
 }

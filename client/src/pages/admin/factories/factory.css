@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.factoryList {
+  margin-left: 10px;
+}
+
 .factoryListEdit {
   border: none;
   border-radius: 10px;

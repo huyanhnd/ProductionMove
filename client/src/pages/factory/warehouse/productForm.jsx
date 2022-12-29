@@ -1,4 +1,6 @@
 import {useState} from "react";
+import Input from "@mui/material/Input";
+import {TextField} from "@mui/material";
 
 export default function ProductForm(props) {
     const [productLineId, setProductLineId] = useState(1);
@@ -7,7 +9,7 @@ export default function ProductForm(props) {
     const [warrantyPeriod, setWarrantyPeriod] = useState("abc");
     const [capacity, setCapacity] = useState("64GB");
     const [color, setColor] = useState("black");
-    const [price, setPrice] = useState("123");
+    const [price, setPrice] = useState("0");
 
     return (
         <form
@@ -30,13 +32,14 @@ export default function ProductForm(props) {
             style={{marginRight: "20px"}}
         >
             {/* {productLines} */}
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Product Line</label>
                 <select
                     name="active"
                     id="active"
                     onChange={(e) => {
-                        setProductLineId(e.target.value);
+                        const temp = parseInt(e.target.value);
+                        setProductLineId(temp);
                     }}
                 >
                     {props.productLines.map((item) => (
@@ -44,27 +47,29 @@ export default function ProductForm(props) {
                     ))}
                 </select>
             </div>
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Store</label>
                 <input
                     type="number"
                     placeholder="Iphone"
                     onChange={(e) => {
-                        setStoreId(e.target.value);
+                        const temp = parseInt(e.target.value);
+                        setStoreId(temp);
                     }}
                 />
             </div>
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Quantity</label>
                 <input
                     type="number"
                     placeholder="UX9702"
                     onChange={(e) => {
-                        setQuantity(e.target.value);
+                        const temp = parseInt(e.target.value);
+                        setQuantity(temp);
                     }}
                 />
             </div>
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Warranty Period</label>
                 <input
                     type="text"
@@ -73,7 +78,7 @@ export default function ProductForm(props) {
                     }}
                 />
             </div>
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Memory</label>
                 <select
                     name="active"
@@ -88,7 +93,7 @@ export default function ProductForm(props) {
                     <option value="error">1TB</option>
                 </select>
             </div>
-            <div className="addProductWareHouseItem">
+            <div className="addProductItem">
                 <label>Color</label>
                 <select
                     name="active"
@@ -102,10 +107,22 @@ export default function ProductForm(props) {
                     <option value="white">White</option>
                 </select>
             </div>
-            <div className="addProductWareHouseItem">
+            {/* <TextField
+                id="outlined-number"
+                label="Price"
+                type="number"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                value={price}
+                onChange={(e) => {
+                    const temp = parseInt(e.target.value);
+                    setPrice(temp);
+                }}
+            /> */}
+            <div className="addProductItem">
                 <label>Price</label>
                 <input
-                    type="text"
                     onChange={(e) => {
                         setPrice(e.target.value);
                     }}
