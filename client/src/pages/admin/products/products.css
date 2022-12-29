@@ -1,0 +1,10 @@
+.productPage {
+  flex: 4;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

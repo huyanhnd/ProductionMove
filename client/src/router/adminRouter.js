@@ -17,6 +17,7 @@ import NewProductLine from "../pages/admin/productLines/newProductLine/NewProduc
 import { Layout } from "../layout/layout";
 import UpdateStore from "../pages/admin/stores/updateStore/UpdateStore";
 import UpdateServiceCenter from "../pages/admin/serviceCenters/updateServiceCenter/UpdateServiceCenter";
+import Products from "../pages/admin/products/Products";
 
 
 export const adminRouter = createBrowserRouter([

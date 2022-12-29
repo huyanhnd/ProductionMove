@@ -1,6 +1,7 @@
 import ProductList from "./ProductList";
+import "./products.css";
 import ProductFilter from "./ProductFilter";
-import "./products.scss";
+
 import { Link } from "react-router-dom";
 
 export default function Products() {

@@ -1,0 +1,18 @@
+.productList {
+    margin-left: 10px;
+}
+
+.status {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.status.InFactory {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.151);
+}
+
+.status.InStore {
+    color: goldenrod;
+    background-color: rgba(189, 189, 3, 0.103);
+}
