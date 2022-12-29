@@ -18,7 +18,7 @@ export default function FactoryProduct() {
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
 
   useEffect(() => {
-    getProductsByFactory(dispatch, id);
+    // getProductsByFactory(dispatch, id);
     getFactory(dispatch, '00', '000', '0000', '')
     getStore(dispatch, '00', '000', '0000', '')
     getServiceCenter(dispatch, '00', '000', '0000', '')
