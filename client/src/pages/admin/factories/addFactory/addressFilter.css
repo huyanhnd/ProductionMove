@@ -1,45 +1,36 @@
-.updateFactory-container {
+.addfactoryFilter {
     display: flex;
-    flex: 4;
-}
-
-.updateFactory-content{
-    flex:1;
-    background-color: #fff;
-    margin: 0px 50px;
-}
-
-.title {
-    font-size: 30px;
-}
-
-.select-section {
-    /* font-family: 'Source Sans Pro', sans-serif; */
-    font-size: 14px;
-    color: #000000DE;
-    margin-top: 10px;
+    flex-direction: column;
     
 }
 
-.select-box {
-    height: 35px;
-    width: 255px;
+.addfilterSection {
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    font-size: 14px;
+    color: #000000DE;
+    /* margin-right: 20px; */
+    margin-top: 20px;
 }
 
-.input-box {
+.addfilterBox {
     height: 35px;
+    width: 250px;
+}
+
+#filterInputBox {
+    height: 33px;
     border: 1px solid #ccc;
     font-size: 14px;
-    /* padding: 0px 10px; */
-    width: 250px;
+    padding: 0px 10px;
+    width: 200px;
     border-radius: 4px;
 }
 
-.input-box:hover {
+#filterInputBox:hover {
     border-color: #000;
 }
 
-.input-box:focus {
+#filterInputBox:focus {
     /* width: 149px; */
     padding: 0px 9px;
     height: 31px;
@@ -48,23 +39,22 @@
     /* margin-right: 1px; */
 }
 
-#submit-Factory {
+
+#submit-btn {
     line-height: 35px;
-    background-color: #00008B;
+    background-color: #3bb077;
     color: #fff;
     border-radius: 5px;
     padding: 0 10px;
-    font-size: 16px;
+    font-size: 14px;
     align-self: center;
-    width: 50px;
-    margin-top: 20px;
 }
 
-#submit-Factory:hover {
+#submit-btn:hover {
     cursor: pointer;
     opacity: 0.85;
 }
 
-#submit-Factory:active {
-    background-color: #000070;
+#submit-btn:active {
+    background-color: #155737;
 }

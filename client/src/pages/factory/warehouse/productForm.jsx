@@ -30,7 +30,7 @@ export default function ProductForm(props) {
             style={{marginRight: "20px"}}
         >
             {/* {productLines} */}
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Product Line</label>
                 <select
                     name="active"
@@ -44,7 +44,7 @@ export default function ProductForm(props) {
                     ))}
                 </select>
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Store</label>
                 <input
                     type="number"
@@ -54,7 +54,7 @@ export default function ProductForm(props) {
                     }}
                 />
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Quantity</label>
                 <input
                     type="number"
@@ -64,7 +64,7 @@ export default function ProductForm(props) {
                     }}
                 />
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Warranty Period</label>
                 <input
                     type="text"
@@ -73,7 +73,7 @@ export default function ProductForm(props) {
                     }}
                 />
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Memory</label>
                 <select
                     name="active"
@@ -88,7 +88,7 @@ export default function ProductForm(props) {
                     <option value="error">1TB</option>
                 </select>
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Color</label>
                 <select
                     name="active"
@@ -102,7 +102,7 @@ export default function ProductForm(props) {
                     <option value="white">White</option>
                 </select>
             </div>
-            <div className="addProductItem">
+            <div className="addProductWareHouseItem">
                 <label>Price</label>
                 <input
                     type="text"

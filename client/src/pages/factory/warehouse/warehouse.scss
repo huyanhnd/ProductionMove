@@ -1,20 +1,23 @@
 .factoryPage {
-    flex: 4;
+  flex: 4;
 
-    .header {
-        display: flex;
-        flex-direction: row;
-    }
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
 
-    .linkAddProduct {
-        text-decoration: none;
-        color: green;
-        font-size: 16px;
-        font-weight: 400;
-        border: 1px solid green;
-        padding: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-right: 10px;
-      }
+  .linkAddProduct {
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .linkAddProduct:hover {
+    background-color: rgb(242, 255, 242);
+  }
 }
