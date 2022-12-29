@@ -10,6 +10,9 @@ namespace ProductionMove.ViewModels.ProductModel
         public int StoreId { get; set; }
         public int ServiceCenterId { get; set; }
         public ProductStatus Status { get; set; }
+        public int ProductLineId { get; set; }
+        public ProductColor Color { get; set; }
+        public string Capacity { get; set; }
         public ProductQuery()
         {
             PageNumber = 1;
@@ -18,6 +21,9 @@ namespace ProductionMove.ViewModels.ProductModel
             StoreId = 0;
             ServiceCenterId = 0;
             Status = ProductStatus.All;
+            ProductLineId = 0;
+            Color = ProductColor.All;
+            Capacity = "";
         }
         public ProductQuery(int pageNumber, int pageSize)
         {

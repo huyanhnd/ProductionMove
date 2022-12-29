@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import "./newExport.css";
-import { useDispatch, useSelector } from "react-redux";
+import FactoryFilter from "./NewExportFilter";
+import {useDispatch, useSelector} from "react-redux";
 import AddFactoryProduct from "../../warehouse/AddFactoryProduct";
-import { FormControl, MenuItem, Select } from "@mui/material";
-import ExportForm from "./ExportForm";
+import ExportProduct from "./ExportProduct";
 import { getProductLines } from "../../../../api/productLineApi";
 import { getProducts } from "../../../../api/productsApi";
 import { DataGrid } from "@mui/x-data-grid";
@@ -78,27 +78,39 @@ export default function NewExport() {
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Export</h1>
-      <form className="addProductForm">
+      <div className="addProductForm">
         <div className="productFlex">
           <div className="nameProduct">
             <span className="addTitle">New Export Request To Store</span>
             <div className="productLine-text">
               <div className="addProductItem">
-                <label>Name</label>
-                <input type="text" placeholder="Name ProductLine" />
+                <label>Product Line</label>
+
               </div>
+
+              <div className="addProductItem">
+                <label>From Factory</label>
+
+              </div>
+
               <div className="addProductItem">
                 <label>To Store</label>
 
               </div>
             </div>
           </div>
+          {/* ------------------- */}
           <div className="detailProduct">
-            <AddFactoryProduct />
+            <div className="addTitle">Request details</div>
+            <DataGrid
+              rows={productAvailable}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+            />
           </div>
         </div>
-        <button className="addProductButton">Create</button>
-      </form>
+      </div>
     </div>
   );
 }
