@@ -108,9 +108,6 @@ export const getProductServiceCenter = async (
     }
 };
 
-
-
-
 export const getProductsByFactory = async (dispatch, factoryId) => {
     dispatch(getProductsStart());
     try {

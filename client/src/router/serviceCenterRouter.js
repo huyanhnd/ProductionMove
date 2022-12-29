@@ -3,6 +3,7 @@ import ServiceCenterProduct from "../pages/serviceCenter/products/ServiceCenterP
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Layout } from "../layout/layout";
 import ServiceCenterHome from "../pages/serviceCenter/home/ServiceCenterHome";
+import ServiceCenterRequest from "../pages/serviceCenter/request/ServiceCenterRequest"; 
 
 export const serviceCenterRouter = createBrowserRouter([
     {
@@ -11,7 +12,8 @@ export const serviceCenterRouter = createBrowserRouter([
         children: [
             { path: "*", element: <NotFoundPage />, },
             { path: "/", element: <ServiceCenterHome /> },
-            { path: "/servicecenters/products", element: <ServiceCenterProduct /> },
+            { path: "/servicecenter/products", element: <ServiceCenterProduct /> },
+            { path: "/servicecenter/request", element: <ServiceCenterRequest /> },
         ],
     }
 ])

@@ -4,12 +4,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState, useEffect, createContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getFactory } from "../../../../api/factoryApi";
-import { getDistrict, getProvince, getWard } from "../../../../api/addressApi";
-import { getProductLines } from "../../../../api/productLineApi";
-import { getProducts } from "../../../../api/productsApi";
-import { getStore } from "../../../../api/storesApi";
-import { getServiceCenter } from "../../../../api/serviceCenterApi";
+import { getFactory } from "../../../api/factoryApi";
+import { getDistrict, getProvince, getWard } from "../../../api/addressApi";
+import { getProductLines } from "../../../api/productLineApi";
+import { getProducts } from "../../../api/productsApi";
+import { getStore } from "../../../api/storesApi";
+import { getServiceCenter } from "../../../api/serviceCenterApi";
 
 export default function ProductFilter() {
   const dispatch = useDispatch();

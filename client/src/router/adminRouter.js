@@ -4,7 +4,7 @@ import User from "../pages/admin/account/user/User";
 import NewUser from "../pages/admin/account/newUser/NewUser";
 import Home from "../pages/admin/home/Home";
 import ProductLine from "../pages/admin/productLines/productLine/ProductLine";
-import Products from "../pages/admin/products/productList/Products";
+import Products from "../pages/admin/products/Products";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import AddFactory from "../pages/admin/factories/addFactory/AddFactory";
 import UpdateFactory from "../pages/admin/factories/updateFactory/UpdateFactory";

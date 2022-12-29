@@ -145,6 +145,7 @@ export default function User() {
                 <input
                   type="text"
                   placeholder="username"
+                  name="fullName"
                   className="userUpdateInput"
                   onChange={handleChange}
                 />
@@ -154,6 +155,7 @@ export default function User() {
                 <input
                   type="text"
                   placeholder="fullName"
+                  name="username"
                   className="userUpdateInput"
                   onChange={handleChange}
                 />
