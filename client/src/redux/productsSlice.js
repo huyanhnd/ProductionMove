@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const productsSlice = createSlice({
     name: "product",
@@ -7,6 +7,7 @@ export const productsSlice = createSlice({
         products: [],
         productFactory: [],
         productStore: [],
+        productServiceCenter: [],
         isFetching: false,
         error: false,
     },
@@ -23,6 +24,8 @@ export const productsSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+
+        //Factory
         getProductsFactoryStart: (state) => {
             state.isFetching = true;
             state.error = false;
@@ -35,6 +38,8 @@ export const productsSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+
+        // Store
         getProductsStoreStart: (state) => {
             state.isFetching = true;
             state.error = false;
@@ -47,6 +52,21 @@ export const productsSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
+
+        // Service Center
+        getProductsServiceCenterStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        getProductsServiceCenterSuccess: (state, action) => {
+            state.isFetching = false;
+            state.productServiceCenter = action.payload;
+        },
+        getProductsServiceCenterFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+
         postNewProductsStart: (state) => {
             state.isFetching = true;
             state.error = false;
@@ -75,5 +95,8 @@ export const {
     getProductsStoreStart,
     getProductsStoreSuccess,
     getProductsStoreFailure,
+    getProductsServiceCenterStart,
+    getProductsServiceCenterSuccess,
+    getProductsServiceCenterFailure,
 } = productsSlice.actions;
 export default productsSlice.reducer;
