@@ -1,4 +1,4 @@
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import {
     getProductsStart,
     getProductsSuccess,
@@ -7,12 +7,22 @@ import {
     postNewProductsStart,
     postNewProductsSuccess,
 } from "../redux/productsSlice";
-import {publicRequest} from "./requestMethods";
+import { publicRequest } from "./requestMethods";
 
 export const getProducts = async (dispatch) => {
     dispatch(getProductsStart());
     try {
         const res = await publicRequest.get(`/Product`);
+        dispatch(getProductsSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsFailure());
+    }
+};
+
+export const getProductsByFactory = async (dispatch, factoryId) => {
+    dispatch(getProductsStart());
+    try {
+        const res = await publicRequest.get(`/Product?FactoryId=${factoryId}`);
         dispatch(getProductsSuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsFailure());

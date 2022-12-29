@@ -9,6 +9,7 @@ public class UpdateRequest
     private string _confirmPassword;
     private string _role;
     private string _username;
+    private string _image;
     public string FullName { get; set; }
 
     [EnumDataType(typeof(Role))]
@@ -21,6 +22,11 @@ public class UpdateRequest
     {
         get => _username;
         set => _username = replaceEmptyWithNull(value);
+    }
+    public string Image
+    {
+        get => _image;
+        set => _image = replaceEmptyWithNull(value);
     }
 
     [MinLength(5)]

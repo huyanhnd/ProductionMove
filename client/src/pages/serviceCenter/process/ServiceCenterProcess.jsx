@@ -188,7 +188,7 @@ export default function ServiceCenterProcess() {
                 rows={requestData}
                 disableSelectionOnClick
                 columns={requestColumns}
-                pageSize={100}
+                pageSize={10}
                 checkboxSelection
             />
 
@@ -197,7 +197,7 @@ export default function ServiceCenterProcess() {
                 rows={inWarehouseData}
                 disableSelectionOnClick
                 columns={inWarehouseColums}
-                pageSize={100}
+                pageSize={10}
                 checkboxSelection
             />
 
@@ -206,7 +206,7 @@ export default function ServiceCenterProcess() {
                 rows={warrantyErrorData}
                 disableSelectionOnClick
                 columns={warrantyErrorColums}
-                pageSize={100}
+                pageSize={10}
                 checkboxSelection
             />
 

@@ -105,7 +105,7 @@ export default function ExportList() {
         rows={processes}
         disableSelectionOnClick
         columns={columns}
-        pageSize={7}
+        pageSize={10}
       />
 
       <Tabs value={value} onChange={handleTabs}>

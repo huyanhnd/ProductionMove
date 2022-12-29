@@ -40,7 +40,8 @@ namespace ProductionMove.Services
                             Address = m.factoryWard.factory.Address,
                             WardCode = m.factoryWard.ward.Code,
                             DistrictCode = m.dictrict.Code,
-                            ProvinceCode = m.dictrict.ProvinceCode
+                            ProvinceCode = m.dictrict.ProvinceCode,
+                            AccountId = m.factoryWard.factory.AccountId
                         });
 
             if (query.WardCode != "")

@@ -37,10 +37,10 @@ export default function ServiceCenterList() {
                 onClick={() => handleEdit(params.row)}
               >Edit</button>
             </Link>
-            <DeleteOutline
+            {/* <DeleteOutline
               className="factoryListDelete"
               onClick={() => handleDelete(params.row)}
-            />
+            /> */}
           </>
         );
       },
@@ -52,7 +52,7 @@ export default function ServiceCenterList() {
       rows={serviceCenter}
       disableSelectionOnClick
       columns={columns}
-      pageSize={100}
+      pageSize={10}
       checkboxSelection
     />
   );

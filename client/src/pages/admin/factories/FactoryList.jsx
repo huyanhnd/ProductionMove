@@ -14,6 +14,7 @@ export default function FactoryList() {
     getFactory(dispatch, '00', '000', '0000', '')
   }, [dispatch])
   const factory = useSelector((state) => state.factory.factories);
+
   const handleDelete = (row) => {
     // setData(data.filter((item) => item.id !== id));
   };
@@ -37,10 +38,10 @@ export default function FactoryList() {
                 onClick={() => handleEdit(params.row)}
               >Edit</button>
             </Link>
-            <DeleteOutline
+            {/* <DeleteOutline
               className="factoryListDelete"
               onClick={() => handleDelete(params.row)}
-            />
+            /> */}
           </>
         );
       },
@@ -54,6 +55,7 @@ export default function FactoryList() {
       columns={columns}
       pageSize={10}
       checkboxSelection
+      autoHeight
     />
   );
 }
