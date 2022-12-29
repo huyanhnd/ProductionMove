@@ -11,6 +11,8 @@ import { getProductServiceCenter, getProductServiceCenterFiltered } from "../../
 import { getProductLines } from "../../../api/productLineApi";
 import FormControl from "@mui/material/FormControl";
 import { MenuItem } from "@mui/material";
+import axios from "axios";
+import { publicRequest } from "../../../api/requestMethods";
 
 export default function ServiceCenterProduct() {
     const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function ServiceCenterProduct() {
     const serviceCenterProductFiltered = useSelector((state) => state.product.productServiceCenterFiltered);
     const productLines = useSelector((state) => state.productline.productlines);
     const [serviceCenterId, setServiceCenterId] = useState("0");
+    const [code, setCode] = useState("");
 
     const productLines_ = AllserviceCenterProduct.reduce(function (total, currentValue) {
         return total.map((item) => { return item.name }).includes(currentValue.name) ? total : [...total, currentValue];
@@ -36,7 +39,7 @@ export default function ServiceCenterProduct() {
         getProductServiceCenterFiltered(dispatch, serviceCenterId, 'All', productline, color, memory);
     }, [dispatch, serviceCenterId, productline, color, memory]);
     useEffect(() => {
-        getProductServiceCenter(dispatch, serviceCenterId,0)
+        getProductServiceCenter(dispatch, serviceCenterId, 0)
     }, [dispatch])
     console.log(productline, color, memory);
     const columns = [
@@ -53,6 +56,30 @@ export default function ServiceCenterProduct() {
                     </div>
                 );
             }
+        },
+        {
+            field: "status",
+            headerName: "Status",
+            width: 120,
+            renderCell: (params) => {
+                return (
+                    <span className={`status ${params.row.status}`}>
+                        {params.row.status}
+                    </span>
+                );
+            },
+        },
+        {
+            field: "action",
+            headerName: "Action",
+            width: 150,
+            renderCell: (params) => {
+                return (
+                    <div>
+                        <button className="userListEdit" onClick={() => { publicRequest.put(`/Product/return/${code}`) }}> Return to Factory</button >
+                    </div>
+                );
+            },
         },
     ];
 
@@ -130,10 +157,13 @@ export default function ServiceCenterProduct() {
             </div>
             <DataGrid
                 rows={serviceCenterProductFiltered}
-                disableSelectionOnClick
                 columns={columns}
                 pageSize={10}
-                checkboxSelection
+                onSelectionModelChange={(ids) => {
+                    const selectedIDs = new Set(ids);
+                    const selectedRowData = serviceCenterProductFiltered.filter(row => selectedIDs.has(row.id))
+                    setCode(selectedRowData[0].code);
+                }}
                 autoHeight
             />
         </div>

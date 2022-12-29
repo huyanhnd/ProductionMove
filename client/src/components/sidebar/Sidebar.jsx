@@ -135,13 +135,13 @@ export default function Sidebar() {
         {
           icon: WorkOutline,
           title: "ServiceCenter",
-          link: "/servicecenters/products",
+          link: "/servicecenter/products",
           key: 2,
         },
         {
           icon: Settings,
           title: "Request",
-          link: "/servicecenters/warranty",
+          link: "/servicecenter/request",
           key: 3,
         },
       ]

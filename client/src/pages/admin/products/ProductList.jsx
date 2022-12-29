@@ -13,12 +13,12 @@ import { getServiceCenter } from "../../../api/serviceCenterApi";
 import { getProductLines } from "../../../api/productLineApi";
 
 export default function ProductList() {
-
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const factories = useSelector((state) => state.factory.factories);
   const stores = useSelector((state) => state.store.stores);
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+
   const productLines = useSelector((state) => state.productline.productlines);
   const [productline, setProductline] = useState('0')
   const [factory, setFactory] = useState('0')
@@ -62,7 +62,6 @@ export default function ProductList() {
   const handleServiceCenterChange = (e) => {
     setServiceCenter(e.target.value)
   }
-
 
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);

@@ -15,6 +15,7 @@ namespace ProductionMove.Services
         Task CreateAsync(ProductRequest model);
         Task ApprovedExportAsync(List<int> ProductIds, int ProcessId);
         Task SoldProductAsync(string code);
+        Task ReturnErrorToFatory(string code);
         Task<ProductResponse> UpdateAsync(string code, ProductRequest product);
         Task DeleteAsync(string code);
     }
@@ -171,6 +172,14 @@ namespace ProductionMove.Services
             var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
             if (product == null) throw new AppException("Invalid code");
             return product;
+        }
+
+        public async Task ReturnErrorToFatory(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            product.Status = ProductStatus.Error;
+            await _context.SaveChangesAsync();
         }
     }
 }

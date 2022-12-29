@@ -8,6 +8,7 @@ using ProductionMove.Services;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.ProductModel;
 using ProductionMove.Authorization;
+using ProductionMove.ViewModels.ProcessModel;
 
 namespace ProductionMove.Controllers
 {
@@ -66,11 +67,19 @@ namespace ProductionMove.Controllers
             return Ok(new { message = "Product deleted successfully" });
         }
 
+
         [HttpPut("export")]
         public async Task<IActionResult> ApprovedExportAsync(List<int> ProductIds, int ProcessId)
         {
             await _productService.ApprovedExportAsync(ProductIds, ProcessId);
             return Ok(new { message = "Product deleted successfully" });
+        }
+
+        [HttpPut("return/{code}")]
+        public async Task<IActionResult> ReturnErrorToFatoryAsync(string code)
+        {
+            await _productService.ReturnErrorToFatory(code);
+            return Ok(new { message = "Product return to factory successfully" });
         }
 
         [HttpPut("sold/{code}")]
