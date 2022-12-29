@@ -8,7 +8,7 @@ namespace ProductionMove.ViewModels.ProductModel
         public int Quantity { get; set; }
         public int ProductLineId { get; set; }
         public string WarrantyPeriod { get; set; }
-        public string Color { get; set; }
+        public ProductColor Color { get; set; }
         public string Capacity { get; set; }
         public string Price { get; set; }
         public int StoreId { get; set; }

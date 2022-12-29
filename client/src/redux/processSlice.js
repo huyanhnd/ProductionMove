@@ -7,6 +7,7 @@ export const processSlice = createSlice({
         processes: [],
         isFetching: false,
         error: false,
+        exportList: [],
     },
     reducers: {
         getProcessesStart: (state) => {
@@ -21,18 +22,20 @@ export const processSlice = createSlice({
             state.isFetching = false;
             state.error = true;
         },
-        // postNewProductsStart: (state) => {
-        //     state.isFetching = true;
-        //     state.error = false;
-        // },
-        // postNewProductsSuccess: (state, action) => {
-        //     state.isFetching = false;
-        //     state.users.push(action.payload);
-        // },
-        // postNewProductsFailure: (state) => {
-        //     state.isFetching = false;
-        //     state.error = true;
-        // },
+        postProcessStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        postProcessSuccess: (state, action) => {
+            state.isFetching = false;
+        },
+        postProcessFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
+        changeExportList: (state,action) => {
+            state.exportList = action.payload;
+        }
     },
 });
 
@@ -40,8 +43,9 @@ export const {
     getProcessesStart,
     getProcessesSuccess,
     getProcessesFailure,
-    // postNewProductsFailure,
-    // postNewProductsStart,
-    // postNewProductsSuccess,
+    postProcessFailure,
+    postProcessStart,
+    postProcessSuccess,
+    changeExportList
 } = processSlice.actions;
 export default processSlice.reducer;
