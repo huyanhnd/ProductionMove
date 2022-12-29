@@ -1,68 +1,59 @@
-.updateFactory-container {
-    display: flex;
+.newServiceCenter {
     flex: 4;
-}
-
-.updateFactory-content{
-    flex:1;
-    background-color: #ccc;
-    margin: 0px 50px;
-}
-
-.title {
-    font-size: 30px;
-}
-
-.select-section {
-    /* font-family: 'Source Sans Pro', sans-serif; */
-    font-size: 14px;
-    color: #000000DE;
+    margin-left: 30px;
+  }
+  
+  .newServiceCenterForm {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+  }
+  
+  .newServiceCenterItem {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
     margin-right: 20px;
-}
-
-.select-box {
-    height: 35px;
-    width: 230px;
-}
-
-.input-box {
-    height: 33px;
-    border: 1px solid #ccc;
+  }
+  
+  .newServiceCenterItem > label {
+    margin-bottom: 10px;
     font-size: 14px;
-    padding: 0px 10px;
-    width: 200px;
-    border-radius: 4px;
-}
-
-.input-box:hover {
-    border-color: #000;
-}
-
-.input-box:focus {
-    /* width: 149px; */
-    padding: 0px 9px;
-    height: 31px;
-    outline: none !important;
-    border: 2px solid #1976d2;
-    /* margin-right: 1px; */
-}
-
-#submit-btn {
-    line-height: 35px;
-    background-color: #00008B;
-    color: #fff;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  
+  .newServiceCenterItem > input {
+    height: 20px;
+    padding: 10px;
+    border: 1px solid gray;
     border-radius: 5px;
-    padding: 0 10px;
-    font-size: 16px;
-    align-self: center;
-    width: 50px;
-}
-
-#submit-btn:hover {
-    cursor: pointer;
-    opacity: 0.85;
-}
-
-#submit-btn:active {
-    background-color: #000070;
-}
+  }
+  
+  .newServiceCenterGender > input {
+    margin-top: 15px;
+  }
+  
+  .newServiceCenterGender>label{
+      margin: 10px;
+      font-size: 18px;
+      color: #555;
+  }
+  
+  .newServiceCenterSelect{
+      height: 40px;
+      border-radius: 5px;
+  }
+  
+  .newServiceCenterButton{
+      width: 100px;
+      border: none;
+      background-color: darkblue;
+      color: white;
+      padding: 15px 10px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+  }

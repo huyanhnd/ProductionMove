@@ -47,7 +47,7 @@ export default function AddFactoryProduct() {
                         console.log(products);
                         postNewProductsAPI(products);
                     }}
-                    className="addProductButton"
+                    className="addProductFacoryButton"
                 >
                     Create
                 </button>

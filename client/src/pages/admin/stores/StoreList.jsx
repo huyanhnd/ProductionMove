@@ -5,7 +5,7 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { setCurrentFactoryInfo } from "../../../redux/currentFactorySlice";
+import { setCurrentStoreInfo } from "../../../redux/currentStoreSlice";
 import { getStore } from "../../../api/storesApi";
 
 export default function StoreList() {
@@ -19,7 +19,7 @@ export default function StoreList() {
   };
 
   const handleEdit = (row) => {
-    // dispatch(setCurrentFactoryInfo(row))
+    dispatch(setCurrentStoreInfo(row))
   };
 
   const columns = [
@@ -31,7 +31,7 @@ export default function StoreList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/stores/" + params.row.id}>
               <button
                 className="factoryListEdit"
                 onClick={() => handleEdit(params.row)}
@@ -48,12 +48,12 @@ export default function StoreList() {
   ];
 
   return (
-    <DataGrid
-      rows={store}
-      disableSelectionOnClick
-      columns={columns}
-      pageSize={10}
-      checkboxSelection
-    />
+      <DataGrid className="storeList"
+        rows={store}
+        disableSelectionOnClick
+        columns={columns}
+        pageSize={10}
+        checkboxSelection
+      />
   );
 }

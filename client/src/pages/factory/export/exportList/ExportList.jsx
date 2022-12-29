@@ -26,10 +26,6 @@ export default function ExportList() {
     setValue(val)
   }
 
-  const handleDelete = (id) => {
-    deleteUser(id, dispatch);
-  };
-
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
     { field: "name", headerName: "Username", width: 90 },

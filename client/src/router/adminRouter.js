@@ -8,7 +8,6 @@ import Products from "../pages/admin/products/productList/Products";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import AddFactory from "../pages/admin/factories/addFactory/AddFactory";
 import UpdateFactory from "../pages/admin/factories/updateFactory/UpdateFactory";
-import NewProduct from "../pages/admin/products/newProduct/NewProduct";
 import Factory from "../pages/admin/factories/Factory";
 import Store from "../pages/admin/stores/Store";
 import AddStore from "../pages/admin/stores/addStore/AddStore";
@@ -16,6 +15,9 @@ import ServiceCenter from "../pages/admin/serviceCenters/ServiceCenter";
 import AddServiceCenter from "../pages/admin/serviceCenters/addServiceCenter/AddServiceCenter";
 import NewProductLine from "../pages/admin/productLines/newProductLine/NewProductLine";
 import { Layout } from "../layout/layout";
+import UpdateStore from "../pages/admin/stores/updateStore/UpdateStore";
+import UpdateServiceCenter from "../pages/admin/serviceCenters/updateServiceCenter/UpdateServiceCenter";
+
 
 export const adminRouter = createBrowserRouter([
     {
@@ -28,15 +30,16 @@ export const adminRouter = createBrowserRouter([
             { path: "/user/:userid", element: <User id="1" /> },
             { path: "/newuser", element: <NewUser /> },
             { path: "/productlines", element: <ProductLine /> },
-            { path: "/newproductline", element: <NewProductLine /> },
+            { path: "/newproductline", element: <NewProductLine />},
             { path: "/products", element: <Products /> },
-            { path: "/product/:code", element: <UpdateFactory /> },
-            { path: "/products/newproduct", element: <NewProduct /> },
+            { path: "/factories/:code", element: <UpdateFactory /> },
             { path: "/factories", element: <Factory /> },
             { path: "/factories/addfactory", element: <AddFactory /> },
             { path: "/stores", element: <Store /> },
+            { path: "/stores/:code", element: <UpdateStore /> },
             { path: "/stores/addstore", element: <AddStore /> },
             { path: "/servicecenters", element: <ServiceCenter /> },
+            { path: "/servicecenters/:code", element: <UpdateServiceCenter /> },
             { path: "/servicecenters/addservicecenter", element: <AddServiceCenter /> },
         ],
     }

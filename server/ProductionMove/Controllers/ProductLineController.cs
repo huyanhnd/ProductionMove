@@ -19,7 +19,6 @@ namespace ProductionMove.Controllers
             _productLineService = productLineService;
         }
 
-        [Authorize(Role.Admin)]
         [HttpGet]
         public async Task<IActionResult> ListAsync([FromQuery] Paging query, int SeriesId)
         {

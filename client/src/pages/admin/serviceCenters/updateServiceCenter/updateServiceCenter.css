@@ -1,9 +1,9 @@
-.updateFactory-container {
+.updateServiceCenter-container {
     display: flex;
     flex: 4;
 }
 
-.updateFactory-content{
+.updateServiceCenter-content{
     flex:1;
     background-color: #fff;
     margin: 0px 50px;
@@ -48,7 +48,7 @@
     /* margin-right: 1px; */
 }
 
-#submit-Factory {
+#submit-ServiceCenter {
     line-height: 35px;
     background-color: #00008B;
     color: #fff;
@@ -60,11 +60,11 @@
     margin-top: 20px;
 }
 
-#submit-Factory:hover {
+#submit-ServiceCenter:hover {
     cursor: pointer;
     opacity: 0.85;
 }
 
-#submit-Factory:active {
+#submit-ServiceCenter:active {
     background-color: #000070;
 }

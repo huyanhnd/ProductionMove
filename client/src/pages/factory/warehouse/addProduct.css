@@ -7,30 +7,30 @@
     margin-top: 10px;
   }
   
-  .addProductItem {
+  .addProductWareHouseItem {
     width: 250px;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
   }
   
-  .addProductItem > label {
+  .addProductWareHouseItem > label {
     color: gray;
     font-weight: 600;
     margin-bottom: 10px;
   }
   
-  .addProductItem > input {
+  .addProductWareHouseItem > input {
     padding: 10px;
   }
   
-  .addProductItem > select {
+  .addProductWareHouseItem > select {
     padding: 10px;
   }
   
-  .addProductButton {
+  .addProductFacoryButton {
     margin-top: 10px;
-    padding: 7px 10px;
+    padding: 17px 25px;
     border: none;
     border-radius: 10px;
     background-color: darkblue;

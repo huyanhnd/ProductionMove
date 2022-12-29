@@ -8,10 +8,6 @@ export default function Products() {
     <div className="productPage">
       <div className="header">
         <ProductFilter />
-        <div className="range"></div>
-        <Link to="/factories/addfactory" className="add-product">
-          Add Factory
-        </Link>
       </div>
       <ProductList />
     </div>

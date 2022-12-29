@@ -9,9 +9,6 @@ export default function Warehouse() {
       <div className="header">
         <StoreFilter />
         <div className="range"></div>
-        <Link to="/store-products/request" className="add-serviceCenter">
-          Request Product
-        </Link>
       </div>
       <StoreProducts />
     </div>

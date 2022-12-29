@@ -8,6 +8,7 @@ export default function Warehouse() {
         <div className="factoryPage">
             <div className="header">
                 <FactoryFilter />
+                <div className="range"></div>
                 <Link to="/factory/warehouse/addproducts" className="linkAddProduct">
                     Add Product
                 </Link>

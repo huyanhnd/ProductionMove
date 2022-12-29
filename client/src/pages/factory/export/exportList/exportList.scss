@@ -35,6 +35,20 @@
       color: red;
       background-color: rgba(189, 3, 3, 0.103);
     }
+  }
 
+  .linkAddProduct {
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .linkAddProduct:hover {
+    background-color: rgb(242, 255, 242);
   }
 }
