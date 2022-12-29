@@ -90,7 +90,7 @@ export default function UserList() {
     <div className="userList">
       <div className="datatableTitle">
         Users
-        <Link to="/newuser" className="linkAddProduct">
+        <Link to="/newuser" className="linkAddUser">
           Add User
         </Link>
       </div>
@@ -98,8 +98,9 @@ export default function UserList() {
         rows={user}
         disableSelectionOnClick
         columns={columns}
-        pageSize={7}
+        pageSize={10}
         checkboxSelection
+        autoHeight
       />
     </div>
   );

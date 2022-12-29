@@ -8,5 +8,6 @@
         public string WardCode { get; set; }
         public string DistrictCode { get; set; }
         public string ProvinceCode { get; set; }
+        public int AccountId { get; set; }
     }
 }

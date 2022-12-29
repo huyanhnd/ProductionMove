@@ -22,5 +22,9 @@ namespace ProductionMove.ViewModels.ProductModel
         public int? StoreId { get; set; }
         public int? ServiceCenterId { get; set; }
         public int? ProcessId { get; set; }
+        public string FactoryName { get; set; }
+        public string StoreName { get; set; }
+        public string ServiceCenterName { get; set; }
+
     }
 }

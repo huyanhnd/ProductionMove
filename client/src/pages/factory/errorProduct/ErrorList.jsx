@@ -101,7 +101,7 @@ export default function ErrorList() {
         rows={processes}
         disableSelectionOnClick
         columns={columns}
-        pageSize={7}
+        pageSize={10}
       />
 
       <Tabs value={value} onChange={handleTabs}>

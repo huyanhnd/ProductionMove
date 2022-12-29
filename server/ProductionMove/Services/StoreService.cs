@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using ProductionMove.Data.Context;
-using ProductionMove.Models;
 using ProductionMove.Helpers;
-using ProductionMove.ViewModels.Store;
+using ProductionMove.Models;
 using ProductionMove.ViewModels;
-using Newtonsoft.Json.Linq;
-using ProductionMove.ViewModels.Accounts;
-using System.Security.Principal;
-using ProductionMove.ViewModels.ProductModel;
+using ProductionMove.ViewModels.Store;
 
 namespace ProductionMove.Services
 {
@@ -44,7 +39,8 @@ namespace ProductionMove.Services
                             Address = m.sw.s.Address,
                             WardCode = m.sw.ward.Code,
                             DistrictCode = m.dictrict.Code,
-                            ProvinceCode = m.dictrict.ProvinceCode
+                            ProvinceCode = m.dictrict.ProvinceCode,
+                            AccountId = m.sw.s.AccountId
                         });
 
             if (query.WardCode != "")

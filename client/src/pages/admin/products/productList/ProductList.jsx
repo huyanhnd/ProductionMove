@@ -29,11 +29,8 @@ export default function ProductList() {
   };
 
   const columns = [
-    {
-      field: "id",
-      headerName: "No.",
-      width: 50,
-    },
+    { field: "id", headerName: "Id", width: 50, },
+    { field: "code", headerName: "Code", width: 120 },
     {
       field: "name",
       headerName: "Product Line",
@@ -57,17 +54,14 @@ export default function ProductList() {
         return <div>${param.row.price}</div>
       }
     },
-    { field: "code", headerName: "Code", width: 120 },
+
     {
       field: "factoryId",
       headerName: "Cơ sở sản xuất",
       width: 150,
       renderCell: (params) => {
-        const factory = factories.find(item => {
-          return item.id == params.row.factoryId
-        })
         return (
-          <div>{factory.name}</div>
+          params.row.factoryName
         );
       },
     },
@@ -76,11 +70,8 @@ export default function ProductList() {
       headerName: "Cửa hàng",
       width: 150,
       renderCell: (params) => {
-        const store = stores.find(item => {
-          return item.id == params.row.storeId
-        })
         return (
-          <div>{typeof(store.name)}</div>
+          params.row.storeName
         );
       },
     },
@@ -89,11 +80,8 @@ export default function ProductList() {
       headerName: "Trung tâm bảo hành",
       width: 150,
       renderCell: (params) => {
-        const serviceCenter = serviceCenters.find(item => {
-          return item.id == params.row.serviceCenterId
-        })
         return (
-          <div>{typeof(serviceCenter.name)}</div>
+          params.row.serviceCenterName
         );
       },
     },
@@ -104,7 +92,7 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <div>
-            {params.row.manufactureDate}
+            {formatDate(params.row.manufactureDate)}
           </div>
         );
       },
@@ -133,6 +121,7 @@ export default function ProductList() {
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
+        autoHeight
       />
     </div>
   );
