@@ -6,8 +6,13 @@ import {
     postNewProductsFailure,
     postNewProductsStart,
     postNewProductsSuccess,
+    getProductsFactoryStart,
+    getProductsFactoryFailure,
+    getProductsFactorySuccess
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
+import { userRequest } from "./requestMethods";
+import { getToken } from "../helper/auth";
 
 export const getProducts = async (dispatch) => {
     dispatch(getProductsStart());
@@ -16,6 +21,24 @@ export const getProducts = async (dispatch) => {
         dispatch(getProductsSuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsFailure());
+    }
+};
+
+export const getProductFactory = async (
+    dispatch,
+    PageNumber,
+    PageSize,
+    FactoryId,
+    Status
+) => {
+    dispatch(getProductsFactoryStart());
+    try {
+        const res = await userRequest(getToken()).get(
+            `/Product/factory?PageNumber=${PageNumber}&PageSize=${PageSize}&FactoryId=${FactoryId}&Status=${Status}`
+        );
+        dispatch(getProductsFactorySuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsFactoryFailure());
     }
 };
 
