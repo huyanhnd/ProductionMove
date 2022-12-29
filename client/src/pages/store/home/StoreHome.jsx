@@ -7,25 +7,27 @@ import { getStore } from "../../../api/storesApi";
 import { getProducts } from "../../../api/productsApi";
 import { useEffect } from "react";
 import DbChartStatistic from "../../../components/chart/DbChartStatistic";
+import { getUsers } from "../../../api/userApi";
 
 const StoreHome = () => {
-  /**
-     * get all data
-     */
-  const dispatch = useDispatch();
-  useEffect(() => {
-      getStore(dispatch)
-      getProducts(dispatch)
-  }, [dispatch]);
-  const products = useSelector((state) => state.product.products);
-  const stores = useSelector((state) => state.store.stores);
-   /**
-     * get data's store
-     */
-   const auth = useSelector((state) => state.auth.currentUser);
-   const storeId = auth.managementId
-   const productData = products.filter((item) => { return item.storeId == storeId })
-   console.log(productData);
+    /**
+       * get all data
+       */
+    const dispatch = useDispatch();
+    useEffect(() => {
+        getStore(dispatch)
+        getProducts(dispatch)
+        getUsers(dispatch)
+    }, [dispatch]);
+    const products = useSelector((state) => state.product.products);
+    const stores = useSelector((state) => state.store.stores);
+    /**
+      * get data's store
+      */
+    const auth = useSelector((state) => state.auth.currentUser);
+    const storeId = auth.managementId
+    const productData = products.filter((item) => { return item.storeId == storeId })
+    console.log(productData);
 
 
     const date = new Date();
@@ -54,17 +56,17 @@ const StoreHome = () => {
             year: `Năm ${i}`,
             quantityOfSold: 0,
             quantityOfError: 0,
-        },...yearsData]
+        }, ...yearsData]
     }
-/**
- * for mat chart data
- */
+    /**
+     * for mat chart data
+     */
     for (let i = 0; i < productData.length; ++i) {
         const sold = getDMY(productData[i].soldDate).month
         const error = getDMY(productData[i].errorDate).month
 
         for (let i = 0; i < monthsData.length; ++i) {
-            if (parseInt(sold) == monthsData[i].month.split(' ')[1] && getDMY(productData[i].soldDate).year == today.year ) monthsData[i].quantityOfSold++
+            if (parseInt(sold) == monthsData[i].month.split(' ')[1] && getDMY(productData[i].soldDate).year == today.year) monthsData[i].quantityOfSold++
             if (parseInt(error) == monthsData[i].month.split(' ')[1] && getDMY(productData[i].errorDate).year == today.year) monthsData[i].quantityOfError++
         }
     }
