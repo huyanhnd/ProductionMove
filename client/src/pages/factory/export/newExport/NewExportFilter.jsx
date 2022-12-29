@@ -19,7 +19,6 @@ export default function NewExportFilter() {
     const [productData, setProductData] = useState(products);
 
     useEffect(() => {
-        getProducts(dispatch);
         getFactory(dispatch, "00", "000", "0000", "");
         getProductFactory(dispatch, 1, 10, 2, "InFactory");
         getStore(dispatch, "00", "000", "0000", "");
@@ -67,17 +66,9 @@ export default function NewExportFilter() {
      */
     const [submit, setSubmit] = useState(true);
     useEffect(() => {
-        setProductData(
-            products.filter((item, index) => {
-                return (productline != "0" && item.productLineId == productline)
-                    && (color != '0' && item.color == color)
-                    && ((memory != '0' && item.capacity == memory)  )
-            })
-            
-        );
-        console.log(productData);
+        getProductFactory(dispatch, 1, 10, 2, "InFactory", productline, color, memory);
     }, [submit]);
-    
+
 
     const HandleSubmit = (e) => {
         setSubmit(!submit);

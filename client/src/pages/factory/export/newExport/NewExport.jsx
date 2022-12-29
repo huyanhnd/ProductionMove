@@ -9,9 +9,9 @@ import NewExportFilter from "./NewExportFilter";
 export default function NewExport() {
     return (
         <div className="factoryPage">
-            <div className="header">
+            {/* <div className="header">
                 <NewExportFilter />
-            </div>
+            </div> */}
             <ExportProduct />
         </div>
     );

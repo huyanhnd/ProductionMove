@@ -32,12 +32,17 @@ export const getProductFactory = async (
     PageNumber,
     PageSize,
     FactoryId,
-    Status
+    Status,
+    ProductLineId,
+    Color,
+    Memory
 ) => {
     dispatch(getProductsFactoryStart());
+    
     try {
-        const res = await userRequest(getToken()).get(
-            `/Product/factory?PageNumber=${PageNumber}&PageSize=${PageSize}&FactoryId=${FactoryId}&Status=${Status}`
+        const res = await publicRequest.get(
+            // '/Product?PageNumber=1&PageSize=10&FactoryId=2&Status=InFactory&ProductLineId=0&Color=All&Capacity=64GB
+            `/Product?PageNumber=${PageNumber}&PageSize=${PageSize}&FactoryId=${FactoryId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}&Capacity=${Memory}`
         );
         dispatch(getProductsFactorySuccess(res.data.items));
     } catch (err) {
