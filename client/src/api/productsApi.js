@@ -8,7 +8,10 @@ import {
     postNewProductsSuccess,
     getProductsFactoryStart,
     getProductsFactoryFailure,
-    getProductsFactorySuccess
+    getProductsFactorySuccess,
+    getProductsStoreStart,
+    getProductsStoreSuccess,
+    getProductsStoreFailure
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
 import { userRequest } from "./requestMethods";
@@ -42,27 +45,27 @@ export const getProductFactory = async (
     }
 };
 
+export const getProductStore = async (
+    dispatch,
+    StoreId,
+    Status,
+) => {
+    dispatch(getProductsStoreStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product/?StoreId=${StoreId}&Status=${Status}`
+        );
+        dispatch(getProductsStoreSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsStoreFailure());
+    }
+};
+
 export const getProductsByFactory = async (dispatch, factoryId) => {
     dispatch(getProductsStart());
     try {
         const res = await publicRequest.get(`/Product?FactoryId=${factoryId}`);
         dispatch(getProductsSuccess(res.data.items));
-    } catch (err) {
-        dispatch(getProductsFailure());
-    }
-};
-
-export const getProductsByStore = async (dispatch, storeId) => {
-    dispatch(getProductsStart());
-    try {
-        const res = await publicRequest.get(`/Product`);
-        dispatch(
-            getProductsSuccess(
-                res.data.items.filter((item) => {
-                    return item.storeId == storeId;
-                })
-            )
-        );
     } catch (err) {
         dispatch(getProductsFailure());
     }
