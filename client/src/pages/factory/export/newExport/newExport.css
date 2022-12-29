@@ -1,27 +1,27 @@
-.newExport {
+.newProduct {
     flex: 4;
 }
 
-.addExportForm {
+.addProductForm {
     display: 4;
     margin-top: 10px;
     flex-direction: column;
 }
 
-.ExportFlex {
+.productFlex {
     flex: 3;
     display: flex;
     justify-content: space-between;
 }
 
-.nameExport {
+.nameProduct {
     flex: 1;
     padding: 20px;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
-.detailExport {
+.detailProduct {
     flex: 2;
     padding: 20px;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -29,7 +29,7 @@
     margin-left: 20px;
 }
 
-.addExportItem {
+.addProductItem {
     width: 250px;
     display: flex;
     flex-direction: column;
@@ -37,21 +37,21 @@
     margin-bottom: 10px;
 }
 
-.addExportItem>label {
+.addProductItem>label {
     color: gray;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-.addExportItem>input {
+.addProductItem>input {
     padding: 10px;
 }
 
-.addExportItem>select {
+.addProductItem>select {
     padding: 10px;
 }
 
-.addExportButton {
+.addProductButton {
     display: inline;
     margin-top: 10px;
     padding: 17px 20px;
@@ -63,7 +63,7 @@
     cursor: pointer;
 }
 
-.ExportLine-text {
+.productLine-text {
     margin-top: 20px;
 }
 

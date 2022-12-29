@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
-import { getProducts } from "../../../api/productsApi";
+import { getProductsByFactory } from "../../../api/productsApi";
 import { getFactory } from "../../../api/factoryApi";
 import { getStore } from "../../../api/storesApi";
 import { getServiceCenter } from "../../../api/serviceCenterApi";
@@ -18,7 +18,7 @@ export default function FactoryProduct() {
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
 
   useEffect(() => {
-    getProducts(dispatch);
+    getProductsByFactory(dispatch);
     getFactory(dispatch, '00', '000', '0000', '')
     getStore(dispatch, '00', '000', '0000', '')
     getServiceCenter(dispatch, '00', '000', '0000', '')

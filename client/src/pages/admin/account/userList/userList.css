@@ -1,6 +1,7 @@
 .userList {
   flex: 4;
   padding: 20px;
+  height: 890px;
 }
 
 .userListItem {
@@ -18,7 +19,7 @@
   justify-content: space-between;
 }
 
-.linkAddProduct {
+.linkAddUser {
   text-decoration: none;
   color: green;
   font-size: 16px;

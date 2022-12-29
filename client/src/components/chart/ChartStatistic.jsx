@@ -1,7 +1,7 @@
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
-export default function ChartFactory({data, dataKey}) {
+export default function ChartStatistic({data, dataKey}) {
   
   return (
     <ResponsiveContainer width="100%" height="95%">
@@ -29,9 +29,10 @@ export default function ChartFactory({data, dataKey}) {
         </defs>
 
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={data.name} stroke="#00008B"/>
+        <XAxis dataKey={dataKey.name} stroke="#00008B"/>
         <YAxis stroke="#00008B"/>
         <Tooltip />
+        <Legend/>
         <Area type="monotone" dataKey={dataKey.value1} stroke="#5191c2" fillOpacity={1} fill="url(#colorUv)" />
         <Area type="monotone" dataKey={dataKey.value2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
         <Area type="monotone" dataKey={dataKey.value3} stroke="#d16060" fillOpacity={1} fill="url(#colorQv)" />

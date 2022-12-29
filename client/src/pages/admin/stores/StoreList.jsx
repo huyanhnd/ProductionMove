@@ -37,10 +37,10 @@ export default function StoreList() {
                 onClick={() => handleEdit(params.row)}
               >Edit</button>
             </Link>
-            <DeleteOutline
+            {/* <DeleteOutline
               className="factoryListDelete"
               onClick={() => handleDelete(params.row)}
-            />
+            /> */}
           </>
         );
       },
@@ -52,7 +52,7 @@ export default function StoreList() {
       rows={store}
       disableSelectionOnClick
       columns={columns}
-      pageSize={100}
+      pageSize={10}
       checkboxSelection
     />
   );

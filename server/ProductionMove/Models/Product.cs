@@ -5,7 +5,7 @@
         InFactory,
         InStore,
         Sold,
-        InWarranty,
+        UnderWarranty,
         Warranted,
         Error,
         OutOfWarranty,

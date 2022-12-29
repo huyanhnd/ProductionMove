@@ -13,36 +13,41 @@ export default function ProductLine() {
   const productlines = useSelector((state) => state.productline.productlines);
   const series = useSelector((state) => state.series.series);
 
+  const [items, setItems] = useState([]);
+
   useEffect(() => {
     getSeries(dispatch);
     getProductLines(dispatch);
+    setItems(productlines.filter((pl) => pl.seriesId === 1));
   }, [dispatch]);
+
+  const handleClick = (id) => {
+    setItems(productlines.filter((pl) => pl.seriesId === id));
+  }
 
   // const [productline, setProductline] = useState('0')
   // const handleProductlineChange = (e) => {
   //   setProductline(e.target.value)
   // }
 
-  console.log(productlines);
-
   return (
     <div className="productLine">
       <div className="series">
         {series.map((item, index) => {
-          return <button className="seriesItem">{item.name}</button>;
+          return <button className="seriesItem" onClick={() => handleClick(item.id)}>{item.name}</button>;
         })}
         {/* <Link to={"/newProductLine/"}>
           <Add className="seriesItemAdd"></Add>
         </Link> */}
       </div>
       <div className="listItem">
-        {productlines.map((item, index) => (
+        {items.map((item, index) => (
           <ProductLineItem data={item} key={index} />
         ))}
-          <Link to={"/newproductline/"} className="productline_link">
-            <div className="seriesItemAdd1">+</div>
-            <text className="textAdd">Thêm sản phẩm mới</text>
-          </Link>
+        <Link to={"/newproductline/"} className="productline_link">
+          <div className="seriesItemAdd1">+</div>
+          <div className="textAdd">Thêm sản phẩm mới</div>
+        </Link>
       </div>
     </div>
   )

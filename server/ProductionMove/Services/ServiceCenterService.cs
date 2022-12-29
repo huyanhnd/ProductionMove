@@ -44,7 +44,8 @@ namespace ProductionMove.Services
                             Address = m.sw.s.Address,
                             WardCode = m.sw.ward.Code,
                             DistrictCode = m.dictrict.Code,
-                            ProvinceCode = m.dictrict.ProvinceCode
+                            ProvinceCode = m.dictrict.ProvinceCode,
+                            AccountId = m.sw.s.AccountId
                         });
 
             if (query.WardCode != "")

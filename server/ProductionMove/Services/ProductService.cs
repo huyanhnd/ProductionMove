@@ -31,28 +31,31 @@ namespace ProductionMove.Services
         public async Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query)
         {
             var jointable = (from p in _context.Products
-                        join pl in _context.ProductLines on p.ProductLineId equals pl.Id
-                        /*join f in _context.Factories on p.FactoryId equals f.Id
-                        join s in _context.Stores on p.StoreId equals s.Id
-                        join sc in _context.ServiceCenters on p.ServiceCenterId equals sc.Id
-                        join pc in _context.Processes on p.ProcessId equals pc.Id*/
-                        select new ProductResponse
-                        {
-                            Id = p.Id,
-                            Code = p.Code,
-                            Name = pl.Name,
-                            ProductLineId = pl.Id,
-                            Capacity = p.Capacity,
-                            Color = p.Color,
-                            ManufactureDate = p.ManufactureDate,
-                            Status = p.Status,
-                            WarrantyPeriod = p.WarrantyPeriod,
-                            Price = p.Price,
-                            FactoryId = p.FactoryId,
-                            StoreId = p.StoreId,
-                            ServiceCenterId = p.ServiceCenterId,
-                            ProcessId = p.ProcessId,
-                        });
+                             join pl in _context.ProductLines on p.ProductLineId equals pl.Id
+                             join f in _context.Factories on p.FactoryId equals f.Id
+                             join s in _context.Stores on p.StoreId equals s.Id
+                             join sc in _context.ServiceCenters on p.ServiceCenterId equals sc.Id
+                             join pc in _context.Processes on p.ProcessId equals pc.Id
+                             select new ProductResponse
+                             {
+                                 Id = p.Id,
+                                 Code = p.Code,
+                                 Name = pl.Name,
+                                 ProductLineId = pl.Id,
+                                 Capacity = p.Capacity,
+                                 Color = p.Color,
+                                 ManufactureDate = p.ManufactureDate,
+                                 Status = p.Status,
+                                 WarrantyPeriod = p.WarrantyPeriod,
+                                 Price = p.Price,
+                                 FactoryId = p.FactoryId,
+                                 StoreId = p.StoreId,
+                                 ServiceCenterId = p.ServiceCenterId,
+                                 ProcessId = p.ProcessId,
+                                 FactoryName = f.Name,
+                                 StoreName = s.Name,
+                                 ServiceCenterName = sc.Name
+                             });
 
             if (query.FactoryId != 0)
             {

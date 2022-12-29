@@ -1,5 +1,6 @@
 import FactoryProduct from "./FactoryProduct";
 import FactoryFilter from "./FactoryFilter";
+import { Link } from "react-router-dom";
 import "./warehouse.scss"
 
 export default function Warehouse() {
@@ -7,6 +8,10 @@ export default function Warehouse() {
         <div className="factoryPage">
             <div className="header">
                 <FactoryFilter />
+                <div className="range"></div>
+                <Link to="/factory/warehouse/addproducts" className="linkAddProduct">
+                    Add Product
+                </Link>
             </div>
             <FactoryProduct />
         </div>

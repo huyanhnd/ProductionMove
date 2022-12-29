@@ -7,14 +7,14 @@
         public Paging()
         {
             PageNumber = 1;
-            PageSize = 50;
+            PageSize = 100;
         }
         public Paging(int pageNumber, int pageSize)
         {
             // mininum page number is always set to 1
             PageNumber = pageNumber < 1 ? 1 : pageNumber;
             // maximun page size a user can request is set to 10
-            PageSize = pageSize > 50 ? 50 : pageSize;
+            PageSize = pageSize > 100 ? 100 : pageSize;
         }
     }
 }

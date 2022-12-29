@@ -10,7 +10,7 @@
         public StoreQuery()
         {
             PageNumber = 1;
-            PageSize = 10;
+            PageSize = 100;
             WardCode = "";
             DistrictCode = "";
             ProvinceCode = "";
@@ -20,7 +20,7 @@
             // mininum page number is always set to 1
             PageNumber = pageNumber < 1 ? 1 : pageNumber;
             // maximun page size a user can request is set to 10
-            PageSize = pageSize > 10 ? 10 : pageSize;
+            PageSize = pageSize > 100 ? 100 : pageSize;
         }
     }
 }
