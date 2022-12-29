@@ -63,14 +63,17 @@ namespace ProductionMove.Services
             if (response.Role == "Factory")
             {
                 response.ManagementId = (from f in _context.Factories where f.AccountId == response.Id select f.Id).First();
+                response.ManagementName = (from sc in _context.Factories where sc.AccountId == response.Id select sc.Name).First();
             }
             if (response.Role == "Store")
             {
                 response.ManagementId = (from s in _context.Stores where s.AccountId == response.Id select s.Id).First();
+                response.ManagementName = (from sc in _context.Stores where sc.AccountId == response.Id select sc.Name).First();
             }
             if (response.Role == "ServiceCenter")
             {
                 response.ManagementId = (from sc in _context.ServiceCenters where sc.AccountId == response.Id select sc.Id).First();
+                response.ManagementName = (from sc in _context.ServiceCenters where sc.AccountId == response.Id select sc.Name).First();
             }
             response.JwtToken = jwtToken;
             response.RefreshToken = refreshToken.Token;

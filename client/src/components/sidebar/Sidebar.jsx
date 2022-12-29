@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export default function Sidebar() {
-  const { role } = useSelector((state) => state.auth.currentUser);
+  const { currentUser } = useSelector((state) => state.auth);
   const [isActive, setIsActive] = useState(1);
 
   const navList = [
@@ -152,8 +152,8 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         {navList.map((item) => (
-          role === item.role ? <div className="sidebarMenu">
-            <h3 className="sidebarTitle">{item.role}</h3>
+          currentUser.role === item.role ? <div className="sidebarMenu">
+            <h3 className="sidebarTitle">{currentUser.managementName}</h3>
             <ul className="sidebarList">
               {
                 item.navChild.map((child) => (
