@@ -1,15 +1,15 @@
-import {
-  CalendarToday,
-  PermIdentity,
-  Publish,
-  Man
-} from "@mui/icons-material";
+import { CalendarToday, PermIdentity, Publish, Man } from "@mui/icons-material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { formatDate } from "../../../../helper/formatDate";
-import app from "../../../../firebase"
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from "../../../../firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import "./user.css";
 import { updateUser } from "../../../../api/userApi";
 
@@ -18,17 +18,18 @@ export default function User() {
   const userId = location.pathname.split("/")[2];
 
   const user = useSelector((state) => state.user.users);
-  const selectUser = user.find(u => u.id == userId)
+  const selectUser = user.find((u) => u.id == userId);
 
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({ role: "Factory" });
   const [file, setFile] = useState(null);
 
   const handleChange = (e) => {
-    setInputs(prev => {
-      return { ...prev, [e.target.name]: e.target.value }
-    })
-  }
+    // document.getElementById('username').change(enableBtn);
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -74,6 +75,30 @@ export default function User() {
     );
   };
 
+  // document.getElementById('username').change(enableBtn);
+  // document.getElementById('fullname').change(enableBtn);
+  // (".input").blur(enableBtn);
+
+  // function enableBtn() {
+  //   if (
+  //     document.getElementById('username').isChecked == false ||
+  //     document.getElementById('fullname').isChecked == false
+  //   ) {
+  //     document.getElementById('update').prop("disabled", true);
+  //   } else {
+  //     document.getElementById('update').prop("disabled", false);
+  //   }
+  // }
+  // enableBtn();
+
+  // document.getElementById('update').click(function () {
+  //   ("form").submit(function (event) {
+  //     document.getElementsByClassName('user').addClass("end");
+  //     (".ending").addClass("showed");
+  //     event.preventDefault();
+  //   });
+  // });
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -82,11 +107,7 @@ export default function User() {
       <div className="userContainer">
         <div className="userShow">
           <div className="userShowTop">
-            <img
-              src={selectUser.image}
-              alt=""
-              className="userShowImg"
-            />
+            <img src={selectUser.image} alt="" className="userShowImg" />
             <div className="userShowTopTitle">
               <span className="userShowUserTitle">{selectUser.fullName}</span>
             </div>
@@ -99,7 +120,9 @@ export default function User() {
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">{formatDate(selectUser.created)}</span>
+              <span className="userShowInfoTitle">
+                {formatDate(selectUser.created)}
+              </span>
             </div>
             <div className="userShowInfo">
               <Man className="userShowIcon" />
@@ -117,6 +140,7 @@ export default function User() {
                   type="text"
                   placeholder="username"
                   className="userUpdateInput"
+                  id="username"
                   onChange={handleChange}
                 />
               </div>
@@ -126,6 +150,7 @@ export default function User() {
                   type="text"
                   placeholder="fullname"
                   className="userUpdateInput"
+                  id="fullname"
                   onChange={handleChange}
                 />
               </div>
@@ -149,18 +174,30 @@ export default function User() {
                 <label htmlFor="file">
                   <Publish className="userUpdateIcon" />
                 </label>
-                <input type="file" id="file" style={{ display: "none" }}
+                <input
+                  type="file"
+                  id="file"
+                  style={{ display: "none" }}
                   onChange={(e) => {
-                    setFile(e.target.files[0])
+                    setFile(e.target.files[0]);
                     if (e.target.files.length > 0) {
                       var src = URL.createObjectURL(e.target.files[0]);
-                      var preview = document.getElementById("file-ip-1-preview");
+                      var preview =
+                        document.getElementById("file-ip-1-preview");
                       preview.src = src;
                       preview.style.display = "block";
                     }
-                  }} />
+                  }}
+                />
               </div>
-              <button className="userUpdateButton" onClick={handleClick}>Update</button>
+              <button
+                className="userUpdateButton"
+                id="update"
+                onClick={handleClick}
+                onChange={(state) => this.setState({isChecked: !state.isChecked})}
+              >
+                Update
+              </button>
             </div>
           </form>
         </div>

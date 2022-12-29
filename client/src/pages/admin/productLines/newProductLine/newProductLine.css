@@ -1,27 +1,27 @@
-.newProduct {
+.newProductLine {
   flex: 4;
 }
 
-.addProductForm {
+.addProductLineForm {
   display: 4;
   margin-top: 10px;
   flex-direction: column;
 }
 
-.productFlex {
+.productLineFlex {
   flex: 3;
   display: flex;
   justify-content: space-between;
 }
 
-.nameProduct {
+.nameProductLine {
   flex: 1;
   padding: 20px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
-.detailProduct {
+.detailProductLine {
   flex: 2;
   padding: 20px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -29,28 +29,28 @@
   margin-left: 20px;
 }
 
-.addProductItem {
-  width: 250px;
+.addProductLineItem {
+  width: 200px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
-.addProductItem > label {
+.addProductLineItem > label {
   color: gray;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.addProductItem > input {
+.addProductLineItem > input {
   padding: 10px;
 }
 
-.addProductItem > select {
+.addProductLineItem > select {
   padding: 10px;
 }
 
-.addProductButton {
+.addProductLineButton {
   display: inline;
   margin-top: 10px;
   padding: 17px 20px;

@@ -5,18 +5,18 @@ import AddFactoryProduct from "../../warehouse/AddFactoryProduct";
 
 export default function NewExport() {
   return (
-    <div className="newProduct">
-      <h1 className="addProductTitle">New Export</h1>
-      <form className="addProductForm">
-        <div className="productFlex">
-          <div className="nameProduct">
+    <div className="newExport">
+      <h1 className="addExportTitle">New Export</h1>
+      <form className="addExportForm">
+        <div className="ExportFlex">
+          <div className="nameExport">
             <span className="addTitle">New Export Request To Store</span>
-            <div className="productLine-text">
-              <div className="addProductItem">
+            <div className="ExportLine-text">
+              <div className="addExportItem">
                 <label>Name</label>
-                <input type="text" placeholder="Name ProductLine" />
+                <input type="text" placeholder="Name ExportLine" />
               </div>
-              <div className="addProductItem">
+              <div className="addExportItem">
                 <label>To Store</label>
                 <select name="active" id="active">
                   <option value="">iP11</option>
@@ -31,11 +31,11 @@ export default function NewExport() {
               </div>
             </div>
           </div>
-          <div className="detailProduct">
+          <div className="detailExport">
             <AddFactoryProduct />
           </div>
         </div>
-        <button className="addProductButton">Create</button>
+        <button className="addExportButton">Create</button>
       </form>
     </div>
   );

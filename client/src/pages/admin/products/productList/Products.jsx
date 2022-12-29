@@ -9,8 +9,8 @@ export default function Products() {
       <div className="header">
         <ProductFilter />
         <div className="range"></div>
-        <Link to="/factories/addfactory" className="add-product">
-          Add Factory
+        <Link to="/products/newproduct" className="add-product">
+          Add Product
         </Link>
       </div>
       <ProductList />
