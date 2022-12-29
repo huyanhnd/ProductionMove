@@ -7,27 +7,38 @@ import Select from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import { formatDate } from "../../../helper/formatDate";
 import { checkRole } from "../../../helper/checkRole";
-import { getProductServiceCenter } from "../../../api/productsApi";
+import { getProductServiceCenter, getProductServiceCenterFiltered } from "../../../api/productsApi";
 import { getProductLines } from "../../../api/productLineApi";
 import FormControl from "@mui/material/FormControl";
 import { MenuItem } from "@mui/material";
 
 export default function ServiceCenterProduct() {
     const dispatch = useDispatch();
-    const serviceCenterProduct = useSelector((state) => state.product.productServiceCenter);
+    const AllserviceCenterProduct = useSelector((state) => state.product.productServiceCenter);
+    const serviceCenterProductFiltered = useSelector((state) => state.product.productServiceCenterFiltered);
     const productLines = useSelector((state) => state.productline.productlines);
     const [serviceCenterId, setServiceCenterId] = useState("0");
 
-    // const productlines = serviceCenterProduct.reduce(function (total, currentValue) {
-    //     return total.map((item) => { return item.name }).includes(currentValue.name) ? total : [...total, currentValue];
-    // }, []);
-    
-    const [productline, setProductline] = useState("0");
+    const productLines_ = AllserviceCenterProduct.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.name }).includes(currentValue.name) ? total : [...total, currentValue];
+    }, []);
+    const color_ = AllserviceCenterProduct.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.color }).includes(currentValue.color) ? total : [...total, currentValue];
+    }, []);
+    const memory_ = AllserviceCenterProduct.reduce(function (total, currentValue) {
+        return total.map((item) => { return item.capacity }).includes(currentValue.capacity) ? total : [...total, currentValue];
+    }, []);
+    const [productline, setProductline] = useState(0);
+    const [color, setColor] = useState("All");
+    const [memory, setMemory] = useState("0");
 
     useEffect(() => {
-        getProductServiceCenter(dispatch, serviceCenterId, "All", productline, "All");
-    }, [dispatch, serviceCenterId, productline]);
-
+        getProductServiceCenterFiltered(dispatch, serviceCenterId, 'All', productline, color, memory);
+    }, [dispatch, serviceCenterId, productline, color, memory]);
+    useEffect(() => {
+        getProductServiceCenter(dispatch, serviceCenterId,0)
+    }, [dispatch])
+    console.log(productline, color, memory);
     const columns = [
         { field: "id", headerName: "Id", width: 50 },
         { field: "code", headerName: "Code", width: 100 },
@@ -59,13 +70,57 @@ export default function ServiceCenterProduct() {
                             className="filterBox"
                             defaultValue={0}
                         >
-                            <MenuItem value={0} onClick={() => {setProductline(0)}}>
+                            <MenuItem value={0} onClick={() => { setProductline(0) }}>
                                 <em>Tất cả</em>
                             </MenuItem>
-                            {productLines.map((data, index) => {
+                            {productLines_.map((data, index) => {
                                 return (
-                                    <MenuItem value={data.id} key={index} onClick={() => {setProductline(data.id)}}>
+                                    <MenuItem value={data.productLineId} key={index} onClick={() => { setProductline(data.productLineId) }}>
                                         {data.name}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+
+                {/* color */}
+                <div className="filterSection">
+                    <div className="filterTitle">Color</div>
+                    <FormControl>
+                        <Select
+                            className="filterBox"
+                            defaultValue={'All'}
+                        >
+                            <MenuItem value={'All'} onClick={() => { setColor('All') }}>
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {color_.map((data, index) => {
+                                return (
+                                    <MenuItem value={data.color} key={index} onClick={() => { setColor(data.color) }}>
+                                        {data.color}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+
+                {/* Memory */}
+                <div className="filterSection">
+                    <div className="filterTitle">Memory</div>
+                    <FormControl>
+                        <Select
+                            className="filterBox"
+                            defaultValue={"0"}
+                        >
+                            <MenuItem value={"0"} onClick={() => { setMemory("0") }}>
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {memory_.map((data, index) => {
+                                return (
+                                    <MenuItem value={data.capacity} key={index} onClick={() => { setMemory(data.capacity) }}>
+                                        {data.capacity}
                                     </MenuItem>
                                 );
                             })}
@@ -74,7 +129,7 @@ export default function ServiceCenterProduct() {
                 </div>
             </div>
             <DataGrid
-                rows={serviceCenterProduct}
+                rows={serviceCenterProductFiltered}
                 disableSelectionOnClick
                 columns={columns}
                 pageSize={10}

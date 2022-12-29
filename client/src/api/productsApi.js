@@ -14,7 +14,10 @@ import {
     getProductsStoreFailure,
     getProductsServiceCenterFailure,
     getProductsServiceCenterStart,
-    getProductsServiceCenterSuccess
+    getProductsServiceCenterSuccess,
+    getProductsServiceCenterFilteredStart,
+    getProductsServiceCenterFilteredSuccess,
+    getProductsServiceCenterFilteredFailure,
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
 import { userRequest } from "./requestMethods";
@@ -70,23 +73,43 @@ export const getProductStore = async (
 };
 
 ///Product?ServiceCenterId=4&Status=All&Color=All
-export const getProductServiceCenter = async (
+export const getProductServiceCenterFiltered = async (
     dispatch,
     serviceCenterId,
     Status,
     ProductLineId,
     Color,
+    Memory
+) => {
+    dispatch(getProductsServiceCenterFilteredStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product?ServiceCenterId=${serviceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory != "0" ? `&Capacity=${Memory}` : ''}`
+        );
+        dispatch(getProductsServiceCenterFilteredSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsServiceCenterFilteredFailure());
+    }
+};
+///Product?ServiceCenterId=4&Status=All&Color=All
+export const getProductServiceCenter = async (
+    dispatch,
+    serviceCenterId,
+    ProductLineId,
 ) => {
     dispatch(getProductsServiceCenterStart());
     try {
         const res = await publicRequest.get(
-            `/Product/?ServiceCenterId=${serviceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}`
+            `/Product?ServiceCenterId=${serviceCenterId}&Status=All&ProductLineId=${ProductLineId}`
         );
         dispatch(getProductsServiceCenterSuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsServiceCenterFailure());
     }
 };
+
+
+
 
 export const getProductsByFactory = async (dispatch, factoryId) => {
     dispatch(getProductsStart());
