@@ -54,25 +54,43 @@ namespace ProductionMove.Services
                                  ProcessId = p.ProcessId,
                                  FactoryName = f.Name,
                                  StoreName = s.Name,
-                                 ServiceCenterName = sc.Name
+                                 ServiceCenterName = sc.Name,
                              });
 
             if (query.FactoryId != 0)
             {
                 jointable = jointable.Where(p => p.FactoryId == query.FactoryId);
             }
-            else if (query.StoreId != 0)
+
+            if (query.StoreId != 0)
             {
                 jointable = jointable.Where(p => p.StoreId == query.StoreId);
             }
-            else if (query.ServiceCenterId != 0)
+
+            if (query.ServiceCenterId != 0)
             {
                 jointable = jointable.Where(p => p.ServiceCenterId == query.ServiceCenterId);
             }
-            else if (query.Status != ProductStatus.All)
+
+            if (query.Status != ProductStatus.All)
             {
                 jointable = jointable.Where(p => p.Status == query.Status);
             };
+
+            if (query.ProductLineId != 0)
+            {
+                jointable = jointable.Where(p => p.ProductLineId == query.ProductLineId);
+            }
+
+            if (query.Color != ProductColor.All)
+            {
+                jointable = jointable.Where(p => p.Color == query.Color);
+            }
+
+            if (query.Capacity != "")
+            {
+                jointable = jointable.Where(p => p.Capacity == query.Capacity);
+            }
 
             var result = await PaginatedList<ProductResponse>.CreateAsync(jointable, query.PageNumber, query.PageSize);
 
