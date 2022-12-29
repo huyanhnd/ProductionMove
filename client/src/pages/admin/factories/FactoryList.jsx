@@ -31,7 +31,7 @@ export default function FactoryList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/factories/" + params.row.id}>
               <button
                 className="factoryListEdit"
                 onClick={() => handleEdit(params.row)}

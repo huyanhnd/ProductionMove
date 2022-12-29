@@ -5,7 +5,7 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { setCurrentFactoryInfo } from "../../../redux/currentFactorySlice";
+import { setCurrentServiceCenterInfo } from "../../../redux/currentServiceCenterSlice";
 import { getServiceCenter } from "../../../api/serviceCenterApi";
 
 export default function ServiceCenterList() {
@@ -19,7 +19,7 @@ export default function ServiceCenterList() {
   };
 
   const handleEdit = (row) => {
-    // dispatch(setCurrentFactoryInfo(row))
+    dispatch(setCurrentServiceCenterInfo(row))
   };
 
   const columns = [
@@ -31,7 +31,7 @@ export default function ServiceCenterList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/servicecenters/" + params.row.id}>
               <button
                 className="factoryListEdit"
                 onClick={() => handleEdit(params.row)}

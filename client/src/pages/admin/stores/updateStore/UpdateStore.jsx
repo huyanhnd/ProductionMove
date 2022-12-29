@@ -1,4 +1,4 @@
-import "./updateFactory.css"
+import "./updateStore.css"
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -6,25 +6,26 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getDistrict, getProvince, getWard } from "../../../../api/addressApi";
 
-export default function UpdateFactory() {
+
+export default function UpdateStore() {
     const dispatch = useDispatch();
     useEffect(() => {
         getProvince(dispatch);
     }, [dispatch]);
-    const factoryInfo = useSelector((state) => state.currentFactory.factoryInfo);
+    const storeInfo = useSelector((state) => state.currentStore.storeInfo);
 
     /**
      * name handle
     */
-    const [factoryName, setFactoryName] = useState(factoryInfo.name)
-    const handeFactoryNameChange = (e) => {
-        setFactoryName(e.target.value)
+    const [storeName, setStoreName] = useState(storeInfo.name)
+    const handeStoreNameChange = (e) => {
+        setStoreName(e.target.value)
     }
     /**
      * province handle
      */
     const province = useSelector((state) => state.address.province);
-    const [provinceCode, setProvinceCode] = useState(factoryInfo.provinceCode)
+    const [provinceCode, setProvinceCode] = useState(storeInfo.provinceCode)
     const handleProvinceCodeChange = (e) => {
         setProvinceCode(e.target.value)
         setDistrictCode('000')
@@ -37,7 +38,7 @@ export default function UpdateFactory() {
         getDistrict(dispatch, provinceCode);
     }, [provinceCode])
     const district = useSelector((state) => state.address.district);
-    const [districtCode, setDistrictCode] = useState(factoryInfo.districtCode)
+    const [districtCode, setDistrictCode] = useState(storeInfo.districtCode)
     const handleDistrictCodeChange = (e) => {
         setDistrictCode(e.target.value)
         setWardCode('0000')
@@ -50,20 +51,20 @@ export default function UpdateFactory() {
     }, [districtCode])
     const ward = useSelector((state) => state.address.ward);
     // const wardCode = useSelector((state) => state.address.wardCode)
-    const [wardCode, setWardCode] = useState(factoryInfo.wardCode)
+    const [wardCode, setWardCode] = useState(storeInfo.wardCode)
     const handleWardCodeChange = (e) => {
         setWardCode(e.target.value)
     }
     /**
      * address handle
      */
-    const [address, setAddress] = useState(factoryInfo.address)
+    const [address, setAddress] = useState(storeInfo.address)
     const handeAddressChange = (e) => {
         setAddress(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        const newFactoryName = document.getElementsByClassName('input-box')[0].value
+        const newStoreName = document.getElementsByClassName('input-box')[0].value
         const newProvinceCode = provinceCode
         const newProvinceName = province.find(curValue => {
             return curValue.code == newProvinceCode
@@ -77,21 +78,21 @@ export default function UpdateFactory() {
             return curValue.code == newWardCode
         }).name
         const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
-        const newInfo = { factoryName: newFactoryName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
+        const newInfo = { storeName: newStoreName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
         const [a,c,...d] = newInfo.address.split(" - ")
         console.log(d);
     }
     return (
-        <div className="updateFactory-container">
-            <div className="updateFactory-content">
+        <div className="updateStore-container">
+            <div className="updateStore-content">
                 <div className="title">
                     Please enter details below!
                 </div>
 
                 {/* sửa tên nhà máy */}
                 <div className="select-section">
-                    <div className="select-title">Factory name</div>
-                    <input type="text" placeholder="Type factory name here" class="input-box" value={factoryName} onChange={handeFactoryNameChange} />
+                    <div className="select-title">Store name</div>
+                    <input type="text" placeholder="Type Store name here" class="input-box" value={storeName} onChange={handeStoreNameChange} />
                 </div>
 
                 {/* Sửa thành phố */}
@@ -145,7 +146,7 @@ export default function UpdateFactory() {
                     <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
                 </div>
                 <div
-                    id="submit-Factory"
+                    id="submit-Store"
                     onClick={handleSubmit}
                 >Submit</div>
             </div>

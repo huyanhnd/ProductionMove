@@ -55,7 +55,8 @@ import authReducer from "./authSlice"
 import factoryReducer from "./factorySlice"
 import addressReducer from "./addressSlice"
 import currentFactoryReducer from "./currentFactorySlice"
-import currentStoreRequestReducer from "./currentStoreRequestSlice";
+import currentStoreReducer from "./currentStoreSlice"
+import currentServiceCenterReducer from "./currentServiceCenterSlice"
 import productsReducer from "./productsSlice";
 import storesReducer from "./storeSlice"
 import serviceCentersReducer from "./serviceCenter"
@@ -73,7 +74,8 @@ export const store = configureStore({
     store: storesReducer,
     serviceCenter: serviceCentersReducer,
     currentFactory: currentFactoryReducer,
-    currentStoreRequest: currentStoreRequestReducer,
+    currentStore: currentStoreReducer,
+    currentServiceCenter: currentServiceCenterReducer,
     process: processSlice,
   },
 });
