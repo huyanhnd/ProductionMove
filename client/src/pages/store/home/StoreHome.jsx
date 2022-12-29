@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStore } from "../../../api/storesApi";
 import { getProducts } from "../../../api/productsApi";
 import { useEffect } from "react";
+import DbChartStatistic from "../../../components/chart/DbChartStatistic";
 
 const StoreHome = () => {
   /**
@@ -90,19 +91,19 @@ const StoreHome = () => {
                 <div className="chart-store">
                     <h3 className="chart-title_">Monthly Statistics</h3>
                     <div className='chart-content'>
-                        <ChartStatistic data={monthsData} dataKey={{ name: "month", value1: 'quantityOfSold', value2: "quantityOfManufacture", value3: 'quantityOfError' }} />
+                        <DbChartStatistic data={monthsData} dataKey={{ name: "month", value1: 'quantityOfSold', value2: 'quantityOfError' }} />
                     </div>
                 </div>
                 <div className="chart-store">
                     <h3 className="chart-title_">Monthly Statistics</h3>
                     <div className='chart-content'>
-                        <ChartStatistic data={quatersData} dataKey={{ name: "quater", value1: 'quantityOfSold', value2: "quantityOfManufacture", value3: 'quantityOfError' }} />
+                        <DbChartStatistic data={quatersData} dataKey={{ name: "quater", value1: 'quantityOfSold', value2: 'quantityOfError' }} />
                     </div>
                 </div>
                 <div className="chart-store">
                     <h3 className="chart-title_">Monthly Statistics</h3>
                     <div className='chart-content'>
-                        <ChartStatistic data={yearsData} dataKey={{ name: "year", value1: 'quantityOfSold', value2: "quantityOfManufacture", value3: 'quantityOfError' }} />
+                        <DbChartStatistic data={yearsData} dataKey={{ name: "year", value1: 'quantityOfSold', value2: 'quantityOfError' }} />
                     </div>
                 </div>
             </div>
