@@ -11,7 +11,10 @@ import {
     getProductsFactorySuccess,
     getProductsStoreStart,
     getProductsStoreSuccess,
-    getProductsStoreFailure
+    getProductsStoreFailure,
+    getProductsServiceCenterFailure,
+    getProductsServiceCenterStart,
+    getProductsServiceCenterSuccess
 } from "../redux/productsSlice";
 import { publicRequest } from "./requestMethods";
 import { userRequest } from "./requestMethods";
@@ -58,6 +61,25 @@ export const getProductStore = async (
         dispatch(getProductsStoreSuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsStoreFailure());
+    }
+};
+
+///Product?ServiceCenterId=4&Status=All&Color=All
+export const getProductServiceCenter = async (
+    dispatch,
+    serviceCenterId,
+    Status,
+    ProductLineId,
+    Color,
+) => {
+    dispatch(getProductsServiceCenterStart());
+    try {
+        const res = await publicRequest.get(
+            `/Product/?ServiceCenterId=${serviceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}`
+        );
+        dispatch(getProductsServiceCenterSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsServiceCenterFailure());
     }
 };
 
