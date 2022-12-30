@@ -5,6 +5,7 @@ import "./factoryHome.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../api/productsApi";
 import { useEffect } from "react";
+import { getUsers } from "../../../api/userApi";
 
 const FactoryHome = () => {
     /**
@@ -13,6 +14,7 @@ const FactoryHome = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getProducts(dispatch)
+        getUsers(dispatch)
     }, [dispatch]);
     const products = useSelector((state) => state.product.products);
     /**

@@ -18,12 +18,14 @@ export default function ProductList() {
   const factories = useSelector((state) => state.factory.factories);
   const stores = useSelector((state) => state.store.stores);
   const serviceCenters = useSelector((state) => state.serviceCenter.serviceCenters);
+  const statuses = ["InFactory","InStore","UnderWarranty","Error","OutOfWarranty"]
 
   const productLines = useSelector((state) => state.productline.productlines);
   const [productline, setProductline] = useState('0')
   const [factory, setFactory] = useState('0')
   const [store, setStore] = useState('0')
   const [serviceCenter, setServiceCenter] = useState('0')
+  const [status, setStatus] = useState('All')
 
   useEffect(() => {
     getFactory(dispatch, '00', '000', '0000', '')
@@ -33,8 +35,8 @@ export default function ProductList() {
   }, [dispatch]);
 
   useEffect(() => {
-    getProductsAdmin(dispatch, productline, factory, store, serviceCenter);
-  }, [dispatch, productline, factory, store, serviceCenter])
+    getProductsAdmin(dispatch, productline, factory, store, serviceCenter,status);
+  }, [dispatch, productline, factory, store, serviceCenter,status])
   console.log(products);
   /**
    * productline filter box
@@ -61,6 +63,10 @@ export default function ProductList() {
  */
   const handleServiceCenterChange = (e) => {
     setServiceCenter(e.target.value)
+  }
+
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value)
   }
 
   const handleDelete = (id) => {
@@ -227,7 +233,28 @@ export default function ProductList() {
             </Select>
           </FormControl>
         </div>
+
+        <div className="filterSection">
+          <div className="filterTitle">Trạng thái </div>
+          <FormControl >
+            <Select className="filterBox"
+              value={status}
+              onChange={handleStatusChange}
+            >
+              <MenuItem value={"All"}>
+                <em>Tất cả</em>
+              </MenuItem>
+              {statuses.map((data, index) => {
+                console.log(data);
+                return <MenuItem value={data} key={index}>{data}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </div>
+        
       </div>
+
+      
 
 
       <div className="productList">

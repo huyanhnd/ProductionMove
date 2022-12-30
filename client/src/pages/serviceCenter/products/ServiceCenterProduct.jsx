@@ -13,15 +13,41 @@ import FormControl from "@mui/material/FormControl";
 import { MenuItem } from "@mui/material";
 import axios from "axios";
 import { publicRequest } from "../../../api/requestMethods";
+import { getFactory } from "../../../api/factoryApi";
+import { getStore } from "../../../api/storesApi";
 
 export default function ServiceCenterProduct() {
     const dispatch = useDispatch();
     const AllserviceCenterProduct = useSelector((state) => state.product.productServiceCenter);
     const serviceCenterProductFiltered = useSelector((state) => state.product.productServiceCenterFiltered);
     const productLines = useSelector((state) => state.productline.productlines);
-    const [serviceCenterId, setServiceCenterId] = useState("0");
-    const [code, setCode] = useState("");
+    const stores = useSelector((state) => state.store.stores);
+    const [status, setStatus] = useState('All')
+    const factories = useSelector((state) => state.factory.factories);
 
+    //sv centerid id là curent user
+    const currentUser = useSelector((state) => state.auth.currentUser)
+    const currentUserId = currentUser.managementId
+    const [code, setCode] = useState("");
+    /**
+     * factory filter box
+    */
+    const [factory, setFactory] = useState('0')
+    const handleFactoryChange = (e) => {
+        setFactory(e.target.value)
+    }
+    const statuses = ['InFactory', 'InStore', 'Sold', 'InWarranty', 'Warranted', 'Error', 'OutOfWarranty']
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value)
+    }
+
+    /**
+     * store filter box
+    */
+    const [store, setStore] = useState('0')
+    const handleStoreChange = (e) => {
+        setStore(e.target.value)
+    }
     const productLines_ = AllserviceCenterProduct.reduce(function (total, currentValue) {
         return total.map((item) => { return item.name }).includes(currentValue.name) ? total : [...total, currentValue];
     }, []);
@@ -36,13 +62,16 @@ export default function ServiceCenterProduct() {
     const [memory, setMemory] = useState("0");
 
     useEffect(() => {
-        getProductServiceCenterFiltered(dispatch, serviceCenterId, 'All', productline, color, memory);
-    }, [dispatch, serviceCenterId, productline, color, memory]);
+        getProductServiceCenterFiltered(dispatch, productline, factory, store, currentUser, status, color, memory);
+    }, [dispatch, productline, factory, store, currentUser, status, color, memory]);
+
     useEffect(() => {
-        getProductServiceCenter(dispatch, serviceCenterId, 0)
+        getProductServiceCenter(dispatch, currentUser, 0)
+        getProductLines(dispatch)
+        getFactory(dispatch, '00', '000', '0000', '')
+        getStore(dispatch, '00', '000', '0000', '')
     }, [dispatch])
-    console.log(productline, color, memory);
-    
+
     const columns = [
         { field: "id", headerName: "Id", width: 50 },
         { field: "code", headerName: "Code", width: 100 },
@@ -111,6 +140,39 @@ export default function ServiceCenterProduct() {
                         </Select>
                     </FormControl>
                 </div>
+                {/* store */}
+                <div className="filterSection">
+                    <div className="filterTitle">Cửa hàng</div>
+                    <FormControl >
+                        <Select className="filterBox"
+                            value={store}
+                            onChange={handleStoreChange}
+                        >
+                            <MenuItem value={"0"}>
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {stores.map((data, index) => {
+                                return <MenuItem value={data.id} key={index}>{data.name}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+                <div className="filterSection">
+                    <div className="filterTitle">Nhà máy</div>
+                    <FormControl >
+                        <Select className="filterBox"
+                            value={factory}
+                            onChange={handleFactoryChange}
+                        >
+                            <MenuItem value={"0"}>
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {factories.map((data, index) => {
+                                return <MenuItem value={data.id} key={index}>{data.name}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
 
                 {/* color */}
                 <div className="filterSection">
@@ -151,6 +213,24 @@ export default function ServiceCenterProduct() {
                                         {data.capacity}
                                     </MenuItem>
                                 );
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+
+                <div className="filterSection">
+                    <div className="filterTitle">Status</div>
+                    <FormControl >
+                        <Select className="filterBox"
+                            value={status}
+                            onChange={handleStatusChange}
+                            defaultValue="All"
+                        >
+                            <MenuItem value="All">
+                                <em>Tất cả</em>
+                            </MenuItem>
+                            {statuses.map((data, index) => {
+                                return <MenuItem value={data} key={index}>{data}</MenuItem>
                             })}
                         </Select>
                     </FormControl>

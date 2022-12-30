@@ -9,7 +9,7 @@ export default function ServiceCenter() {
             <div className="header">
                 <AddressFilter type='ServiceCenter' />
                 <div className="range"></div>
-                <Link to="/servicecenters/addservicecenter" className="add-serviceCenter">
+                <Link to="/servicecenters/addservicecenter" className="add-serviceCenter" >
                     Add Service Center
                 </Link>
             </div>

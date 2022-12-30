@@ -42,7 +42,9 @@ export const addServiceCenter = async (ServiceCenter, dispatch) => {
     try {
         const res = await publicRequest.post(`/ServiceCenter`, ServiceCenter);
         dispatch(addServiceCenterSuccess(res.data));
+        alert("Successfully!")
     } catch (err) {
         dispatch(addServiceCenterFailure());
+        alert("Failure!")
     }
 }

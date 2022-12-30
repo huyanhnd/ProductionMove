@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DbChartStatistic from "../../../components/chart/DbChartStatistic";
 import { getProductLines } from "../../../api/productLineApi";
+import { getUsers } from "../../../api/userApi";
 
 const ServiceCenterHome = () => {
     /**
@@ -18,6 +19,7 @@ const ServiceCenterHome = () => {
     useEffect(() => {
         getServiceCenter(dispatch)
         getProducts(dispatch)
+        getUsers(dispatch)
         getProductLines(dispatch)
     }, [dispatch]);
     const products = useSelector((state) => state.product.products);

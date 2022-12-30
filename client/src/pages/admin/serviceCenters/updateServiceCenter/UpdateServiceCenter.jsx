@@ -64,7 +64,7 @@ export default function UpdateServiceCenter() {
     }
 
     const handleSubmit = (e) => {
-        const newServiceCenterName = document.getElementsByClassName('input-box')[0].value
+        const newServiceCenterName = document.getElementsByClassName('input-box_')[0].value
         const newProvinceCode = provinceCode
         const newProvinceName = province.find(curValue => {
             return curValue.code == newProvinceCode
@@ -77,10 +77,10 @@ export default function UpdateServiceCenter() {
         const newWardName = ward.find(curValue => {
             return curValue.code == newWardCode
         }).name
-        const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
+        const newAddress = document.getElementsByClassName('input-box_')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
         const newInfo = { serviceCenterName: newServiceCenterName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
         const [a,c,...d] = newInfo.address.split(" - ")
-        console.log(d);
+        alert("Successfully!")
     }
     return (
         <div className="updateServiceCenter-container">
@@ -92,7 +92,7 @@ export default function UpdateServiceCenter() {
                 {/* sửa tên nhà máy */}
                 <div className="select-section">
                     <div className="select-title">ServiceCenter name</div>
-                    <input type="text" placeholder="Type ServiceCenter name here" class="input-box" value={serviceCenterName} onChange={handeServiceCenterNameChange} />
+                    <input type="text" placeholder="Type ServiceCenter name here" class="input-box_" value={serviceCenterName} onChange={handeServiceCenterNameChange} />
                 </div>
 
                 {/* Sửa thành phố */}
@@ -143,7 +143,7 @@ export default function UpdateServiceCenter() {
                 {/* Sửa địa chỉ cụ thể */}
                 <div className="select-section">
                     <div className="select-title">Address</div>
-                    <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
+                    <input type="text" placeholder="Type address here" class="input-box_" value={address} onChange={handeAddressChange} />
                 </div>
                 <div
                     id="submit-ServiceCenter"

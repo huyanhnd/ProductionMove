@@ -36,10 +36,10 @@ export const getProducts = async (dispatch) => {
     }
 };
 
-export const getProductsAdmin = async (dispatch, productlineId, factoryId, storeId, serviceCenterId) => {
+export const getProductsAdmin = async (dispatch, productlineId, factoryId, storeId, serviceCenterId,status) => {
     dispatch(getProductsStart());
     try {
-        const res = await publicRequest.get(`/Product?FactoryId=${factoryId}&StoreId=${storeId}&ServiceCenterId=${serviceCenterId}&ProductLineId=${productlineId}`);
+        const res = await publicRequest.get(`/Product?FactoryId=${factoryId}&StoreId=${storeId}&ServiceCenterId=${serviceCenterId}&ProductLineId=${productlineId}&Status=${status}`);
         dispatch(getProductsSuccess(res.data.items));
     } catch (err) {
         dispatch(getProductsFailure());
@@ -88,16 +88,18 @@ export const getProductStore = async (
 ///Product?ServiceCenterId=4&Status=All&Color=All
 export const getProductServiceCenterFiltered = async (
     dispatch,
-    serviceCenterId,
-    Status,
     ProductLineId,
+    FactoryId,
+    StoreId,
+    ServiceCenterId,
+    Status,
     Color,
     Memory
 ) => {
     dispatch(getProductsServiceCenterFilteredStart());
     try {
         const res = await publicRequest.get(
-            `/Product?ServiceCenterId=${serviceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory != "0" ? `&Capacity=${Memory}` : ''}`
+            `/Product?FactoryId=${FactoryId}&StoreId=${StoreId}&ServiceCenterId=${ServiceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory == 0? '' : `&Capacity=${Memory}`}`
         );
         dispatch(getProductsServiceCenterFilteredSuccess(res.data.items));
     } catch (err) {
@@ -105,7 +107,53 @@ export const getProductServiceCenterFiltered = async (
     }
 };
 
-///Product?ServiceCenterId=4&Status=All&Color=All
+export const getProductStore_ = async (
+    dispatch,
+    ProductLineId,
+    FactoryId,
+    StoreId,
+    ServiceCenterId,
+    Status,
+    Color,
+    Memory
+) => {
+    dispatch(getProductsStoreStart());
+
+    try {
+        const res = await publicRequest.get(
+            // '/Product?PageNumber=1&PageSize=10&FactoryId=2&Status=InFactory&ProductLineId=0&Color=All&Capacity=64GB
+            `/Product?FactoryId=${FactoryId}&StoreId=${StoreId}&ServiceCenterId=${ServiceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory == 0? '' : `&Capacity=${Memory}`}`
+        );
+        dispatch(getProductsStoreSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsStoreFailure());
+    }
+};
+
+export const getProductWarehouse = async (
+    dispatch,
+    ProductLineId,
+    FactoryId,
+    StoreId,
+    ServiceCenterId,
+    Status,
+    Color,
+    Memory
+) => {
+    dispatch(getProductsStart());
+
+    try {
+        const res = await publicRequest.get(
+            // '/Product?PageNumber=1&PageSize=10&FactoryId=2&Status=InFactory&ProductLineId=0&Color=All&Capacity=64GB
+            `/Product?FactoryId=${FactoryId}&StoreId=${StoreId}&ServiceCenterId=${ServiceCenterId}&Status=${Status}&ProductLineId=${ProductLineId}&Color=${Color}${Memory == 0? '' : `&Capacity=${Memory}`}`
+        );
+        dispatch(getProductsSuccess(res.data.items));
+    } catch (err) {
+        dispatch(getProductsFailure());
+    }
+};
+
+
 export const getProductServiceCenter = async (
     dispatch,
     serviceCenterId,

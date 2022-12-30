@@ -3,8 +3,8 @@
     flex: 4;
 }
 
-.updateFactory-content{
-    flex:1;
+.updateFactory-content {
+    flex: 1;
     background-color: #fff;
     margin: 0px 50px;
 }
@@ -18,7 +18,7 @@
     font-size: 14px;
     color: #000000DE;
     margin-top: 10px;
-    
+
 }
 
 .select-box {
@@ -26,22 +26,22 @@
     width: 255px;
 }
 
-.input-box {
-    height: 35px;
+.input-box_ {
+    height: 33px;
     border: 1px solid #ccc;
     font-size: 14px;
-    /* padding: 0px 10px; */
-    width: 250px;
+    padding: 0px 14px;
+    width: 225px;
     border-radius: 4px;
 }
 
-.input-box:hover {
+.input-box_:hover {
     border-color: #000;
 }
 
-.input-box:focus {
+.input-box_:focus {
     /* width: 149px; */
-    padding: 0px 9px;
+    padding: 0px 13px;
     height: 31px;
     outline: none !important;
     border: 2px solid #1976d2;
@@ -50,7 +50,7 @@
 
 #submit-Factory {
     line-height: 35px;
-    background-color: #00008B;
+    background-color: #3BB077;
     color: #fff;
     border-radius: 5px;
     padding: 0 10px;
@@ -66,5 +66,5 @@
 }
 
 #submit-Factory:active {
-    background-color: #000070;
+    background-color: #155737;
 }

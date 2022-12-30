@@ -7,10 +7,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentServiceCenterInfo } from "../../../redux/currentServiceCenterSlice";
 import { getServiceCenter } from "../../../api/serviceCenterApi";
+import { getUsers } from "../../../api/userApi";
 
 export default function ServiceCenterList() {
   const dispatch = useDispatch();
   useEffect(() => {
+    getUsers(dispatch)
     getServiceCenter(dispatch, '00', '000', '0000', '')
   }, [dispatch])
   const serviceCenter = useSelector((state) => state.serviceCenter.serviceCenters);
@@ -48,7 +50,7 @@ export default function ServiceCenterList() {
   ];
 
   return (
-    <DataGrid className="servicecenterList"
+    <DataGrid
       rows={serviceCenter}
       disableSelectionOnClick
       columns={columns}

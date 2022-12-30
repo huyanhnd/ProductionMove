@@ -39,7 +39,7 @@
 .sidebarListItem.active,
 .sidebarListItem:hover {
   background-color: rgb(230, 240, 255);
-  color: rgb(145, 85, 253);
+  color: darkblue;
   /* background-color: rgb(145, 85, 253); */
   /* background-image: linear-gradient(98deg, rgb(198, 167, 254), rgb(145, 85, 253) 94%) */
 }

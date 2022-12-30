@@ -26,7 +26,7 @@
     width: 255px;
 }
 
-.input-box {
+.input-box_ {
     height: 35px;
     border: 1px solid #ccc;
     font-size: 14px;
@@ -35,11 +35,11 @@
     border-radius: 4px;
 }
 
-.input-box:hover {
+.input-box_:hover {
     border-color: #000;
 }
 
-.input-box:focus {
+.input-box_:focus {
     /* width: 149px; */
     padding: 0px 9px;
     height: 31px;
@@ -50,7 +50,7 @@
 
 #submit-ServiceCenter {
     line-height: 35px;
-    background-color: #00008B;
+    background-color: #3BB077;
     color: #fff;
     border-radius: 5px;
     padding: 0 10px;
@@ -66,5 +66,5 @@
 }
 
 #submit-ServiceCenter:active {
-    background-color: #000070;
+    background-color: #278055;
 }

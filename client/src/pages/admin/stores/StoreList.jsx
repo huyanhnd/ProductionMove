@@ -7,11 +7,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentStoreInfo } from "../../../redux/currentStoreSlice";
 import { getStore } from "../../../api/storesApi";
+import { getUsers } from "../../../api/userApi";
 
 export default function StoreList() {
   const dispatch = useDispatch();
   useEffect(() => {
-    getStore(dispatch, '00', '000', '0000', '')
+        getUsers(dispatch)
+        getStore(dispatch, '00', '000', '0000', '')
   }, [dispatch])
   const store = useSelector((state) => state.store.stores);
   const handleDelete = (row) => {
@@ -48,7 +50,7 @@ export default function StoreList() {
   ];
 
   return (
-      <DataGrid className="storeList"
+      <DataGrid 
         rows={store}
         disableSelectionOnClick
         columns={columns}

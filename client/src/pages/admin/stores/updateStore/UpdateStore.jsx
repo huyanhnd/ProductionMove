@@ -64,7 +64,7 @@ export default function UpdateStore() {
     }
 
     const handleSubmit = (e) => {
-        const newStoreName = document.getElementsByClassName('input-box')[0].value
+        const newStoreName = document.getElementsByClassName('input-box_')[0].value
         const newProvinceCode = provinceCode
         const newProvinceName = province.find(curValue => {
             return curValue.code == newProvinceCode
@@ -77,10 +77,10 @@ export default function UpdateStore() {
         const newWardName = ward.find(curValue => {
             return curValue.code == newWardCode
         }).name
-        const newAddress = document.getElementsByClassName('input-box')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
+        const newAddress = document.getElementsByClassName('input-box_')[1].value.concat(' - ', newWardName,' - ', newDistrictName,' - ', newProvinceName)
         const newInfo = { storeName: newStoreName, provinceCode: newProvinceCode, provinceName: newProvinceName, districtCode: newDistrictCode, districtName: newDistrictName, wardCode: newWardCode, wardName: newWardName, address:newAddress }
         const [a,c,...d] = newInfo.address.split(" - ")
-        console.log(d);
+        alert("Successfully!")
     }
     return (
         <div className="updateStore-container">
@@ -92,7 +92,7 @@ export default function UpdateStore() {
                 {/* sửa tên nhà máy */}
                 <div className="select-section">
                     <div className="select-title">Store name</div>
-                    <input type="text" placeholder="Type Store name here" class="input-box" value={storeName} onChange={handeStoreNameChange} />
+                    <input type="text" placeholder="Type Store name here" class="input-box_" value={storeName} onChange={handeStoreNameChange} />
                 </div>
 
                 {/* Sửa thành phố */}
@@ -143,7 +143,7 @@ export default function UpdateStore() {
                 {/* Sửa địa chỉ cụ thể */}
                 <div className="select-section">
                     <div className="select-title">Address</div>
-                    <input type="text" placeholder="Type address here" class="input-box" value={address} onChange={handeAddressChange} />
+                    <input type="text" placeholder="Type address here" class="input-box_" value={address} onChange={handeAddressChange} />
                 </div>
                 <div
                     id="submit-Store"
