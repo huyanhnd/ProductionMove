@@ -5,6 +5,7 @@ using ProductionMove.Helpers;
 using ProductionMove.Models;
 using ProductionMove.ViewModels;
 using ProductionMove.ViewModels.ProductModel;
+using System.Diagnostics;
 
 namespace ProductionMove.Services
 {
@@ -13,9 +14,10 @@ namespace ProductionMove.Services
         Task<QueryResult<ProductResponse>> ListAsync(ProductQuery query);
         Task<ProductResponse> FindByCodeAsync(string code);
         Task CreateAsync(ProductRequest model);
-        Task ApprovedExportAsync(List<int> ProductIds, int ProcessId);
+        Task ApprovedExportAsync(int processId);
         Task SoldProductAsync(string code);
         Task ReturnErrorToFatory(string code);
+        Task ReceiveFromCustomer(string code);
         Task<ProductResponse> UpdateAsync(string code, ProductRequest product);
         Task DeleteAsync(string code);
     }
@@ -139,15 +141,18 @@ namespace ProductionMove.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task ApprovedExportAsync(List<int> ProductIds, int processId)
+        public async Task ApprovedExportAsync(int processId)
         {
-            var selected = _context.Products.Where(u => ProductIds.Contains(u.Id));
+            var selected = _context.Products.Where(u => u.ProcessId == processId);
 
             foreach (Product p in selected)
             {
                 p.Status = ProductStatus.InStore;
-                p.ProcessId = processId;
             }
+
+            var process = await _context.Processes.FindAsync(processId);
+            if (process == null) throw new AppException("Invalid id");
+            process.Status = ProcessStatus.Approved;
 
             await _context.SaveChangesAsync();
         }
@@ -157,6 +162,33 @@ namespace ProductionMove.Services
             var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
             if (product == null) throw new AppException("Invalid code");
             product.Status = ProductStatus.Sold;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ReceiveFromCustomer(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            product.Status = ProductStatus.UnderWarranty;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ReceiveFromServiceCenter(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            product.Status = ProductStatus.Warranted;
+            product.WarrantyTime++;
+            product.WarrantyDate = DateTime.Now;    
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ErrorFromServiceCenter(string code)
+        {
+            var product = await _context.Products.SingleOrDefaultAsync(p => p.Code == code);
+            if (product == null) throw new AppException("Invalid code");
+            product.Status = ProductStatus.Error;
+            product.ErrorDate = DateTime.UtcNow;
             await _context.SaveChangesAsync();
         }
 

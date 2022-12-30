@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import StoreHome from "../pages/store/home/StoreHome"
-import StoreProcess from "../pages/store/process/StoreProcess"
 import StoreRequestProduct from "../pages/store/products/StoreRequestProduct";
 import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Layout } from "../layout/layout";
 import Store from "../pages/store/products/Store"
+import StoreImport from "../pages/store/import/StoreImport";
+import StoreWarranty from "../pages/store/warranty/StoreWarranty";
 
 export const storeRouter = createBrowserRouter([
     {
@@ -15,7 +16,8 @@ export const storeRouter = createBrowserRouter([
             { path: "/", element: <StoreHome /> },
             { path: "/store/products", element: <Store /> },
             { path: "/store/products/request", element: <StoreRequestProduct /> },
-            { path: "/store/process", element: <StoreProcess /> },
+            { path: "/store/warranty", element: <StoreWarranty /> },
+            { path: "/store/import", element: <StoreImport /> }
         ],
     }
 ])

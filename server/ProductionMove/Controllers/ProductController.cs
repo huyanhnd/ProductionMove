@@ -69,9 +69,9 @@ namespace ProductionMove.Controllers
 
 
         [HttpPut("import")]
-        public async Task<IActionResult> ApprovedExportAsync(List<int> ProductIds, int ProcessId)
+        public async Task<IActionResult> ApprovedExportAsync(int processId)
         {
-            await _productService.ApprovedExportAsync(ProductIds, ProcessId);
+            await _productService.ApprovedExportAsync(processId);
             return Ok(new { message = "Product import successfully" });
         }
 
@@ -87,6 +87,14 @@ namespace ProductionMove.Controllers
         {
             await _productService.SoldProductAsync(code);
             return Ok(new { message = "Product sold successfully" });
+        }
+
+
+        [HttpPut("recevedfromcustomer")]
+        public async Task<IActionResult> ReceiveFromCustomer(string code)
+        {
+            await _productService.ReceiveFromCustomer(code);
+            return Ok(new { message = "Product received from user successfully" });
         }
     }
 }

@@ -1,0 +1,40 @@
+.status {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+.status.InFactory {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.151);
+}
+
+.status.InStore {
+    color: goldenrod;
+    background-color: rgba(189, 189, 3, 0.103);
+}
+
+.status.Sold {
+    color: purple;
+    background-color: rgba(255, 0, 157, 0.349);
+}
+
+.userListEdit {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.storeReceive {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: lightblue;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}

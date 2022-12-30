@@ -1,39 +1,43 @@
-import "./exportList.scss";
+import "./storeImport.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProcesses } from "../../../../api/processApi";
-import { deleteUser } from "../../../../api/userApi";
-import { formatDate } from "../../../../helper/formatDate";
+import { getProcesses } from "../../../api/processApi";
+import { deleteUser } from "../../../api/userApi";
+import { formatDate } from "../../../helper/formatDate";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
-
 import { Tabs, Tab } from '@mui/material';
+import { publicRequest } from "../../../api/requestMethods";
+import { changeImportRequest } from "../../../redux/processSlice";
 
-export default function ExportList() {
+export default function StoreImport() {
   const dispatch = useDispatch();
   const processes = useSelector((state) => state.process.processes);
   const [value, setValue] = useState(0)
+  const importRequest = useSelector((state) => state.process.importRequest)
 
   useEffect(() => {
     getProcesses(dispatch);
   }, [dispatch]);
 
-  const handleViewDetails = (row) => {
-    return null;
-  }
-
   const handleTabs = (e, val) => {
     setValue(val)
+  }
+
+  const handleSubmit = async (processId) => {
+    await publicRequest.put(
+      `/Product/import/?processId=${processId}`
+    );
   }
 
   const columns = [
     { field: "id", headerName: "Id", width: 50 },
     { field: "name", headerName: "Username", width: 90 },
-    { field: "role", headerName: "Store", width: 90 },
+    { field: "role", headerName: "From Factory", width: 120 },
     {
       field: "requiredDate",
       headerName: "Create At",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="">{formatDate(params.row.requiredDate)}</div>
@@ -43,7 +47,7 @@ export default function ExportList() {
     {
       field: "approvedDate",
       headerName: "Update At",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="">{params.row.approvedDate === null ? "Undefine" : formatDate(params.row.approvedDate)}</div>
@@ -53,7 +57,7 @@ export default function ExportList() {
     {
       field: "cancelledDate",
       headerName: "Update At",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="">{params.row.cancelledDate === null ? "Undefine" : formatDate(params.row.cancelledDate)}</div>
@@ -75,27 +79,17 @@ export default function ExportList() {
   return (
     <div className="exportList">
       <div className="datatableTitle">
-        Export Request
-        <Link to="/factory/newexport" className="linkAddProduct">
-          Xuất sản phẩm cho đại lý
-        </Link>
+        Import Request
+        <button className="linkAddProduct" onClick={() => { handleSubmit(importRequest[0]) }}>Submit</button>
       </div>
       
-      <Tabs value={value} onChange={handleTabs}>
-        <Tab label="All" />
-        <Tab label="Approved" />
-        <Tab label="Pending" />
-        <Tab label="Cancelled" />
-      </Tabs>
-
-      <TabPanel value={value} index={0}>
-      </TabPanel>
-
       <DataGrid
         rows={processes}
-        disableSelectionOnClick
         columns={columns}
         pageSize={10}
+        disableSelectionOnClick
+        checkboxSelection
+        onSelectionModelChange={(rows) => dispatch(changeImportRequest(rows))}
       />
     </div>
   );

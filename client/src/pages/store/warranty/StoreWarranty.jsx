@@ -1,6 +1,6 @@
-import "./storeProcess.css"
+import "./storeWarranty.css"
 
-export default function StoreProcess() {
+export default function StoreWarranty() {
     return (
         <div className="storeProcess-page">This is StoreProcess page</div>
     )

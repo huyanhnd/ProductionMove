@@ -35,8 +35,6 @@ export default function FactoryProduct() {
     // getUsers(dispatch)
   }, [dispatch]);
 
-
-
   const handleDelete = (id) => {
     products.filter((item) => item.id !== id);
   };

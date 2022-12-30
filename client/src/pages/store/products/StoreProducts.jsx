@@ -1,4 +1,4 @@
-import "./storeProducts.scss";
+import "./storeProducts.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
@@ -21,6 +21,7 @@ export default function StoreProducts() {
   //store id là curent user
   const currentUser = useSelector((state) => state.auth.currentUser)
   const currentUserId = currentUser.managementId
+  const [active, setActive] = useState(false);
   console.log(currentUserId);
 
   useEffect(() => {
@@ -79,7 +80,7 @@ export default function StoreProducts() {
   useEffect(() => {
     getProductStore_(dispatch, productline, factory, currentUserId, serviceCenter, status, color, memory)
     console.log(products);
-  }, [dispatch, productline, factory, currentUserId, serviceCenter, status, color, memory])
+  }, [dispatch, productline, factory, currentUserId, serviceCenter, status, color, memory, active])
 
   const columns = [
     {
@@ -121,6 +122,11 @@ export default function StoreProducts() {
       width: 150,
     },
     {
+      field: "warrantyTime",
+      headerName: "Warranty Time",
+      width: 50,
+    },
+    {
       field: "status",
       headerName: "Status",
       width: 120,
@@ -133,15 +139,22 @@ export default function StoreProducts() {
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 200,
       renderCell: (params) => {
-          return (
-              <div>
-                  <button className="userListEdit" onClick={() => { publicRequest.put(`/Product/return/${params.row.id}`) }}>Sold</button >
-              </div>
-          );
+        return (
+          <div>
+            <button className="userListEdit" onClick={() => {
+              setActive(!active);
+              publicRequest.put(`/Product/sold/${params.row.code}`)
+            }}>Bán</button >
+            <button className="storeReceive" onClick={() => {
+              setActive(!active);
+              publicRequest.put(`/Product/sold/${params.row.code}`)
+            }}>Nhận bảo hành</button >
+          </div>
+        );
       },
-  },
+    },
   ];
 
   return (

@@ -8,6 +8,7 @@ export const processSlice = createSlice({
         isFetching: false,
         error: false,
         exportList: [],
+        importRequest: [],
     },
     reducers: {
         getProcessesStart: (state) => {
@@ -35,6 +36,9 @@ export const processSlice = createSlice({
         },
         changeExportList: (state,action) => {
             state.exportList = action.payload;
+        },
+        changeImportRequest: (state, action) => {
+            state.importRequest = action.payload;
         }
     },
 });
@@ -46,6 +50,7 @@ export const {
     postProcessFailure,
     postProcessStart,
     postProcessSuccess,
-    changeExportList
+    changeExportList,
+    changeImportRequest,
 } = processSlice.actions;
 export default processSlice.reducer;

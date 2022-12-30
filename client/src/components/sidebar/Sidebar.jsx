@@ -112,13 +112,13 @@ export default function Sidebar() {
         {
           icon: Settings,
           title: "Import",
-          link: "/stores/import",
+          link: "/store/import",
           key: 3,
         },
         {
           icon: WorkOutline,
           title: "Warranty",
-          link: "/stores/warranty",
+          link: "/store/warranty",
           key: 4,
         },
       ]
