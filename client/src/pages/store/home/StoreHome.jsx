@@ -8,6 +8,7 @@ import { getProducts } from "../../../api/productsApi";
 import { useEffect } from "react";
 import DbChartStatistic from "../../../components/chart/DbChartStatistic";
 import { getUsers } from "../../../api/userApi";
+import { products_ } from "../../../dummyData";
 
 const StoreHome = () => {
     /**
@@ -26,8 +27,8 @@ const StoreHome = () => {
       */
     const auth = useSelector((state) => state.auth.currentUser);
     const storeId = auth.managementId
-    const productData = products.filter((item) => { return item.storeId == storeId })
-    console.log(productData);
+    // const products_ = products.filter((item) => { return item.storeId == storeId })
+    console.log(products_);
 
 
     const date = new Date();
@@ -61,13 +62,13 @@ const StoreHome = () => {
     /**
      * for mat chart data
      */
-    for (let i = 0; i < productData.length; ++i) {
-        const sold = getDMY(productData[i].soldDate).month
-        const error = getDMY(productData[i].errorDate).month
+    for (let i = 0; i < products_.length; ++i) {
+        const sold = getDMY(products_[i].soldDate).month
+        const error = getDMY(products_[i].errorDate).month
 
         for (let i = 0; i < monthsData.length; ++i) {
-            if (parseInt(sold) == monthsData[i].month.split(' ')[1] && getDMY(productData[i].soldDate).year == today.year) monthsData[i].quantityOfSold++
-            if (parseInt(error) == monthsData[i].month.split(' ')[1] && getDMY(productData[i].errorDate).year == today.year) monthsData[i].quantityOfError++
+            if (parseInt(sold) == monthsData[i].month.split(' ')[1] && getDMY(products_[i].soldDate).year == today.year) monthsData[i].quantityOfSold++
+            if (parseInt(error) == monthsData[i].month.split(' ')[1] && getDMY(products_[i].errorDate).year == today.year) monthsData[i].quantityOfError++
         }
     }
 
@@ -78,9 +79,9 @@ const StoreHome = () => {
         y = y + 3
     }
 
-    for (let i = 0; i < productData.length; ++i) {
-        const sold = getDMY(productData[i].soldDate).year
-        const error = getDMY(productData[i].errorDate).year
+    for (let i = 0; i < products_.length; ++i) {
+        const sold = getDMY(products_[i].soldDate).year
+        const error = getDMY(products_[i].errorDate).year
         for (let i = 0; i < yearsData.length; ++i) {
             if (parseInt(sold) == yearsData[i].year.split(' ')[1]) yearsData[i].quantityOfSold++
             if (parseInt(error) == yearsData[i].year.split(' ')[1]) yearsData[i].quantityOfError++
@@ -89,7 +90,7 @@ const StoreHome = () => {
     return (
         <div className="homeStore">
             <div className="store-content">
-                <FeaturedInfo type='store' data={productData} />
+                <FeaturedInfo type='store' data={products_} />
                 <div className="chart-store">
                     <h3 className="chart-title_">Monthly Statistics</h3>
                     <div className='chart-content'>
@@ -97,13 +98,13 @@ const StoreHome = () => {
                     </div>
                 </div>
                 <div className="chart-store">
-                    <h3 className="chart-title_">Monthly Statistics</h3>
+                    <h3 className="chart-title_">Quarterly Statistics</h3>
                     <div className='chart-content'>
                         <DbChartStatistic data={quatersData} dataKey={{ name: "quater", value1: 'quantityOfSold', value2: 'quantityOfError' }} />
                     </div>
                 </div>
                 <div className="chart-store">
-                    <h3 className="chart-title_">Monthly Statistics</h3>
+                    <h3 className="chart-title_">Yearly Statistics</h3>
                     <div className='chart-content'>
                         <DbChartStatistic data={yearsData} dataKey={{ name: "year", value1: 'quantityOfSold', value2: 'quantityOfError' }} />
                     </div>

@@ -115,12 +115,12 @@ export default function Sidebar() {
           link: "/store/import",
           key: 3,
         },
-        {
-          icon: WorkOutline,
-          title: "Warranty",
-          link: "/store/warranty",
-          key: 4,
-        },
+        // {
+        //   icon: WorkOutline,
+        //   title: "Warranty",
+        //   link: "/store/warranty",
+        //   key: 4,
+        // },
       ]
     },
     {
@@ -131,12 +131,6 @@ export default function Sidebar() {
           title: "Home",
           link: "/",
           key: 1,
-        },
-        {
-          icon: WorkOutline,
-          title: "ServiceCenter",
-          link: "/servicecenter/products",
-          key: 2,
         },
         {
           icon: Settings,

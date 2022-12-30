@@ -20,6 +20,10 @@ export default function ServiceCenterRequest() {
     const handleViewDetails = (row) => {
         return null;
     }
+    const[process_,setProcess_]=useState(processes)
+    const handleDelete = (id) => {
+        setProcess_(process_.filter((item) => item.id !== id));
+      };
 
     const handleTabs = (e, val) => {
         setValue(val)
@@ -76,21 +80,21 @@ export default function ServiceCenterRequest() {
             width: 150,
             renderCell: (params) => {
                 return (
-                    <div>
-                        <Link
-                            to={"/factory/process/" + params.row.id}
+                    <div onClick={() => handleDelete(params.row.id)}>
+                        <button
+               
                             className="accept-btn"
-                            onClick={() => handleViewDetails(params.row)}
+                            onClick={() => handleDelete(params.row.id)}
                         >
                             Accept
-                        </Link>
-                        <Link
-                            to={"/factory/process/" + params.row.id}
+                        </button>
+                        <button
+               
                             className="reject-btn"
-                            onClick={() => handleViewDetails(params.row)}
+                            onClick={() => handleDelete(params.row.id)}
                         >
                             Reject
-                        </Link>
+                        </button>
                     </div>
                 );
             },
@@ -118,7 +122,7 @@ export default function ServiceCenterRequest() {
             </TabPanel>
 
             <DataGrid
-                rows={processes}
+                rows={process_}
                 disableSelectionOnClick
                 columns={columns}
                 pageSize={10}

@@ -15,6 +15,7 @@ export default function StoreImport() {
   const processes = useSelector((state) => state.process.processes);
   const [value, setValue] = useState(0)
   const importRequest = useSelector((state) => state.process.importRequest)
+  const [submit, setSubmit] = useState(true)
 
   useEffect(() => {
     getProcesses(dispatch);
@@ -23,11 +24,11 @@ export default function StoreImport() {
   const handleTabs = (e, val) => {
     setValue(val)
   }
-
   const handleSubmit = async (processId) => {
     await publicRequest.put(
       `/Product/import/?processId=${processId}`
     );
+    setSubmit(!submit)
   }
 
   const columns = [
@@ -66,7 +67,7 @@ export default function StoreImport() {
     },
     {
       field: "status",
-      headerName: "FullName",
+      headerName: "Status",
       width: 200,
       renderCell: (params) => {
         return (
@@ -82,7 +83,7 @@ export default function StoreImport() {
         Import Request
         <button className="linkAddProduct" onClick={() => { handleSubmit(importRequest[0]) }}>Submit</button>
       </div>
-      
+
       <DataGrid
         rows={processes}
         columns={columns}

@@ -25,6 +25,7 @@ export default function ServiceCenterProduct() {
     const [status, setStatus] = useState('All')
     const factories = useSelector((state) => state.factory.factories);
 
+
     //sv centerid id là curent user
     const currentUser = useSelector((state) => state.auth.currentUser)
     const currentUserId = currentUser.managementId
