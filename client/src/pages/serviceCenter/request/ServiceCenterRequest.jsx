@@ -20,7 +20,7 @@ export default function ServiceCenterRequest() {
     const handleViewDetails = (row) => {
         return null;
     }
-    const[process_,setProcess_]=useState(processes)
+    const [process_,setProcess_] = useState(processes)
     const handleDelete = (id) => {
         setProcess_(process_.filter((item) => item.id !== id));
       };

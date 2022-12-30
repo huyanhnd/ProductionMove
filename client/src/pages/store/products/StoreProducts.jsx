@@ -37,7 +37,9 @@ export default function StoreProducts() {
   const handleProductlineChange = (e) => {
     setProductline(e.target.value)
   }
-
+  const handleDelete = (id) => {
+    setProcess_(process_.filter((item) => item.id !== id));
+  };
   /**
    * factory filter box
   */
@@ -149,7 +151,9 @@ export default function StoreProducts() {
             }}>Bán</button >
             <button className="storeReceive" onClick={() => {
               setActive(!active);
-              publicRequest.put(`/Product/sold/${params.row.code}`)
+              const handleDelete = (id) => {
+                setProcess_(process_.filter((item) => item.id !== id));
+              };
             }}>Nhận bảo hành</button >
           </div>
         );

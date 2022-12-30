@@ -12,7 +12,6 @@ export default function AddStore() {
     const dispatch = useDispatch();
     useEffect(() => {
         getProvince(dispatch);
-        getUsers(dispatch)
     }, [dispatch]);
 
     /**
